@@ -11,7 +11,7 @@ Links til eksempler, tjeklister og noter:
 https://goo.gl/Ge5JPR
 
 Link til dias for Opsætning af udviklingsmiljø og brugervejlednings gruppen
-https://docs.google.com/presentation/d/1SP5gTQ9tArnQHPdV99pXxhvWGLyXxeo59IMqZ6oDCzA/edit#slide=id.p
+https://goo.gl/zYCaoz
 
 
 Android studio standarder: <br>
