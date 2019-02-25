@@ -56,7 +56,7 @@ Regler for arbejde i projektet
 
 5. alle Views, som TextView og EditText skal have et ID hvor typen indgår til sidst fx: "interest_rate_et" hvor "et" står for EditText
 
-6. når Views tilgås som member-variables, bruges konventionen: "m(Navn)(Type)" som fx mInterestRateTextView
+6. når Views tilgås som member-variables, bruges konventionen: "m(Navn)(Type)" som fx "mInterestRateEditText"
 
 ---------------------------------------------------------
 
