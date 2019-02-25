@@ -7,7 +7,7 @@ https://goo.gl/QzqSNJ
 Guide til Artefakter: 
 https://goo.gl/MKAJeF
 
-Links til eksempler, tjeklister og noter
+Links til eksempler, tjeklister og noter:
 https://goo.gl/Ge5JPR
 
 Android studio standarder: <br>
