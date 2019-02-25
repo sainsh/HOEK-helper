@@ -73,7 +73,7 @@ Forklaringer på Regler:
 
 5: ved at give tilfældige ID'er til Views gør du det svært for andre og dig selv at bruge/finde de Views du har lavet
 
-6: se 5
+6: se 5.
 
 -----------------------------------------------------------------------------------------------------------------------
 
