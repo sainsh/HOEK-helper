@@ -2,12 +2,37 @@
 Datamatiker 3-uger projekt i samarbejde med handels-økonomer
 
 link til WhiteBoard:
-https://docs.google.com/document/d/1UR1FcdU_jT-4GdCky4XY8DT96t55B9TSc6EX_qQnEwI/edit?fbclid=IwAR2ve1pscSE-xt0HDl22jgFdpBoP6m0jkS7U4S9sxEJa0tDOGLsSk4RsZAY
+https://goo.gl/QzqSNJ
 
 Guide til Artefakter: 
-https://docs.google.com/document/d/1_HhRUVvZV5Wckfxcdx8w1ErliRJfxb55_eLDDxBzs3Y/edit?fbclid=IwAR2gW43KdUuOMhCTsyFk9pF1NzmSofMSBRsJSisMWKBT5ZVKjvELii6sAv4#
+https://goo.gl/MKAJeF
+
+Links til eksempler, tjeklister og noter
+https://goo.gl/Ge5JPR
 
 Android studio standarder: <br>
 compileSdkVersion: 26 <br>
 minSdkVersion 15 <br>
 targetSdkVersion 26 <br>
+
+Regler for arbejde i projektet
+
+1: start en ny Branch hver gang du starter på en ny opgave
+
+2: Før Push:  Pull before Push,
+
+3: sikre dig at ingen er i gang med ar merge en branch til master branch før du selv begynder en merge
+
+4: 
+
+forklaringer på Regler:
+
+1: hvis alle arbejder i samme branch, fører det til konflikter, som ikke kan forenes
+
+2: hvis der er ændringer i master som du ikke har implementeret vil der komme konflikter som kan være umulige at udrede.
+
+Navne Konvension:
+
+Alle Artefakter skal have et unikt ID, som består af forkortelse af artefakt navn og nummer, fx UC-01, som er den første Use-Case.
+
+Hvis artefakter hænger sammen, fx en Domæne Model over en Use-Case, skal begge dele nummer i deres ID, fx UC-01 og DM-01
