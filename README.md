@@ -31,6 +31,8 @@ forklaringer på Regler:
 
 2: hvis der er ændringer i master som du ikke har implementeret vil der komme konflikter som kan være umulige at udrede.
 
+3: ved simultane merges skal der bruges tid til at forlige de forskellige marges
+
 Navne Konvension:
 
 Alle Artefakter skal have et unikt ID, som består af forkortelse af artefakt navn og nummer, fx UC-01, som er den første Use-Case.
