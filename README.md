@@ -5,6 +5,6 @@ link til WhiteBoard:
 https://docs.google.com/document/d/1UR1FcdU_jT-4GdCky4XY8DT96t55B9TSc6EX_qQnEwI/edit?fbclid=IwAR2ve1pscSE-xt0HDl22jgFdpBoP6m0jkS7U4S9sxEJa0tDOGLsSk4RsZAY
 
 Android studio standarder: <br>
-compileSdkVersion: 24 <br>
+compileSdkVersion: 26 <br>
 minSdkVersion 15 <br>
-targetSdkVersion 24 <br>
+targetSdkVersion 26 <br>
