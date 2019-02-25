@@ -21,6 +21,8 @@ https://goo.gl/Ge5JPR
 Link til dias for Opsætning af udviklingsmiljø og brugervejlednings gruppen
 https://goo.gl/zYCaoz
 
+Project Manager:
+https://goo.gl/s6Mnmt
 
 
 -----------------------------------------------------------------------------------------------------------------
