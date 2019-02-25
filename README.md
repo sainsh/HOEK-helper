@@ -1,7 +1,7 @@
 # HOEK-helper
 Datamatiker 3-uger projekt i samarbejde med handels-økonomer
 
-link til WhiteBoard:
+Link til WhiteBoard:
 https://goo.gl/QzqSNJ
 
 Guide til Artefakter: 
@@ -17,21 +17,21 @@ targetSdkVersion 26 <br>
 
 Regler for arbejde i projektet
 
-1: start en ny Branch hver gang du starter på en ny opgave
+1: Start en ny Branch hver gang du starter på en ny opgave
 
 2: Før Push:  Pull before Push,
 
-3: sikre dig at ingen er i gang med ar merge en branch til master branch før du selv begynder en merge
+3: Sikre dig at ingen er i gang med ar merge en branch til master branch før du selv begynder en merge
 
 4: 
 
-forklaringer på Regler:
+Forklaringer på Regler:
 
-1: hvis alle arbejder i samme branch, fører det til konflikter, som ikke kan forenes
+1: Hvis alle arbejder i samme branch, fører det til konflikter, som ikke kan forenes
 
-2: hvis der er ændringer i master som du ikke har implementeret vil der komme konflikter som kan være umulige at udrede.
+2: Hvis der er ændringer i master som du ikke har implementeret vil der komme konflikter som kan være umulige at udrede.
 
-3: ved simultane merges skal der bruges tid til at forlige de forskellige marges
+3: Ved simultane merges skal der bruges tid til at forlige de forskellige marges
 
 Navne Konvension:
 
