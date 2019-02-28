@@ -11,6 +11,10 @@ public interface Controller {
 
     double hentDOMK();
 
+    void beregnVO();
+
+    double hentVO();
+
 
 
 
