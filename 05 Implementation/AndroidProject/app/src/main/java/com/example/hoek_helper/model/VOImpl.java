@@ -1,24 +1,13 @@
 package com.example.hoek_helper.model;
 
-import static java.lang.Double.NaN;
-
 public class VOImpl implements VO {
 
 
-    double vaerdi = NaN;
+    double vaerdi = Double.NaN;
 
-    /**
-     * Constructoren modtager 4 parametre der kan bruges til at beregne VO.
-     *
-     * @param stk
-     * @param ve
-     * @param ko
-     * @param sto
-     */
-    public VOImpl(STK stk, VE ve, KO ko, STO sto){
 
+    public VOImpl() {
     }
-
 
     @Override
     public void setVaerdi(double vaerdi) {
