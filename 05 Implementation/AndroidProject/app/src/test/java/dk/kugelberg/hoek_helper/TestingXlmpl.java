@@ -1,13 +1,14 @@
-package com.example.hoek_helper;
+package dk.kugelberg.hoek_helper;
 
-import com.example.hoek_helper.Model.XImpl;
+import dk.kugelberg.hoek_helper.model.X;
+import dk.kugelberg.hoek_helper.model.XImpl;
 
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class TestingXlmpl {
-    XImpl t=new XImpl();
+    X t =new XImpl();
     @Test
     public void setAntal(){
         t.setAntal(5);

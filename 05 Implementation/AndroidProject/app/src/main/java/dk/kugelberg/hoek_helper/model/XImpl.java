@@ -1,4 +1,4 @@
-package com.example.hoek_helper.Model;
+package dk.kugelberg.hoek_helper.model;
 
 public class XImpl implements X {
     private int antal;
