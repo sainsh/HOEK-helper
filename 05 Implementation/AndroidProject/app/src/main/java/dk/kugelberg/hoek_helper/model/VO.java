@@ -1,4 +1,4 @@
-package com.example.hoek_helper.model;
+package dk.kugelberg.hoek_helper.model;
 
 
 public interface VO {

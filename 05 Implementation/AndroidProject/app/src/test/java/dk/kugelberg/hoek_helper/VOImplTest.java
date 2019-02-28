@@ -1,9 +1,11 @@
-package com.example.hoek_helper.model;
+package dk.kugelberg.hoek_helper;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-import com.example.hoek_helper.model.VOImpl;
+import dk.kugelberg.hoek_helper.model.VO;
+import dk.kugelberg.hoek_helper.model.VOImpl;
+
+import static org.junit.Assert.assertEquals;
 
 public class VOImplTest {
 
