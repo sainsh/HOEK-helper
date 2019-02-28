@@ -1,6 +1,6 @@
 package com.example.hoek_helper.Model;
 
-public class angivVEImpl implements angivVE {
+public class VEImpl implements VE {
 
     private double vaerdi;
 
