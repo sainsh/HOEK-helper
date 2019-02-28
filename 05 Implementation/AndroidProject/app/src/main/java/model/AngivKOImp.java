@@ -1,6 +1,6 @@
-package com.example.hoek_helper.model;
+package model;
 
-public class KOImp implements KO {
+public class AngivKOImp implements AngivKO {
 
     private double vaerdi;
 

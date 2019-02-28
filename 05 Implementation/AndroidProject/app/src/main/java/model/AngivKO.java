@@ -1,6 +1,6 @@
-package com.example.hoek_helper.model;
+package model;
 
-public interface KO {
+public interface AngivKO {
     void setVaerdi(double vaerdi);
     double getVaerdi();
 }
