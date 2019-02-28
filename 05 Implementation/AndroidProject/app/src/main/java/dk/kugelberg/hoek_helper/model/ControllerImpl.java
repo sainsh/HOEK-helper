@@ -40,4 +40,14 @@ public class ControllerImpl implements Controller {
        // return domk.getDOMK();
         return 0.0;
     }
+
+    @Override
+    public void beregnVO() {
+
+    }
+
+    @Override
+    public double hentVO() {
+        return 0;
+    }
 }
