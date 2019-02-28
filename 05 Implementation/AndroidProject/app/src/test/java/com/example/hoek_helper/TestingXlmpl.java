@@ -10,7 +10,8 @@ public class TestingXlmpl {
     XImpl t=new XImpl();
     @Test
     public void setAntal(){
-        t.setAntal(-5);
+        t.setAntal(5);
+        assertEquals(t.getAntal(),5,0.1);
     }
     @Test
     public void getAntal(){

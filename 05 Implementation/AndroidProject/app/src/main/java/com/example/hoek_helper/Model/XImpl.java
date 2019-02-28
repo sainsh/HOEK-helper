@@ -7,8 +7,10 @@ public class XImpl implements X {
     public void setAntal(int antal) {
         if (antal < 0) {
             System.out.println("tallet skal være et postivie tal");
+        }else{
+            this.antal = antal;
         }
-        this.antal = antal;
+
     }
 
     @Override
