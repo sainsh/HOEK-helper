@@ -1,6 +1,6 @@
-package com.example.hoek_helper;
+package dk.kugelberg.hoek_helper;
 
-import com.example.hoek_helper.Model.VEImpl;
+import dk.kugelberg.hoek_helper.model.VEImpl;
 
 import org.junit.Test;
 
