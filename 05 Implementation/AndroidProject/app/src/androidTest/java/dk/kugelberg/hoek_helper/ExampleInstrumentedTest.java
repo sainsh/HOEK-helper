@@ -1,4 +1,4 @@
-package com.example.hoek_helper;
+package dk.kugelberg.hoek_helper;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
