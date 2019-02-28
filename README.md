@@ -21,6 +21,11 @@ https://goo.gl/Ge5JPR
 Link til dias for Opsætning af udviklingsmiljø og brugervejlednings gruppen
 https://goo.gl/zYCaoz
 
+Project Manager:
+https://goo.gl/s6Mnmt
+
+Google Drive mappe:
+https://goo.gl/UQ6d1h
 
 
 -----------------------------------------------------------------------------------------------------------------
@@ -47,7 +52,11 @@ Regler for arbejde i projektet
 
 3: Sikre dig at ingen er i gang med ar merge en branch til master branch før du selv begynder en merge
 
-4: ved commit, lav en sigende commit text, beskriv hvad du har lavet/ har ændret, muligvis med begrundelse
+4: ved commit, lav en sigende commit text, beskriv hvad du har lavet/ har ændret, muligvis med begrundelse <br>
+
+5. alle Views, som TextView og EditText skal have et ID hvor typen indgår til sidst fx: "interest_rate_et" hvor "et" står for EditText<br>
+
+6. når Views tilgås som member-variables, bruges konventionen: "m(Navn)(Type)" som fx "mInterestRateEditText"
 
 ---------------------------------------------------------
 
@@ -61,6 +70,10 @@ Forklaringer på Regler:
 3: Ved simultane merges skal der bruges tid til at forlige de forskellige marges
 
 4: ved en commit text som "hest" skal koden gennemgås før ændringerne eller tilføjelserne kan forståes
+
+5: ved at give tilfældige ID'er til Views gør du det svært for andre og dig selv at bruge/finde de Views du har lavet
+
+6: se 5.
 
 -----------------------------------------------------------------------------------------------------------------------
 
