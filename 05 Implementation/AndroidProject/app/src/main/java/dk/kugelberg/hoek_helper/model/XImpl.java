@@ -20,6 +20,7 @@ public class XImpl implements X {
         this.domk = domk;
     }
 
+    //start
     @Override
     public void setVaerdi(double x) {
         if (x < 0) {
