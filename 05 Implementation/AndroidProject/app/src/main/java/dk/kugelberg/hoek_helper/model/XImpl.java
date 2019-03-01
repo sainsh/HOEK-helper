@@ -13,6 +13,8 @@ public class XImpl implements X {
 
     }
 
+
+
     @Override
     public int getAntal() {
         return antal;
