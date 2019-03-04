@@ -32,6 +32,41 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
+    public void angivSTO(double vaerdi, int raekkenummer) {
+
+    }
+
+    @Override
+    public double hentSTO(int raekkenummer) {
+        return 0;
+    }
+
+    @Override
+    public void beregnSTO(int raekkenummer) {
+
+    }
+
+    @Override
+    public void angivVE(double vaerdi, int raekkenummer) {
+
+    }
+
+    @Override
+    public double hentVE(int raekkenummer) {
+        return 0;
+    }
+
+    @Override
+    public void beregnVE(int raekkenummer) {
+
+    }
+
+    @Override
+    public void angivVO(double vaerdi, int raekkenummer) {
+
+    }
+
+    @Override
     public void beregnDOMK(int raekkenummer) {
 
         double vaerdi = Double.NaN;
@@ -43,6 +78,11 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
+    public void angivDOMK(double vaerdi, int raekkenummer) {
+
+    }
+
+    @Override
     public double hentDOMK(int raekkenummer) {
         // return domk.getDOMK();
         return 0.0;
@@ -50,6 +90,21 @@ public class ControllerImpl implements Controller {
 
     @Override
     public void beregnVO(int raekkenummer) {
+
+    }
+
+    @Override
+    public void angivX(int antal, int raekkenummer) {
+
+    }
+
+    @Override
+    public int hentX(int raekkenummer) {
+        return 0;
+    }
+
+    @Override
+    public void beregnX(int raekkenummer) {
 
     }
 
