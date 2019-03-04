@@ -24,12 +24,14 @@ public class XImplTest {
         XImpl x = new XImpl();
         x.setVaerdi(45);
         assertEquals(x.getVaerdi(),45,delta);
+        assertEquals(x.getBeregnet(),false);
     }
     //Kontrollere at Init ikke ændre værdien.
     @Test
     public void testAfXStandardVaerdi() {
         XImpl x = new XImpl();
         assertEquals(x.getVaerdi(), Double.NaN,delta);
+        assertEquals(x.getBeregnet(),false);
     }
 
     @Test
@@ -40,6 +42,7 @@ public class XImplTest {
         double resultat = Double.NaN;
         x.beregn();
         assertEquals(x.getVaerdi(),resultat,delta);
+        assertEquals(x.getBeregnet(),true);
     }
 
     @Test
@@ -61,6 +64,7 @@ public class XImplTest {
         double resultat = Double.NaN;
         x.beregn();
         assertEquals(x.getVaerdi(),resultat,delta);
+        assertEquals(x.getBeregnet(),true);
     }
 
     @Test
@@ -70,6 +74,7 @@ public class XImplTest {
         double resultat = 2;
         x.beregn();
         assertEquals(x.getVaerdi(),resultat,delta);
+        assertEquals(x.getBeregnet(),true);
     }
 
     @Test
@@ -79,6 +84,7 @@ public class XImplTest {
         double resultat = Double.NaN;
         x.beregn();
         assertEquals(x.getVaerdi(),resultat,delta);
+        assertEquals(x.getBeregnet(),false);
     }
 
     @Test
@@ -88,6 +94,7 @@ public class XImplTest {
         double resultat = Double.NaN;
         x.beregn();
         assertEquals(x.getVaerdi(),resultat,delta);
+        assertEquals(x.getBeregnet(),false);
     }
 
     //Hvis nedenstående fungere vil resultatet være 2. da 10/5 = 2
@@ -98,6 +105,7 @@ public class XImplTest {
         double resultat = 2;
         x.beregn();
         assertEquals(x.getVaerdi(),resultat,delta);
+        assertEquals(x.getBeregnet(),true);
     }
     @Test
     public void testBeregnXMedDOMKogNegativVO() {
@@ -106,6 +114,7 @@ public class XImplTest {
         double resultat = Double.NaN;
         x.beregn();
         assertEquals(x.getVaerdi(),resultat,delta);
+        assertEquals(x.getBeregnet(),false);
     }
 
     @Test
@@ -115,6 +124,7 @@ public class XImplTest {
         double resultat = Double.NaN;
         x.beregn();
         assertEquals(x.getVaerdi(),resultat,delta);
+        assertEquals(x.getBeregnet(),false);
     }
 //Nedenstående metode tjekker om den udregner med en formel der ikke findes.
     @Test
@@ -124,6 +134,7 @@ public class XImplTest {
         double resultat = Double.NaN;
         x.beregn();
         assertEquals(x.getVaerdi(),resultat,delta);
+        assertEquals(x.getBeregnet(),false);
     }
 
 
@@ -136,6 +147,8 @@ public class XImplTest {
         double resultat = 1;
         x.beregn();
         assertEquals(x.getVaerdi(),resultat,delta);
+        assertEquals(x.getBeregnet(),true);
+
     }
 
     @Test
@@ -145,6 +158,7 @@ public class XImplTest {
         double resultat = Double.NaN;
         x.beregn();
         assertEquals(x.getVaerdi(),resultat,delta);
+        assertEquals(x.getBeregnet(),false);
     }
     @Test
     public void testBeregnXMedNegativSTOogSE() {
@@ -153,6 +167,7 @@ public class XImplTest {
         double resultat = Double.NaN;
         x.beregn();
         assertEquals(x.getVaerdi(),resultat,delta);
+        assertEquals(x.getBeregnet(),false);
     }
 
 

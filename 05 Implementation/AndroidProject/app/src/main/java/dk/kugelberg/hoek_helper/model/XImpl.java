@@ -47,7 +47,7 @@ public class XImpl implements X {
     }
 
     @Override
-    private boolean getBeregnet(){
+    public boolean getBeregnet(){
         return erBeregnet;
     }
 

@@ -2,7 +2,7 @@ package dk.kugelberg.hoek_helper.model;
 
 import static java.lang.Double.NaN;
 
-public class KEimpl extends KE {
+public class KEimpl implements KE {
 
     private double vaerdi;
 

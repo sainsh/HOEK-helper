@@ -5,4 +5,6 @@ public interface KE {
     void setVaerdi(double Vaerdi);
     double getVaerdi();
 
+    void beregn();
+
 }
