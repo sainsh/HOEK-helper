@@ -27,6 +27,11 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
+    public void beregnKO(int raekkenummer) {
+
+    }
+
+    @Override
     public void beregnDOMK(int raekkenummer) {
 
         double vaerdi = Double.NaN;
