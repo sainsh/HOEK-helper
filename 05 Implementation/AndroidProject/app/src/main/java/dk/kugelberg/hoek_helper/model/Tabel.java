@@ -7,6 +7,6 @@ public interface Tabel {
     Raekke getRaekke(int raekkenummer);
     ArrayList<Raekke> getTabel();
     void addRaekke(int raekkenummer);
-    void deleateRaekke(int raekkenummer);
+    void deleteRaekke(int raekkenummer);
 
 }

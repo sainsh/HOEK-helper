@@ -32,7 +32,7 @@ public class TabelImpl implements Tabel {
     }
 
     @Override
-    public void deleateRaekke(int raekkenummer) {
+    public void deleteRaekke(int raekkenummer) {
 
         tabel.remove(raekkenummer);
         updateAdjacentRows(raekkenummer);
@@ -40,6 +40,12 @@ public class TabelImpl implements Tabel {
     }
 
     private void updateAdjacentRows(int raekkenummer) {
+
+        Raekke raekke0 = tabel.get(raekkenummer-1);
+        Raekke raekke1 = tabel.get(raekkenummer);
+        Raekke raekke2 = tabel.get(raekkenummer+1);
+
+
 
 
 
