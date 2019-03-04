@@ -16,18 +16,18 @@ public class ControllerImpl implements Controller {
 
 
     @Override
-    public void angivKO(double vaerdi) {
+    public void angivKO(double vaerdi, int raekkenummer) {
         ko.setVaerdi(vaerdi);
 
     }
 
     @Override
-    public double hentKO() {
+    public double hentKO(int raekkenummer) {
         return ko.getVaerdi();
     }
 
     @Override
-    public void beregnDOMK() {
+    public void beregnDOMK(int raekkenummer) {
 
         double vaerdi = Double.NaN;
 
@@ -38,18 +38,18 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public double hentDOMK() {
+    public double hentDOMK(int raekkenummer) {
         // return domk.getDOMK();
         return 0.0;
     }
 
     @Override
-    public void beregnVO() {
+    public void beregnVO(int raekkenummer) {
 
     }
 
     @Override
-    public double hentVO() {
+    public double hentVO(int raekkenummer) {
         return 0;
     }
 }
