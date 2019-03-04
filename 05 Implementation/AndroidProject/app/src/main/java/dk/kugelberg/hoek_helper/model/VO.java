@@ -8,17 +8,12 @@ public interface VO {
      * ***************************************************************************************/
 
 
-    /**
-     * Sætter variablen vaerdi til værdien angivet som argument.
-     * @param vaerdi
-     */
     void setVaerdi(double vaerdi);
-
-    /**
-     * Returnerer værdien af variablen vaerdi.
-     * @return
-     */
     double getVaerdi();
+    void beregn();
+    void init(VO vo1, VO vo2, STO sto, KO ko, VE ve, X x1, X x2, DOMK domk1, DOMK domk2);
+    boolean erBeregnet();
+
 
     void beregn();
 

@@ -1,20 +1,15 @@
 package dk.kugelberg.hoek_helper.model;
 
-import static java.lang.Double.NaN;
-
 public class VEImpl implements VE {
-
-    private VO vo;
-    private X x;
-    private SE se;
-    private KE ke;
 
     private double vaerdi;
 
+    @Override
     public void setVaerdi(double vaerdi){
         this.vaerdi = vaerdi;
     }
 
+    @Override
     public double getVaerdi(){
         return vaerdi;
     }
@@ -22,17 +17,17 @@ public class VEImpl implements VE {
     @Override
     public void beregn() {
 
-        if(x.getVaerdi() != NaN && vo.getVaerdi() != NaN){
+    }
 
-            this.vaerdi = vo.getVaerdi() / x.getVaerdi();
-
-        }
-        else if(se.getVaerdi() != NaN && ke.getVaerdi() != NaN){
-
-            this.vaerdi = se.getVaerdi() - ke.getVaerdi();
-
-        }
+    @Override
+    public void init(VO vo1, VO vo2, STO sto, KO ko, VE ve, X x1, X x2, DOMK domk1, DOMK domk2) {
 
     }
+
+    @Override
+    public boolean erBeregnet() {
+        return false;
+    }
+
 
 }

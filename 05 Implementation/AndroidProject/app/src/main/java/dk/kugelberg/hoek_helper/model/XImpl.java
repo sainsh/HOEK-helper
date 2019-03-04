@@ -1,76 +1,35 @@
 package dk.kugelberg.hoek_helper.model;
 
-import static java.lang.Double.NaN;
-
 public class XImpl implements X {
+    private int antal;
 
-    VO vo;
-    VE ve;
-    X x1;
-    X x2;
-    KO ko;
-    KE ke;
-    VO vo1;
-    VO vo2;
-    DOMK domk;
-    DOMK domk2;
-    STO sto;
-    SE se;
-
-    private double vaerdi = NaN;
-    private boolean erBeregnet = false;
-
-    public void init(VO vo, VE ve, DOMK domk, STO sto, SE se) {
-        this.vo = vo;
-        this.ve = ve;
-        this.domk = domk;
-        this.sto = sto;
-        this.se = se;
-    }
-
-    //start
     @Override
-    public void setVaerdi(double x) {
-        if (x < 0) {
-            throw new NegativVaerdiException();
-        } else {
-            this.vaerdi = x;
-            erBeregnet = false;
+    public void setAntal(int antal) {
+        if (antal < 0) {
+            System.out.println("tallet skal være et postivie tal");
+        }else{
+            this.antal = antal;
         }
+
     }
 
     @Override
-    public double getVaerdi() {
-
-        return vaerdi;
+    public int getAntal() {
+        return antal;
     }
-
 
     @Override
     public void beregn() {
 
-        if (vo.getVaerdi()!= NaN && ve.getVaerdi() != NaN){
-        double x = vo.getVaerdi() / ve.getVaerdi();
-        }
-        else if (vo.getVaerdi()!= NaN && ve.getVaerdi() != NaN){
-        double x = ko.getVaerdi() / ke.getVaerdi();
-        }
-        else if (sto.getVaerdi() != NaN && se.getVaerdi() != NaN){
-        double x = sto.getVaerdi() / se.getVaerdi();
-        }
-        else if (domk.getVaerdi() != NaN && vo.getVaerdi() != NaN){
-            double x = sto.getVaerdi() / se.getVaerdi();
-        }
-
-        /*
-        X = KO / KE
-        X = VO / VE
-        X = STO / SE
-        X = DOMK * VO
-        */
-
-                this.vaerdi = x;
     }
 
+    @Override
+    public void init(VO vo1, VO vo2, STO sto, KO ko, VE ve, X x1, X x2, DOMK domk1, DOMK domk2) {
 
+    }
+
+    @Override
+    public boolean erBeregnet() {
+        return false;
+    }
 }

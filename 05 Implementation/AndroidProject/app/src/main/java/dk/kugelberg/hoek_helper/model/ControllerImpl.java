@@ -52,4 +52,8 @@ public class ControllerImpl implements Controller {
     public double hentVO(int raekkenummer) {
         return 0;
     }
+
+
+
+
 }
