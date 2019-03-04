@@ -1,5 +1,7 @@
 package dk.kugelberg.hoek_helper.model;
 
+import static java.lang.Double.NaN;
+
 public class XImpl implements X {
 
     VO vo;
@@ -10,11 +12,13 @@ public class XImpl implements X {
     VO vo2;
     DOMK domk;
     DOMK domk2;
+    STO sto;
+    SE se;
 
-    private double vaerdi = Double.NaN;
+    private double vaerdi = NaN;
     private boolean erBeregnet = false;
 
-    public void init(VO vo, VE ve,DOMK domk) {
+    public void init(VO vo, VE ve, DOMK domk, STO sto, SE se) {
         this.vo = vo;
         this.ve = ve;
         this.domk = domk;
@@ -33,8 +37,6 @@ public class XImpl implements X {
 
     @Override
     public double getVaerdi() {
-        if (vaerdi == Double.NaN)
-            beregn();
 
         return vaerdi;
     }
@@ -43,8 +45,16 @@ public class XImpl implements X {
     @Override
     public void beregn() {
 
-
-        double x = vo.getVaerdi() / ve.getVaerdi();
+        if (VO.vo!= NaN && ){
+        double x = vo.getVaerdi() / ve.getVaerdi();}
+        else if ()
+        double x = ko.getVaerdi() / ke.getVaerdi();
+        double x = sto.getVaerdi() / se.getVaerdi();
+        /*
+        X = KO / KE
+        X = VO / VE
+        X = STO / SE
+        */
 
                 this.vaerdi = x;
     }
