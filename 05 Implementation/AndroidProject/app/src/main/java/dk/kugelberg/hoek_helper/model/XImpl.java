@@ -8,6 +8,8 @@ public class XImpl implements X {
     VE ve;
     X x1;
     X x2;
+    KO ko;
+    KE ke;
     VO vo1;
     VO vo2;
     DOMK domk;
@@ -22,6 +24,8 @@ public class XImpl implements X {
         this.vo = vo;
         this.ve = ve;
         this.domk = domk;
+        this.sto = sto;
+        this.se = se;
     }
 
     //start
@@ -45,16 +49,25 @@ public class XImpl implements X {
     @Override
     public void beregn() {
 
-        if (vo.getVaerdi()!= NaN && ve.getVaerdi() ){
-        double x = vo.getVaerdi() / ve.getVaerdi();}
-        else if ()
+        if (vo.getVaerdi()!= NaN && ve.getVaerdi() != NaN){
+        double x = vo.getVaerdi() / ve.getVaerdi();
+        }
+        else if (vo.getVaerdi()!= NaN && ve.getVaerdi() != NaN){
         double x = ko.getVaerdi() / ke.getVaerdi();
+        }
+        else if (sto.getVaerdi() != NaN && se.getVaerdi() != NaN){
         double x = sto.getVaerdi() / se.getVaerdi();
+        }
+        else if (domk.getVaerdi() != NaN && vo.getVaerdi() != NaN){
+            double x = sto.getVaerdi() / se.getVaerdi();
+        }
+
         /*
         X = KO / KE
         X = VO / VE
         X = STO / SE
-
+        X = DOMK * VO
+        */
 
                 this.vaerdi = x;
     }
