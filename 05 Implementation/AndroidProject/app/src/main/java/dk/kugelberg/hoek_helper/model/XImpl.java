@@ -51,6 +51,7 @@ public class XImpl implements X {
 
         if (vo.getVaerdi()!= NaN && ve.getVaerdi() != NaN){
         double x = vo.getVaerdi() / ve.getVaerdi();
+
         }
         else if (vo.getVaerdi()!= NaN && ve.getVaerdi() != NaN){
         double x = ko.getVaerdi() / ke.getVaerdi();
