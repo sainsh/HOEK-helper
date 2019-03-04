@@ -66,12 +66,12 @@ public class TabelImpl implements Tabel {
 
     @Override
     public void angivDOMK(double vaerdi, int raekkenummer) {
-
+        tabel.get(raekkenummer).getDOMK().setVaerdi(vaerdi);
     }
 
     @Override
     public double hentDOMK(int raekkenummer) {
-        return 0;
+        return tabel.get(raekkenummer).getDOMK().getVaerdi();
     }
 
     @Override
@@ -96,71 +96,79 @@ public class TabelImpl implements Tabel {
 
     @Override
     public double hentKO(int raekkenummer) {
-        return 0;
+        return tabel.get(raekkenummer).getKO().getVaerdi();
     }
 
     @Override
     public void beregnKO(int raekkenummer) {
+        tabel.get(raekkenummer).getKO().beregn();
 
     }
 
     @Override
     public void angivSTO(double vaerdi, int raekkenummer) {
+        tabel.get(raekkenummer).getSTO().setVaerdi(vaerdi);
 
     }
 
     @Override
     public double hentSTO(int raekkenummer) {
-        return 0;
+        return tabel.get(raekkenummer).getSTO().getVaerdi();
     }
 
     @Override
     public void beregnSTO(int raekkenummer) {
+        tabel.get(raekkenummer).getSTO().beregn();
 
     }
 
     @Override
     public void angivVE(double vaerdi, int raekkenummer) {
+        tabel.get(raekkenummer).getVE().setVaerdi(vaerdi);
 
     }
 
     @Override
     public double hentVE(int raekkenummer) {
-        return 0;
+        return tabel.get(raekkenummer).getVE().getVaerdi();
     }
 
     @Override
     public void beregnVE(int raekkenummer) {
-
+        tabel.get(raekkenummer).getVE().beregn();
     }
 
     @Override
     public void angivVO(double vaerdi, int raekkenummer) {
+        tabel.get(raekkenummer).getVO().setVaerdi(vaerdi);
 
     }
 
     @Override
     public double hentVO(int raekkenummer) {
-        return 0;
+        return tabel.get(raekkenummer).getVO().getVaerdi();
     }
 
     @Override
     public void beregnVO(int raekkenummer) {
+        tabel.get(raekkenummer).getVO().beregn();
 
     }
 
     @Override
     public void angivX(int antal, int raekkenummer) {
+        tabel.get(raekkenummer).getX().setAntal(antal);
 
     }
 
     @Override
     public int hentX(int raekkenummer) {
-        return 0;
+        return tabel.get(raekkenummer).getX().getAntal();
     }
 
     @Override
     public void beregnX(int raekkenummer) {
+        tabel.get(raekkenummer).getX().beregn();
 
     }
 
