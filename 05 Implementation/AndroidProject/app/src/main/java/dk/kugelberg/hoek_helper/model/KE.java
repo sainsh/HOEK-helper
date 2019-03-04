@@ -10,4 +10,6 @@ public interface KE {
     void setBeregnet(boolean val);
     boolean getBeregnet();
 
+    void beregn();
+
 }

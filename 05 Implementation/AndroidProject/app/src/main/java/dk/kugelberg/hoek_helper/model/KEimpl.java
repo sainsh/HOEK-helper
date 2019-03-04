@@ -12,7 +12,7 @@ public class KEimpl implements KE {
     private SE se;
     private VE ve;
 
-    private boolean erBeregnet = false;void init(KO ko, X x, SE se, VE ve);
+    private boolean erBeregnet = false;
 
     @Override
     public void init(KO ko, X x, SE se, VE ve){
@@ -42,7 +42,7 @@ public class KEimpl implements KE {
     }
 
     @Override
-    private void setBeregnet(boolean val){
+    public void setBeregnet(boolean val){
         erBeregnet = val;
     }
 

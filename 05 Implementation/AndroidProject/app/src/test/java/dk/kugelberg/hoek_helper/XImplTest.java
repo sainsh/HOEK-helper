@@ -326,6 +326,16 @@ class XMock implements X{
     }
 
     @Override
+    public void init1(X x1, VO vo1) {
+
+    }
+
+    @Override
+    public void init2(X x2, VO vo2, DOMK domk2) {
+
+    }
+
+    @Override
     public void setVaerdi(double x) {
 
     }
@@ -338,6 +348,16 @@ class XMock implements X{
     @Override
     public void beregn() {
 
+    }
+
+    @Override
+    public void setBeregnet(boolean val) {
+
+    }
+
+    @Override
+    public boolean getBeregnet() {
+        return false;
     }
 }
 }
