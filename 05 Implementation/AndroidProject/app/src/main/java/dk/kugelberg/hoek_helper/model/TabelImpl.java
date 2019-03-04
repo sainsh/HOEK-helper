@@ -39,6 +39,8 @@ public class TabelImpl implements Tabel {
 
     }
 
+
+
     private void updateAdjacentRows(int raekkenummer) {
 
         Raekke raekke0 = null;
@@ -59,6 +61,106 @@ public class TabelImpl implements Tabel {
             raekke2.getDOMK().init1(raekke2.getX(), raekke2.getVO()); //and all others needed
         }
 
+
+    }
+
+    @Override
+    public void angivDOMK(double vaerdi, int raekkenummer) {
+
+    }
+
+    @Override
+    public double hentDOMK(int raekkenummer) {
+        return 0;
+    }
+
+    @Override
+    public void beregnDOMK(int raekkenummer) {
+
+        DOMK domk = tabel.get(raekkenummer).getDOMK();
+        double vaerdi = Double.NaN;
+
+
+        domk = new DOMKImpl();
+        domk.setVaerdi(vaerdi);
+
+
+    }
+
+    @Override
+    public void angivKO(double vaerdi, int raekkenummer) {
+
+        tabel.get(raekkenummer).getKO().setVaerdi(vaerdi);
+
+    }
+
+    @Override
+    public double hentKO(int raekkenummer) {
+        return 0;
+    }
+
+    @Override
+    public void beregnKO(int raekkenummer) {
+
+    }
+
+    @Override
+    public void angivSTO(double vaerdi, int raekkenummer) {
+
+    }
+
+    @Override
+    public double hentSTO(int raekkenummer) {
+        return 0;
+    }
+
+    @Override
+    public void beregnSTO(int raekkenummer) {
+
+    }
+
+    @Override
+    public void angivVE(double vaerdi, int raekkenummer) {
+
+    }
+
+    @Override
+    public double hentVE(int raekkenummer) {
+        return 0;
+    }
+
+    @Override
+    public void beregnVE(int raekkenummer) {
+
+    }
+
+    @Override
+    public void angivVO(double vaerdi, int raekkenummer) {
+
+    }
+
+    @Override
+    public double hentVO(int raekkenummer) {
+        return 0;
+    }
+
+    @Override
+    public void beregnVO(int raekkenummer) {
+
+    }
+
+    @Override
+    public void angivX(int antal, int raekkenummer) {
+
+    }
+
+    @Override
+    public int hentX(int raekkenummer) {
+        return 0;
+    }
+
+    @Override
+    public void beregnX(int raekkenummer) {
 
     }
 
