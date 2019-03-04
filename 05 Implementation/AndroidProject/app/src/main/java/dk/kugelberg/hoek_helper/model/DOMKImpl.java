@@ -16,12 +16,12 @@ public class DOMKImpl implements DOMK {
 
     @Override
     public void setVaerdi(double vaerdi) {
-
+        this.vaerdi = vaerdi;
     }
 
     @Override
     public double getVaerdi() {
-        return 0;
+        return vaerdi;
     }
 
     @Override
