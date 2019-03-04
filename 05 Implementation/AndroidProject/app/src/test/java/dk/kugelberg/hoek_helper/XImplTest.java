@@ -35,9 +35,20 @@ public class XImplTest {
     public void testBeregnMedDOMKFormel() {
         XImpl x = new XImpl();
         x.init(new VOMock(Double.NaN),new VEMock(Double.NaN),new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN));
+        //x.init1();
         double resultat = Double.NaN;
         x.beregn();
         assertEquals(x.getVaerdi(),resultat,delta);
+    }
+
+    @Test
+    public void testBeregnMedDOMKFormelMedManglendeTal() {/*
+        XImpl x = new XImpl();
+        x.init(new VOMock(Double.NaN),new VEMock(Double.NaN),new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN));
+        x.init1(new XMock(20),new VOMock(20));
+        double resultat = Double.NaN;
+        x.beregn();
+        assertEquals(x.getVaerdi(),resultat,delta);*/
     }
 
     //Hvis nedenstående fungere vil resultatet være 2. da 10/5 = 2
@@ -45,7 +56,7 @@ public class XImplTest {
     public void testBeregnUdenværdier() {
         XImpl x = new XImpl();
         x.init(new VOMock(Double.NaN),new VEMock(Double.NaN),new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN));
-        x.init1();
+        //x.init1();
         double resultat = Double.NaN;
         x.beregn();
         assertEquals(x.getVaerdi(),resultat,delta);
@@ -158,8 +169,23 @@ public class XImplTest {
         }
 
 
+        @Override
+        public void init() {
+
+        }
+
+        @Override
+        public void setVaerdi(double x) {
+
+        }
+
         public double getVaerdi(){
             return vaerdi;
+        }
+
+        @Override
+        public void beregn() {
+
         }
     }
 
@@ -194,6 +220,26 @@ class VOMock implements VO{
     @Override
     public double getVaerdi() {
         return vaerdi;
+    }
+
+    @Override
+    public void beregnVoMedVeOgX(double ve, double x) {
+
+    }
+
+    @Override
+    public void beregnVoMedStoko(double sto, double ko) {
+
+    }
+
+    @Override
+    public void berengVoMed1100x2100x(double x) {
+
+    }
+
+    @Override
+    public void berengVoMedDbMinusOms(double db, double oms) {
+
     }
 }
 class VEMock implements VE{
@@ -238,6 +284,33 @@ class DomkMock implements DOMK{
     @Override
     public boolean erBeregnet() {
         return false;
+    }
+}
+
+class XMock implements X{
+        double vaerdi;
+        public XMock(double vaerdi){
+            this.vaerdi = vaerdi;
+        }
+
+    @Override
+    public void init(VO vo, VE ve, DOMK domk, STO sto, SE se) {
+
+    }
+
+    @Override
+    public void setVaerdi(double x) {
+
+    }
+
+    @Override
+    public double getVaerdi() {
+        return vaerdi;
+    }
+
+    @Override
+    public void beregn() {
+
     }
 }
 }

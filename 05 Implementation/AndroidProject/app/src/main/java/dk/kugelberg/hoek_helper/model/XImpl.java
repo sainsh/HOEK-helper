@@ -9,7 +9,7 @@ public class XImpl implements X {
     X x1;
     X x2;
     KO ko;
-    KE ke;
+    //KE ke;
     VO vo1;
     VO vo2;
     DOMK domk;
@@ -48,7 +48,6 @@ public class XImpl implements X {
 
     @Override
     public void beregn() {
-
         if (vo.getVaerdi()!= NaN && ve.getVaerdi() != NaN){
         double x = vo.getVaerdi() / ve.getVaerdi();
         }
