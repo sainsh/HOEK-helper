@@ -45,7 +45,7 @@ public class XImpl implements X {
     @Override
     public void beregn() {
 
-        if (VO.vo!= NaN && ){
+        if (vo.getVaerdi()!= NaN && ve.getVaerdi() ){
         double x = vo.getVaerdi() / ve.getVaerdi();}
         else if ()
         double x = ko.getVaerdi() / ke.getVaerdi();
