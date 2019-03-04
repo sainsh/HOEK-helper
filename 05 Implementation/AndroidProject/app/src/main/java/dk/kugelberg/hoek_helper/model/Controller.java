@@ -7,6 +7,8 @@ public interface Controller {
 
     double hentKO(int raekkenummer);
 
+    void beregnKO(int raekkenummer);
+
     void beregnDOMK(int raekkenummer);
 
     double hentDOMK(int raekkenummer);
