@@ -16,7 +16,7 @@ public class XImpl implements X {
     private double vaerdi = Double.NaN;
     private boolean erBeregnet = false;
 
-    public void init(VO vo, VE ve, VO vo1, VO vo2, DOMK domk, DOMK domk2, STO sto, SE se) {
+    public void init(VO vo, VE ve, DOMK domk, STO sto, SE se) {
         this.vo = vo;
         this.ve = ve;
         this.domk = domk;
@@ -46,7 +46,7 @@ public class XImpl implements X {
 
         double x = vo.getVaerdi() / ve.getVaerdi();
         //double x = ko.getVaerdi() / ke.getVaerdi();
-        double x = sto.getVaerdi() / se.getVaerdi();
+        //double x = sto.getVaerdi() / se.getVaerdi();
         /*
         X = KO / KE
         X = VO / VE
