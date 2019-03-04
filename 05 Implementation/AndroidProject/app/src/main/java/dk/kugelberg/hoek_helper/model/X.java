@@ -12,7 +12,7 @@ public interface X {
 
     void beregn();
 
-    void setBeregnet();
+    void setBeregnet(boolean val);
 
     void getBeregnet();
 
