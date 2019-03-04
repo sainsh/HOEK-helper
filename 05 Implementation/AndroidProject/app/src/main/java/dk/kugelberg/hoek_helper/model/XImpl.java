@@ -33,6 +33,7 @@ public class XImpl implements X {
 
     }
 
+
     //start
     @Override
     public void setVaerdi(double x) {
@@ -74,8 +75,6 @@ public class XImpl implements X {
         X = STO / SE
         X = DOMK * VO
         */
-
-        this.vaerdi = x;
     }
 
 

@@ -3,6 +3,7 @@ package dk.kugelberg.hoek_helper;
 import org.junit.Test;
 
 import dk.kugelberg.hoek_helper.model.DOMK;
+import dk.kugelberg.hoek_helper.model.KE;
 import dk.kugelberg.hoek_helper.model.KO;
 import dk.kugelberg.hoek_helper.model.SE;
 import dk.kugelberg.hoek_helper.model.STO;
@@ -248,10 +249,21 @@ class VEMock implements VE{
         public VEMock(double vaerdi) {
             this.vaerdi = vaerdi;
         }
+
+    @Override
+    public void init(VO vo, X x, SE se, KE ke) {
+
+    }
+
     @Override  public void setVaerdi(double Vaerdi) {}
 
     @Override public double getVaerdi() {
         return vaerdi;
+    }
+
+    @Override
+    public void beregn() {
+
     }
 }
 class DomkMock implements DOMK{
