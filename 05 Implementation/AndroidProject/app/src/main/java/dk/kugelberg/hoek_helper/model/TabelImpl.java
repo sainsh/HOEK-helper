@@ -4,24 +4,46 @@ import java.util.ArrayList;
 
 public class TabelImpl implements Tabel {
 
+    private ArrayList<Raekke> tabel;
+
+    public TabelImpl() {
+        tabel = new ArrayList<>();
+    }
+
 
     @Override
     public Raekke getRaekke(int raekkenummer) {
-        return null;
+        return tabel.get(raekkenummer);
     }
 
     @Override
     public ArrayList<Raekke> getTabel() {
-        return null;
+        return tabel;
     }
 
     @Override
     public void addRaekke(int raekkenummer) {
+
+        Raekke raekke = new RaekkeImpl();
+        tabel.add(raekkenummer, raekke);
+
+        updateAdjacentRows(raekkenummer);
 
     }
 
     @Override
     public void deleateRaekke(int raekkenummer) {
 
+        tabel.remove(raekkenummer);
+        updateAdjacentRows(raekkenummer);
+
     }
+
+    private void updateAdjacentRows(int raekkenummer) {
+
+
+
+    }
+
+
 }
