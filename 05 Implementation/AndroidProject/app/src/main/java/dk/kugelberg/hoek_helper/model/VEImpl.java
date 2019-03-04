@@ -4,19 +4,34 @@ import static java.lang.Double.NaN;
 
 public class VEImpl implements VE {
 
-    private VO vo;
-    private X x;
-    private SE se;
-    private KE ke;
+     VO vo;
+     X x;
+     SE se;
+     KE ke;
 
     private double vaerdi;
     private boolean erBeregnet = false;
 
-    public void setVaerdi(double vaerdi){
-        this.vaerdi = vaerdi;
+    public void init(VO vo, X x, SE se, KE ke){
+        this.vo = vo;
+        this.x = x;
+        this.se = se;
+        this.ke = ke;
     }
 
-    public double getVaerdi(){
+    @Override
+    public void setVaerdi(double x) {
+        if (x < 0) {
+            throw new NegativVaerdiException();
+        } else {
+            this.vaerdi = x;
+            erBeregnet = false;
+        }
+    }
+
+    @Override
+    public double getVaerdi() {
+
         return vaerdi;
     }
 
@@ -48,6 +63,9 @@ public class VEImpl implements VE {
             this.vaerdi = NaN;
 
         }
+
+       // VE = VO / X
+       // VE = SE - KE
 
     }
 
