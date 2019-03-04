@@ -2,7 +2,7 @@ package dk.kugelberg.hoek_helper.model;
 
 import static java.lang.Double.NaN;
 
-public class SEImpl {
+public class SEImpl implements SE {
     private double vaerdi;
     private SE se;
     private STO sto;
@@ -21,11 +21,19 @@ public class SEImpl {
     }
 
     @Override
-    public void setvaerdi(double Vaerdi) {
+    public void init() {
+
     }
 
     @Override
-    public void getvaerdi() {
+    public void setVaerdi(double x) {
+    }
+
+
+
+    @Override
+    public double getVaerdi() {
+        return vaerdi;
     }
 
     @Override
@@ -33,16 +41,17 @@ public class SEImpl {
         if (sto.getVaerdi() != NaN && x.getVaerdi() != NaN) {
             this.vaerdi = sto.getVaerdi() / x.getVaerdi();
             setBeregnet(true);
+        }
 
             else if (ve.getVaerdi() != NaN && ke.getVaerdi() != NaN) {
-                this.vaerdi = ve.getVaerdi() + ke.getVaerdi();
-                setBeregnet(true);
-
+            this.vaerdi = ve.getVaerdi() + ke.getVaerdi();
+            setBeregnet(true);
+        }
                 else if (getBeregnet()) {
 
                     this.vaerdi = NaN;
                 }
             }
         }
-    }
-}
+
+
