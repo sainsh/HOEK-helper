@@ -2,56 +2,50 @@ package dk.kugelberg.hoek_helper.model;
 
 public class VOImpl implements VO
 {
-    VO v;
 
+    VE ve;
+    X x;
+    X x1;
+    X x2;
+    KO ko;
+    VO vo1;
+    VO vo2;
+    DOMK domk;
+    DOMK domk2;
+    STO sto;
+    SE se;
+
+/*
+VO = VE * X
+VO = STO - KO
+VO = DB - Oms
+*/
 
     private double vaerdi = Double.NaN;
     private boolean erBeregnet = false;
 
-    public VOImpl()
-    {
 
-    }
-
-    //Beregner denne formel VO = VE * X
-    @Override
-    public void beregnVoMedVeOgX(double ve,double x)
-    {
-        double resultat=ve*x;
-
-        this.vaerdi=resultat;
-        erBeregnet=true;
-
+    public void init(VE ve, X x, KO ko,, DOMK domk, STO sto, SE se) {
+        this.ve = ve;
+        this.x = x;
+        this.ko = ko;
+        this.domk = domk;
+        this.sto = sto;
+        this.se = se;
     }
 
     @Override
-    //Beregner denne formel VO = STO - KO
-    public void beregnVoMedStoko(double sto,double ko )
-    {
-        double resultat=sto-ko;
-        this.vaerdi=resultat;
-        erBeregnet=true;
+    public void init1(X x1, VO vo1){
+        this.x1 = x1;
+        this.vo1 = vo1;
     }
 
     @Override
-    //Beregn denne formel VO = 1/100*X^2+100*X
-    public void berengVoMed1100x2100x(double x)
-    {
-        double resultat= 1/100*Math.pow(x,2)+100*x;
-        this.vaerdi=resultat;
-        erBeregnet=true;
+    public void init2(X x2, VO vo2, DOMK domk2){
+        this.x2 = x2;
+        this.vo2 = vo2;
+        this.domk2 = domk2;
     }
-
-    @Override
-    //Beregn denne formel VO = DB - Oms
-    public void berengVoMedDbMinusOms(double db,double oms)
-    {
-        double resultat=db-oms;
-        this.vaerdi=resultat;
-        erBeregnet=true;
-    }
-
-
 
     @Override
     public void setVaerdi(double vaerdi)
