@@ -12,6 +12,13 @@ public class SEImpl {
 
     private boolean erBeregnet = false;
 
+    public void setBeregnet(boolean val){
+        erBeregnet = val;
+    }
+
+    private boolean getBeregnet(){
+        return erBeregnet;
+    }
 
     @Override
     public void setvaerdi(double Vaerdi) {
@@ -24,7 +31,18 @@ public class SEImpl {
     @Override
     public void beregn() {
         if (sto.getVaerdi() != NaN && x.getVaerdi() != NaN) {
+            this.vaerdi = sto.getVaerdi() / x.getVaerdi();
+            setBeregnet(true);
 
+            else if (ve.getVaerdi() != NaN && ke.getVaerdi() != NaN) {
+                this.vaerdi = ve.getVaerdi() + ke.getVaerdi();
+                setBeregnet(true);
+
+                else if (getBeregnet()) {
+
+                    this.vaerdi = NaN;
+                }
+            }
         }
     }
 }
