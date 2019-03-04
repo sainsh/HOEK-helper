@@ -41,12 +41,23 @@ public class TabelImpl implements Tabel {
 
     private void updateAdjacentRows(int raekkenummer) {
 
-        Raekke raekke0 = tabel.get(raekkenummer-1);
-        Raekke raekke1 = tabel.get(raekkenummer);
-        Raekke raekke2 = tabel.get(raekkenummer+1);
+        Raekke raekke0 = null;
+        Raekke raekke1 = null;
+        Raekke raekke2 = null;
 
 
+        if (raekkenummer != 0) {
+            raekke0 = tabel.get(raekkenummer - 1);
+            raekke0.getDOMK().init2(raekke0.getX(), raekke0.getVO());//and all others needed
+        }
+        raekke1 = tabel.get(raekkenummer);
+        raekke1.getDOMK().init1(raekke1.getX(), raekke1.getVO()); // and all others needed
+        raekke1.getDOMK().init2(raekke1.getX(), raekke1.getVO()); // and all others needed
 
+        if (raekkenummer != tabel.size()) {
+            raekke2 = tabel.get(raekkenummer + 1);
+            raekke2.getDOMK().init1(raekke2.getX(), raekke2.getVO()); //and all others needed
+        }
 
 
     }
