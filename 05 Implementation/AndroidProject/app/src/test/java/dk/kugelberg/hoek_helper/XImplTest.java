@@ -26,7 +26,7 @@ public class XImplTest {
     }
     //Kontrollere at Init ikke ændre værdien.
     @Test
-    public void TestInitAfX() {
+    public void testAfXStandardVaerdi() {
         XImpl x = new XImpl();
         assertEquals(x.getVaerdi(), Double.NaN,delta);
     }
@@ -45,6 +45,7 @@ public class XImplTest {
     public void testBeregnUdenværdier() {
         XImpl x = new XImpl();
         x.init(new VOMock(Double.NaN),new VEMock(Double.NaN),new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN));
+        x.init1();
         double resultat = Double.NaN;
         x.beregn();
         assertEquals(x.getVaerdi(),resultat,delta);
