@@ -10,11 +10,13 @@ public class XImpl implements X {
     VO vo2;
     DOMK domk;
     DOMK domk2;
+    STO sto;
+    SE se;
 
     private double vaerdi = Double.NaN;
     private boolean erBeregnet = false;
 
-    public void init(VO vo, VE ve, X x, DOMK domk) {
+    public void init(VO vo, VE ve, VO vo1, VO vo2, DOMK domk, DOMK domk2, STO sto, SE se) {
         this.vo = vo;
         this.ve = ve;
         this.domk = domk;
@@ -33,8 +35,6 @@ public class XImpl implements X {
 
     @Override
     public double getVaerdi() {
-        if (vaerdi == Double.NaN)
-            beregn();
 
         return vaerdi;
     }
@@ -45,6 +45,13 @@ public class XImpl implements X {
 
 
         double x = vo.getVaerdi() / ve.getVaerdi();
+        //double x = ko.getVaerdi() / ke.getVaerdi();
+        double x = sto.getVaerdi() / se.getVaerdi();
+        /*
+        X = KO / KE
+        X = VO / VE
+        X = STO / SE
+        */
 
                 this.vaerdi = x;
     }
