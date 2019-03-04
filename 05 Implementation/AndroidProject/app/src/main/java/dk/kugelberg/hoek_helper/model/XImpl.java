@@ -29,10 +29,27 @@ public class XImpl implements X {
     }
 
     @Override
-    public void init(VO vo, VE ve, X x1, X x2, VO vo1, VO vo2, DOMK domk, DOMK domk2) {
-
+    void init1(X x1, VO vo1){
+        this.x1 = x1;
+        this.vo1 = vo1;
     }
 
+    @Override
+    void init2(X x2, VO vo2, DOMK domk2){
+        this.x1 = x2;
+        this.vo1 = vo2;
+        this.domk2 = domk2;
+    }
+
+    @Override
+    public void setBeregnet(boolean val){
+        erBeregnet = val;
+    }
+
+    @Override
+    private boolean getBeregnet(){
+        return erBeregnet;
+    }
 
     //start
     @Override
@@ -58,16 +75,24 @@ public class XImpl implements X {
 
         if (vo.getVaerdi() != NaN && ve.getVaerdi() != NaN) {
             this.vaerdi = vo.getVaerdi() / ve.getVaerdi();
+            setBeregnet(true);
 
         } else if (ko.getVaerdi() != NaN && ke.getVaerdi() != NaN) {
             this.vaerdi = ko.getVaerdi() / ke.getVaerdi();
+            setBeregnet(true);
 
         } else if (sto.getVaerdi() != NaN && se.getVaerdi() != NaN) {
             this.vaerdi = sto.getVaerdi() / se.getVaerdi();
+            setBeregnet(true);
 
         } else if (domk.getVaerdi() != NaN && vo.getVaerdi() != NaN) {
             this.vaerdi = domk.getVaerdi() * vo.getVaerdi();
+            setBeregnet(true);
         }
+
+        else if(getBeregnet()){
+
+            this.vaerdi = NaN;
 
         /*
         X = KO / KE
@@ -75,6 +100,7 @@ public class XImpl implements X {
         X = STO / SE
         X = DOMK * VO
         */
+
     }
 
 
