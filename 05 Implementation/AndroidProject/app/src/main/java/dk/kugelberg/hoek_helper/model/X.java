@@ -14,7 +14,7 @@ public interface X {
 
     void setBeregnet(boolean val);
 
-    void getBeregnet();
+    boolean getBeregnet();
 
 
 
