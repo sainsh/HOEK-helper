@@ -20,6 +20,8 @@ public interface VO {
      */
     double getVaerdi();
 
+    void beregn();
+
 
 
 }

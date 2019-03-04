@@ -11,4 +11,6 @@ public interface X {
     void beregn();
 
 
+
+
 }
