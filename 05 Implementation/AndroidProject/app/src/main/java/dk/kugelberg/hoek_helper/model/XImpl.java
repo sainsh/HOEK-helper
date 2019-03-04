@@ -42,12 +42,12 @@ public class XImpl implements X {
     }
 
     @Override
-    public void setBeregnet(boolean val){
+    private void setBeregnet(boolean val){
         erBeregnet = val;
     }
 
     @Override
-    private boolean getBeregnet(){
+    public boolean getBeregnet(){
         return erBeregnet;
     }
 
