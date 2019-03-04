@@ -14,7 +14,7 @@ public class XImpl implements X {
     private double vaerdi = Double.NaN;
     private boolean erBeregnet = false;
 
-    public void init(VO vo, VE ve, X x, DOMK domk) {
+    public void init(VO vo, VE ve,DOMK domk) {
         this.vo = vo;
         this.ve = ve;
         this.domk = domk;
