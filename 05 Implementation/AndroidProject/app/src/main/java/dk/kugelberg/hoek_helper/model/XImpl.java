@@ -22,6 +22,11 @@ public class XImpl implements X {
         this.domk = domk;
     }
 
+    @Override
+    public void init(VO vo, VE ve, X x1, X x2, VO vo1, VO vo2, DOMK domk, DOMK domk2) {
+
+    }
+
     //start
     @Override
     public void setVaerdi(double x) {
