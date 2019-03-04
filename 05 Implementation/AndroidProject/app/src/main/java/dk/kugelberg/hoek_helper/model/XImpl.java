@@ -54,18 +54,18 @@ public class XImpl implements X {
     @Override
     public void beregn() {
 
-        if (vo.getVaerdi()!= NaN && ve.getVaerdi() != NaN){
-        double x = vo.getVaerdi() / ve.getVaerdi();
 
-        }
-        else if (vo.getVaerdi()!= NaN && ve.getVaerdi() != NaN){
-        double x = ko.getVaerdi() / ke.getVaerdi();
-        }
-        else if (sto.getVaerdi() != NaN && se.getVaerdi() != NaN){
-        double x = sto.getVaerdi() / se.getVaerdi();
-        }
-        else if (domk.getVaerdi() != NaN && vo.getVaerdi() != NaN){
-            double x = sto.getVaerdi() / se.getVaerdi();
+        if (vo.getVaerdi() != NaN && ve.getVaerdi() != NaN) {
+            this.vaerdi = vo.getVaerdi() / ve.getVaerdi();
+
+        } else if (ko.getVaerdi() != NaN && ke.getVaerdi() != NaN) {
+            this.vaerdi = ko.getVaerdi() / ke.getVaerdi();
+
+        } else if (sto.getVaerdi() != NaN && se.getVaerdi() != NaN) {
+            this.vaerdi = sto.getVaerdi() / se.getVaerdi();
+
+        } else if (domk.getVaerdi() != NaN && vo.getVaerdi() != NaN) {
+            this.vaerdi = domk.getVaerdi() * vo.getVaerdi();
         }
 
         /*
@@ -75,7 +75,7 @@ public class XImpl implements X {
         X = DOMK * VO
         */
 
-                this.vaerdi = x;
+        this.vaerdi = x;
     }
 
 
