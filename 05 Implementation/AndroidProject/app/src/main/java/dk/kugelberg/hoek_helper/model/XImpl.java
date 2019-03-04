@@ -36,8 +36,8 @@ public class XImpl implements X {
 
     @Override
     void init2(X x2, VO vo2, DOMK domk2){
-        this.x1 = x2;
-        this.vo1 = vo2;
+        this.x2 = x2;
+        this.vo2 = vo2;
         this.domk2 = domk2;
     }
 
