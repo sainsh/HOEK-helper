@@ -17,4 +17,19 @@ public class XImpl implements X {
     public int getAntal() {
         return antal;
     }
+
+    @Override
+    public void beregn() {
+
+    }
+
+    @Override
+    public void init(VO vo1, VO vo2, STO sto, KO ko, VE ve, X x1, X x2, DOMK domk1, DOMK domk2) {
+
+    }
+
+    @Override
+    public boolean erBeregnet() {
+        return false;
+    }
 }
