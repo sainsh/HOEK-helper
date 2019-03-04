@@ -27,6 +27,17 @@ public class DOMKImpl implements DOMK {
     @Override
     public void beregn() {
 
+        // beregning..
+
+        /*
+        if (tabel.raekkeSize() == 0){
+            vaerdi = (x1.getAntal()/vo1.getVaerdi());
+        }
+        if (tabel.raekkeSize() > 0){
+            vaerdi = (x2.getAntal()-x1.getAntal())/(vo2.getVaerdi()-vo1.getVaerdi());
+        }
+        */
+
     }
 
     @Override
