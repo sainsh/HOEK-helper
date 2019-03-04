@@ -27,6 +27,8 @@ public class DOMKImpl implements DOMK {
     @Override
     public void beregn() {
 
+        //(x2-x1)/(y2-y1)
+
     }
 
     @Override
