@@ -10,6 +10,17 @@ public class RaekkeImpl implements Raekke {
     private VO vo = null;
     private X x = null;
 
+    public RaekkeImpl(){
+        domk = new DOMKImpl();
+        ko = new KOImpl();
+        se = new SEImpl();
+        sto = new STOImpl();
+        ve = new VEImpl();
+        vo = new VOImpl();
+        x = new XImpl();
+
+    }
+
 
     @Override
     public DOMK getDOMK() {
