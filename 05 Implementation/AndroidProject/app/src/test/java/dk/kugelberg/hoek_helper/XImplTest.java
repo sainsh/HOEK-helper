@@ -90,6 +90,34 @@ public class XImplTest {
         assertEquals(x.getVaerdi(),resultat,delta);
     }
 
+    @Test
+    public void testBeregnXMedSTOogSE() {
+        XImpl x = new XImpl();
+        x.init(new VOMock(Double.NaN),new VEMock(Double.NaN),new DomkMock(Double.NaN), new STOMock(10), new SEMock(10));
+        double resultat = 1;
+        x.beregn();
+        assertEquals(x.getVaerdi(),resultat,delta);
+    }
+
+    @Test
+    public void testBeregnXMedSTOogNegativSE() {
+        XImpl x = new XImpl();
+        x.init(new VOMock(Double.NaN),new VEMock(Double.NaN),new DomkMock(Double.NaN), new STOMock(-10), new SEMock(10));
+        double resultat = Double.NaN;
+        x.beregn();
+        assertEquals(x.getVaerdi(),resultat,delta);
+    }
+    @Test
+    public void testBeregnXMedNegativSTOogSE() {
+        XImpl x = new XImpl();
+        x.init(new VOMock(Double.NaN),new VEMock(Double.NaN),new DomkMock(Double.NaN), new STOMock(-10), new SEMock(10));
+        double resultat = Double.NaN;
+        x.beregn();
+        assertEquals(x.getVaerdi(),resultat,delta);
+    }
+
+
+
 
     //Opretter Mock klasser for at undgå at det er fejlen i de benyttede klasser der gør at testen ikke lykkes.
     //Mock klasser skal være så simple at man fjerner/mindsker risikoen for at fejlen er i den klasse.
