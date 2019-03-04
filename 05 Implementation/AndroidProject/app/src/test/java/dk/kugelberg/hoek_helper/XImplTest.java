@@ -31,10 +31,25 @@ public class XImplTest {
         assertEquals(x.getVaerdi(), Double.NaN,delta);
     }
 
-    /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!! MANGLER TEST AF INIT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+    @Test
+    public void testBeregnMedDOMKFormel() {
+        XImpl x = new XImpl();
+        x.init(new VOMock(Double.NaN),new VEMock(Double.NaN),new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN));
+        double resultat = Double.NaN;
+        x.beregn();
+        assertEquals(x.getVaerdi(),resultat,delta);
+    }
+
     //Hvis nedenstående fungere vil resultatet være 2. da 10/5 = 2
+    @Test
+    public void testBeregnUdenværdier() {
+        XImpl x = new XImpl();
+        x.init(new VOMock(Double.NaN),new VEMock(Double.NaN),new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN));
+        double resultat = Double.NaN;
+        x.beregn();
+        assertEquals(x.getVaerdi(),resultat,delta);
+    }
+
     @Test
     public void testBeregnXmedVEogVO() {
         XImpl x = new XImpl();
@@ -43,11 +58,21 @@ public class XImplTest {
         x.beregn();
         assertEquals(x.getVaerdi(),resultat,delta);
     }
+
+    @Test
+    public void testBeregnXmedNegativVEogVO() {
+        XImpl x = new XImpl();
+        x.init(new VOMock(10),new VEMock(-5),new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN));
+        double resultat = Double.NaN;
+        x.beregn();
+        assertEquals(x.getVaerdi(),resultat,delta);
+    }
+
     @Test
     public void testBeregnXmedVEogNegativVO() {
         XImpl x = new XImpl();
         x.init(new VOMock(-10),new VEMock(5),new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN));
-        double resultat = 2;
+        double resultat = Double.NaN;
         x.beregn();
         assertEquals(x.getVaerdi(),resultat,delta);
     }
@@ -70,6 +95,14 @@ public class XImplTest {
         assertEquals(x.getVaerdi(),resultat,delta);
     }
 
+    @Test
+    public void testBeregnXMedNegativDOMKogVO() {
+        XImpl x = new XImpl();
+        x.init(new VOMock(10),new VEMock(Double.NaN),new DomkMock(-5), new STOMock(Double.NaN), new SEMock(Double.NaN));
+        double resultat = Double.NaN;
+        x.beregn();
+        assertEquals(x.getVaerdi(),resultat,delta);
+    }
 //Nedenstående metode tjekker om den udregner med en formel der ikke findes.
     @Test
     public void testBeregnXmedDOMKogVE() {
@@ -81,14 +114,7 @@ public class XImplTest {
     }
 
 
-    @Test
-    public void testBeregnXMedNegativDOMKogVO() {
-        XImpl x = new XImpl();
-        x.init(new VOMock(10),new VEMock(Double.NaN),new DomkMock(-5), new STOMock(Double.NaN), new SEMock(Double.NaN));
-        double resultat = Double.NaN;
-        x.beregn();
-        assertEquals(x.getVaerdi(),resultat,delta);
-    }
+
 
     @Test
     public void testBeregnXMedSTOogSE() {
