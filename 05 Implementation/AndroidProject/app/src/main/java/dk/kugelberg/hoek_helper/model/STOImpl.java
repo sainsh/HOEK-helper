@@ -17,8 +17,7 @@ public class STOImpl implements STO {
     private double vaerdi = NaN;
     private boolean erBeregnet = false;
 
-
-
+    @Override
     public void init(X x, VO vo, KO ko, SE se) {
         this.x = x;
         this.vo = vo;
