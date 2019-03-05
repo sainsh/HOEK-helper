@@ -7,13 +7,13 @@ public class XImpl implements X {
     private VO vo;
     private VE ve;
     private X x1;
-    private X x2;
+    private X x2;   //Jeg ved ikke om vi nogensinde får brug for denne?
     private KO ko;
     private KE ke;
     private VO vo1;
-    private VO vo2;
+    private VO vo2;   //Jeg ved ikke om vi nogensinde får brug for denne?
     private DOMK domk;
-    private DOMK domk2;
+    private DOMK domk2;    //Jeg ved ikke om vi nogensinde får brug for denne?
     private STO sto;
     private SE se;
     private GROMK gromk;
@@ -75,8 +75,6 @@ public class XImpl implements X {
     @Override
     public void beregn() {
 
-        // TODO: konstruer beregner der kan regne X ud via x1 , x2, vo1, vo2, domk og domk2
-
         // X = VO / VE
         if (vo.getVaerdi() != NaN && ve.getVaerdi() != NaN) {
             this.vaerdi = vo.getVaerdi() / ve.getVaerdi();
@@ -92,11 +90,6 @@ public class XImpl implements X {
             this.vaerdi = sto.getVaerdi() / se.getVaerdi();
             setBeregnet(true);
 
-            // X = DOMK * VO
-        } else if (domk.getVaerdi() != NaN && vo.getVaerdi() != NaN) {
-            this.vaerdi = domk.getVaerdi() * vo.getVaerdi();
-            setBeregnet(true);
-
             // X = STO / GROMK
         } else if (sto.getVaerdi() != NaN && gromk.getVaerdi() != NaN) {
             this.vaerdi = sto.getVaerdi() * gromk.getVaerdi();
@@ -107,7 +100,6 @@ public class XImpl implements X {
             this.vaerdi = (domk.getVaerdi() * ( vo.getVaerdi() - vo1.getVaerdi())) + x1.getVaerdi();
             setBeregnet(true);
         }
-
 
         else if(getBeregnet()){
 
