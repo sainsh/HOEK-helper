@@ -4,22 +4,23 @@ import static java.lang.Double.NaN;
 
 public class XImpl implements X {
 
-    VO vo;
-    VE ve;
-    X x1;
-    X x2;
-    KO ko;
-    KE ke;
-    VO vo1;
-    VO vo2;
-    DOMK domk;
-    DOMK domk2;
-    STO sto;
-    SE se;
+    private VO vo;
+    private VE ve;
+    private X x1;
+    private X x2;
+    private KO ko;
+    private KE ke;
+    private VO vo1;
+    private VO vo2;
+    private DOMK domk;
+    private DOMK domk2;
+    private STO sto;
+    private SE se;
 
     private double vaerdi = NaN;
     private boolean erBeregnet = false;
 
+    @Override
     public void init(VO vo, VE ve, DOMK domk, STO sto, SE se) {
         this.vo = vo;
         this.ve = ve;
@@ -58,7 +59,7 @@ public class XImpl implements X {
             throw new NegativVaerdiException();
         } else {
             this.vaerdi = x;
-            erBeregnet = false;
+            setBeregnet(false);
         }
     }
 
@@ -93,7 +94,7 @@ public class XImpl implements X {
 
         else if(getBeregnet()){
 
-            this.vaerdi = NaN;
+            setVaerdi(NaN);
 
         /*
         X = KO / KE
