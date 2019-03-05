@@ -77,6 +77,7 @@ VO = DB - Oms
     @Override
     public void beregn() {
 
+        // TODO: konstruer beregner der kan regne VO ud via x1, x2, vo1, vo2, domk og domk2
 
         if (ve.getVaerdi() != NaN && x.getVaerdi() != NaN) {
             this.vaerdi = ve.getVaerdi() * x.getVaerdi();

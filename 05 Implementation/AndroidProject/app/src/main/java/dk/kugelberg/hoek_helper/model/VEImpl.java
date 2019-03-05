@@ -35,7 +35,7 @@ public class VEImpl implements VE {
         return vaerdi;
     }
 
-    private void setBeregnet(boolean val){
+    public void setBeregnet(boolean val){
         erBeregnet = val;
     }
 

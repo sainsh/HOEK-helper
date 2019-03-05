@@ -1,56 +1,91 @@
 package dk.kugelberg.hoek_helper.model;
 
+import static java.lang.Double.NaN;
+
 public class STOImpl implements STO {
 
-    private double vaerdi;
-    private X x;
-    private KO ko;
-    private VO vo;
-    private STO sto;
-    private SE se;
+    VO vo;
+    X x1;
+    X x2;
+    KO ko;
+    VO vo1;
+    VO vo2;
+    SE se;
+
+    private double vaerdi = NaN;
+    private boolean erBeregnet = false;
 
     // private GROMK gromk;
-    // private SE se;
-    // private AFS afs;
 
+    public void init(X x, VO vo, KO ko, SE se) {
+        this.X = x;
+        this.vo = vo;
+        this.ko = ko;
+        this.se = se;
+    }
 
     @Override
-    public void setVaerdi(double Vaerdi) {
+    public void init1(X x1, VO vo1){
+        this.x1 = x1;
+        this.vo1 = vo1;
+    }
 
+    @Override
+    public void init2(X x2, VO vo2){
+        this.x2 = x2;
+        this.vo2 = vo2;
+    }
+
+    @Override
+    public void setVaerdi(double x) {
+        if (x < 0) {
+            throw new NegativVaerdiException();
+        } else {
+            this.vaerdi = x;
+            erBeregnet = false;
+        }
     }
 
     @Override
     public double getVaerdi() {
+
         return vaerdi;
     }
 
     @Override
+    public void setBeregnet(boolean val){
+        erBeregnet = val;
+    }
+
+    @Override
+    public boolean getBeregnet(){
+        return erBeregnet;
+    }
+
+    @Override
     public void beregn () {
-    double sto = vo.getVaerdi() + ko.getVaerdi();
-    this.vaerdi = vo.getVaerdi() + ko.getVaerdi();
-    // STO = VO + KO
 
-    this.sto = se.getVaerdi() * x.getVaerdi();
-    this.vaerdi = se.getVaerdi() * x.getVaerdi();
-    // STO = SE * X
+        if (vo.getVaerdi() != NaN && ko.getVaerdi() != NaN) {
+            this.vaerdi = vo.getVaerdi() + ko.getVaerdi();
+            setBeregnet(true);
 
-    this.sto = gromk.getVaerdi() * afs.getVaerdi();
-    this.vaerdi = gromk.getVaerdi() * afs.getVaerdi();
-    // STO = GROMK * AFS
-    }
+        }  else if (se.getVaerdi() != NaN && x.getVaerdi() != NaN) {
+            this.vaerdi = se.getVaerdi() * x.getVaerdi();
+            setBeregnet(true);
+        }
 
-    @Override
-    public void beregn() {
+        else if(getBeregnet()){
 
-    }
+            this.vaerdi = NaN;
 
-    @Override
-    public void init(VO vo1, VO vo2, STO sto, KO ko, VE ve, X x1, X x2, DOMK domk1, DOMK domk2) {
+        // TODO: undersøg hvordan STO=GROMK * X kan være rigtig???
+        //this.sto = gromk.getVaerdi() * x.getVaerdi();
+        //this.vaerdi = gromk.getVaerdi() * x.getVaerdi();
 
-    }
-
-    @Override
-    public boolean erBeregnet() {
-        return false;
+        /*
+        STO = VO + KO
+        STO = SE * X
+        STO = GROMK * X
+         */
     }
 }

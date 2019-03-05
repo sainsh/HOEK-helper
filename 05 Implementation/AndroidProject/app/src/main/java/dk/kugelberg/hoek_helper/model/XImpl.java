@@ -72,6 +72,7 @@ public class XImpl implements X {
     @Override
     public void beregn() {
 
+        // TODO: konstruer beregner der kan regne X ud via x1 , x2, vo1, vo2, domk og domk2
 
         if (vo.getVaerdi() != NaN && ve.getVaerdi() != NaN) {
             this.vaerdi = vo.getVaerdi() / ve.getVaerdi();
@@ -101,21 +102,6 @@ public class XImpl implements X {
         X = DOMK * VO
         */
 
-    }
-
-    @Override
-    public void beregn() {
-
-    }
-
-    @Override
-    public void init(VO vo1, VO vo2, STO sto, KO ko, VE ve, X x1, X x2, DOMK domk1, DOMK domk2) {
-
-    }
-
-    @Override
-    public boolean erBeregnet() {
-        return false;
     }
 }
 }

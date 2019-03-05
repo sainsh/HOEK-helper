@@ -8,5 +8,11 @@ public interface VE {
 
     double getVaerdi();
 
+    void setBeregnet(boolean val);
+
+    boolean getBeregnet();
+
     void beregn();
+
+
 }
