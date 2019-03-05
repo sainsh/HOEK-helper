@@ -23,6 +23,18 @@ public class KEimpl implements KE {
     }
 
     @Override
+    public void init(KO ko, X x){
+        this.ko = ko;
+        this.x = x;
+    }
+
+    @Override
+    public void init(SE se, VE ve){
+        this.se = se;
+        this.ve = ve;
+    }
+
+    @Override
     public void setVaerdi(double vaerdi){
 
         if (vaerdi < 0) {
