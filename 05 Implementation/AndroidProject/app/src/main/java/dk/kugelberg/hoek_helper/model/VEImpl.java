@@ -4,14 +4,15 @@ import static java.lang.Double.NaN;
 
 public class VEImpl implements VE {
 
-     VO vo;
-     X x;
-     SE se;
-     KE ke;
+    private VO vo;
+    private X x;
+    private SE se;
+    private KE ke;
 
     private double vaerdi;
     private boolean erBeregnet = false;
 
+    @Override
     public void init(VO vo, X x, SE se, KE ke){
         this.vo = vo;
         this.x = x;
@@ -25,7 +26,7 @@ public class VEImpl implements VE {
             throw new NegativVaerdiException();
         } else {
             this.vaerdi = x;
-            erBeregnet = false;
+            setBeregnet(false);
         }
     }
 
@@ -60,7 +61,7 @@ public class VEImpl implements VE {
         }
         else if(getBeregnet()){
 
-            this.vaerdi = NaN;
+            setVaerdi(NaN);
 
         }
 
