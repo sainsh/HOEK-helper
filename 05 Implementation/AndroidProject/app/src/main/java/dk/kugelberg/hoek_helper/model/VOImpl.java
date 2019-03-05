@@ -22,7 +22,7 @@ VO = STO - KO
 VO = DB - Oms
 */
 
-    private double vaerdi = Double.NaN;
+    private double vaerdi = NaN;
     private boolean erBeregnet = false;
 
     @Override

@@ -9,7 +9,7 @@ public class VEImpl implements VE {
     private SE se;
     private KE ke;
 
-    private double vaerdi;
+    private double vaerdi = NaN;
     private boolean erBeregnet = false;
 
     @Override
@@ -36,10 +36,12 @@ public class VEImpl implements VE {
         return vaerdi;
     }
 
+    @Override
     public void setBeregnet(boolean val){
         erBeregnet = val;
     }
 
+    @Override
     public boolean getBeregnet(){
         return erBeregnet;
     }
