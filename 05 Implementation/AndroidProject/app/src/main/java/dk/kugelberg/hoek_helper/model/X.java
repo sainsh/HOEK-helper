@@ -7,13 +7,11 @@ public interface X {
     void init2(X x2, VO vo2, DOMK domk2);
 
     void setVaerdi(double x);
-
     double getVaerdi();
 
     void beregn();
 
     void setBeregnet(boolean val);
-
     boolean getBeregnet();
 
 
