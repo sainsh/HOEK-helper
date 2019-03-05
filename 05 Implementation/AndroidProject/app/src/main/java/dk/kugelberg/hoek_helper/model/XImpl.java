@@ -16,17 +16,19 @@ public class XImpl implements X {
     private DOMK domk2;
     private STO sto;
     private SE se;
+    private GROMK gromk;
 
     private double vaerdi = NaN;
     private boolean erBeregnet = false;
 
     @Override
-    public void init(VO vo, VE ve, DOMK domk, STO sto, SE se) {
+    public void init(VO vo, VE ve, DOMK domk, STO sto, SE se, GROMK gromk) {
         this.vo = vo;
         this.ve = ve;
         this.domk = domk;
         this.sto = sto;
         this.se = se;
+        this.gromk = gromk;
     }
 
     @Override
@@ -75,33 +77,41 @@ public class XImpl implements X {
 
         // TODO: konstruer beregner der kan regne X ud via x1 , x2, vo1, vo2, domk og domk2
 
+        // X = VO / VE
         if (vo.getVaerdi() != NaN && ve.getVaerdi() != NaN) {
             this.vaerdi = vo.getVaerdi() / ve.getVaerdi();
             setBeregnet(true);
 
+            // X = KO / KE
         } else if (ko.getVaerdi() != NaN && ke.getVaerdi() != NaN) {
             this.vaerdi = ko.getVaerdi() / ke.getVaerdi();
             setBeregnet(true);
 
+            // X = STO / SE
         } else if (sto.getVaerdi() != NaN && se.getVaerdi() != NaN) {
             this.vaerdi = sto.getVaerdi() / se.getVaerdi();
             setBeregnet(true);
 
+            // X = DOMK * VO
         } else if (domk.getVaerdi() != NaN && vo.getVaerdi() != NaN) {
             this.vaerdi = domk.getVaerdi() * vo.getVaerdi();
             setBeregnet(true);
+
+            // X = STO / GROMK
+        } else if (sto.getVaerdi() != NaN && gromk.getVaerdi() != NaN) {
+            this.vaerdi = sto.getVaerdi() * gromk.getVaerdi();
+            setBeregnet(true);
+
+            // X = (domk * ( vo - vo1)) + x1
+        } else if (domk.getVaerdi() != NaN && vo.getVaerdi() != NaN && vo1.getVaerdi() != NaN && x1.getVaerdi() != NaN) {
+            this.vaerdi = (domk.getVaerdi() * ( vo.getVaerdi() - vo1.getVaerdi())) + x1.getVaerdi();
+            setBeregnet(true);
         }
+
 
         else if(getBeregnet()){
 
             setVaerdi(NaN);
-
-        /*
-        X = KO / KE
-        X = VO / VE
-        X = STO / SE
-        X = DOMK * VO
-        */
 
     }
 }
