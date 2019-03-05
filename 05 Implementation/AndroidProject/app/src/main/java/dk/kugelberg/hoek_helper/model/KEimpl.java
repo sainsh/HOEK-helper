@@ -8,7 +8,6 @@ public class KEimpl implements KE {
 
     private KO ko;
     private X x;
-
     private SE se;
     private VE ve;
 
@@ -31,23 +30,23 @@ public class KEimpl implements KE {
             this.vaerdi = vaerdi;
             erBeregnet = false;
         }
-
     }
 
     @Override
     public double getVaerdi(){
 
         return vaerdi;
-
     }
 
     @Override
     public void setBeregnet(boolean val){
+
         erBeregnet = val;
     }
 
     @Override
     public boolean getBeregnet(){
+
         return erBeregnet;
     }
 
