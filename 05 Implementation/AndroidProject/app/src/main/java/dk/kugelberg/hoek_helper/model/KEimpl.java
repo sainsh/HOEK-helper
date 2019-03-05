@@ -4,7 +4,7 @@ import static java.lang.Double.NaN;
 
 public class KEimpl implements KE {
 
-    private double vaerdi;
+    private double vaerdi = NaN;
 
     private KO ko;
     private X x;
@@ -18,18 +18,6 @@ public class KEimpl implements KE {
     public void init(KO ko, X x, SE se, VE ve){
         this.ko = ko;
         this.x = x;
-        this.se = se;
-        this.ve = ve;
-    }
-
-    @Override
-    public void init(KO ko, X x){
-        this.ko = ko;
-        this.x = x;
-    }
-
-    @Override
-    public void init(SE se, VE ve){
         this.se = se;
         this.ve = ve;
     }

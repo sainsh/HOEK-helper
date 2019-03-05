@@ -18,6 +18,7 @@ public class STOImpl implements STO {
     private boolean erBeregnet = false;
 
 
+
     public void init(X x, VO vo, KO ko, SE se) {
         this.x = x;
         this.vo = vo;
