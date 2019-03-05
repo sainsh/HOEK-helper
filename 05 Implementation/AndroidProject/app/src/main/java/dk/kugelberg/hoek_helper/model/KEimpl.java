@@ -33,13 +33,11 @@ public class KEimpl implements KE {
 
     @Override
     public double getVaerdi(){
-
         return vaerdi;
     }
 
     @Override
     public void setBeregnet(boolean val){
-
         erBeregnet = val;
     }
 
