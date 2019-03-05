@@ -4,17 +4,17 @@ import static java.lang.Double.NaN;
 
 public class VOImpl implements VO {
 
-    VE ve;
-    X x;
-    X x1;
-    X x2;
-    KO ko;
-    VO vo1;
-    VO vo2;
-    DOMK domk;
-    DOMK domk2;
-    STO sto;
-    SE se;
+    private VE ve;
+    private X x;
+    private X x1;
+    private X x2;
+    private KO ko;
+    private VO vo1;
+    private VO vo2;
+    private DOMK domk;
+    private DOMK domk2;
+    private STO sto;
+    private SE se;
 
 /*
 VO = VE * X
@@ -25,7 +25,7 @@ VO = DB - Oms
     private double vaerdi = Double.NaN;
     private boolean erBeregnet = false;
 
-
+    @Override
     public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se) {
         this.ve = ve;
         this.x = x;
@@ -54,7 +54,7 @@ VO = DB - Oms
             throw new VaerdiException();
         } else {
             this.vaerdi = vaerdi;
-            erBeregnet = false;
+            setBeregnet(false);
         }
     }
 
@@ -93,7 +93,7 @@ VO = DB - Oms
 
         } */ else if (getBeregnet()) {
 
-            this.vaerdi = NaN;
+            setVaerdi(NaN);
 
         }
 
