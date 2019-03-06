@@ -2,37 +2,37 @@ package dk.kugelberg.hoek_helper.model;
 
 import static java.lang.Double.NaN;
 
-public class VEImpl implements VE {
+public class KEimpl implements KE {
 
-    private VO vo;
+    private KO ko;
     private X x;
     private SE se;
-    private KE ke;
+    private VE ve;
 
     private double vaerdi = NaN;
     private boolean erBeregnet = false;
 
     @Override
-    public void init(VO vo, X x, SE se, KE ke){
-        this.vo = vo;
+    public void init(KO ko, X x, SE se, VE ve){
+        this.ko = ko;
         this.x = x;
         this.se = se;
-        this.ke = ke;
+        this.ve = ve;
     }
 
     @Override
-    public void setVaerdi(double x) {
-        if (x < 0) {
+    public void setVaerdi(double vaerdi){
+
+        if (vaerdi < 0) {
             throw new NegativVaerdiException();
         } else {
-            this.vaerdi = x;
-            setBeregnet(false);
+            this.vaerdi = vaerdi;
+            erBeregnet = false;
         }
     }
 
     @Override
-    public double getVaerdi() {
-
+    public double getVaerdi(){
         return vaerdi;
     }
 
@@ -43,32 +43,29 @@ public class VEImpl implements VE {
 
     @Override
     public boolean getBeregnet(){
+
         return erBeregnet;
     }
 
     @Override
     public void beregn() {
 
-        if(x.getVaerdi() != NaN && vo.getVaerdi() != NaN){
+        if(ko.getVaerdi() != NaN && x.getVaerdi() != NaN){
 
-            this.vaerdi = vo.getVaerdi() / x.getVaerdi();
+            this.vaerdi = ko.getVaerdi() / x.getVaerdi();
             setBeregnet(true);
 
         }
-        else if(se.getVaerdi() != NaN && ke.getVaerdi() != NaN){
+        else if(se.getVaerdi() != NaN && ve.getVaerdi() != NaN){
 
-            this.vaerdi = se.getVaerdi() - ke.getVaerdi();
+            this.vaerdi = se.getVaerdi() - ve.getVaerdi();
             setBeregnet(true);
 
         }
         else if(getBeregnet()){
-
             setVaerdi(NaN);
 
         }
-
-       // VE = VO / X
-       // VE = SE - KE
 
     }
 

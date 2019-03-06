@@ -25,11 +25,6 @@ public class DOMKImpl implements DOMK {
     }
 
     @Override
-    public void beregn() {
-
-    }
-
-    @Override
     public void init(VO vo1, VO vo2, STO sto, KO ko, VE ve, X x1, X x2, DOMK domk1, DOMK domk2) {
 
     }
@@ -39,4 +34,12 @@ public class DOMKImpl implements DOMK {
 
         return false;
     }
+
+    @Override
+    public void beregn() {
+
+        //(x2-x1)/(y2-y1)
+
+    }
+
 }
