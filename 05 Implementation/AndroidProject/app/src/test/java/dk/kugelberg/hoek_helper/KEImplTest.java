@@ -64,9 +64,32 @@ public class KEImplTest {
     @Test
     public void beregnMedKOOgX() {
 
+        KE ke = new KEimpl();
+        KO ko = new KOMock(45.5);
+        X x = new XMock(45);
+
+        ke.init(ko,x,new SEMock(Double.NaN),new VEMock(Double.NaN));
+        ke.beregn();
+
+
+        assertEquals(ke.getVaerdi(), ko.getVaerdi() / x.getVaerdi(),delta);
+        assertTrue(ke.getBeregnet());
+
+
     }
     @Test
     public void beregnMedSEOgVE() {
+
+        KE ke = new KEimpl();
+        SE se = new SEMock(45.5);
+        VE ve = new VEMock(45);
+
+        ke.init(new KOMock(Double.NaN),new XMock(Double.NaN),se,ve);
+        ke.beregn();
+
+
+        assertEquals(ke.getVaerdi(), se.getVaerdi() - ve.getVaerdi(),delta);
+        assertTrue(ke.getBeregnet());
 
     }
     @Test
