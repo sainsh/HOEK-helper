@@ -4,7 +4,7 @@ public class VEImpl implements VE {
 
     private double vaerdi;
 
-    public void setVaerdi(double vaerdi){
+    public void setVaerdi(double vaerdi) {
         this.vaerdi = vaerdi;
     }
 
