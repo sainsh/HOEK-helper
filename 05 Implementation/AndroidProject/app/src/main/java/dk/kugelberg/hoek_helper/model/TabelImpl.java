@@ -166,15 +166,15 @@ public class TabelImpl implements Tabel {
     }
 
     @Override
-    public void angivX(int antal, int raekkenummer) {
-        tabel.get(raekkenummer).getX().setAntal(antal);
+    public void angivX(double antal, int raekkenummer) {
+        tabel.get(raekkenummer).getX().setVaerdi(antal);
         updateAdjacentRows(raekkenummer);
 
     }
 
     @Override
-    public int hentX(int raekkenummer) {
-        return tabel.get(raekkenummer).getX().getAntal();
+    public double hentX(int raekkenummer) {
+        return tabel.get(raekkenummer).getX().getVaerdi();
     }
 
     @Override

@@ -44,9 +44,9 @@ public interface Tabel {
     void beregnVO(int raekkenummer);
 
 
-    void angivX(int antal, int raekkenummer);
+    void angivX(double antal, int raekkenummer);
 
-    int hentX(int raekkenummer);
+    double hentX(int raekkenummer);
 
     void beregnX(int raekkenummer);
 
