@@ -1,21 +1,20 @@
 package dk.kugelberg.hoek_helper.model;
 
 import androidx.lifecycle.MutableLiveData;
-
 import static java.lang.Double.NaN;
 
 public class XImpl implements X {
 
     private VO vo;
     private VE ve;
-    private X x1;
-    private X x2;   //Jeg ved ikke om vi nogensinde får brug for denne?
+    private X xOver;
+    private X xUnder;   //Jeg ved ikke om vi nogensinde får brug for denne?
     private KO ko;
     private KE ke;
-    private VO vo1;
-    private VO vo2;   //Jeg ved ikke om vi nogensinde får brug for denne?
+    private VO voOver;
+    private VO voUnder;   //Jeg ved ikke om vi nogensinde får brug for denne?
     private DOMK domk;
-    private DOMK domk2;    //Jeg ved ikke om vi nogensinde får brug for denne?
+    private DOMK domkUnder;    //Jeg ved ikke om vi nogensinde får brug for denne?
     private STO sto;
     private SE se;
     private GROMK gromk;
@@ -24,27 +23,20 @@ public class XImpl implements X {
     private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
 
     @Override
-    public void init(VO vo, VE ve, DOMK domk, STO sto, SE se, GROMK gromk) {
+    public void init(VO vo, VE ve, DOMK domk, STO sto, SE se, GROMK gromk,X xOver, VO voOver, X xUnder, VO voUnder, DOMK domkUnder) {
         this.vo = vo;
         this.ve = ve;
         this.domk = domk;
         this.sto = sto;
         this.se = se;
         this.gromk = gromk;
+        this.xOver = xOver;
+        this.voOver = voOver;
+        this.xUnder = xUnder;
+        this.voUnder = voUnder;
+        this.domkUnder = domkUnder;
         vaerdi.setValue(NaN);
-    }
-
-    @Override
-    public void init1(X x1, VO vo1){
-        this.x1 = x1;
-        this.vo1 = vo1;
-    }
-
-    @Override
-    public void init2(X x2, VO vo2, DOMK domk2){
-        this.x2 = x2;
-        this.vo2 = vo2;
-        this.domk2 = domk2;
+        erBeregnet.setValue(false);
     }
 
     @Override
@@ -74,7 +66,6 @@ public class XImpl implements X {
         return vaerdi.getValue();
     }
 
-
     @Override
     public void beregn() {
 
@@ -98,9 +89,9 @@ public class XImpl implements X {
             setVaerdi(sto.getVaerdi() * gromk.getVaerdi());
             setBeregnet(true);
 
-            // X = (domk * ( vo - vo1)) + x1
-        } else if (domk.getVaerdi() != NaN && vo.getVaerdi() != NaN && vo1.getVaerdi() != NaN && x1.getVaerdi() != NaN) {
-            setVaerdi( (domk.getVaerdi() * ( vo.getVaerdi() - vo1.getVaerdi())) + x1.getVaerdi() );
+            // X = (domk * ( vo - voOver)) + xOver
+        } else if (domk.getVaerdi() != NaN && vo.getVaerdi() != NaN && voOver.getVaerdi() != NaN && xOver.getVaerdi() != NaN) {
+            setVaerdi( (domk.getVaerdi() * ( vo.getVaerdi() - voOver.getVaerdi())) + xOver.getVaerdi() );
             setBeregnet(true);
         }
 
