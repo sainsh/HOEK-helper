@@ -77,28 +77,58 @@ public class XImpl implements X {
 
         // X = VO / VE
         if (vo.getVaerdi() != NaN && ve.getVaerdi() != NaN) {
-            this.vaerdi = vo.getVaerdi() / ve.getVaerdi();
-            setBeregnet(true);
+            double tempVaerdi = vo.getVaerdi() / ve.getVaerdi();
+            if (erNegativ(tempVaerdi)){
+                throw NegativVaerdiException;
+            }
+            else{
+                this.vaerdi = tempVaerdi;
+                setBeregnet(true);
+            }
 
             // X = KO / KE
         } else if (ko.getVaerdi() != NaN && ke.getVaerdi() != NaN) {
-            this.vaerdi = ko.getVaerdi() / ke.getVaerdi();
-            setBeregnet(true);
+            double tempVaerdi = ko.getVaerdi() / ke.getVaerdi();
+            if (erNegativ(tempVaerdi)){
+                throw NegativVaerdiException;
+            }
+            else{
+                this.vaerdi = tempVaerdi;
+                setBeregnet(true);
+            }
 
             // X = STO / SE
         } else if (sto.getVaerdi() != NaN && se.getVaerdi() != NaN) {
-            this.vaerdi = sto.getVaerdi() / se.getVaerdi();
-            setBeregnet(true);
+            double tempVaerdi = sto.getVaerdi() / se.getVaerdi();
+            if (erNegativ(tempVaerdi)){
+                throw NegativVaerdiException;
+            }
+            else{
+                this.vaerdi = tempVaerdi;
+                setBeregnet(true);
+            }
 
             // X = STO / GROMK
         } else if (sto.getVaerdi() != NaN && gromk.getVaerdi() != NaN) {
-            this.vaerdi = sto.getVaerdi() * gromk.getVaerdi();
-            setBeregnet(true);
+            double tempVaerdi = sto.getVaerdi() * gromk.getVaerdi();
+            if (erNegativ(tempVaerdi)){
+                throw NegativVaerdiException;
+            }
+            else{
+                this.vaerdi = tempVaerdi;
+                setBeregnet(true);
+            }
 
             // X = (domk * ( vo - vo1)) + x1
         } else if (domk.getVaerdi() != NaN && vo.getVaerdi() != NaN && vo1.getVaerdi() != NaN && x1.getVaerdi() != NaN) {
-            this.vaerdi = (domk.getVaerdi() * ( vo.getVaerdi() - vo1.getVaerdi())) + x1.getVaerdi();
-            setBeregnet(true);
+            double tempVaerdi = (domk.getVaerdi() * ( vo.getVaerdi() - vo1.getVaerdi())) + x1.getVaerdi();
+            if (erNegativ(tempVaerdi)){
+                throw NegativVaerdiException;
+            }
+            else{
+                this.vaerdi = tempVaerdi;
+                setBeregnet(true);
+            }
         }
 
         else if(getBeregnet()){
@@ -107,4 +137,12 @@ public class XImpl implements X {
 
     }
 }
+
+
+public boolean erNegativ(double x){
+    return x < 0;
+}
+
+
+
 }
