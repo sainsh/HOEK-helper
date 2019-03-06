@@ -103,9 +103,3 @@ VO = DB - Oms
 
     }
 }
-
-/*
-VO = VE * X
-VO = STO - KO
-VO = DB - Oms
-*/
