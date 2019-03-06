@@ -22,6 +22,10 @@ public class XImpl implements X {
     private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
     private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
 
+    public XImpl(){
+        vaerdi.setValue(Double.NaN);
+    }
+
     @Override
     public void init(VO vo, VE ve, DOMK domk, STO sto, SE se, GROMK gromk,X xOver, VO voOver, X xUnder, VO voUnder, DOMK domkUnder) {
         this.vo = vo;
@@ -62,8 +66,8 @@ public class XImpl implements X {
 
     @Override
     public double getVaerdi() {
-
-        return vaerdi.getValue();
+        double hej = vaerdi.getValue();
+        return hej;
     }
 
     @Override
@@ -75,12 +79,12 @@ public class XImpl implements X {
             setBeregnet(true);
 
             // X = KO / KE
-        } else if (ko.getVaerdi() != NaN && ke.getVaerdi() != NaN) {
+        } /*else if (ko.getVaerdi() != NaN && ke.getVaerdi() != NaN) {
             setVaerdi(ko.getVaerdi() / ke.getVaerdi());
             setBeregnet(true);
 
             // X = STO / SE
-        } else if (sto.getVaerdi() != NaN && se.getVaerdi() != NaN) {
+        } */else if (sto.getVaerdi() != NaN && se.getVaerdi() != NaN) {
             setVaerdi(sto.getVaerdi() / se.getVaerdi());
             setBeregnet(true);
 

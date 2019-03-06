@@ -1,11 +1,17 @@
 package dk.kugelberg.hoek_helper;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestRule;
+
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
+import androidx.lifecycle.MutableLiveData;
 
 import dk.kugelberg.hoek_helper.model.DOMK;
 import dk.kugelberg.hoek_helper.model.GROMK;
 import dk.kugelberg.hoek_helper.model.KE;
 import dk.kugelberg.hoek_helper.model.KO;
+import dk.kugelberg.hoek_helper.model.NegativVaerdiException;
 import dk.kugelberg.hoek_helper.model.SE;
 import dk.kugelberg.hoek_helper.model.STO;
 import dk.kugelberg.hoek_helper.model.VE;
@@ -16,14 +22,19 @@ import dk.kugelberg.hoek_helper.model.XImpl;
 import static org.junit.Assert.*;
 
 public class XImplTest {
+
+    @Rule
+    public TestRule rule = new InstantTaskExecutorRule();
+
+
     final double delta = 0.00000000000000000001;
 
     //Kontrollere om setVaerdi fungere og ændre tallet til 45.
     @Test
     public void testSaetXTil45() {
         XImpl x = new XImpl();
-        x.setVaerdi(45);
-        assertEquals(x.getVaerdi(), 45, delta);
+        x.setVaerdi(45.5);
+        assertEquals(x.getVaerdi(), 45.5, delta);
         assertFalse(x.getBeregnet());
     }
 
@@ -31,6 +42,7 @@ public class XImplTest {
     @Test
     public void testAfXStandardVaerdi() {
         XImpl x = new XImpl();
+        x.init(new VOMock(Double.NaN), new VEMock(Double.NaN), new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN), new XMock(Double.NaN), new VOMock(Double.NaN), new XMock(Double.NaN),new VOMock(Double.NaN), new DomkMock(Double.NaN));
         assertEquals(x.getVaerdi(), Double.NaN, delta);
         assertFalse(x.getBeregnet());
     }
@@ -55,6 +67,7 @@ public class XImplTest {
         double resultat = Double.NaN;
         x.beregn();
         assertEquals(x.getVaerdi(),resultat,delta);
+        System.out.println(x.getBeregnet());
         assertFalse(x.getBeregnet());
     }
 
@@ -62,7 +75,7 @@ public class XImplTest {
     @Test
     public void testBeregnMedGROMSFormel() {
         XImpl x = new XImpl();
-        x.init(new VOMock(Double.NaN), new VEMock(Double.NaN), new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(2), new GROMKMock(2), new XMock(Double.NaN), new VOMock(Double.NaN), new XMock(Double.NaN),new VOMock(Double.NaN), new DomkMock(Double.NaN));
+        x.init(new VOMock(Double.NaN), new VEMock(Double.NaN), new DomkMock(Double.NaN), new STOMock(2), new SEMock(Double.NaN), new GROMKMock(2), new XMock(Double.NaN), new VOMock(Double.NaN), new XMock(Double.NaN),new VOMock(Double.NaN), new DomkMock(Double.NaN));
         double resultat = 4;
         x.beregn();
         assertEquals(x.getVaerdi(), resultat, delta);
@@ -98,9 +111,15 @@ public class XImplTest {
         XImpl x = new XImpl();
         x.init(new VOMock(10), new VEMock(-5), new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN), new XMock(Double.NaN), new VOMock(Double.NaN), new XMock(Double.NaN),new VOMock(Double.NaN), new DomkMock(Double.NaN));
         double resultat = Double.NaN;
-        x.beregn();
-        assertEquals(x.getVaerdi(), resultat, delta);
-        assertFalse(x.getBeregnet());
+
+        try {
+            x.beregn();
+        }catch (NegativVaerdiException nve){
+            return;
+        } assertFalse(x.getBeregnet());
+        fail();
+
+
     }
 
     //Kontrollerer om x blive ændret ligesom overstående.
@@ -109,9 +128,12 @@ public class XImplTest {
         XImpl x = new XImpl();
         x.init(new VOMock(-10), new VEMock(5), new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN), new XMock(Double.NaN), new VOMock(Double.NaN), new XMock(Double.NaN),new VOMock(Double.NaN), new DomkMock(Double.NaN));
         double resultat = Double.NaN;
-        x.beregn();
-        assertEquals(x.getVaerdi(), resultat, delta);
-        assertFalse(x.getBeregnet());
+        try {
+            x.beregn();
+        }catch (NegativVaerdiException nve){
+            return;
+        } assertFalse(x.getBeregnet());
+        fail();
     }
 
     //Hvis nedenstående fungere vil resultatet være 2. da 10/5 = 2
