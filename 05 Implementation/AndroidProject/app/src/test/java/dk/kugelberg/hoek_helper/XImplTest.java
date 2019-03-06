@@ -8,7 +8,6 @@ import dk.kugelberg.hoek_helper.model.KE;
 import dk.kugelberg.hoek_helper.model.KO;
 import dk.kugelberg.hoek_helper.model.SE;
 import dk.kugelberg.hoek_helper.model.STO;
-import dk.kugelberg.hoek_helper.model.STOImpl;
 import dk.kugelberg.hoek_helper.model.VE;
 import dk.kugelberg.hoek_helper.model.VO;
 import dk.kugelberg.hoek_helper.model.X;
@@ -337,17 +336,7 @@ public class XImplTest {
         }
 
         @Override
-        public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se) {
-
-        }
-
-        @Override
-        public void init1(X x1, VO vo1) {
-
-        }
-
-        @Override
-        public void init2(X x2, VO vo2, DOMK domk2) {
+        public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se, X xOver, VO voOver, X xUnder, VO voUnder, DOMK domkUnder) {
 
         }
 
