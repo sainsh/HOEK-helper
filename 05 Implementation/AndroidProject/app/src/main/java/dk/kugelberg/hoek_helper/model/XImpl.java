@@ -1,9 +1,12 @@
 package dk.kugelberg.hoek_helper.model;
 
+import androidx.lifecycle.MutableLiveData;
+
 import static java.lang.Double.NaN;
 
 public class XImpl implements X {
 
+    /*
     VO vo;
     VE ve;
     X x1;
@@ -16,6 +19,20 @@ public class XImpl implements X {
     DOMK domk2;
     STO sto;
     SE se;
+    */
+
+    private MutableLiveData<VO> vo = new MutableLiveData<>();
+    private MutableLiveData<VE> ve = new MutableLiveData<>();
+    private MutableLiveData<X> x1 = new MutableLiveData<>();
+    private MutableLiveData<X> x2 = new MutableLiveData<>();
+    private MutableLiveData<KO> ko = new MutableLiveData<>();
+    private MutableLiveData<KE> ke = new MutableLiveData<>();
+    private MutableLiveData<VO> vo1 = new MutableLiveData<>();
+    private MutableLiveData<VO> vo2 = new MutableLiveData<>();
+    private MutableLiveData<DOMK> domk = new MutableLiveData<>();
+    private MutableLiveData<DOMK> domk2 = new MutableLiveData<>();
+    private MutableLiveData<STO> sto = new MutableLiveData<>();
+    private MutableLiveData<SE> se = new MutableLiveData<>();
 
     private double vaerdi = NaN;
     private boolean erBeregnet = false;

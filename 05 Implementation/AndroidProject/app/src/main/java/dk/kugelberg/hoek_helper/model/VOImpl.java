@@ -20,7 +20,7 @@ public class VOImpl implements VO {
 VO = VE * X
 VO = STO - KO
 VO = DB - Oms
-*/
+*/private
 
     private double vaerdi = Double.NaN;
     private boolean erBeregnet = false;
