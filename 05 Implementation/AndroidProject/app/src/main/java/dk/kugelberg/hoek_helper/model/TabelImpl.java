@@ -42,7 +42,7 @@ public class TabelImpl implements Tabel {
 /*
     private void updateAdjacentRows(int raekkenummer) {
 
-        Raekke raekke0 = null;
+        Raekke raekke = null;
         Raekke raekke1 = null;
         Raekke raekke2 = null;
 
