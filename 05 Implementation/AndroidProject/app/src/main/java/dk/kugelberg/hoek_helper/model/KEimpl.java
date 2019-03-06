@@ -50,13 +50,13 @@ public class KEimpl implements KE {
     @Override
     public void beregn() {
 
-        if(ko.getVaerdi() != NaN && x.getVaerdi() != NaN){
+        if(!Double.isNaN(ko.getVaerdi())  && !Double.isNaN(x.getVaerdi())){
 
             this.vaerdi = ko.getVaerdi() / x.getVaerdi();
             setBeregnet(true);
 
         }
-        else if(se.getVaerdi() != NaN && ve.getVaerdi() != NaN){
+        else if(!Double.isNaN(se.getVaerdi())  && !Double.isNaN(ve.getVaerdi())){
 
             this.vaerdi = se.getVaerdi() - ve.getVaerdi();
             setBeregnet(true);

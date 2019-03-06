@@ -95,15 +95,24 @@ public class KEImplTest {
     @Test
     public void beregnHvorErBeregnetErTrue() {
 
+        KE ke = new KEimpl();
+        ke.init(new KOMock(Double.NaN),new XMock(Double.NaN),new SEMock(Double.NaN),new VEMock(Double.NaN));
+        ke.setBeregnet(true);
+
+        assertTrue(ke.getBeregnet());
+        ke.beregn();
+
+        assertEquals(ke.getVaerdi(), Double.NaN,delta);
+
     }
     @Test
     public void beregnUdenVaerdier() {
 
-    }
-    @Test
-    public void beregn() {
+
+
 
     }
+
 
     class KOMock implements KO {
 
@@ -157,7 +166,6 @@ public class KEImplTest {
     }
 
     class XMock implements X {
-
         private double vaerdi = Double.NaN;
 
         public XMock(double vaerdi){
@@ -166,23 +174,13 @@ public class KEImplTest {
 
 
         @Override
-        public void init(VO vo, VE ve, DOMK domk, STO sto, SE se, GROMK gromk) {
-
-        }
-
-        @Override
-        public void init1(X x1, VO vo1) {
-
-        }
-
-        @Override
-        public void init2(X x2, VO vo2, DOMK domk2) {
+        public void init(VO vo, VE ve, DOMK domk, STO sto, SE se, GROMK gromk, X xOver, VO voOver, X xUnder, VO voUnder, DOMK domkUnder) {
 
         }
 
         @Override
         public void setVaerdi(double x) {
-            this.vaerdi = x;
+
         }
 
         @Override
