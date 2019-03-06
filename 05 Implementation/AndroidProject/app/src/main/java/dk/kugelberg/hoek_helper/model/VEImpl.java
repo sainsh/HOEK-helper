@@ -26,7 +26,7 @@ public class VEImpl implements VE {
         if (x < 0) {
             throw new NegativVaerdiException();
         } else {
-            this.vaerdi = x;
+            vaerdi.setValue(x);
             setBeregnet(false);
         }
     }
@@ -34,31 +34,33 @@ public class VEImpl implements VE {
     @Override
     public double getVaerdi() {
 
-        return vaerdi;
+        return vaerdi.getValue();
     }
 
     @Override
     public void setBeregnet(boolean val){
-        erBeregnet = val;
+        erBeregnet.setValue(val);
     }
 
     @Override
     public boolean getBeregnet(){
-        return erBeregnet;
+        return erBeregnet.getValue();
     }
 
     @Override
     public void beregn() {
 
+        // VE = VO / X
         if(x.getVaerdi() != NaN && vo.getVaerdi() != NaN){
 
-            this.vaerdi = vo.getVaerdi() / x.getVaerdi();
+            vaerdi.setValue(vo.getVaerdi() / x.getVaerdi());
             setBeregnet(true);
-
         }
+
+        // VE = SE - KE
         else if(se.getVaerdi() != NaN && ke.getVaerdi() != NaN){
 
-            this.vaerdi = se.getVaerdi() - ke.getVaerdi();
+            vaerdi.setValue(se.getVaerdi() - ke.getVaerdi());
             setBeregnet(true);
 
         }
@@ -68,8 +70,6 @@ public class VEImpl implements VE {
 
         }
 
-       // VE = VO / X
-       // VE = SE - KE
 
     }
 

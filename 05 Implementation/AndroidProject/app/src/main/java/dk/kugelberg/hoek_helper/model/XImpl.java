@@ -30,13 +30,13 @@ public class XImpl implements X {
         this.sto = sto;
         this.se = se;
         this.gromk = gromk;
+        vaerdi.setValue(NaN);
+        erBeregnet.setValue(false);
         this.xOver = xOver;
         this.voOver = voOver;
         this.xUnder = xUnder;
         this.voUnder = voUnder;
         this.domkUnder = domkUnder;
-        vaerdi.setValue(NaN);
-        erBeregnet.setValue(false);
     }
 
     @Override
@@ -96,7 +96,6 @@ public class XImpl implements X {
         }
 
         else if(getBeregnet()){
-
             setVaerdi(NaN);
 
     }
