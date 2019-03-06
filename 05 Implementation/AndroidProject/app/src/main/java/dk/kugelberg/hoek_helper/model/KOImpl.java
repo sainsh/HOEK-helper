@@ -72,7 +72,6 @@ public class KOImpl implements KO {
             vaerdi.setValue(sto.getVaerdi() - vo.getVaerdi());
             setBeregnet(true);
 
-
         } else if (getBeregnet()) {
             setVaerdi(NaN);
 
