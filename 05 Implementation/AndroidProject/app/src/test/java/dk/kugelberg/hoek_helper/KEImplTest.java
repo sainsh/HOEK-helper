@@ -108,7 +108,12 @@ public class KEImplTest {
     @Test
     public void beregnUdenVaerdier() {
 
+        KE ke = new KEimpl();
+        ke.init(new KOMock(Double.NaN),new XMock(Double.NaN),new SEMock(Double.NaN),new VEMock(Double.NaN));
 
+        ke.beregn();
+
+        assertEquals(ke.getVaerdi(),Double.NaN,delta);
 
 
     }
