@@ -3,11 +3,18 @@ package dk.kugelberg.hoek_helper.model;
 public interface Controller {
 
 
+
+    void lavRaekke();
+    int hentTabelStr();
+
+
     void angivDOMK(double vaerdi, int raekkenummer);
 
     double hentDOMK(int raekkenummer);
 
     void beregnDOMK(int raekkenummer);
+
+
 
 
     void angivKO(double vaerdi, int raekkenummer);

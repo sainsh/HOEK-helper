@@ -7,8 +7,11 @@ public interface Tabel {
     ArrayList<Raekke> getTabel();
     Raekke getRaekke(int raekkenummer);
 
-    void addRaekke(int raekkenummer);
+    void addRaekke(int raekkeNummer, Raekke raekke);
+
     void deleteRaekke(int raekkenummer);
+
+    void updateRowNumbers();
 
     void angivDOMK(double vaerdi, int raekkenummer);
     double hentDOMK(int raekkenummer);

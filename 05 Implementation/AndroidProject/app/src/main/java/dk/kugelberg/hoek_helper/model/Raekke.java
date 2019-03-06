@@ -4,6 +4,10 @@ interface Raekke {
 
     DOMK getDOMK();
 
+    GROMK getGROMK();
+
+    KE getKE();
+
     KO getKO();
 
     SE getSE();
@@ -15,6 +19,8 @@ interface Raekke {
     VO getVO();
 
     X getX();
+
+    int getRaekkenummer();
 
     void setDOMK(DOMK domk);
 
@@ -29,6 +35,8 @@ interface Raekke {
     void setVO(VO vo);
 
     void setX(X x);
+
+    void setRaekkenummer(int raekkenummer);
 
 
 }
