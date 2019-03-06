@@ -1,7 +1,6 @@
 package dk.kugelberg.hoek_helper.model;
 
-
-public interface VO {
+public interface GROMK {
 
     void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se);
     void init1(X x1, VO vo1);
@@ -16,6 +15,4 @@ public interface VO {
     void setBeregnet(boolean val);
 
     boolean getBeregnet();
-
-
 }

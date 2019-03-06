@@ -2,11 +2,17 @@ package dk.kugelberg.hoek_helper.model;
 
 public interface KO {
 
-    void setVaerdi(double vaerdi);
+    void init(KE ke, X x, STO sto, VO vo);
+    void init1(X x1, VO vo1);
+    void init2(X x2, VO vo2);
+
+    void setVaerdi(double Vaerdi);
     double getVaerdi();
+
+    void setBeregnet(boolean val);
+    boolean getBeregnet();
+
     void beregn();
-    void init(VO vo1, VO vo2, STO sto, KO ko, VE ve, X x1, X x2, DOMK domk1, DOMK domk2);
-    boolean erBeregnet();
 
 
 }

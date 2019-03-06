@@ -2,10 +2,18 @@ package dk.kugelberg.hoek_helper.model;
 
 public interface X {
 
-    void setAntal(int antal);
-    int getAntal();
+    void init(VO vo, VE ve, DOMK domk, STO sto, SE se, GROMK gromk);
+    void init1(X x1, VO vo1);
+    void init2(X x2, VO vo2, DOMK domk2);
+
+    void setVaerdi(double x);
+    double getVaerdi();
+
     void beregn();
-    void init(VO vo1, VO vo2, STO sto, KO ko, VE ve, X x1, X x2, DOMK domk1, DOMK domk2);
-    boolean erBeregnet();
+
+    void setBeregnet(boolean val);
+    boolean getBeregnet();
+
+
 
 }

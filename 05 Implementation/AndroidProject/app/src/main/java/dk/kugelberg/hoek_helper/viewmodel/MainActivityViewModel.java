@@ -1,6 +1,11 @@
 package dk.kugelberg.hoek_helper.viewmodel;
 
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModel;
+
+
 
 public class MainActivityViewModel extends ViewModel {
+
+
+
 }
