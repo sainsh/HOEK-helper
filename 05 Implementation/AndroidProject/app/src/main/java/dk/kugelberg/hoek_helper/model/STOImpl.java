@@ -1,5 +1,7 @@
 package dk.kugelberg.hoek_helper.model;
 
+import androidx.lifecycle.MutableLiveData;
+
 import static java.lang.Double.NaN;
 
 public class STOImpl implements STO {
@@ -8,33 +10,27 @@ public class STOImpl implements STO {
     private VO vo;
     private KO ko;
     private SE se;
-    private X x1;
-    private X x2;
-    private VO vo1;
-    private VO vo2;
-    // GROMK gromk;
+    private X xOver;
+    private X xUnder;
+    private VO voOver;
+    private VO voUnder;
+    private GROMK gromk;
 
-    private double vaerdi = NaN;
-    private boolean erBeregnet = false;
+    private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
+    private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
 
     @Override
-    public void init(X x, VO vo, KO ko, SE se) {
+    public void init(X x, VO vo, KO ko, SE se, GROMK gromk, X xOver, VO voOver, X xUnder, VO voUnder) {
         this.x = x;
         this.vo = vo;
         this.ko = ko;
         this.se = se;
-    }
-
-    @Override
-    public void init1(X x1, VO vo1) {
-        this.x1 = x1;
-        this.vo1 = vo1;
-    }
-
-    @Override
-    public void init2(X x2, VO vo2) {
-        this.x2 = x2;
-        this.vo2 = vo2;
+        vaerdi.setValue(NaN);
+        erBeregnet.setValue(false);
+        this.xOver = xOver;
+        this.voOver = voOver;
+        this.xUnder = xUnder;
+        this.voUnder = voUnder;
     }
 
     @Override
@@ -42,36 +38,39 @@ public class STOImpl implements STO {
         if (x < 0) {
             throw new NegativVaerdiException();
         } else {
-            this.vaerdi = x;
+            vaerdi.setValue(x);
             setBeregnet(false);
         }
     }
 
     @Override
     public double getVaerdi() {
-        return vaerdi;
+        return vaerdi.getValue();
     }
 
     @Override
     public void setBeregnet(boolean val) {
-        erBeregnet = val;
+        erBeregnet.setValue(val);
     }
 
     @Override
     public boolean getBeregnet() {
-        return erBeregnet;
+        return erBeregnet.getValue();
     }
 
     @Override
     public void beregn() {
 
+        //STO = VO + KO
         if (vo.getVaerdi() != NaN && ko.getVaerdi() != NaN) {
-            this.vaerdi = vo.getVaerdi() + ko.getVaerdi();
+            vaerdi.setValue(vo.getVaerdi() + ko.getVaerdi());
             setBeregnet(true);
 
+            //STO = SE * X
         } else if (se.getVaerdi() != NaN && x.getVaerdi() != NaN) {
-            this.vaerdi = se.getVaerdi() * x.getVaerdi();
+            vaerdi.setValue(se.getVaerdi() * x.getVaerdi());
             setBeregnet(true);
+
         } else if (getBeregnet()) {
 
             setVaerdi(NaN);
@@ -80,11 +79,6 @@ public class STOImpl implements STO {
             //this.sto = gromk.getVaerdi() * x.getVaerdi();
             //this.vaerdi = gromk.getVaerdi() * x.getVaerdi();
 
-        /*
-        STO = VO + KO
-        STO = SE * X
-        STO = GROMK * X
-         */
         }
     }
 }
