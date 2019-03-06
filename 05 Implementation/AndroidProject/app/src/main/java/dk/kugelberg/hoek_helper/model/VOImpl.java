@@ -1,6 +1,7 @@
 package dk.kugelberg.hoek_helper.model;
 
 import static java.lang.Double.NaN;
+import androidx.lifecycle.MutableLiveData;
 
 public class VOImpl implements VO {
 
@@ -22,8 +23,8 @@ VO = STO - KO
 VO = DB - Oms
 */
 
-    private double vaerdi = NaN;
-    private boolean erBeregnet = false;
+    private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
+    private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
 
     @Override
     public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se) {
@@ -33,6 +34,8 @@ VO = DB - Oms
         this.domk = domk;
         this.sto = sto;
         this.se = se;
+        vaerdi.setValue(NaN);
+        erBeregnet.setValue(false);
     }
 
     @Override
@@ -53,24 +56,24 @@ VO = DB - Oms
         if (vaerdi < 0) {
             throw new VaerdiException();
         } else {
-            this.vaerdi = vaerdi;
+            this.vaerdi.setValue(vaerdi);
             setBeregnet(false);
         }
     }
 
     @Override
     public double getVaerdi() {
-        return vaerdi;
+        return vaerdi.getValue();
     }
 
     @Override
     public void setBeregnet(boolean val){
-        erBeregnet = val;
+        this.erBeregnet.setValue(val);
     }
 
     @Override
     public boolean getBeregnet(){
-        return erBeregnet;
+        return erBeregnet.getValue();
     }
 
 
@@ -80,11 +83,11 @@ VO = DB - Oms
         // TODO: konstruer beregner der kan regne VO ud via x1, x2, vo1, vo2, domk og domk2
 
         if (ve.getVaerdi() != NaN && x.getVaerdi() != NaN) {
-            this.vaerdi = ve.getVaerdi() * x.getVaerdi();
+            setVaerdi(ve.getVaerdi() * x.getVaerdi());
             setBeregnet(true);
 
         } else if (sto.getVaerdi() != NaN && ko.getVaerdi() != NaN) {
-            this.vaerdi = sto.getVaerdi() - ko.getVaerdi();
+            setVaerdi(sto.getVaerdi() - ko.getVaerdi());
             setBeregnet(true);
 
         } /* else if (db.getVaerdi() != NaN && oms.getVaerdi() != NaN) {

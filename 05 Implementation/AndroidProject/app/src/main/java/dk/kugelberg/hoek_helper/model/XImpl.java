@@ -71,7 +71,6 @@ public class XImpl implements X {
         return vaerdi;
     }
 
-
     @Override
     public void beregn() {
 
@@ -102,7 +101,6 @@ public class XImpl implements X {
         } else if (getBeregnet()) {
 
             setVaerdi(NaN);
-
         }
     }
 }
