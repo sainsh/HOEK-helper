@@ -79,7 +79,7 @@ public class XImpl implements X {
         if (vo.getVaerdi() != NaN && ve.getVaerdi() != NaN) {
             double tempVaerdi = vo.getVaerdi() / ve.getVaerdi();
             if (erNegativ(tempVaerdi)){
-                throw NegativVaerdiException;
+                throw new NegativVaerdiException();
             }
             else{
                 this.vaerdi = tempVaerdi;
@@ -90,7 +90,7 @@ public class XImpl implements X {
         } else if (ko.getVaerdi() != NaN && ke.getVaerdi() != NaN) {
             double tempVaerdi = ko.getVaerdi() / ke.getVaerdi();
             if (erNegativ(tempVaerdi)){
-                throw NegativVaerdiException;
+                throw new NegativVaerdiException();
             }
             else{
                 this.vaerdi = tempVaerdi;
@@ -101,7 +101,7 @@ public class XImpl implements X {
         } else if (sto.getVaerdi() != NaN && se.getVaerdi() != NaN) {
             double tempVaerdi = sto.getVaerdi() / se.getVaerdi();
             if (erNegativ(tempVaerdi)){
-                throw NegativVaerdiException;
+                throw new NegativVaerdiException();
             }
             else{
                 this.vaerdi = tempVaerdi;
@@ -112,7 +112,7 @@ public class XImpl implements X {
         } else if (sto.getVaerdi() != NaN && gromk.getVaerdi() != NaN) {
             double tempVaerdi = sto.getVaerdi() * gromk.getVaerdi();
             if (erNegativ(tempVaerdi)){
-                throw NegativVaerdiException;
+                throw new NegativVaerdiException();
             }
             else{
                 this.vaerdi = tempVaerdi;
@@ -123,7 +123,7 @@ public class XImpl implements X {
         } else if (domk.getVaerdi() != NaN && vo.getVaerdi() != NaN && vo1.getVaerdi() != NaN && x1.getVaerdi() != NaN) {
             double tempVaerdi = (domk.getVaerdi() * ( vo.getVaerdi() - vo1.getVaerdi())) + x1.getVaerdi();
             if (erNegativ(tempVaerdi)){
-                throw NegativVaerdiException;
+                throw new NegativVaerdiException();
             }
             else{
                 this.vaerdi = tempVaerdi;
