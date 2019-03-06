@@ -96,7 +96,6 @@ public class XImpl implements X {
         }
 
         else if(getBeregnet()){
-
             setVaerdi(NaN);
 
     }
