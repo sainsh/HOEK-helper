@@ -32,25 +32,25 @@ public class XImpl implements X {
     }
 
     @Override
-    public void init1(X x1, VO vo1){
+    public void init1(X x1, VO vo1) {
         this.x1 = x1;
         this.vo1 = vo1;
     }
 
     @Override
-    public void init2(X x2, VO vo2, DOMK domk2){
+    public void init2(X x2, VO vo2, DOMK domk2) {
         this.x2 = x2;
         this.vo2 = vo2;
         this.domk2 = domk2;
     }
 
     @Override
-    public void setBeregnet(boolean val){
+    public void setBeregnet(boolean val) {
         erBeregnet = val;
     }
 
     @Override
-    public boolean getBeregnet(){
+    public boolean getBeregnet() {
         return erBeregnet;
     }
 
@@ -97,14 +97,12 @@ public class XImpl implements X {
 
             // X = (domk * ( vo - vo1)) + x1
         } else if (domk.getVaerdi() != NaN && vo.getVaerdi() != NaN && vo1.getVaerdi() != NaN && x1.getVaerdi() != NaN) {
-            this.vaerdi = (domk.getVaerdi() * ( vo.getVaerdi() - vo1.getVaerdi())) + x1.getVaerdi();
+            this.vaerdi = (domk.getVaerdi() * (vo.getVaerdi() - vo1.getVaerdi())) + x1.getVaerdi();
             setBeregnet(true);
-        }
-
-        else if(getBeregnet()){
+        } else if (getBeregnet()) {
 
             setVaerdi(NaN);
 
+        }
     }
-}
 }
