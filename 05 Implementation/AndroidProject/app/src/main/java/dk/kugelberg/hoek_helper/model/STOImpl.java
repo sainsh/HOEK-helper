@@ -4,21 +4,20 @@ import static java.lang.Double.NaN;
 
 public class STOImpl implements STO {
 
-    X x;
-    VO vo;
-    KO ko;
-    SE se;
-    X x1;
-    X x2;
-    VO vo1;
-    VO vo2;
+    private X x;
+    private VO vo;
+    private KO ko;
+    private SE se;
+    private X x1;
+    private X x2;
+    private VO vo1;
+    private VO vo2;
     // GROMK gromk;
 
     private double vaerdi = NaN;
     private boolean erBeregnet = false;
 
-
-
+    @Override
     public void init(X x, VO vo, KO ko, SE se) {
         this.x = x;
         this.vo = vo;
@@ -44,7 +43,7 @@ public class STOImpl implements STO {
             throw new NegativVaerdiException();
         } else {
             this.vaerdi = x;
-            erBeregnet = false;
+            setBeregnet(false);
         }
     }
 
@@ -75,7 +74,7 @@ public class STOImpl implements STO {
             setBeregnet(true);
         } else if (getBeregnet()) {
 
-            this.vaerdi = NaN;
+            setVaerdi(NaN);
 
             // TODO: undersøg hvordan STO=GROMK * X kan være rigtig???
             //this.sto = gromk.getVaerdi() * x.getVaerdi();
