@@ -3,6 +3,7 @@ package dk.kugelberg.hoek_helper;
 import org.junit.Test;
 
 import dk.kugelberg.hoek_helper.model.DOMK;
+import dk.kugelberg.hoek_helper.model.KE;
 import dk.kugelberg.hoek_helper.model.KO;
 import dk.kugelberg.hoek_helper.model.SE;
 import dk.kugelberg.hoek_helper.model.STO;
@@ -103,8 +104,23 @@ public class XImplTest {
         }
 
 
+        @Override
+        public void init() {
+
+        }
+
+        @Override
+        public void setVaerdi(double x) {
+
+        }
+
         public double getVaerdi(){
             return vaerdi;
+        }
+
+        @Override
+        public void beregn() {
+
         }
     }
 
@@ -123,6 +139,21 @@ public class XImplTest {
         public double getVaerdi() {
             return vaerdi;
         }
+
+        @Override
+        public void beregn() {
+
+        }
+
+        @Override
+        public void init(VO vo1, VO vo2, STO sto, KO ko, VE ve, X x1, X x2, DOMK domk1, DOMK domk2) {
+
+        }
+
+        @Override
+        public boolean erBeregnet() {
+            return false;
+        }
     }
 
 class VOMock implements VO{
@@ -140,6 +171,41 @@ class VOMock implements VO{
     public double getVaerdi() {
         return vaerdi;
     }
+
+    @Override
+    public void beregn() {
+
+    }
+
+    @Override
+    public void init(VO vo1, VO vo2, STO sto, KO ko, VE ve, X x1, X x2, DOMK domk1, DOMK domk2) {
+
+    }
+
+    @Override
+    public boolean erBeregnet() {
+        return false;
+    }
+
+    @Override
+    public void beregnVoMedVeOgX(double ve, double x) {
+
+    }
+
+    @Override
+    public void beregnVoMedStoko(double sto, double ko) {
+
+    }
+
+    @Override
+    public void berengVoMed1100x2100x(double x) {
+
+    }
+
+    @Override
+    public void berengVoMedDbMinusOms(double db, double oms) {
+
+    }
 }
 class VEMock implements VE{
         double vaerdi;
@@ -147,10 +213,21 @@ class VEMock implements VE{
         public VEMock(double vaerdi) {
             this.vaerdi = vaerdi;
         }
+
+    @Override
+    public void init(VO vo, X x, SE se, KE ke) {
+
+    }
+
     @Override  public void setVaerdi(double Vaerdi) {}
 
     @Override public double getVaerdi() {
         return vaerdi;
+    }
+
+    @Override
+    public void beregn() {
+
     }
 }
 class DomkMock implements DOMK{
