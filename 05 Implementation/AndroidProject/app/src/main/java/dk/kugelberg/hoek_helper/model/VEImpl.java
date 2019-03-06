@@ -1,5 +1,6 @@
 package dk.kugelberg.hoek_helper.model;
 
+import androidx.lifecycle.MutableLiveData;
 import static java.lang.Double.NaN;
 
 public class VEImpl implements VE {
@@ -9,8 +10,8 @@ public class VEImpl implements VE {
     private SE se;
     private KE ke;
 
-    private double vaerdi = NaN;
-    private boolean erBeregnet = false;
+    private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
+    private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
 
     @Override
     public void init(VO vo, X x, SE se, KE ke){

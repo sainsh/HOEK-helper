@@ -1,6 +1,8 @@
 package dk.kugelberg.hoek_helper.model;
 
 import static java.lang.Double.NaN;
+
+import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 
 public class VOImpl implements VO {
@@ -21,8 +23,7 @@ public class VOImpl implements VO {
 VO = VE * X
 VO = STO - KO
 VO = DB - Oms
-*/private
-
+*/
     private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
     private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
 
