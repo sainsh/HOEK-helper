@@ -47,7 +47,7 @@ public class TabelImpl implements Tabel {
         Raekke raekke1 = null;
         Raekke raekke2 = null;
 
-
+/*
         if (raekkenummer != 0) {
             raekke0 = tabel.get(raekkenummer - 1);
             raekke0.getDOMK().init2(raekke0.getX(), raekke0.getVO());//and all others needed
@@ -61,7 +61,7 @@ public class TabelImpl implements Tabel {
             raekke2.getDOMK().init1(raekke2.getX(), raekke2.getVO()); //and all others needed
         }
 
-
+*/
     }
 
     @Override
@@ -167,14 +167,14 @@ public class TabelImpl implements Tabel {
 
     @Override
     public void angivX(int antal, int raekkenummer) {
-        tabel.get(raekkenummer).getX().setAntal(antal);
+        tabel.get(raekkenummer).getX().setVaerdi(antal);
         updateAdjacentRows(raekkenummer);
 
     }
 
     @Override
-    public int hentX(int raekkenummer) {
-        return tabel.get(raekkenummer).getX().getAntal();
+    public double hentX(int raekkenummer) {
+        return tabel.get(raekkenummer).getX().getVaerdi();
     }
 
     @Override
