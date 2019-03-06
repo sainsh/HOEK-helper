@@ -3,9 +3,7 @@ package dk.kugelberg.hoek_helper.model;
 
 public interface VO {
 
-    void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se);
-    void init1(X x1, VO vo1);
-    void init2(X x2, VO vo2, DOMK domk2);
+    void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se, X xOver, VO voOver, X xUnder, VO voUnder, DOMK domkUnder);
 
     void setVaerdi(double vaerdi);
 
