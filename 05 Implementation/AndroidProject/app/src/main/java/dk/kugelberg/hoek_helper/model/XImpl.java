@@ -22,7 +22,7 @@ public class XImpl implements X {
     private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
     private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
 
-    Public XImpl(){
+    public XImpl(){
         vaerdi.setValue(NaN);
     }
 
