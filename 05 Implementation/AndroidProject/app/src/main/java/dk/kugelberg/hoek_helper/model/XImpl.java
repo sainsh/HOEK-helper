@@ -22,18 +22,28 @@ public class XImpl implements X {
     private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
     private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
 
+    Public XImpl(){
+        vaerdi.setValue(NaN);
+    }
+
     @Override
-    public void init(VO vo, VE ve, DOMK domk, STO sto, SE se, GROMK gromk, X xOver, VO voOver, X xUnder, VO voUnder, DOMK domkUnder) {
+    public void init(VO vo, VE ve, DOMK domk, STO sto, SE se, GROMK gromk) {
         this.vo = vo;
         this.ve = ve;
         this.domk = domk;
         this.sto = sto;
         this.se = se;
         this.gromk = gromk;
-        vaerdi.setValue(NaN);
-        erBeregnet.setValue(false);
+    }
+
+    @Override
+    public void initOver(X xOver, VO voOver){
         this.xOver = xOver;
         this.voOver = voOver;
+    }
+
+    @Override
+    public void initUnder(X xUnder, VO voUnder, DOMK domkUnder){
         this.xUnder = xUnder;
         this.voUnder = voUnder;
         this.domkUnder = domkUnder;
