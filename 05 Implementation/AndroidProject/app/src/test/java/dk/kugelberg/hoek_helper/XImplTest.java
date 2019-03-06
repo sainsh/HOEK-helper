@@ -42,7 +42,7 @@ public class XImplTest {
     @Test
     public void testAfXStandardVaerdi() {
         XImpl x = new XImpl();
-        x.init(new VOMock(Double.NaN), new VEMock(Double.NaN), new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN), new XMock(Double.NaN), new VOMock(Double.NaN), new XMock(Double.NaN),new VOMock(Double.NaN), new DomkMock(Double.NaN));
+        x.init(new VOMock(Double.NaN), new VEMock(Double.NaN), new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN));
         assertEquals(x.getVaerdi(), Double.NaN, delta);
         assertFalse(x.getBeregnet());
     }
@@ -51,7 +51,7 @@ public class XImplTest {
     @Test
     public void testBeregnMedDOMKFormel() {
         XImpl x = new XImpl();
-        x.init(new VOMock(Double.NaN), new VEMock(Double.NaN), new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN), new XMock(Double.NaN), new VOMock(Double.NaN), new XMock(Double.NaN),new VOMock(Double.NaN), new DomkMock(Double.NaN));
+        x.init(new VOMock(Double.NaN), new VEMock(Double.NaN), new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN));
         //x.init1();
         double resultat = Double.NaN;
         x.beregn();
@@ -63,7 +63,7 @@ public class XImplTest {
     @Test
     public void testBeregnMedDOMKFormelMedManglendeTal() {
         XImpl x = new XImpl();
-        x.init(new VOMock(Double.NaN),new VEMock(Double.NaN),new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN), new XMock(Double.NaN), new VOMock(Double.NaN), new XMock(Double.NaN),new VOMock(Double.NaN), new DomkMock(Double.NaN));
+        x.init(new VOMock(Double.NaN),new VEMock(Double.NaN),new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN));
         double resultat = Double.NaN;
         x.beregn();
         assertEquals(x.getVaerdi(),resultat,delta);
@@ -75,7 +75,7 @@ public class XImplTest {
     @Test
     public void testBeregnMedGROMSFormel() {
         XImpl x = new XImpl();
-        x.init(new VOMock(Double.NaN), new VEMock(Double.NaN), new DomkMock(Double.NaN), new STOMock(2), new SEMock(Double.NaN), new GROMKMock(2), new XMock(Double.NaN), new VOMock(Double.NaN), new XMock(Double.NaN),new VOMock(Double.NaN), new DomkMock(Double.NaN));
+        x.init(new VOMock(Double.NaN), new VEMock(Double.NaN), new DomkMock(Double.NaN), new STOMock(2), new SEMock(Double.NaN), new GROMKMock(2));
         double resultat = 4;
         x.beregn();
         assertEquals(x.getVaerdi(), resultat, delta);
@@ -87,7 +87,7 @@ public class XImplTest {
     @Test
     public void testBeregnUdenværdier() {
         XImpl x = new XImpl();
-        x.init(new VOMock(Double.NaN), new VEMock(Double.NaN), new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN), new XMock(Double.NaN), new VOMock(Double.NaN), new XMock(Double.NaN),new VOMock(Double.NaN), new DomkMock(Double.NaN));
+        x.init(new VOMock(Double.NaN), new VEMock(Double.NaN), new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN));
         double resultat = Double.NaN;
         x.beregn();
         assertEquals(x.getVaerdi(), resultat, delta);
@@ -98,7 +98,7 @@ public class XImplTest {
     @Test
     public void testBeregnXmedVEogVO() {
         XImpl x = new XImpl();
-        x.init(new VOMock(10), new VEMock(5), new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN), new XMock(Double.NaN), new VOMock(Double.NaN), new XMock(Double.NaN),new VOMock(Double.NaN), new DomkMock(Double.NaN));
+        x.init(new VOMock(10), new VEMock(5), new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN));
         double resultat = 2;
         x.beregn();
         assertEquals(x.getVaerdi(), resultat, delta);
@@ -109,7 +109,7 @@ public class XImplTest {
     @Test
     public void testBeregnXmedNegativVEogVO() {
         XImpl x = new XImpl();
-        x.init(new VOMock(10), new VEMock(-5), new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN), new XMock(Double.NaN), new VOMock(Double.NaN), new XMock(Double.NaN),new VOMock(Double.NaN), new DomkMock(Double.NaN));
+        x.init(new VOMock(10), new VEMock(-5), new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN));
         double resultat = Double.NaN;
 
         try {
@@ -126,7 +126,7 @@ public class XImplTest {
     @Test
     public void testBeregnXmedVEogNegativVO() {
         XImpl x = new XImpl();
-        x.init(new VOMock(-10), new VEMock(5), new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN), new XMock(Double.NaN), new VOMock(Double.NaN), new XMock(Double.NaN),new VOMock(Double.NaN), new DomkMock(Double.NaN));
+        x.init(new VOMock(-10), new VEMock(5), new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN));
         double resultat = Double.NaN;
         try {
             x.beregn();
@@ -140,7 +140,7 @@ public class XImplTest {
     @Test
     public void testBeregnXmedDOMKogVO() {
         XImpl x = new XImpl();
-        x.init(new VOMock(10), new VEMock(Double.NaN), new DomkMock(5), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN), new XMock(Double.NaN), new VOMock(Double.NaN), new XMock(Double.NaN),new VOMock(Double.NaN), new DomkMock(Double.NaN));
+        x.init(new VOMock(10), new VEMock(Double.NaN), new DomkMock(5), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN));
         double resultat = 2;
         x.beregn();
         assertEquals(x.getVaerdi(), resultat, delta);
@@ -150,7 +150,7 @@ public class XImplTest {
     @Test
     public void testBeregnXMedDOMKogNegativVO() {
         XImpl x = new XImpl();
-        x.init(new VOMock(-10), new VEMock(Double.NaN), new DomkMock(5), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN), new XMock(Double.NaN), new VOMock(Double.NaN), new XMock(Double.NaN),new VOMock(Double.NaN), new DomkMock(Double.NaN));
+        x.init(new VOMock(-10), new VEMock(Double.NaN), new DomkMock(5), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN));
         double resultat = Double.NaN;
         x.beregn();
         assertEquals(x.getVaerdi(), resultat, delta);
@@ -160,7 +160,7 @@ public class XImplTest {
     @Test
     public void testBeregnXMedNegativDOMKogVO() {
         XImpl x = new XImpl();
-        x.init(new VOMock(10), new VEMock(Double.NaN), new DomkMock(-5), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN), new XMock(Double.NaN), new VOMock(Double.NaN), new XMock(Double.NaN),new VOMock(Double.NaN), new DomkMock(Double.NaN));
+        x.init(new VOMock(10), new VEMock(Double.NaN), new DomkMock(-5), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN));
         double resultat = Double.NaN;
         x.beregn();
         assertEquals(x.getVaerdi(), resultat, delta);
@@ -171,7 +171,7 @@ public class XImplTest {
     @Test
     public void testBeregnXmedDOMKogVE() {
         XImpl x = new XImpl();
-        x.init(new VOMock(Double.NaN), new VEMock(10), new DomkMock(5), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN), new XMock(Double.NaN), new VOMock(Double.NaN), new XMock(Double.NaN),new VOMock(Double.NaN), new DomkMock(Double.NaN));
+        x.init(new VOMock(Double.NaN), new VEMock(10), new DomkMock(5), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN));
         double resultat = Double.NaN;
         x.beregn();
         assertEquals(x.getVaerdi(), resultat, delta);
@@ -182,7 +182,7 @@ public class XImplTest {
     @Test
     public void testBeregnXMedSTOogSE() {
         XImpl x = new XImpl();
-        x.init(new VOMock(Double.NaN), new VEMock(Double.NaN), new DomkMock(Double.NaN), new STOMock(10), new SEMock(10), new GROMKMock(Double.NaN), new XMock(Double.NaN), new VOMock(Double.NaN), new XMock(Double.NaN),new VOMock(Double.NaN), new DomkMock(Double.NaN));
+        x.init(new VOMock(Double.NaN), new VEMock(Double.NaN), new DomkMock(Double.NaN), new STOMock(10), new SEMock(10), new GROMKMock(Double.NaN));
         double resultat = 1;
         x.beregn();
         assertEquals(x.getVaerdi(), resultat, delta);
@@ -193,7 +193,7 @@ public class XImplTest {
     @Test
     public void testBeregnXMedSTOogNegativSE() {
         XImpl x = new XImpl();
-        x.init(new VOMock(Double.NaN), new VEMock(Double.NaN), new DomkMock(Double.NaN), new STOMock(-10), new SEMock(10), new GROMKMock(Double.NaN), new XMock(Double.NaN), new VOMock(Double.NaN), new XMock(Double.NaN),new VOMock(Double.NaN), new DomkMock(Double.NaN));
+        x.init(new VOMock(Double.NaN), new VEMock(Double.NaN), new DomkMock(Double.NaN), new STOMock(-10), new SEMock(10), new GROMKMock(Double.NaN));
         double resultat = Double.NaN;
         x.beregn();
         assertEquals(x.getVaerdi(), resultat, delta);
@@ -203,7 +203,7 @@ public class XImplTest {
     @Test
     public void testBeregnXMedNegativSTOogSE() {
         XImpl x = new XImpl();
-        x.init(new VOMock(Double.NaN), new VEMock(Double.NaN), new DomkMock(Double.NaN), new STOMock(-10), new SEMock(10), new GROMKMock(Double.NaN), new XMock(Double.NaN), new VOMock(Double.NaN), new XMock(Double.NaN),new VOMock(Double.NaN), new DomkMock(Double.NaN));
+        x.init(new VOMock(Double.NaN), new VEMock(Double.NaN), new DomkMock(Double.NaN), new STOMock(-10), new SEMock(10), new GROMKMock(Double.NaN));
         double resultat = Double.NaN;
         x.beregn();
         assertEquals(x.getVaerdi(), resultat, delta);
