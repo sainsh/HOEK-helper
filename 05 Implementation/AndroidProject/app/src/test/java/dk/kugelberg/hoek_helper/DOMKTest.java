@@ -4,6 +4,12 @@ import org.junit.Test;
 
 import dk.kugelberg.hoek_helper.model.DOMK;
 import dk.kugelberg.hoek_helper.model.DOMKImpl;
+import dk.kugelberg.hoek_helper.model.KOImpl;
+import dk.kugelberg.hoek_helper.model.SE;
+import dk.kugelberg.hoek_helper.model.STO;
+import dk.kugelberg.hoek_helper.model.STOImpl;
+import dk.kugelberg.hoek_helper.model.VE;
+import dk.kugelberg.hoek_helper.model.VEImpl;
 import dk.kugelberg.hoek_helper.model.VO;
 import dk.kugelberg.hoek_helper.model.VOImpl;
 import dk.kugelberg.hoek_helper.model.X;
@@ -30,33 +36,80 @@ public class DOMKTest {
     }
 
     @Test
-    public void beregn() {
+    public void testBeregn() {
         DOMK domkberegn = new DOMKImpl();
+        domkberegn.init(new MockVO(25.5), new MockVO(50000.68), new STOImpl(), new KOImpl(), new VEImpl(), new MockX(500.9), new MockX(100852.56), new DOMKImpl(), new DOMKImpl());
+        double resultat = 0.49800053;
+        domkberegn.beregn();
+        assertEquals(domkberegn.getVaerdi(),resultat, DELTA );
+    }
 
-        VO vo1 = new VOImpl();
-        VO vo2 = new VOImpl();
-        VO vo3 = new VOImpl();
-
-        X x1 = new XImpl();
-        X x2 = new XImpl();
-        X x3 = new XImpl();
-
-        vo1.setVaerdi(50.5);
-        vo2.setVaerdi(75.5);
-        vo3.setVaerdi(185720.68);
-
-        x1.setAntal(10);
-        x2.setAntal(25);
-        x3.setAntal(50000);
-
-        // Expectation: domk1 = (x1-0)/(y1-0)   = 0.1980198019801
-        // Expectation: domk2 = (x2-x1)/(y2-y1) = 0.6
-        // Expectation: domk2 = (x3-x2)/(y3-y2) = 0.2691963238690064562947446305904629465736
-        assertEquals(x1.getAntal()/vo1.getVaerdi(), 0.1980198019801, DELTA);
-        assertEquals((x2.getAntal()-x1.getAntal())/(vo2.getVaerdi()-vo1.getVaerdi()), 0.6,DELTA);
-        assertEquals((x3.getAntal()-x2.getAntal())/(vo3.getVaerdi()-vo2.getVaerdi()), 0.2691963238690064562947446305904629465736,DELTA);
+    @Test
+    public void testBeregnUdenVaerdier() {
+        DOMK domkberegn = new DOMKImpl();
+        domkberegn.init(new MockVO(Double.NaN), new MockVO(Double.NaN), new STOImpl(), new KOImpl(), new VEImpl(), new MockX(Double.NaN), new MockX(Double.NaN), new DOMKImpl(), new DOMKImpl());
+        double resultat = Double.NaN;
+        domkberegn.beregn();
+        assertEquals(domkberegn.getVaerdi(),resultat, DELTA );
+    }
 
 
+
+    @Test
+    public void testBeregnMedNegativ() {
+        DOMK domkberegn = new DOMKImpl();
+        domkberegn.init(new MockVO(-25.5), new MockVO(-50000.68), new STOImpl(), new KOImpl(), new VEImpl(), new MockX(500.9), new MockX(100852.56), new DOMKImpl(), new DOMKImpl());
+        double resultat = -2.005982867370644730419152531734383876602;
+        domkberegn.beregn();
+        assertEquals(domkberegn.getVaerdi(),resultat, DELTA );
+    }
+
+    class MockVO implements VO{
+
+        private double vaerdi = Double.NaN;
+
+        public MockVO (double vaerdi){
+            this.vaerdi = vaerdi;
+        }
+
+        @Override
+        public void setVaerdi(double vaerdi) {
+            this.vaerdi = vaerdi;
+        }
+
+        @Override
+        public double getVaerdi() {
+            return vaerdi;
+        }
+    }
+
+    class MockX implements X {
+
+        private double vaerdi;
+
+        public MockX (double vaerdi){
+            this.vaerdi = vaerdi;
+        }
+
+        @Override
+        public void init(VO vo, VE ve, DOMK domk, STO sto, SE se) {
+
+        }
+
+        @Override
+        public void setVaerdi(double x) {
+            this.vaerdi = vaerdi;
+        }
+
+        @Override
+        public double getVaerdi() {
+            return vaerdi;
+        }
+
+        @Override
+        public void beregn() {
+
+        }
     }
 
     @Test

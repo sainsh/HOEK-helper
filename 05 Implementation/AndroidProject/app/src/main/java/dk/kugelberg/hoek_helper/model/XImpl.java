@@ -28,7 +28,8 @@ public class XImpl implements X {
     @Override
     public void setVaerdi(double x) {
         if (x < 0) {
-            throw new NegativVaerdiException();
+
+            //throw new NegativVaerdiException();
         } else {
             this.vaerdi = x;
             erBeregnet = false;
@@ -44,7 +45,7 @@ public class XImpl implements X {
 
     @Override
     public void beregn() {
-
+/*
         if (vo.getVaerdi()!= NaN && ve.getVaerdi() ){
         double x = vo.getVaerdi() / ve.getVaerdi();}
         else if ()
@@ -54,9 +55,10 @@ public class XImpl implements X {
         X = KO / KE
         X = VO / VE
         X = STO / SE
-        */
+
 
                 this.vaerdi = x;
+                */
     }
 
 
