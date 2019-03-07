@@ -1,5 +1,6 @@
 package dk.kugelberg.hoek_helper.model;
 
+import androidx.lifecycle.MutableLiveData;
 import static java.lang.Double.NaN;
 
 public class KEimpl implements KE {
@@ -9,8 +10,8 @@ public class KEimpl implements KE {
     private SE se;
     private VE ve;
 
-    private double vaerdi = NaN;
-    private boolean erBeregnet = false;
+    private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
+    private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
 
     @Override
     public void init(KO ko, X x, SE se, VE ve){
@@ -20,31 +21,30 @@ public class KEimpl implements KE {
         this.ve = ve;
     }
 
-    @Override
-    public void setVaerdi(double vaerdi){
-
-        if (vaerdi < 0) {
+      @Override
+    public void setVaerdi(double x) {
+        if (x < 0) {
             throw new NegativVaerdiException();
         } else {
-            this.vaerdi = vaerdi;
-            erBeregnet = false;
+            vaerdi.setValue(x);
+            setBeregnet(false);
         }
     }
 
     @Override
     public double getVaerdi(){
-        return vaerdi;
+        return vaerdi.getValue();
     }
 
     @Override
     public void setBeregnet(boolean val){
-        erBeregnet = val;
+        erBeregnet.setValue(val);
     }
 
     @Override
     public boolean getBeregnet(){
 
-        return erBeregnet;
+        return erBeregnet.getValue();
     }
 
     @Override
@@ -52,13 +52,12 @@ public class KEimpl implements KE {
 
         if(ko.getVaerdi() != NaN && x.getVaerdi() != NaN){
 
-            this.vaerdi = ko.getVaerdi() / x.getVaerdi();
+            vaerdi.setValue(ko.getVaerdi() / x.getVaerdi());
             setBeregnet(true);
 
         }
         else if(se.getVaerdi() != NaN && ve.getVaerdi() != NaN){
-
-            this.vaerdi = se.getVaerdi() - ve.getVaerdi();
+            vaerdi.setValue(se.getVaerdi() - ve.getVaerdi());
             setBeregnet(true);
 
         }
@@ -66,7 +65,6 @@ public class KEimpl implements KE {
             setVaerdi(NaN);
 
         }
-
+        if (this.vaerdi.getValue() == NaN) this.erBeregnet.setValue(false);
     }
-
 }

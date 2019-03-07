@@ -17,21 +17,17 @@ public class TabelImpl implements Tabel {
     }
 
     @Override
-    public void addRaekke(int raekkenummer) {
-
-    }
-
-
-    @Override
     public ArrayList<Raekke> getTabel() {
         return tabel;
     }
 
     @Override
-    public void addRaekke(int raekkeNummer, Raekke raekke) {
+    public void addRaekke(int raekkenummer) {
 
-        tabel.add(raekkeNummer, raekke);
-        updateRowNumbers();
+        Raekke raekke = new RaekkeImpl();
+        tabel.add(raekkenummer, raekke);
+
+        updateAdjacentRows(raekkenummer);
 
     }
 
@@ -39,26 +35,39 @@ public class TabelImpl implements Tabel {
     public void deleteRaekke(int raekkenummer) {
 
         tabel.remove(raekkenummer);
-        updateRowNumbers();
+        updateAdjacentRows(raekkenummer);
 
     }
 
-    @Override
-    public void updateRowNumbers() {
 
-        int currentRowNumber = 0;
-        for (Raekke raekke : tabel){
-            raekke.setRaekkenummer(currentRowNumber);
-            currentRowNumber++;
+
+    private void updateAdjacentRows(int raekkenummer) {
+
+        Raekke raekke = null;
+        Raekke raekke1 = null;
+        Raekke raekke2 = null;
+
+/*
+        if (raekkenummer != 0) {
+            raekke0 = tabel.get(raekkenummer - 1);
+            raekke0.getDOMK().init2(raekke0.getX(), raekke0.getVO());//and all others needed
+        }
+        raekke1 = tabel.get(raekkenummer);
+        raekke1.getDOMK().init1(raekke1.getX(), raekke1.getVO()); // and all others needed
+        raekke1.getDOMK().init2(raekke1.getX(), raekke1.getVO()); // and all others needed
+
+        if (raekkenummer != tabel.size()) {
+            raekke2 = tabel.get(raekkenummer + 1);
+            raekke2.getDOMK().init1(raekke2.getX(), raekke2.getVO()); //and all others needed
         }
 
+*/
     }
-
 
     @Override
     public void angivDOMK(double vaerdi, int raekkenummer) {
         tabel.get(raekkenummer).getDOMK().setVaerdi(vaerdi);
-        //updateAdjacentRows(raekkenummer);
+        updateAdjacentRows(raekkenummer);
     }
 
     @Override
@@ -76,7 +85,7 @@ public class TabelImpl implements Tabel {
 
         domk = new DOMKImpl();
         domk.setVaerdi(vaerdi);
-        //updateAdjacentRows(raekkenummer);
+        updateAdjacentRows(raekkenummer);
 
 
     }
@@ -85,7 +94,7 @@ public class TabelImpl implements Tabel {
     public void angivKO(double vaerdi, int raekkenummer) {
 
         tabel.get(raekkenummer).getKO().setVaerdi(vaerdi);
-        //updateAdjacentRows(raekkenummer);
+        updateAdjacentRows(raekkenummer);
     }
 
     @Override
@@ -96,14 +105,14 @@ public class TabelImpl implements Tabel {
     @Override
     public void beregnKO(int raekkenummer) {
         tabel.get(raekkenummer).getKO().beregn();
-        //updateAdjacentRows(raekkenummer);
+        updateAdjacentRows(raekkenummer);
 
     }
 
     @Override
     public void angivSTO(double vaerdi, int raekkenummer) {
         tabel.get(raekkenummer).getSTO().setVaerdi(vaerdi);
-        //updateAdjacentRows(raekkenummer);
+        updateAdjacentRows(raekkenummer);
 
     }
 
@@ -115,14 +124,14 @@ public class TabelImpl implements Tabel {
     @Override
     public void beregnSTO(int raekkenummer) {
         tabel.get(raekkenummer).getSTO().beregn();
-        //updateAdjacentRows(raekkenummer);
+        updateAdjacentRows(raekkenummer);
 
     }
 
     @Override
     public void angivVE(double vaerdi, int raekkenummer) {
         tabel.get(raekkenummer).getVE().setVaerdi(vaerdi);
-        //updateAdjacentRows(raekkenummer);
+        updateAdjacentRows(raekkenummer);
 
     }
 
@@ -134,13 +143,13 @@ public class TabelImpl implements Tabel {
     @Override
     public void beregnVE(int raekkenummer) {
         tabel.get(raekkenummer).getVE().beregn();
-        //updateAdjacentRows(raekkenummer);
+        updateAdjacentRows(raekkenummer);
     }
 
     @Override
     public void angivVO(double vaerdi, int raekkenummer) {
         tabel.get(raekkenummer).getVO().setVaerdi(vaerdi);
-        //updateAdjacentRows(raekkenummer);
+        updateAdjacentRows(raekkenummer);
 
     }
 
@@ -152,14 +161,14 @@ public class TabelImpl implements Tabel {
     @Override
     public void beregnVO(int raekkenummer) {
         tabel.get(raekkenummer).getVO().beregn();
-        //updateAdjacentRows(raekkenummer);
+        updateAdjacentRows(raekkenummer);
 
     }
 
     @Override
-    public void angivX(double antal, int raekkenummer) {
+    public void angivX(int antal, int raekkenummer) {
         tabel.get(raekkenummer).getX().setVaerdi(antal);
-        //updateAdjacentRows(raekkenummer);
+        updateAdjacentRows(raekkenummer);
 
     }
 
@@ -171,7 +180,7 @@ public class TabelImpl implements Tabel {
     @Override
     public void beregnX(int raekkenummer) {
         tabel.get(raekkenummer).getX().beregn();
-        //updateAdjacentRows(raekkenummer);
+        updateAdjacentRows(raekkenummer);
 
     }
 
