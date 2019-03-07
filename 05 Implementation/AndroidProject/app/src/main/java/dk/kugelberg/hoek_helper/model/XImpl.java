@@ -23,21 +23,27 @@ public class XImpl implements X {
     private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
 
     public XImpl(){
-        vaerdi.setValue(Double.NaN);
+        vaerdi.setValue(NaN);
     }
 
     @Override
-    public void init(VO vo, VE ve, DOMK domk, STO sto, SE se, GROMK gromk,X xOver, VO voOver, X xUnder, VO voUnder, DOMK domkUnder) {
+    public void init(VO vo, VE ve, DOMK domk, STO sto, SE se, GROMK gromk) {
         this.vo = vo;
         this.ve = ve;
         this.domk = domk;
         this.sto = sto;
         this.se = se;
         this.gromk = gromk;
-        vaerdi.setValue(NaN);
-        erBeregnet.setValue(false);
+    }
+
+    @Override
+    public void initOver(X xOver, VO voOver){
         this.xOver = xOver;
         this.voOver = voOver;
+    }
+
+    @Override
+    public void initUnder(X xUnder, VO voUnder, DOMK domkUnder){
         this.xUnder = xUnder;
         this.voUnder = voUnder;
         this.domkUnder = domkUnder;
@@ -66,43 +72,43 @@ public class XImpl implements X {
 
     @Override
     public double getVaerdi() {
-        double hej = vaerdi.getValue();
-        return hej;
+
+        return vaerdi.getValue();
     }
 
     @Override
     public void beregn() {
 
+
         // X = VO / VE
-        if (vo.getVaerdi() != NaN && ve.getVaerdi() != NaN) {
+        if (!Double.isNaN(vo.getVaerdi()) && !Double.isNaN(ve.getVaerdi())){
             setVaerdi(vo.getVaerdi() / ve.getVaerdi());
             setBeregnet(true);
 
             // X = KO / KE
-        } /*else if (ko.getVaerdi() != NaN && ke.getVaerdi() != NaN) {
+        } else if (!Double.isNaN(ko.getVaerdi()) && !Double.isNaN(ke.getVaerdi())){
             setVaerdi(ko.getVaerdi() / ke.getVaerdi());
             setBeregnet(true);
 
             // X = STO / SE
-        } */else if (sto.getVaerdi() != NaN && se.getVaerdi() != NaN) {
+        } else if (!Double.isNaN(sto.getVaerdi()) && !Double.isNaN(se.getVaerdi())){
             setVaerdi(sto.getVaerdi() / se.getVaerdi());
             setBeregnet(true);
 
             // X = STO / GROMK
-        } else if (sto.getVaerdi() != NaN && gromk.getVaerdi() != NaN) {
+        } else if (!Double.isNaN(sto.getVaerdi()) && !Double.isNaN(gromk.getVaerdi())){
             setVaerdi(sto.getVaerdi() * gromk.getVaerdi());
             setBeregnet(true);
 
             // X = (domk * ( vo - voOver)) + xOver
-        } else if (domk.getVaerdi() != NaN && vo.getVaerdi() != NaN && voOver.getVaerdi() != NaN && xOver.getVaerdi() != NaN) {
+        } else if (!Double.isNaN(domk.getVaerdi()) && !Double.isNaN(vo.getVaerdi()) && !Double.isNaN(voOver.getVaerdi()) && !Double.isNaN(xOver.getVaerdi())) {
             setVaerdi( (domk.getVaerdi() * ( vo.getVaerdi() - voOver.getVaerdi())) + xOver.getVaerdi() );
             setBeregnet(true);
         }
 
-        else if(getBeregnet()){
-
+        else if (getBeregnet()){
             setVaerdi(NaN);
 
-        }
     }
+}
 }
