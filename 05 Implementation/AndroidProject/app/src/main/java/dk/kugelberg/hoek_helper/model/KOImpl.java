@@ -17,16 +17,27 @@ public class KOImpl implements KO {
     private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
     private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
 
+    public KOImpl(){
+        vaerdi.setValue(NaN);
+        erBeregnet.setValue(false);
+    }
+
     @Override
-    public void init(KE ke, X x, STO sto, VO vo, X xOver, VO voOver, X xUnder, VO voUnder) {
+    public void init(KE ke, X x, STO sto, VO vo) {
         this.ke = ke;
         this.x = x;
         this.sto = sto;
         this.vo = vo;
-        vaerdi.setValue(NaN);
-        erBeregnet.setValue(false);
+    }
+
+    @Override
+    public void initOver(X xOver, VO voOver) {
         this.xOver = xOver;
         this.voOver = voOver;
+    }
+
+    @Override
+    public void initUnder(X xUnder, VO voUnder) {
         this.xUnder = xUnder;
         this.voUnder = voUnder;
     }
@@ -63,12 +74,12 @@ public class KOImpl implements KO {
         // TODO: lav beregner med xOver, xUnder, voOver og voUnder
 
         // KO = KE * X
-        if (ke.getVaerdi() != NaN && x.getVaerdi() != NaN) {
+        if (!Double.isNaN(ke.getVaerdi()) && !Double.isNaN(x.getVaerdi())) {
             vaerdi.setValue(ke.getVaerdi() * x.getVaerdi());
             setBeregnet(true);
 
         // KO = STO - VO
-        } else if (sto.getVaerdi() != NaN && vo.getVaerdi() != NaN) {
+        } else if (!Double.isNaN(sto.getVaerdi()) && !Double.isNaN(vo.getVaerdi())) {
             vaerdi.setValue(sto.getVaerdi() - vo.getVaerdi());
             setBeregnet(true);
 
