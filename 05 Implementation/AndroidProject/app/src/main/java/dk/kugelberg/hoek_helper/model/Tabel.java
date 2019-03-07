@@ -1,7 +1,13 @@
 package dk.kugelberg.hoek_helper.model;
 
-public interface Controller {
+import java.util.ArrayList;
 
+public interface Tabel {
+
+    Raekke getRaekke(int raekkenummer);
+    ArrayList<Raekke> getTabel();
+    void addRaekke(int raekkenummer);
+    void deleteRaekke(int raekkenummer);
 
     void angivDOMK(double vaerdi, int raekkenummer);
 
@@ -43,9 +49,6 @@ public interface Controller {
     int hentX(int raekkenummer);
 
     void beregnX(int raekkenummer);
-
-
-
 
 
 }

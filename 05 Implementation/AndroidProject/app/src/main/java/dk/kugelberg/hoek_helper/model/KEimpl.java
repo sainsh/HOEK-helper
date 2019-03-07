@@ -4,14 +4,12 @@ import static java.lang.Double.NaN;
 
 public class KEimpl implements KE {
 
-    private double vaerdi;
-
     private KO ko;
     private X x;
-
     private SE se;
     private VE ve;
 
+    private double vaerdi = NaN;
     private boolean erBeregnet = false;
 
     @Override
@@ -31,14 +29,11 @@ public class KEimpl implements KE {
             this.vaerdi = vaerdi;
             erBeregnet = false;
         }
-
     }
 
     @Override
     public double getVaerdi(){
-
         return vaerdi;
-
     }
 
     @Override
@@ -48,6 +43,7 @@ public class KEimpl implements KE {
 
     @Override
     public boolean getBeregnet(){
+
         return erBeregnet;
     }
 
@@ -67,8 +63,7 @@ public class KEimpl implements KE {
 
         }
         else if(getBeregnet()){
-
-            this.vaerdi = NaN;
+            setVaerdi(NaN);
 
         }
 
