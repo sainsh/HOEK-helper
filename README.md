@@ -13,9 +13,9 @@ Datamatiker 3-ugersprojekt i samarbejde med handelsøkonomer.
 
 ## Standarder for Android-projektet
 
-* compileSdkVersion: 26 <br>
+* compileSdkVersion: 28 <br>
 * minSdkVersion 15 <br>
-* targetSdkVersion 26 <br>
+* targetSdkVersion 28 <br>
 
 ## Regler for arbejde i projektet
 

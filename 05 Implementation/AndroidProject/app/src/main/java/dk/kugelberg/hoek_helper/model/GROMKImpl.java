@@ -2,7 +2,7 @@ package dk.kugelberg.hoek_helper.model;
 
 import static java.lang.Double.NaN;
 
-public class VOImpl implements VO {
+public class GROMKImpl implements GROMK {
 
     private VE ve;
     private X x;
@@ -16,11 +16,6 @@ public class VOImpl implements VO {
     private STO sto;
     private SE se;
 
-/*
-VO = VE * X
-VO = STO - KO
-VO = DB - Oms
-*/
 
     private double vaerdi = NaN;
     private boolean erBeregnet = false;
@@ -73,35 +68,11 @@ VO = DB - Oms
         return erBeregnet;
     }
 
-
     @Override
     public void beregn() {
 
-        // TODO: konstruer beregner der kan regne VO ud via x1, x2, vo1, vo2, domk og domk2
+        // TODO: lav alle beregningerne til GROMK
 
-        if (ve.getVaerdi() != NaN && x.getVaerdi() != NaN) {
-            this.vaerdi = ve.getVaerdi() * x.getVaerdi();
-            setBeregnet(true);
-
-        } else if (sto.getVaerdi() != NaN && ko.getVaerdi() != NaN) {
-            this.vaerdi = sto.getVaerdi() - ko.getVaerdi();
-            setBeregnet(true);
-
-        } /* else if (db.getVaerdi() != NaN && oms.getVaerdi() != NaN) {
-            this.vaerdi = db.getVaerdi() - oms.getVaerdi();
-            setBeregnet(true);
-
-        } */ else if (getBeregnet()) {
-
-            setVaerdi(NaN);
-
-        }
 
     }
 }
-
-/*
-VO = VE * X
-VO = STO - KO
-VO = DB - Oms
-*/

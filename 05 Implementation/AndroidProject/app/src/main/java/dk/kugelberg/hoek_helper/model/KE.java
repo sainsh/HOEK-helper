@@ -1,14 +1,15 @@
 package dk.kugelberg.hoek_helper.model;
 
-public interface SE {
+public interface KE {
 
-    void init(X x, STO sto, VE ve, KE ke);
+    void init(KO ko, X x, SE se, VE ve);
 
-    void setVaerdi(double x);
+    void setVaerdi(double Vaerdi);
     double getVaerdi();
-
-    void beregn();
 
     void setBeregnet(boolean val);
     boolean getBeregnet();
+
+    void beregn();
+
 }
