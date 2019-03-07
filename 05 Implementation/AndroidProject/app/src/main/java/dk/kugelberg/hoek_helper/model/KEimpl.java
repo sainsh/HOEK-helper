@@ -14,6 +14,11 @@ public class KEimpl implements KE {
     private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
     private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
 
+    public KEimpl(){
+        vaerdi.setValue(NaN);
+        erBeregnet.setValue(false);
+    }
+
     @Override
     public void init(KO ko, X x, SE se, VE ve){
         this.ko = ko;
@@ -51,13 +56,13 @@ public class KEimpl implements KE {
     @Override
     public void beregn() {
 
-        if(ko.getVaerdi() != NaN && x.getVaerdi() != NaN){
+        if(!Double.isNaN(ko.getVaerdi()) && !Double.isNaN(x.getVaerdi())){
 
             vaerdi.setValue(ko.getVaerdi() / x.getVaerdi());
             setBeregnet(true);
 
         }
-        else if(se.getVaerdi() != NaN && ve.getVaerdi() != NaN){
+        else if(!Double.isNaN(se.getVaerdi()) && !Double.isNaN(ve.getVaerdi())){
             vaerdi.setValue(se.getVaerdi() - ve.getVaerdi());
             setBeregnet(true);
 

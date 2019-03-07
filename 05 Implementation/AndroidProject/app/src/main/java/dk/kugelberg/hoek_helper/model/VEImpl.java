@@ -13,6 +13,11 @@ public class VEImpl implements VE {
     private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
     private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
 
+    public VEImpl(){
+        vaerdi.setValue(NaN);
+        erBeregnet.setValue(false);
+    }
+
     @Override
     public void init(VO vo, X x, SE se, KE ke){
         this.vo = vo;

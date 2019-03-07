@@ -1,24 +1,30 @@
 package dk.kugelberg.hoek_helper.model;
 
 import static java.lang.Double.NaN;
+import androidx.lifecycle.MutableLiveData;
 
 public class GROMKImpl implements GROMK {
 
     private VE ve;
     private X x;
-    private X x1;
-    private X x2;
+    private X xOver;
+    private X xUnder;
     private KO ko;
-    private VO vo1;
-    private VO vo2;
+    private VO voOver;
+    private VO voUnder;
     private DOMK domk;
-    private DOMK domk2;
+    private DOMK domkUnder;
     private STO sto;
     private SE se;
 
 
-    private double vaerdi = NaN;
-    private boolean erBeregnet = false;
+    private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
+    private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
+
+    public GROMKImpl(){
+        vaerdi.setValue(NaN);
+        erBeregnet.setValue(false);
+    }
 
     @Override
     public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se) {
@@ -31,16 +37,16 @@ public class GROMKImpl implements GROMK {
     }
 
     @Override
-    public void init1(X x1, VO vo1) {
-        this.x1 = x1;
-        this.vo1 = vo1;
+    public void initOver(X xOver, VO voOver) {
+        this.xOver = xOver;
+        this.voOver = voOver;
     }
 
     @Override
-    public void init2(X x2, VO vo2, DOMK domk2) {
-        this.x2 = x2;
-        this.vo2 = vo2;
-        this.domk2 = domk2;
+    public void initUnder(X xUnder, VO voUnder, DOMK domkUnder) {
+        this.xUnder = xUnder;
+        this.voUnder = voUnder;
+        this.domkUnder = domkUnder;
     }
 
     @Override
@@ -48,27 +54,24 @@ public class GROMKImpl implements GROMK {
         if (vaerdi < 0) {
             throw new VaerdiException();
         } else {
-            this.vaerdi = vaerdi;
+            this.vaerdi.setValue(vaerdi);
             setBeregnet(false);
         }
     }
 
     @Override
-    public double getVaerdi()
-    {
-        return vaerdi;
+    public double getVaerdi() {
+        return vaerdi.getValue();
     }
 
     @Override
-    public void setBeregnet(boolean val)
-    {
-        erBeregnet = val;
+    public void setBeregnet(boolean val){
+        erBeregnet.setValue(val);
     }
 
     @Override
-    public boolean getBeregnet()
-    {
-        return erBeregnet;
+    public boolean getBeregnet(){
+        return erBeregnet.getValue();
     }
 
     @Override

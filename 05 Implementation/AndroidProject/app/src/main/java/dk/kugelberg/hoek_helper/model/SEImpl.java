@@ -13,6 +13,11 @@ public class SEImpl implements SE {
     private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
     private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
 
+    public SEImpl(){
+        vaerdi.setValue(NaN);
+        erBeregnet.setValue(false);
+    }
+
     @Override
     public void init(X x, STO sto, VE ve, KE ke) {
         this.x = x;
@@ -44,12 +49,12 @@ public class SEImpl implements SE {
     public void beregn() {
 
         //SE = STO / X
-        if (!Double.isNaN(sto.getVaerdi()) && x.getVaerdi() != NaN) {
+        if (!Double.isNaN(sto.getVaerdi()) && !Double.isNaN(x.getVaerdi())) {
             setVaerdi(sto.getVaerdi() / x.getVaerdi());
             setBeregnet(true);
 
             //SE = VE + KE
-        } else if (ve.getVaerdi() != NaN && ke.getVaerdi() != NaN) {
+        } else if (!Double.isNaN(ve.getVaerdi()) && !Double.isNaN(ke.getVaerdi())) {
             setVaerdi(ve.getVaerdi() + ke.getVaerdi());
             setBeregnet(true);
 

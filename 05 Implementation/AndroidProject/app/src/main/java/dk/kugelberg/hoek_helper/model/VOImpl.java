@@ -22,26 +22,40 @@ public class VOImpl implements VO {
     private OMS oms;
 
 
-
     private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
     private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
 
+    public VOImpl(){
+        vaerdi.setValue(NaN);
+        erBeregnet.setValue(false);
+    }
+
     @Override
-    public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se, X xOver, VO voOver, X xUnder, VO voUnder, DOMK domkUnder) {
+    public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se) {
         this.ve = ve;
         this.x = x;
         this.ko = ko;
         this.domk = domk;
         this.sto = sto;
         this.se = se;
-        vaerdi.setValue(NaN);
-        erBeregnet.setValue(false);
-        this.xOver = xOver;
-        this.voOver = voOver;
-        this.xUnder = xUnder;
-        this.voUnder = voUnder;
-        this.domkUnder = domkUnder;
     }
+
+
+        @Override
+        public void initOver(X xOver, VO voOver) {
+            vaerdi.setValue(NaN);
+            erBeregnet.setValue(false);
+            this.xOver = xOver;
+            this.voOver = voOver;
+        }
+
+        @Override
+        public void initUnder(X xUnder, VO voUnder, DOMK domkUnder){
+            this.xUnder = xUnder;
+            this.voUnder = voUnder;
+            this.domkUnder = domkUnder;
+        }
+
 
     @Override
     public void setVaerdi(double vaerdi) {
