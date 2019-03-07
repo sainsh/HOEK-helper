@@ -1,6 +1,6 @@
 package dk.kugelberg.hoek_helper.model;
 
-interface Raekke {
+public interface Raekke {
 
     DOMK getDOMK();
 
@@ -16,6 +16,10 @@ interface Raekke {
 
     X getX();
 
+    GROMK getGROMK();
+
+    KE getKE();
+
     void setDOMK(DOMK domk);
 
     void setKO(KO ko);
@@ -29,6 +33,11 @@ interface Raekke {
     void setVO(VO vo);
 
     void setX(X x);
+
+    void setKE(KE ke);
+
+    void setGROMK(GROMK gromk);
+
 
 
 }

@@ -9,6 +9,8 @@ public class RaekkeImpl implements Raekke {
     private VE ve = null;
     private VO vo = null;
     private X x = null;
+    private KE ke = null;
+    private GROMK gromk = null;
 
     public RaekkeImpl(){
         domk = new DOMKImpl();
@@ -18,6 +20,9 @@ public class RaekkeImpl implements Raekke {
         ve = new VEImpl();
         vo = new VOImpl();
         x = new XImpl();
+        ke = new KEimpl();
+        gromk = new GROMKImpl();
+
 
     }
 
@@ -95,5 +100,25 @@ public class RaekkeImpl implements Raekke {
     public void setX(X x) {
         this.x = x;
 
+    }
+
+    @Override
+    public void setKE(KE ke) {
+        this.ke = ke;
+    }
+
+    @Override
+    public void setGROMK(GROMK gromk) {
+        this.gromk = gromk;
+    }
+
+    @Override
+    public GROMK getGROMK() {
+        return gromk;
+    }
+
+    @Override
+    public KE getKE() {
+        return ke;
     }
 }

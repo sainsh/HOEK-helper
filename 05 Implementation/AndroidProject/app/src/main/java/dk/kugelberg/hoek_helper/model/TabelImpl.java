@@ -1,5 +1,8 @@
 package dk.kugelberg.hoek_helper.model;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class TabelImpl implements Tabel {
@@ -181,6 +184,40 @@ public class TabelImpl implements Tabel {
     public void beregnX(int raekkenummer) {
         tabel.get(raekkenummer).getX().beregn();
         updateAdjacentRows(raekkenummer);
+
+    }
+
+    @Override
+    public void createCSV() {
+
+        try{
+            PrintWriter writer = new PrintWriter(new File("test.csv"));
+            StringBuilder sb = new StringBuilder();
+
+            sb.append("X,VO,VE,KE,STO,SE,KO,GROMK,DOMK\n");
+
+
+
+            for (Raekke raekke: tabel) {
+
+                sb.append(String.valueOf(raekke.getX().getVaerdi())+",");
+                sb.append(String.valueOf(raekke.getVO().getVaerdi())+",");
+                sb.append(String.valueOf(raekke.getVE().getVaerdi())+",");
+                sb.append(String.valueOf(raekke.getKE().getVaerdi())+",");
+                sb.append(String.valueOf(raekke.getSTO().getVaerdi())+",");
+                sb.append(String.valueOf(raekke.getSE().getVaerdi())+",");
+                sb.append(String.valueOf(raekke.getKO().getVaerdi())+",");
+                sb.append(String.valueOf(raekke.getGROMK().getVaerdi())+",");
+                sb.append(String.valueOf(raekke.getDOMK().getVaerdi()));
+                sb.append("\n");
+
+            }
+
+            writer.write(sb.toString());
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
 
     }
 
