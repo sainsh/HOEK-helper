@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">HOEK-Helper</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="x">X</string>
-    <string name="vo">VO</string>
-    <string name="ve">VE</string>
-    <string name="domk">DOMK</string>
+    <string name="app_name">HØK HELPER</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Datamatikerne</string>
+    <string name="nav_header_subtitle">zealand.dk</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
 </resources>
+
