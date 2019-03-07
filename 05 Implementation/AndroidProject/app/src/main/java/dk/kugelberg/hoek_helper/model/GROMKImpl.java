@@ -81,9 +81,12 @@ public class GROMKImpl implements GROMK {
         /*
         GROMK findes ved at differentiere formlen for VO
 
-        Formlen for VO er en normal andengrads ligning der ser således ud:  VO = a*(x*x) + b*x + c
+        Formlen for VO er en normal andengrads ligning der ser således ud:
+
+        VO = a*(x*x) + b*x + c
+
         VO vil altid være en parabel da x ikke må være negativ
-        og det lader til at c altid 0 da HØKerne ikke har komplicerede formler
+        og det lader til at c altid 0 for HØK'erne
 
         kender vi ikke formlen for VO men har 3 punkter af VO og x (Hvor x'erne er forskellige)
         kan vi finde a, b og c i ovenstående formel således:
