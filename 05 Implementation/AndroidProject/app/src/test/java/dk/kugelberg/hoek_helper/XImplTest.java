@@ -159,7 +159,7 @@ public class XImplTest {
     @Test
     public void testBeregnXMedDOMKogNegativVO() {
         XImpl x = new XImpl();
-        x.initOver(new XMock(Double.NaN),new VOMock(Double.NaN));
+        x.initOver(new XMock(0),new VOMock(0));
         x.init(new VOMock(-10), new VEMock(Double.NaN), new DomkMock(5), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN), new KOMock(Double.NaN),new KEMock(Double.NaN));
         double resultat = Double.NaN;
         try {
