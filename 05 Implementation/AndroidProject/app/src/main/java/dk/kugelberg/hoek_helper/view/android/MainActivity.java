@@ -1,4 +1,4 @@
-package dk.kugelberg.hoek_helper.view;
+package dk.kugelberg.hoek_helper.view.android;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;

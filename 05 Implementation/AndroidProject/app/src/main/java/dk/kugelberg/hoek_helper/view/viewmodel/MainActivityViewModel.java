@@ -1,4 +1,4 @@
-package dk.kugelberg.hoek_helper.viewmodel;
+package dk.kugelberg.hoek_helper.view.viewmodel;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
