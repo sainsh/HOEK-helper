@@ -4,6 +4,10 @@ public interface Raekke {
 
     DOMK getDOMK();
 
+    GROMK getGROMK();
+
+    KE getKE();
+
     KO getKO();
 
     SE getSE();
@@ -16,9 +20,7 @@ public interface Raekke {
 
     X getX();
 
-    GROMK getGROMK();
-
-    KE getKE();
+    int getRaekkenummer();
 
     void setDOMK(DOMK domk);
 
@@ -38,6 +40,8 @@ public interface Raekke {
 
     void setGROMK(GROMK gromk);
 
+
+    void setRaekkenummer(int raekkenummer);
 
 
 }
