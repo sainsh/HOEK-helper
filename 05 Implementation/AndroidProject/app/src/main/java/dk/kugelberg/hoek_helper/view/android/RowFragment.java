@@ -13,15 +13,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import dk.kugelberg.hoek_helper.R;
-import dk.kugelberg.hoek_helper.model.DOMK;
-import dk.kugelberg.hoek_helper.model.KE;
-import dk.kugelberg.hoek_helper.model.KEimpl;
-import dk.kugelberg.hoek_helper.model.SE;
-import dk.kugelberg.hoek_helper.model.SEImpl;
-import dk.kugelberg.hoek_helper.model.VE;
-import dk.kugelberg.hoek_helper.model.VEImpl;
-import dk.kugelberg.hoek_helper.model.VO;
-import dk.kugelberg.hoek_helper.model.X;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,11 +22,11 @@ public class RowFragment extends Fragment {
     double x = Double.NaN;
     double vo = Double.NaN;
     double ve = Double.NaN;
-    DOMK domk;
+
     EditText xEditText;
     EditText voEditText;
     EditText veEditText;
-    EditText domkEditText;
+
 
     public RowFragment() {
         // Required empty public constructor
@@ -52,19 +43,23 @@ public class RowFragment extends Fragment {
         xEditText.addTextChangedListener(xFieldWatcher);
         voEditText = v.findViewById(R.id.vo_text_view);
         voEditText.addTextChangedListener(voTextWatcher);
-        domkEditText = v.findViewById(R.id.domk_text_view);
-        return v;
+        veEditText = v.findViewById(R.id.ve_text_view);
+                return v;
     }
 
     public void beregn(){
-
-
-        if(x != Double.NaN && vo != Double.NaN){
-
-            ve = vo + x;
-            veEditText.setText(Double.toString(ve));
+        String nothing = "";
+        if(nothing.equals(xEditText.getText().toString()) || nothing.equals(voEditText.getText().toString())){
+            veEditText.setText("");
+        }
+        else{
+            if(vo != Double.NaN && x != Double.NaN) {
+                ve = vo / x;
+                veEditText.setText(Double.toString(ve));
+            }
         }
     }
+
 
     TextWatcher xFieldWatcher = new TextWatcher() {
         @Override
@@ -75,17 +70,15 @@ public class RowFragment extends Fragment {
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if (s.length() > 0){
-                x = Double.parseDouble(s.toString());
                 x = Integer.parseInt(s.toString());
-                beregn();
             } else{
                 x = Double.NaN;
             }
+            beregn();
         }
 
         @Override
         public void afterTextChanged(Editable s) {
-
         }
     };
 
@@ -100,17 +93,18 @@ public class RowFragment extends Fragment {
             if(s.length() > 0){
                 vo = Double.parseDouble(s.toString());
                 System.out.println(vo);
-                beregn();
             } else{
                 vo = Double.NaN;
             }
+            beregn();
 
         }
 
         @Override
         public void afterTextChanged(Editable s) {
-
         }
     };
+
+
 
  }
