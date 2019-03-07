@@ -76,5 +76,7 @@ public class KOImpl implements KO {
             setVaerdi(NaN);
 
         }
+
+        if (this.vaerdi.getValue() == NaN) this.erBeregnet.setValue(false);
     }
 }

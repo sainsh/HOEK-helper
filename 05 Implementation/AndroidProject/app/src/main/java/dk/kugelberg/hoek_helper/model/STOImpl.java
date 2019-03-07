@@ -62,23 +62,23 @@ public class STOImpl implements STO {
     public void beregn() {
 
         //STO = VO + KO
-        if (vo.getVaerdi() != NaN && ko.getVaerdi() != NaN) {
+        if (!Double.isNaN(vo.getVaerdi()) && !Double.isNaN(ko.getVaerdi())) {
             vaerdi.setValue(vo.getVaerdi() + ko.getVaerdi());
             setBeregnet(true);
 
             //STO = SE * X
-        } else if (se.getVaerdi() != NaN && x.getVaerdi() != NaN) {
+        } else if (!Double.isNaN(se.getVaerdi()) && !Double.isNaN(x.getVaerdi())) {
             vaerdi.setValue(se.getVaerdi() * x.getVaerdi());
             setBeregnet(true);
 
         } else if (getBeregnet()) {
-
             setVaerdi(NaN);
-
-            // TODO: undersøg hvordan STO=GROMK * X kan være rigtig???
-            //this.sto = gromk.getVaerdi() * x.getVaerdi();
-            //this.vaerdi = gromk.getVaerdi() * x.getVaerdi();
-
         }
+
+        // TODO: undersøg hvordan STO=GROMK * X kan være rigtig???
+        //this.sto = gromk.getVaerdi() * x.getVaerdi();
+        //this.vaerdi = gromk.getVaerdi() * x.getVaerdi();
+
+        if (this.vaerdi.getValue() == NaN) this.erBeregnet.setValue(false);
     }
 }

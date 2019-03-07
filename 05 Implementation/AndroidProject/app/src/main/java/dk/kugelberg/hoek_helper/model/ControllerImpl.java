@@ -2,117 +2,84 @@ package dk.kugelberg.hoek_helper.model;
 
 public class ControllerImpl implements Controller {
 
-    private GROMK gromk;
-    private KE ke;
-    private SE se;
-    private VO vo;
-    private X x;
-    private DOMK domk;
-    private DOMK domk1;
-    private DOMK domk2;
-    private KO ko;
-    private STO sto;
-    private VE ve;
-    private VO vo1;
-    private VO vo2;
-    private X x1;
-    private X x2;
+    DOMK domk;
+    DOMK domk1;
+    DOMK domk2;
+    KO ko;
+    STO sto;
+    VE ve;
+    VO vo1;
+    VO vo2;
+    X x1;
+    X x2;
 
-    // Platformen indeholder kun 1 tabel.
-    private Tabel tabel = new TabelImpl();
+    public ControllerImpl() {
 
-    @Override
-    public void lavRaekke() {
-
-        // Opret række
-        Raekke raekke = new RaekkeImpl();
-        // Hent ny række nummer
-        int raekkeNummer = hentTabelStr();
-        raekke.setRaekkenummer(raekkeNummer);
-
-        // Tilføj til array
-        tabel.addRaekke(raekkeNummer, raekke);
-
-    }
-
-    @Override
-    public Raekke hentRaekke(int raekkenummer) {
-        return null;
-    }
-
-    @Override
-    public void sletRaekke(int raekkenummer) {
-
-    }
-
-    @Override
-    public int hentTabelStr(){
-        return tabel.getTabel().size();
-    }
-
-    @Override
-    public void opdaterRaekke(int raekkenummer) {
-
+        ko = new KOImpl();
+        x1 = new XImpl();
+        x2 = new XImpl();
+        vo1 = new VOImpl();
+        vo2 = new VOImpl();
+        domk = new DOMKImpl();
     }
 
 
     @Override
     public void angivKO(double vaerdi, int raekkenummer) {
 
-        ko = tabel.getRaekke(raekkenummer).getKO();
+        //ko = tabel.getRaekke(raekkenummer).getKO();
         ko.setVaerdi(vaerdi);
 
     }
 
     @Override
     public double hentKO(int raekkenummer) {
-        ko = tabel.getRaekke(raekkenummer).getKO();
+        //ko = tabel.getRaekke(raekkenummer).getKO();
         return ko.getVaerdi();
     }
 
     @Override
     public void beregnKO(int raekkenummer) {
-        ko = tabel.getRaekke(raekkenummer).getKO();
-        ko.init(ke, x, sto, vo);
+        //ko = tabel.getRaekke(raekkenummer).getKO();
+        //ko.init();
         ko.beregn();
 
     }
 
     @Override
     public void angivSTO(double vaerdi, int raekkenummer) {
-        sto = tabel.getRaekke(raekkenummer).getSTO();
+        //sto = tabel.getRaekke(raekkenummer).getSTO();
         sto.setVaerdi(vaerdi);
     }
 
     @Override
     public double hentSTO(int raekkenummer) {
-        sto = tabel.getRaekke(raekkenummer).getSTO();
+        //sto = tabel.getRaekke(raekkenummer).getSTO();
         return sto.getVaerdi();
     }
 
     @Override
     public void beregnSTO(int raekkenummer) {
-        sto = tabel.getRaekke(raekkenummer).getSTO();
-        sto.init(x, vo, ko, se);
+        //sto = tabel.getRaekke(raekkenummer).getSTO();
+        //sto.init(vo1, vo2, sto, ko, ve, x1, x2, domk1, domk2);
         sto.beregn();
     }
 
     @Override
     public void angivVE(double vaerdi, int raekkenummer) {
-        ve = tabel.getRaekke(raekkenummer).getVE();
+        //ve = tabel.getRaekke(raekkenummer).getVE();
         ve.setVaerdi(vaerdi);
     }
 
     @Override
     public double hentVE(int raekkenummer) {
-        ve = tabel.getRaekke(raekkenummer).getVE();
+        //ve = tabel.getRaekke(raekkenummer).getVE();
         return sto.getVaerdi();
     }
 
     @Override
     public void beregnVE(int raekkenummer) {
-        ve = tabel.getRaekke(raekkenummer).getVE();
-        ve.init(vo, x, se, ke);
+        //ve = tabel.getRaekke(raekkenummer).getVE();
 
     }
 
