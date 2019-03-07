@@ -102,18 +102,11 @@ public class XImpl implements X {
         } else if (!Double.isNaN(sto.getVaerdi()) && !Double.isNaN(gromk.getVaerdi())) {
             setVaerdi(sto.getVaerdi() * gromk.getVaerdi());
             setBeregnet(true);
-//!!!!!!!TJEK FORMEL!!!!!!!!////
-            //Tingene over skal inits iden vi kan bruge formlen nedenunder ( DOMK FORMEL NÅR IKKE ØVERST)//
-            //X = Domk/VO
-        }else if (!Double.isNaN(domk.getVaerdi()) && !Double.isNaN(vo.getVaerdi())) {
-                setVaerdi( (domk.getVaerdi() / vo.getVaerdi()));
-                setBeregnet(true);
 
             // X = (domk * ( vo - voOver)) + xOver
         } else if (!Double.isNaN(domk.getVaerdi()) && !Double.isNaN(vo.getVaerdi()) && !Double.isNaN(voOver.getVaerdi()) && !Double.isNaN(xOver.getVaerdi())) {
             setVaerdi( (domk.getVaerdi() * ( vo.getVaerdi() - voOver.getVaerdi())) + xOver.getVaerdi() );
             setBeregnet(true);
-
 
         } else if (getBeregnet()){
             setVaerdi(NaN);
