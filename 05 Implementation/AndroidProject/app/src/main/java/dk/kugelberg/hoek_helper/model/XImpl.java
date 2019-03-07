@@ -8,13 +8,13 @@ public class XImpl implements X {
     private VO vo;
     private VE ve;
     private X xOver;
-    private X xUnder;   //Jeg ved ikke om vi nogensinde får brug for denne?
+    private X xUnder;
     private KO ko;
     private KE ke;
     private VO voOver;
-    private VO voUnder;   //Jeg ved ikke om vi nogensinde får brug for denne?
+    private VO voUnder;
     private DOMK domk;
-    private DOMK domkUnder;    //Jeg ved ikke om vi nogensinde får brug for denne?
+    private DOMK domkUnder;
     private STO sto;
     private SE se;
     private GROMK gromk;
