@@ -79,6 +79,31 @@ public class GROMKImpl implements GROMK {
 
         // TODO: lav alle beregningerne til GROMK
 
+        /*
+        GROMK findes ved at differentiere formlen for VO
+
+        Formlen for VO ser således ud:  VO = a*(x*x) + b*x + c
+        VO vil altid være en parabel da x ikke må være negativ
+        og c er altid 0 da HØKerne ikke har komplicerede formler
+
+        kender vi ikke formlen for VO men har 3 punkter af VO og x (Hvor x'erne er forskellige)
+        kan vi udlede formlen for VO som følger:
+
+        vo1 = 1
+        vo2 = 2
+        vo3 = 3
+        x1 = 1
+        x2 = 2
+        x3 = 3
+
+        vo = (((x-x2)*(x-x3)) / ((x1-x2)*(x1-x3)) * y1 * (((x-x1)*(x-x3)) / ((x2-x1)*(x2-x3)) * y2 * (((x-x1)*(x-x2)) / ((x3-x1)*(x3-x2)) * y3
+
+
+
+
+
+        */
+
         //if (this.vaerdi.getValue() == NaN) this.erBeregnet.setValue(false);
 
     }
