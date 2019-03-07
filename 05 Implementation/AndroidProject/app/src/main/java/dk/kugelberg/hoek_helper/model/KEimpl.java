@@ -1,6 +1,7 @@
 package dk.kugelberg.hoek_helper.model;
 
 import androidx.lifecycle.MutableLiveData;
+
 import static java.lang.Double.NaN;
 
 public class KEimpl implements KE {

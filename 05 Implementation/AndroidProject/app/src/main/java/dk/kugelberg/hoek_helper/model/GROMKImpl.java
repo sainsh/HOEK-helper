@@ -54,17 +54,20 @@ public class GROMKImpl implements GROMK {
     }
 
     @Override
-    public double getVaerdi() {
+    public double getVaerdi()
+    {
         return vaerdi;
     }
 
     @Override
-    public void setBeregnet(boolean val){
+    public void setBeregnet(boolean val)
+    {
         erBeregnet = val;
     }
 
     @Override
-    public boolean getBeregnet(){
+    public boolean getBeregnet()
+    {
         return erBeregnet;
     }
 
