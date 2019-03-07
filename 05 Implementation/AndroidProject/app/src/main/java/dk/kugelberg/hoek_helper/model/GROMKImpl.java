@@ -101,7 +101,7 @@ public class GROMKImpl implements GROMK {
 
         c = vo1*x2*x3/((x1-x2)*(x1-x3)) + vo2*x1*x3 / ((x2-x1)*(x2-x3)) + vo3*x1*x2 / ((x3-x1)*(x3-x2))
 
-        Nu hvor vi har a. b og c på plads skal vi differentiere formeln.
+        Nu hvor vi har a b og c på plads kan vi differentiere formlen.
 
         Det gøres således:
 
