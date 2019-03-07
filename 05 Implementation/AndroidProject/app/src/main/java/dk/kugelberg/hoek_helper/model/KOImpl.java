@@ -63,12 +63,12 @@ public class KOImpl implements KO {
         // TODO: lav beregner med xOver, xUnder, voOver og voUnder
 
         // KO = KE * X
-        if (ke.getVaerdi() != NaN && x.getVaerdi() != NaN) {
+        if (!Double.isNaN(ke.getVaerdi()) && !Double.isNaN(x.getVaerdi())) {
             vaerdi.setValue(ke.getVaerdi() * x.getVaerdi());
             setBeregnet(true);
 
         // KO = STO - VO
-        } else if (sto.getVaerdi() != NaN && vo.getVaerdi() != NaN) {
+        } else if (!Double.isNaN(sto.getVaerdi()) && !Double.isNaN(vo.getVaerdi())) {
             vaerdi.setValue(sto.getVaerdi() - vo.getVaerdi());
             setBeregnet(true);
 

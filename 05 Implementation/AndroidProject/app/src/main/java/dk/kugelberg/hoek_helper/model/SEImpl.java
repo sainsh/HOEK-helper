@@ -44,12 +44,12 @@ public class SEImpl implements SE {
     public void beregn() {
 
         //SE = STO / X
-        if (!Double.isNaN(sto.getVaerdi()) && x.getVaerdi() != NaN) {
+        if (!Double.isNaN(sto.getVaerdi()) && !Double.isNaN(x.getVaerdi())) {
             setVaerdi(sto.getVaerdi() / x.getVaerdi());
             setBeregnet(true);
 
             //SE = VE + KE
-        } else if (ve.getVaerdi() != NaN && ke.getVaerdi() != NaN) {
+        } else if (!Double.isNaN(ve.getVaerdi()) && !Double.isNaN(ke.getVaerdi())) {
             setVaerdi(ve.getVaerdi() + ke.getVaerdi());
             setBeregnet(true);
 
