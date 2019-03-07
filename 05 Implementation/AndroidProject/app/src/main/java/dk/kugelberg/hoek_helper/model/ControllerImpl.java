@@ -90,7 +90,7 @@ public class ControllerImpl implements Controller {
         //domk = tabel.getRaekke(raekkenummer).getDomk();
 
         // Init data field to object
-        domk.init(vo1, vo2, sto, ko, ve, x1, x2, domk1, domk2);
+        //domk.init(vo1, vo2, sto, ko, ve, x1, x2, domk1, domk2);
 
         // Beregning goes here
         domk.beregn();

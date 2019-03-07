@@ -21,18 +21,16 @@ import dk.kugelberg.hoek_helper.model.SEImpl;
 import dk.kugelberg.hoek_helper.model.VE;
 import dk.kugelberg.hoek_helper.model.VEImpl;
 import dk.kugelberg.hoek_helper.model.VO;
-import dk.kugelberg.hoek_helper.model.VOImpl;
 import dk.kugelberg.hoek_helper.model.X;
-import dk.kugelberg.hoek_helper.model.XImpl;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class RowFragment extends Fragment {
 
-    X x = new XImpl();
-    VO vo = new VOImpl();
-    VE ve;
+    double x = Double.NaN;
+    double vo = Double.NaN;
+    double ve = Double.NaN;
     DOMK domk;
     EditText xEditText;
     EditText voEditText;
@@ -60,19 +58,11 @@ public class RowFragment extends Fragment {
 
     public void beregn(){
 
-        //SE se = new SEImpl();
-        //KE ke = new KEimpl();
 
-        //VE ve = new VEImpl();
-        //ve.init(vo, x, se, ke);
+        if(x != Double.NaN && vo != Double.NaN){
 
-
-
-        if(!Double.isNaN(x.getVaerdi()) && !Double.isNaN(vo.getVaerdi())){
-
-            ve.setVaerdi(vo.getVaerdi() / x.getVaerdi());
-            veEditText.setText(Double.toString(ve.getVaerdi()));
-
+            ve = vo + x;
+            veEditText.setText(Double.toString(ve));
         }
     }
 
@@ -85,11 +75,11 @@ public class RowFragment extends Fragment {
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if (s.length() > 0){
-                x.setVaerdi(Double.parseDouble(s.toString()));
-
+                x = Double.parseDouble(s.toString());
+                x = Integer.parseInt(s.toString());
                 beregn();
             } else{
-                x.setVaerdi(Double.NaN);
+                x = Double.NaN;
             }
         }
 
@@ -108,11 +98,11 @@ public class RowFragment extends Fragment {
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if(s.length() > 0){
-                vo.setVaerdi(Double.parseDouble(s.toString()));
+                vo = Double.parseDouble(s.toString());
                 System.out.println(vo);
                 beregn();
             } else{
-                vo.setVaerdi(Double.NaN);
+                vo = Double.NaN;
             }
 
         }
