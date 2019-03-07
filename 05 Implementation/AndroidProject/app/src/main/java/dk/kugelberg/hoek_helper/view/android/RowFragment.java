@@ -13,16 +13,27 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import dk.kugelberg.hoek_helper.R;
+import dk.kugelberg.hoek_helper.model.DOMK;
+import dk.kugelberg.hoek_helper.model.KE;
+import dk.kugelberg.hoek_helper.model.KEimpl;
+import dk.kugelberg.hoek_helper.model.SE;
+import dk.kugelberg.hoek_helper.model.SEImpl;
+import dk.kugelberg.hoek_helper.model.VE;
+import dk.kugelberg.hoek_helper.model.VEImpl;
+import dk.kugelberg.hoek_helper.model.VO;
+import dk.kugelberg.hoek_helper.model.VOImpl;
+import dk.kugelberg.hoek_helper.model.X;
+import dk.kugelberg.hoek_helper.model.XImpl;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class RowFragment extends Fragment {
 
-    double x = Double.NaN;
-    double vo = Double.NaN;
-    double ve = Double.NaN;
-    double domk = Double.NaN;
+    X x = new XImpl();
+    VO vo = new VOImpl();
+    VE ve;
+    DOMK domk;
     EditText xEditText;
     EditText voEditText;
     EditText veEditText;
@@ -48,9 +59,20 @@ public class RowFragment extends Fragment {
     }
 
     public void beregn(){
-        if(x != Double.NaN && vo != Double.NaN){
-            domk = vo + x;
-            domkEditText.setText(Double.toString(domk));
+
+        //SE se = new SEImpl();
+        //KE ke = new KEimpl();
+
+        //VE ve = new VEImpl();
+        //ve.init(vo, x, se, ke);
+
+
+
+        if(!Double.isNaN(x.getVaerdi()) && !Double.isNaN(vo.getVaerdi())){
+
+            ve.setVaerdi(vo.getVaerdi() / x.getVaerdi());
+            veEditText.setText(Double.toString(ve.getVaerdi()));
+
         }
     }
 
@@ -63,10 +85,11 @@ public class RowFragment extends Fragment {
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if (s.length() > 0){
-                x = Integer.parseInt(s.toString());
+                x.setVaerdi(Double.parseDouble(s.toString()));
+
                 beregn();
             } else{
-                x = Double.NaN;
+                x.setVaerdi(Double.NaN);
             }
         }
 
@@ -85,11 +108,11 @@ public class RowFragment extends Fragment {
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if(s.length() > 0){
-                vo = Double.parseDouble(s.toString());
+                vo.setVaerdi(Double.parseDouble(s.toString()));
                 System.out.println(vo);
                 beregn();
             } else{
-                vo = Double.NaN;
+                vo.setVaerdi(Double.NaN);
             }
 
         }
