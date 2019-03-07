@@ -18,7 +18,6 @@ public class XImpl implements X {
     private STO sto;
     private SE se;
     private GROMK gromk;
-
     private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
     private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
 
@@ -78,7 +77,6 @@ public class XImpl implements X {
 
     @Override
     public void beregn() {
-
 
         // X = VO / VE
         if (!Double.isNaN(vo.getVaerdi()) && !Double.isNaN(ve.getVaerdi())){
