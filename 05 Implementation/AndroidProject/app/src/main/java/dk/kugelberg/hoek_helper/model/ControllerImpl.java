@@ -36,8 +36,23 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
+    public Raekke hentRaekke(int raekkenummer) {
+        return null;
+    }
+
+    @Override
+    public void sletRaekke(int raekkenummer) {
+
+    }
+
+    @Override
     public int hentTabelStr(){
         return tabel.getTabel().size();
+    }
+
+    @Override
+    public void opdaterRaekke(int raekkenummer) {
+
     }
 
 
