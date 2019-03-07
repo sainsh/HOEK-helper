@@ -9,6 +9,8 @@ public class TabelImpl implements Tabel {
 
     private ArrayList<Raekke> tabel;
 
+    final char CSV_DELIMITER = ';';
+
     public TabelImpl() {
         tabel = new ArrayList<>();
     }
@@ -191,29 +193,32 @@ public class TabelImpl implements Tabel {
     public void createCSV() {
 
         try{
-            PrintWriter writer = new PrintWriter(new File("test.csv"));
+            File file = new File("test.csv");
+            PrintWriter writer = new PrintWriter(file);
             StringBuilder sb = new StringBuilder();
 
-            sb.append("X,VO,VE,KE,STO,SE,KO,GROMK,DOMK\n");
+            sb.append("X"+CSV_DELIMITER+"VO"+CSV_DELIMITER+"VE"+CSV_DELIMITER+"KE"+CSV_DELIMITER+"STO"+CSV_DELIMITER+"SE"+CSV_DELIMITER+"KO"+CSV_DELIMITER+"GROMK"+CSV_DELIMITER+"DOMK\n");
 
 
 
             for (Raekke raekke: tabel) {
 
-                sb.append(String.valueOf(raekke.getX().getVaerdi())+",");
-                sb.append(String.valueOf(raekke.getVO().getVaerdi())+",");
-                sb.append(String.valueOf(raekke.getVE().getVaerdi())+",");
-                sb.append(String.valueOf(raekke.getKE().getVaerdi())+",");
-                sb.append(String.valueOf(raekke.getSTO().getVaerdi())+",");
-                sb.append(String.valueOf(raekke.getSE().getVaerdi())+",");
-                sb.append(String.valueOf(raekke.getKO().getVaerdi())+",");
-                sb.append(String.valueOf(raekke.getGROMK().getVaerdi())+",");
+                sb.append(String.valueOf(raekke.getX().getVaerdi())+CSV_DELIMITER);
+                sb.append(String.valueOf(raekke.getVO().getVaerdi())+CSV_DELIMITER);
+                sb.append(String.valueOf(raekke.getVE().getVaerdi())+CSV_DELIMITER);
+                sb.append(String.valueOf(raekke.getKE().getVaerdi())+CSV_DELIMITER);
+                sb.append(String.valueOf(raekke.getSTO().getVaerdi())+CSV_DELIMITER);
+                sb.append(String.valueOf(raekke.getSE().getVaerdi())+CSV_DELIMITER);
+                sb.append(String.valueOf(raekke.getKO().getVaerdi())+CSV_DELIMITER);
+                sb.append(String.valueOf(raekke.getGROMK().getVaerdi())+CSV_DELIMITER);
                 sb.append(String.valueOf(raekke.getDOMK().getVaerdi()));
                 sb.append("\n");
 
             }
 
             writer.write(sb.toString());
+            writer.close();
+
 
         }catch (IOException e){
             e.printStackTrace();

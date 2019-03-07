@@ -467,14 +467,21 @@ class DomkMock implements DOMK {
     }
 
     @Override
+    public void initOver(X xOver, VO voOver) {
+
+    }
+
+    @Override
+    public void initUnder(DOMK domkUnder) {
+
+    }
+
+    @Override
     public boolean erBeregnet() {
         return false;
     }
 
-    @Override
-    public void initOver(VO voOver, X xOver, DOMK domkOver) {
 
-    }
 }
 
 class XMock implements X {
