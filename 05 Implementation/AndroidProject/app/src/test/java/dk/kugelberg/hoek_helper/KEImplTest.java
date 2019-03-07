@@ -1,7 +1,10 @@
 package dk.kugelberg.hoek_helper;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestRule;
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import dk.kugelberg.hoek_helper.model.DOMK;
 import dk.kugelberg.hoek_helper.model.GROMK;
 import dk.kugelberg.hoek_helper.model.KE;
@@ -19,6 +22,10 @@ public class KEImplTest {
 
 
     final double delta = 0.00000000000000000001;
+
+    @Rule
+    public TestRule rule = new InstantTaskExecutorRule();
+
 
 
     @Test
@@ -135,14 +142,15 @@ public class KEImplTest {
         }
 
         @Override
-        public void init1(X x1, VO vo1) {
+        public void initOver(X xOver, VO voOver) {
 
         }
 
         @Override
-        public void init2(X x2, VO vo2) {
+        public void initUnder(X xUnder, VO voUnder) {
 
         }
+
 
         @Override
         public void setVaerdi(double Vaerdi) {
@@ -179,7 +187,17 @@ public class KEImplTest {
 
 
         @Override
-        public void init(VO vo, VE ve, DOMK domk, STO sto, SE se, GROMK gromk, X xOver, VO voOver, X xUnder, VO voUnder, DOMK domkUnder) {
+        public void init(VO vo, VE ve, DOMK domk, STO sto, SE se, GROMK gromk, KO ko, KE ke) {
+
+        }
+
+        @Override
+        public void initOver(X xOver, VO voOver) {
+
+        }
+
+        @Override
+        public void initUnder(X xUnder, VO voUnder, DOMK domkUnder) {
 
         }
 

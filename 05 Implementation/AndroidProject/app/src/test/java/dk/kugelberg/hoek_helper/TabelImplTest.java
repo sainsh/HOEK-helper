@@ -99,19 +99,25 @@ public class TabelImplTest {
         }
 
         @Override
-        public void init(VO vo, VO voOver, STO sto, KO ko, VE ve, X x, X xOver, DOMK domkOver, DOMK domkUnder) {
+        public void setBeregnet(boolean val) {
 
         }
 
         @Override
-        public void initOver(X xOver, VO voOver) {
+        public boolean getBeregnet() {
+            return false;
+        }
+
+        @Override
+        public void init(VO vo, STO sto, KO ko, VE ve, X x, DOMK domk) {
 
         }
 
         @Override
-        public void initUnder(DOMK domkUnder) {
+        public void initOver(VO voOver, X xOver, DOMK domkOver) {
 
         }
+
 
         @Override
         public boolean erBeregnet() {
@@ -167,7 +173,17 @@ public class TabelImplTest {
 
 
         @Override
-        public void init(KE ke, X x, STO sto, VO vo, X xOver, VO voOver, X xUnder, VO voUnder) {
+        public void init(KE ke, X x, STO sto, VO vo) {
+
+        }
+
+        @Override
+        public void initOver(X xOver, VO voOver) {
+
+        }
+
+        @Override
+        public void initUnder(X xUnder, VO voUnder) {
 
         }
 
@@ -246,7 +262,17 @@ public class TabelImplTest {
 
 
         @Override
-        public void init(X x, VO vo, KO ko, SE se, GROMK gromk, X xOver, VO voOver, X xUnder, VO voUnder) {
+        public void init(X x, VO vo, KO ko, SE se, GROMK gromk) {
+
+        }
+
+        @Override
+        public void initOver(X xOver, VO voOver) {
+
+        }
+
+        @Override
+        public void initUnder(X xUnder, VO voUnder) {
 
         }
 
@@ -322,8 +348,19 @@ public class TabelImplTest {
             this.vaerdi = vaerdi;
         }
 
+
         @Override
-        public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se, X xOver, VO voOver, X xUnder, VO voUnder, DOMK domkUnder) {
+        public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se) {
+
+        }
+
+        @Override
+        public void initOver(X xOver, VO voOver) {
+
+        }
+
+        @Override
+        public void initUnder(X xUnder, VO voUnder, DOMK domkUnder) {
 
         }
 
@@ -466,6 +503,11 @@ public class TabelImplTest {
         }
 
         @Override
+        public int getRaekkenummer() {
+            return 0;
+        }
+
+        @Override
         public GROMK getGROMK() {
             return gromk;
         }
@@ -519,6 +561,11 @@ public class TabelImplTest {
         public void setGROMK(GROMK gromk) {
 
         }
+
+        @Override
+        public void setRaekkenummer(int raekkenummer) {
+
+        }
     }
 
     private class GromkMock implements GROMK {
@@ -533,14 +580,15 @@ public class TabelImplTest {
         }
 
         @Override
-        public void init1(X x1, VO vo1) {
+        public void initOver(X x1, VO vo1) {
 
         }
 
         @Override
-        public void init2(X x2, VO vo2, DOMK domk2) {
+        public void initUnder(X x2, VO vo2, DOMK domk2) {
 
         }
+
 
         @Override
         public void setVaerdi(double vaerdi) {

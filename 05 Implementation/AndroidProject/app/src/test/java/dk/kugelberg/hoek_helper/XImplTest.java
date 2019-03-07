@@ -349,8 +349,19 @@ public class XImplTest {
             return false;
         }
 
+
         @Override
-        public void init(X x, VO vo, KO ko, SE se, GROMK gromk, X xOver, VO voOver, X xUnder, VO voUnder) {
+        public void init(X x, VO vo, KO ko, SE se, GROMK gromk) {
+
+        }
+
+        @Override
+        public void initOver(X xOver, VO voOver) {
+
+        }
+
+        @Override
+        public void initUnder(X xUnder, VO voUnder) {
 
         }
 
@@ -371,8 +382,19 @@ public class XImplTest {
             this.vaerdi = vaerdi;
         }
 
+
         @Override
-        public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se, X xOver, VO voOver, X xUnder, VO voUnder, DOMK domkUnder) {
+        public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se) {
+
+        }
+
+        @Override
+        public void initOver(X xOver, VO voOver) {
+
+        }
+
+        @Override
+        public void initUnder(X xUnder, VO voUnder, DOMK domkUnder) {
 
         }
 
@@ -462,19 +484,25 @@ class DomkMock implements DOMK {
     }
 
     @Override
-    public void init(VO vo1, VO vo2, STO sto, KO ko, VE ve, X x1, X x2, DOMK domk1, DOMK domk2) {
+    public void setBeregnet(boolean val) {
 
     }
 
     @Override
-    public void initOver(X xOver, VO voOver) {
+    public boolean getBeregnet() {
+        return false;
+    }
+
+    @Override
+    public void init(VO vo, STO sto, KO ko, VE ve, X x, DOMK domk) {
 
     }
 
     @Override
-    public void initUnder(DOMK domkUnder) {
+    public void initOver(VO voOver, X xOver, DOMK domkOver) {
 
     }
+
 
     @Override
     public boolean erBeregnet() {
@@ -540,8 +568,19 @@ class KOMock implements KO{
         this.vaerdi = vaerdi;
     }
 
+
     @Override
-    public void init(KE ke, X x, STO sto, VO vo, X xOver, VO voOver, X xUnder, VO voUnder) {
+    public void init(KE ke, X x, STO sto, VO vo) {
+
+    }
+
+    @Override
+    public void initOver(X xOver, VO voOver) {
+
+    }
+
+    @Override
+    public void initUnder(X xUnder, VO voUnder) {
 
     }
 
