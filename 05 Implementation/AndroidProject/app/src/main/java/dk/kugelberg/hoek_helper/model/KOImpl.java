@@ -23,15 +23,21 @@ public class KOImpl implements KO {
     }
 
     @Override
-    public void init(KE ke, X x, STO sto, VO vo, X xOver, VO voOver, X xUnder, VO voUnder) {
+    public void init(KE ke, X x, STO sto, VO vo) {
         this.ke = ke;
         this.x = x;
         this.sto = sto;
         this.vo = vo;
-        vaerdi.setValue(NaN);
-        erBeregnet.setValue(false);
+    }
+
+    @Override
+    public void initOver(X xOver, VO voOver) {
         this.xOver = xOver;
         this.voOver = voOver;
+    }
+
+    @Override
+    public void initUnder(X xUnder, VO voUnder) {
         this.xUnder = xUnder;
         this.voUnder = voUnder;
     }

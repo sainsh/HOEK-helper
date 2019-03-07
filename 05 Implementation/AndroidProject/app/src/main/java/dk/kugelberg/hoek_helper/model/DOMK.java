@@ -8,9 +8,9 @@ public interface DOMK {
     void beregn();
     void setBeregnet(boolean val);
     boolean getBeregnet();
-    void init(VO vo, VO voOver, STO sto, KO ko, VE ve, X x, X xOver, DOMK domk, DOMK domkOver);
+    void init(VO vo, STO sto, KO ko, VE ve, X x, DOMK domk);
+    void initOver(VO voOver, X xOver, DOMK domkOver);
     boolean erBeregnet();
-    void initOver(VO voOver,X xOver, DOMK domkOver);
 
 
 }

@@ -26,6 +26,23 @@ public class DOMKImpl implements DOMK {
     }
 
     @Override
+    public void init(VO vo, STO sto, KO ko, VE ve, X x, DOMK domk) {
+        this.vo = vo;
+        this.sto = sto;
+        this.ko = ko;
+        this.ve = ve;
+        this.x = x;
+        this.domk = domk;
+    }
+
+    @Override
+    public void initOver(VO voOver, X xOver, DOMK domkOver) {
+        this.voOver = voOver;
+        this.xOver = xOver;
+        this.domkOver = domkOver;
+    }
+
+    @Override
     public void setVaerdi(double x) {
         if (x < 0) {
             throw new NegativVaerdiException();
@@ -40,18 +57,7 @@ public class DOMKImpl implements DOMK {
         return vaerdi.getValue();
     }
 
-    @Override
-    public void init(VO vo, VO voOver, STO sto, KO ko, VE ve, X x, X xOver, DOMK domk, DOMK domkOver) {
-        this.vo = vo;
-        this.voOver = voOver;
-        this.sto = sto;
-        this.ko = ko;
-        this.ve = ve;
-        this.x = x;
-        this.xOver = xOver;
-        this.domk = domk;
-        this.domkOver = domkOver;
-    }
+
 
     @Override
     public boolean erBeregnet() {
@@ -69,13 +75,6 @@ public class DOMKImpl implements DOMK {
         return erBeregnet.getValue();
     }
 
-    @Override
-    public void initOver(VO voOver, X xOver, DOMK domkOver) {
-
-        this.voOver = voOver;
-        this.xOver = xOver;
-        this.domkOver = domkOver;
-    }
 
     @Override
     public void beregn() {
