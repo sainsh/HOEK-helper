@@ -11,8 +11,8 @@ public class DOMKImpl implements DOMK {
     private VE ve;
     private X x;
     private X xOver;
-    private DOMK domk;
     private DOMK domkOver;
+    private DOMK domkUnder;
 
 
     private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
@@ -31,7 +31,7 @@ public class DOMKImpl implements DOMK {
     }
 
     @Override
-    public void init(VO vo, VO voOver, STO sto, KO ko, VE ve, X x, X xOver, DOMK domk, DOMK domkOver) {
+    public void init(VO vo, VO voOver, STO sto, KO ko, VE ve, X x, X xOver, DOMK domkOver, DOMK domkUnder) {
         this.vo = vo;
         this.voOver = voOver;
         this.sto = sto;
@@ -39,8 +39,8 @@ public class DOMKImpl implements DOMK {
         this.ve = ve;
         this.x = x;
         this.xOver = xOver;
-        this.domk = domk;
         this.domkOver = domkOver;
+        this.domkUnder = domkUnder;
 
     }
 
@@ -51,12 +51,15 @@ public class DOMKImpl implements DOMK {
     }
 
     @Override
-    public void initOver(VO voOver, X xOver, DOMK domkOver) {
+    public void initOver(X xOver, VO voOver) {
 
         this.voOver = voOver;
         this.xOver = xOver;
-        this.domkOver = domkOver;
 
+    }
+
+    public void initUnder(DOMK domkUnder){
+        this.domkUnder = domkUnder;
     }
 
 
