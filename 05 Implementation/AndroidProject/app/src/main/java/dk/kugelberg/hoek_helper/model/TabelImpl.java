@@ -50,15 +50,15 @@ public class TabelImpl implements Tabel {
 /*
         if (raekkenummer != 0) {
             raekke0 = tabel.get(raekkenummer - 1);
-            raekke0.getDOMK().init2(raekke0.getX(), raekke0.getVO());//and all others needed
+            raekke0.getDOMK().initUnder(raekke0.getX(), raekke0.getVO());//and all others needed
         }
         raekke1 = tabel.get(raekkenummer);
-        raekke1.getDOMK().init1(raekke1.getX(), raekke1.getVO()); // and all others needed
-        raekke1.getDOMK().init2(raekke1.getX(), raekke1.getVO()); // and all others needed
+        raekke1.getDOMK().initOver(raekke1.getX(), raekke1.getVO()); // and all others needed
+        raekke1.getDOMK().initUnder(raekke1.getX(), raekke1.getVO()); // and all others needed
 
         if (raekkenummer != tabel.size()) {
             raekke2 = tabel.get(raekkenummer + 1);
-            raekke2.getDOMK().init1(raekke2.getX(), raekke2.getVO()); //and all others needed
+            raekke2.getDOMK().initOver(raekke2.getX(), raekke2.getVO()); //and all others needed
         }
 
 */

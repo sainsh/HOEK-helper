@@ -13,6 +13,11 @@ public class KEimpl implements KE {
     private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
     private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
 
+    public KEimpl(){
+        vaerdi.setValue(NaN);
+        erBeregnet.setValue(false);
+    }
+
     @Override
     public void init(KO ko, X x, SE se, VE ve){
         this.ko = ko;

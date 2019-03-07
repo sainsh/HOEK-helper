@@ -54,7 +54,7 @@ public class XImplTest {
         XImpl x = new XImpl();
         x.initOver(new XMock(Double.NaN),new VOMock(Double.NaN));
         x.init(new VOMock(Double.NaN), new VEMock(Double.NaN), new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN), new KOMock(Double.NaN),new KEMock(Double.NaN));
-        //x.init1();
+        //x.initOver();
         double resultat = Double.NaN;
         x.beregn();
         assertEquals(x.getVaerdi(), resultat, delta);
@@ -253,12 +253,12 @@ public class XImplTest {
         }
 
         @Override
-        public void init1(X x1, VO vo1) {
+        public void initOver(X x1, VO vo1) {
 
         }
 
         @Override
-        public void init2(X x2, VO vo2, DOMK domk2) {
+        public void initUnder(X x2, VO vo2, DOMK domk2) {
 
         }
 

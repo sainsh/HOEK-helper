@@ -13,6 +13,11 @@ public class SEImpl implements SE {
     private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
     private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
 
+    public SEImpl(){
+        vaerdi.setValue(NaN);
+        erBeregnet.setValue(false);
+    }
+
     @Override
     public void init(X x, STO sto, VE ve, KE ke) {
         this.x = x;

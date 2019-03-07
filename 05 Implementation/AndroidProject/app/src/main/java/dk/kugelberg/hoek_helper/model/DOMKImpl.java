@@ -2,6 +2,8 @@ package dk.kugelberg.hoek_helper.model;
 
 import androidx.lifecycle.MutableLiveData;
 
+import static java.lang.Double.NaN;
+
 public class DOMKImpl implements DOMK {
 
     private VO vo;
@@ -17,6 +19,11 @@ public class DOMKImpl implements DOMK {
 
     private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
     private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
+
+    public DOMKImpl(){
+        vaerdi.setValue(NaN);
+        erBeregnet.setValue(false);
+    }
 
     @Override
     public void setVaerdi(double x) {
