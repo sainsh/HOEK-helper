@@ -19,10 +19,13 @@ public class DOMKImpl implements DOMK {
     private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
 
     @Override
-    public void setVaerdi(double vaerdi) {
-
-        this.vaerdi.setValue(vaerdi);
-
+    public void setVaerdi(double x) {
+        if (x < 0) {
+            throw new NegativVaerdiException();
+        } else {
+            vaerdi.setValue(x);
+            setBeregnet(false);
+        }
     }
 
     @Override
@@ -41,7 +44,6 @@ public class DOMKImpl implements DOMK {
         this.xOver = xOver;
         this.domk = domk;
         this.domkOver = domkOver;
-
     }
 
     @Override
@@ -51,18 +53,25 @@ public class DOMKImpl implements DOMK {
     }
 
     @Override
+    public void setBeregnet(boolean val){
+        this.erBeregnet.setValue(val);
+    }
+
+    @Override
+    public boolean getBeregnet(){
+        return erBeregnet.getValue();
+    }
+
+    @Override
     public void initOver(VO voOver, X xOver, DOMK domkOver) {
 
         this.voOver = voOver;
         this.xOver = xOver;
         this.domkOver = domkOver;
-
     }
-
 
     @Override
     public void beregn() {
-
 
             //DOMK = (X2-X1)/(VO2-VO1) X2 = x,  X1 = xOVer, VO2 = vo, VO1 = voOver
         if (!Double.isNaN(x.getVaerdi()) && !Double.isNaN(xOver.getVaerdi()) && !Double.isNaN(vo.getVaerdi()) && !Double.isNaN(voOver.getVaerdi())) {
@@ -74,9 +83,5 @@ public class DOMKImpl implements DOMK {
             vaerdi.setValue(Double.NaN);
             erBeregnet.setValue(false);
         }
-
-
     }
-
-
 }
