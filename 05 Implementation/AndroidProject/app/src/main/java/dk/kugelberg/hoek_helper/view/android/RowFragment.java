@@ -36,7 +36,7 @@ public class RowFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        xEditText = getView().findViewById(R.id.x_text_view);
+        // xEditText = getView().findViewById(R.id.x_text_view);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_row, container, false);
     }
