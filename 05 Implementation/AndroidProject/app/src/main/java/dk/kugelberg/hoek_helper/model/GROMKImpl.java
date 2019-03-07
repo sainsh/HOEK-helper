@@ -96,7 +96,7 @@ public class GROMKImpl implements GROMK {
         x2 = 2
         x3 = 3
 
-        vo = (((x-x2)*(x-x3)) / ((x1-x2)*(x1-x3)) * y1 * (((x-x1)*(x-x3)) / ((x2-x1)*(x2-x3)) * y2 * (((x-x1)*(x-x2)) / ((x3-x1)*(x3-x2)) * y3
+        vo = (((x-x2)*(x-x3)) / ((x1-x2)*(x1-x3)) * vo1 * (((x-x1)*(x-x3)) / ((x2-x1)*(x2-x3)) * vo2 * (((x-x1)*(x-x2)) / ((x3-x1)*(x3-x2)) * vo3
 
 
 
