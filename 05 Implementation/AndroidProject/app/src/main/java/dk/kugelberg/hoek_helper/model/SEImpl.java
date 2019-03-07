@@ -44,7 +44,7 @@ public class SEImpl implements SE {
     public void beregn() {
 
         //SE = STO / X
-        if (sto.getVaerdi() != NaN && x.getVaerdi() != NaN) {
+        if (!Double.isNaN(sto.getVaerdi()) && x.getVaerdi() != NaN) {
             setVaerdi(sto.getVaerdi() / x.getVaerdi());
             setBeregnet(true);
 
@@ -57,6 +57,8 @@ public class SEImpl implements SE {
             setVaerdi(NaN);
 
         }
+
+        if (this.vaerdi.getValue() == NaN) this.erBeregnet.setValue(false);
     }
 }
 

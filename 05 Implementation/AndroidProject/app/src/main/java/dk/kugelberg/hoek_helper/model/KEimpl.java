@@ -66,5 +66,6 @@ public class KEimpl implements KE {
             setVaerdi(NaN);
 
         }
+        if (this.vaerdi.getValue() == NaN) this.erBeregnet.setValue(false);
     }
 }

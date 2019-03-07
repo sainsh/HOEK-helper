@@ -93,5 +93,6 @@ public class VOImpl implements VO {
 
             setVaerdi(NaN);
         }
+        if (this.vaerdi.getValue() == NaN) this.erBeregnet.setValue(false);
     }
 }

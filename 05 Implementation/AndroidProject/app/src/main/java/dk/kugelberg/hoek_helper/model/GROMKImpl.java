@@ -76,6 +76,7 @@ public class GROMKImpl implements GROMK {
 
         // TODO: lav alle beregningerne til GROMK
 
+        //if (this.vaerdi.getValue() == NaN) this.erBeregnet.setValue(false);
 
     }
 }
