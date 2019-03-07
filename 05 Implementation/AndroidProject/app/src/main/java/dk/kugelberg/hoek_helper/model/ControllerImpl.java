@@ -23,8 +23,8 @@ public class ControllerImpl implements Controller {
         domk = new DOMKImpl();
     }
 
+     public void angivKO(double vaerdi, int raekkenummer) {
 
-    public void angivKO(double vaerdi, int raekkenummer) {
 
         //ko = tabel.getRaekke(raekkenummer).getKO();
         ko.setVaerdi(vaerdi);
@@ -35,6 +35,7 @@ public class ControllerImpl implements Controller {
         //ko = tabel.getRaekke(raekkenummer).getKO();
         return ko.getVaerdi();
     }
+
 
     public void beregnKO(int raekkenummer) {
         //ko = tabel.getRaekke(raekkenummer).getKO();

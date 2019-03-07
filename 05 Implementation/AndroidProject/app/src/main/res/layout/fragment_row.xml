@@ -2,32 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="75dp"
-    tools:context=".view.android.RowFragment">
+    android:layout_height="60dp"
+    tools:context=".view.android.RowFragment"
+    android:orientation="horizontal">
 
-    <TextView
+    <EditText
         android:layout_width="75dp"
         android:layout_height="match_parent"
         android:hint="@string/x"
         android:id="@+id/x_text_view"
         android:textAlignment="center"
-        />
-    <TextView
+        android:inputType="number" />
+    <EditText
         android:layout_width="75dp"
-        android:layout_height="50dp"
+        android:layout_height="match_parent"
         android:hint="@string/vo"
         android:id="@+id/vo_text_view"
-        android:textAlignment="center"/>
-    <TextView
+        android:textAlignment="center"
+        android:inputType="numberDecimal"/>
+    <EditText
         android:layout_width="75dp"
-        android:layout_height="50dp"
+        android:layout_height="match_parent"
         android:hint="@string/ve"
         android:id="@+id/ve_text_view"
-        android:textAlignment="center"/>
-    <TextView
+        android:textAlignment="center"
+        android:inputType="numberDecimal"/>
+    <EditText
         android:layout_width="75dp"
-        android:layout_height="50dp"
+        android:layout_height="match_parent"
         android:hint="@string/domk"
-        android:id="@+id/domk_text_field"
-        android:textAlignment="center"/>
+        android:id="@+id/domk_text_view"
+        android:textAlignment="center"
+        android:inputType="numberDecimal"/>
 </LinearLayout>
