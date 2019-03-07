@@ -56,21 +56,19 @@ public class ControllerImpl implements Controller {
     }
 
 
-    @Override
-    public void angivKO(double vaerdi, int raekkenummer) {
+        public void angivKO(double vaerdi, int raekkenummer) {
 
         ko = tabel.getRaekke(raekkenummer).getKO();
         ko.setVaerdi(vaerdi);
 
     }
 
-    @Override
     public double hentKO(int raekkenummer) {
         ko = tabel.getRaekke(raekkenummer).getKO();
         return ko.getVaerdi();
     }
 
-    @Override
+
     public void beregnKO(int raekkenummer) {
         ko = tabel.getRaekke(raekkenummer).getKO();
         ko.init(ke, x, sto, vo);
