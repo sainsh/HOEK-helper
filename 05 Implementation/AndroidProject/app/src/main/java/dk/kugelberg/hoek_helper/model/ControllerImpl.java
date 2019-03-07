@@ -41,7 +41,7 @@ public class ControllerImpl implements Controller {
     @Override
     public void beregnKO(int raekkenummer) {
         //ko = tabel.getRaekke(raekkenummer).getKO();
-        ko.init();
+        //ko.init();
         ko.beregn();
 
     }
@@ -61,7 +61,7 @@ public class ControllerImpl implements Controller {
     @Override
     public void beregnSTO(int raekkenummer) {
         //sto = tabel.getRaekke(raekkenummer).getSTO();
-        sto.init(vo1, vo2, sto, ko, ve, x1, x2, domk1, domk2);
+        //sto.init(vo1, vo2, sto, ko, ve, x1, x2, domk1, domk2);
         sto.beregn();
     }
 
@@ -74,12 +74,12 @@ public class ControllerImpl implements Controller {
     @Override
     public double hentVE(int raekkenummer) {
         //ve = tabel.getRaekke(raekkenummer).getVE();
-        return sto.getVaerdi()
+        return sto.getVaerdi();
     }
 
     @Override
     public void beregnVE(int raekkenummer) {
-        ve = tabel.getRaekke(raekkenummer).getVE();
+        //ve = tabel.getRaekke(raekkenummer).getVE();
 
     }
 

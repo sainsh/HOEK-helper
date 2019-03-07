@@ -46,7 +46,7 @@ public interface Tabel {
 
     void angivX(int antal, int raekkenummer);
 
-    int hentX(int raekkenummer);
+    double hentX(int raekkenummer);
 
     void beregnX(int raekkenummer);
 

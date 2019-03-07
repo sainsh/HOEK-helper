@@ -1,4 +1,4 @@
 package dk.kugelberg.hoek_helper.model;
 
-class NegativVaerdiException extends RuntimeException {
+public class NegativVaerdiException extends RuntimeException {
 }

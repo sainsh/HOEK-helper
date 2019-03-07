@@ -23,16 +23,19 @@ public class XImpl implements X {
 
     public XImpl(){
         vaerdi.setValue(NaN);
+        erBeregnet.setValue(false);
     }
 
     @Override
-    public void init(VO vo, VE ve, DOMK domk, STO sto, SE se, GROMK gromk) {
+    public void init(VO vo, VE ve, DOMK domk, STO sto, SE se, GROMK gromk, KO ko, KE ke) {
         this.vo = vo;
         this.ve = ve;
         this.domk = domk;
         this.sto = sto;
         this.se = se;
         this.gromk = gromk;
+        this.ko = ko;
+        this.ke = ke;
     }
 
     @Override
@@ -94,7 +97,7 @@ public class XImpl implements X {
             setBeregnet(true);
 
             // X = STO / GROMK
-        } else if (!Double.isNaN(sto.getVaerdi()) && !Double.isNaN(gromk.getVaerdi())){
+        } else if (!Double.isNaN(sto.getVaerdi()) && !Double.isNaN(gromk.getVaerdi())) {
             setVaerdi(sto.getVaerdi() * gromk.getVaerdi());
             setBeregnet(true);
 
@@ -102,9 +105,8 @@ public class XImpl implements X {
         } else if (!Double.isNaN(domk.getVaerdi()) && !Double.isNaN(vo.getVaerdi()) && !Double.isNaN(voOver.getVaerdi()) && !Double.isNaN(xOver.getVaerdi())) {
             setVaerdi( (domk.getVaerdi() * ( vo.getVaerdi() - voOver.getVaerdi())) + xOver.getVaerdi() );
             setBeregnet(true);
-        }
 
-        else if (getBeregnet()){
+        } else if (getBeregnet()){
             setVaerdi(NaN);
 
     }
