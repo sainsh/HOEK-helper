@@ -20,14 +20,12 @@ import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,33 +34,19 @@ import dk.kugelberg.hoek_helper.model.Controller;
 import dk.kugelberg.hoek_helper.model.ControllerImpl;
 import dk.kugelberg.hoek_helper.model.Raekke;
 import dk.kugelberg.hoek_helper.model.Tabel;
-import dk.kugelberg.hoek_helper.model.TabelImpl;
 import dk.kugelberg.hoek_helper.view.ViewModel.ModelViewModel;
-import dk.kugelberg.hoek_helper.view.database.AppDatabase;
-import dk.kugelberg.hoek_helper.view.database.DataRow;
 
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
-
-    private TableLayout tableLayoutHeader;
-
-    //    private String[] headerColumns = new String[11];
-//    private String[] headerColumns = new String[5];
-    private String[] headerColumns = new String[4];
-
-    private int numberOfColumns = headerColumns.length;
-    private TextView[] textViewsHeaders = new TextView[numberOfColumns];
-
-    private int numberOfRows = 5;
-    private TableRow tableRowArray[] = new TableRow[numberOfRows];
-
-    private EditText[][] editTextsArray = new EditText[numberOfRows][numberOfColumns];
 
     private RecyclerView recyclerView;
     private DataAdapter adapter;
 
-    private AppDatabase appDatabase;
-
     private Controller controller;
+
+    private TextView antalEnheder;
+    private TextView vo;
+    private TextView ve;
+    private TextView domk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,13 +56,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         controller = ControllerImpl.getInstance();
 
-        tableLayoutHeader = findViewById(R.id.tableLayout_header);
+        antalEnheder = findViewById(R.id.tv_antal_enheder);
+        vo = findViewById(R.id.tv_vo);
+        ve = findViewById(R.id.tv_ve);
+        domk = findViewById(R.id.tv_domk);
 
-//        headerColumns = new String[]{getString(R.string.antal_enheder), getString(R.string.vo), getString(R.string.ko), getString(R.string.so), getString(R.string.ve), getString(R.string.ke), getString(R.string.se), getString(R.string.domk), getString(R.string.doms), getString(R.string.gromk), getString(R.string.udvikling)};
-//        headerColumns = new String[]{"ID", getString(R.string.antal_enheder), getString(R.string.vo), getString(R.string.ve), getString(R.string.domk)};
-        headerColumns = new String[]{getString(R.string.antal_enheder), getString(R.string.vo), getString(R.string.ve), getString(R.string.domk)};
-
-        drawTable();
 
         ActionBar actionBar = this.getSupportActionBar();
         if (actionBar != null) {
@@ -88,9 +70,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         recyclerView = findViewById(R.id.recyclerView_tasks);
 //        recyclerView.setHasFixedSize(true);
-
 //        recyclerView.setNestedScrollingEnabled(false);
-
 //        recyclerView.setItemViewCacheSize(20);
 //        recyclerView.setDrawingCacheEnabled(true);
 //        recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
@@ -100,20 +80,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        int longestCell = findLongestCell();
 
-        final float scale = getResources().getDisplayMetrics().density;
-        int pixels = (int) ((longestCell * 14) * scale + 0.5f);
-
-        adapter = new DataAdapter(this, pixels);
+        adapter = new DataAdapter(this);
         recyclerView.setAdapter(adapter);
 
-        appDatabase = AppDatabase.getInstance(this);
-
-//        recyclerView.smoothScrollToPosition(50);
-
-//        setupViewModel();
-        setupViewModel2();
+        setupViewModel();
 
         System.out.println("onCreate");
 
@@ -121,22 +92,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     }
 
 
-//    private void setupViewModel() {
-//
-//        MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-//
-//        viewModel.getTasks().observe(this, new Observer<List<DataRow>>() {
-//
-//            @Override
-//            public void onChanged(@Nullable List<DataRow> dataRows) {
-//                adapter.setTasks(doMath(dataRows));
-//            }
-//        });
-//    }
-
     private ModelViewModel viewModel;
 
-    private void setupViewModel2() {
+    private void setupViewModel() {
 
         viewModel = ViewModelProviders.of(this).get(ModelViewModel.class);
 
@@ -150,141 +108,10 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         });
     }
 
-    public List<DataRow> doMath(List<DataRow> dataRows) {
-
-        // Metoden skal tjekke hvad der bliver ændret (via editTextChanged) og ud fra dette bestemme hvad der overskrives
-        // Fx: Der indtastes VE -> VO skal overskrives
-        // Fx: Der indtastes VO -> VE skal overskrives
-
-        for (int i = 0; i < dataRows.size(); i++) {
-            DataRow dataRow = dataRows.get(i);
-
-            if (dataRow.getAntalEnheder() != 0 && dataRow.getVo() != 0) {
-                dataRow.setVe(dataRow.getVo() / (double) dataRow.getAntalEnheder());
-
-                if (i == 0)
-                    dataRow.setDomk((dataRow.getVo() - 0) / (dataRow.getAntalEnheder() - 0));
-                else {
-                    DataRow dataRowAbove = dataRows.get(i - 1);
-
-                    if (dataRowAbove.getVo() != 0 && dataRowAbove.getAntalEnheder() != 0)
-                        dataRow.setDomk((dataRow.getVo() - dataRowAbove.getVo()) / (dataRow.getAntalEnheder() - dataRowAbove.getAntalEnheder()));
-                }
-            } else {
-                dataRow.setVe(0);
-                dataRow.setDomk(0);
-            }
-        }
-        return dataRows;
-    }
-
     private String editTextChanged;
 
     public void setEditTextChanged(String editTextChanged) {
         this.editTextChanged = editTextChanged;
-    }
-
-    /**
-     * Two overloaded methods.
-     * The first one finds the longest text in all the TextViews and EditTexts
-     * The second one finds the longest text in the TextView and the EditTexts of a single column
-     */
-
-    public int findLongestCell() {
-        int longestCell = 0;
-
-        for (int i = 0; i < headerColumns.length; i++) {
-            int cellLength = headerColumns[i].length();
-
-            if (cellLength > longestCell)
-                longestCell = cellLength;
-        }
-
-        for (int i = 0; i < editTextsArray.length; i++) {
-            for (int j = 0; j < editTextsArray[i].length; j++) {
-                if (editTextsArray[i][j] != null) {
-                    int cellLength = editTextsArray[i][j].getText().length();
-
-                    if (cellLength > longestCell)
-                        longestCell = cellLength;
-                }
-            }
-        }
-        return longestCell;
-    }
-
-    public int findLongestCell(int column) {
-        int longestCell = 0;
-
-        int cellLength = headerColumns[column].length();
-
-        if (cellLength > longestCell)
-            longestCell = cellLength;
-
-        for (int i = 0; i < editTextsArray.length; i++) {
-            if (editTextsArray[i][column] != null) {
-                int cellLength2 = editTextsArray[i][column].getText().length();
-
-                if (cellLength2 > longestCell)
-                    longestCell = cellLength2;
-            }
-        }
-        return longestCell;
-    }
-
-    /**
-     * The following code draws the table
-     */
-
-    public void drawTable() {
-        tableLayoutHeader.removeAllViews();
-//        tableLayoutData.removeAllViews();
-
-        TableRow tableRowHeader = new TableRow(this);
-
-        int longestCell = findLongestCell();
-
-        final float scale = getResources().getDisplayMetrics().density;
-        int pixels = (int) ((longestCell * 14) * scale + 0.5f);
-
-        for (int i = 0; i < numberOfColumns; i++) {
-            TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
-//            layoutParams.setMargins(2, 2, 2, 2);
-
-            TextView textView = new TextView(this);
-            textView.setBackgroundDrawable(getResources().getDrawable(R.drawable.border_gray_bg));
-            textView.setText(headerColumns[i]);
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20f);
-            textView.setTextColor(Color.BLACK);
-            textView.setGravity(Gravity.CENTER);
-
-            textView.setWidth(pixels);
-
-            textView.setLayoutParams(layoutParams);
-
-            tableRowHeader.addView(textView);
-            textViewsHeaders[i] = textView;
-        }
-
-        tableLayoutHeader.addView(tableRowHeader);
-
-    }
-
-    /**
-     * The following code updates the length of TextViews and EditTexts
-     */
-
-    public void updateCellLength(int currentColumn) {
-        int longestCell = findLongestCell(currentColumn);
-
-        final float scale = getResources().getDisplayMetrics().density;
-        int pixels = (int) ((longestCell * 14) * scale + 0.5f);
-
-        textViewsHeaders[currentColumn].setWidth(pixels);
-
-        for (int i = 0; i < numberOfRows; i++) {
-            editTextsArray[i][currentColumn].setWidth(pixels);
-        }
     }
 
     /**
@@ -296,45 +123,33 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     public void addRow(View view) {
 
-        Tabel tabel = controller.getTabel();
-        ArrayList<Raekke> arrayList = tabel.getTabelMld().getValue();
+        for (int i = 0; i < 10; i++) {
+            Tabel tabel = controller.getTabel();
+            ArrayList<Raekke> arrayList = tabel.getTabelMld().getValue();
 
-        int tabelSize = arrayList.size();
+            int tabelSize = arrayList.size();
 
-        tabel.addRaekke(tabelSize);
+            tabel.addRaekke(tabelSize);
 
-        Raekke raekke = tabel.getRaekke(tabelSize);
-        raekke.getX().setVaerdi(testX);
-        testX += 1000;
-        raekke.getVO().setVaerdi(testVO);
-        testVO += 1000 * (testX / 1000);
-        raekke.getVE().init(raekke.getVO(), raekke.getX(), raekke.getSE(), raekke.getKE());
-        raekke.getVE().beregn();
+            Raekke raekke = tabel.getRaekke(tabelSize);
+            raekke.getX().setVaerdi(testX);
+            testX += 1000;
+            raekke.getVO().setVaerdi(testVO);
+            testVO += 50000 * (testX / 1000);
+            raekke.getVE().init(raekke.getVO(), raekke.getX(), raekke.getSE(), raekke.getKE());
+            raekke.getVE().beregn();
 
-        if (tabelSize != 0) {
-            raekke.getDOMK().init(raekke.getVO(), raekke.getSTO(), raekke.getKO(), raekke.getVE(), raekke.getX());
+            if (tabelSize != 0) {
+                raekke.getDOMK().init(raekke.getVO(), raekke.getSTO(), raekke.getKO(), raekke.getVE(), raekke.getX());
 
-            Raekke raekkeOver = tabel.getRaekke(tabelSize - 1);
-            raekke.getDOMK().initOver(raekkeOver.getVO(), raekkeOver.getX(), raekkeOver.getDOMK());
+                Raekke raekkeOver = tabel.getRaekke(tabelSize - 1);
+                raekke.getDOMK().initOver(raekkeOver.getVO(), raekkeOver.getX(), raekkeOver.getDOMK());
 
-            raekke.getDOMK().beregn();
+                raekke.getDOMK().beregn();
+            }
+
+            tabel.getTabelMld().setValue(arrayList);
         }
-
-        tabel.getTabelMld().setValue(arrayList);
-
-//        adapter.setTasks(controller.getTabel().getTabel().getValue());
-
-//        for (int i = 0; i < 5; i++) {
-//            final DataRow dataRow = new DataRow(0, 0, 0, 0);
-//
-//            AppExecutors.getInstance().diskIO().execute(new Runnable() {
-//                @Override
-//                public void run() {
-//                    appDatabase.taskDao().insertTask(dataRow);
-//                }
-//            });
-//        }
-
     }
 
     private PopupWindow popupWindow;
@@ -347,75 +162,39 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         int height = GridLayout.LayoutParams.WRAP_CONTENT;
         View v = LayoutInflater.from(this).inflate(R.layout.popup_layout, null, false);
 
-//        TextView textView = (TextView)v.findViewById(R.id.tv_popup_antal);
-//        System.out.println(textView.getText().toString());
-
         etRows = v.findViewById(R.id.et_popup_rows);
         etAntal = v.findViewById(R.id.et_popup_antal);
         etIncrement = v.findViewById(R.id.et_popup_increment);
-
-//        System.out.println(etRows.getHint().toString());
 
         popupWindow = new PopupWindow(v, width, height, true);
         popupWindow.showAtLocation(this.findViewById(R.id.main_layout), Gravity.CENTER, 0, 0);
     }
 
     public void popupInsert(View view) {
-
         int rows = Integer.parseInt(etRows.getText().toString());
         int antal = Integer.parseInt(etAntal.getText().toString());
         int increment = Integer.parseInt(etIncrement.getText().toString());
 
         for (int i = 0; i < rows; i++) {
-            final DataRow dataRow = new DataRow(antal, 0, 0, 0);
+            Tabel tabel = controller.getTabel();
+            ArrayList<Raekke> arrayList = tabel.getTabelMld().getValue();
 
-            AppExecutors.getInstance().diskIO().execute(new Runnable() {
-                @Override
-                public void run() {
-                    appDatabase.taskDao().insertTask(dataRow);
-                }
-            });
+            int tabelSize = arrayList.size();
+
+            tabel.addRaekke(tabelSize);
+
+            Raekke raekke = tabel.getRaekke(tabelSize);
+            raekke.getX().setVaerdi(antal);
+
+            tabel.getTabelMld().setValue(arrayList);
 
             antal += increment;
         }
         popupWindow.dismiss();
-
-//        System.out.println(etRows.getHint().toString());
     }
 
     public void popupCancel(View view) {
         popupWindow.dismiss();
-    }
-
-    int counter = 0;
-
-    /**
-     * The following code updates rows to the table
-     */
-
-    private int mTaskId;
-
-    public void updateRow(View view) {
-        final DataRow dataRow = new DataRow(0, 0, 0, 0);
-        AppExecutors.getInstance().diskIO().execute(new Runnable() {
-            @Override
-            public void run() {
-                dataRow.setId(mTaskId);
-                appDatabase.taskDao().updateTask(dataRow);
-            }
-        });
-    }
-
-
-    /**
-     * The following code deletes rows from the table
-     */
-
-    public void deleteRow() {
-        --numberOfRows;
-        tableRowArray = new TableRow[numberOfRows];
-        editTextsArray = new EditText[numberOfRows][numberOfColumns];
-        drawTable();
     }
 
     /**
@@ -450,34 +229,34 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private void visibility(SharedPreferences sharedPreferences) {
 
         if (sharedPreferences.getBoolean(getString(R.string.vis_antal_enheder_key), getResources().getBoolean(R.bool.vis_antal_enheder))) {
-            textViewsHeaders[0].setVisibility(View.VISIBLE);
+            antalEnheder.setVisibility(View.VISIBLE);
             adapter.setAntalEnhederVisible(true);
         } else {
-            textViewsHeaders[0].setVisibility(View.GONE);
+            antalEnheder.setVisibility(View.GONE);
             adapter.setAntalEnhederVisible(false);
         }
 
         if (sharedPreferences.getBoolean(getString(R.string.vis_vo_key), getResources().getBoolean(R.bool.vis_vo))) {
-            textViewsHeaders[1].setVisibility(View.VISIBLE);
+            vo.setVisibility(View.VISIBLE);
             adapter.setVoVisible(true);
         } else {
-            textViewsHeaders[1].setVisibility(View.GONE);
+            vo.setVisibility(View.GONE);
             adapter.setVoVisible(false);
         }
 
         if (sharedPreferences.getBoolean(getString(R.string.vis_ve_key), getResources().getBoolean(R.bool.vis_ve))) {
-            textViewsHeaders[2].setVisibility(View.VISIBLE);
+            ve.setVisibility(View.VISIBLE);
             adapter.setVeVisible(true);
         } else {
-            textViewsHeaders[2].setVisibility(View.GONE);
+            ve.setVisibility(View.GONE);
             adapter.setVeVisible(false);
         }
 
         if (sharedPreferences.getBoolean(getString(R.string.vis_domk_key), getResources().getBoolean(R.bool.vis_domk))) {
-            textViewsHeaders[3].setVisibility(View.VISIBLE);
+            domk.setVisibility(View.VISIBLE);
             adapter.setDomkVisible(true);
         } else {
-            textViewsHeaders[3].setVisibility(View.GONE);
+            domk.setVisibility(View.GONE);
             adapter.setDomkVisible(false);
         }
     }
@@ -505,5 +284,14 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
     }
 
+    /**
+     * The following code deals with the hardware back button
+     */
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        NavUtils.navigateUpFromSameTask(this);
+    }
 
 }
