@@ -12,11 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import androidx.recyclerview.widget.RecyclerView;
 import dk.kugelberg.hoek_helper.R;
+import dk.kugelberg.hoek_helper.model.Raekke;
 import dk.kugelberg.hoek_helper.view.database.AppDatabase;
 import dk.kugelberg.hoek_helper.view.database.DataRow;
 
@@ -26,7 +28,8 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
     private static final String DATE_FORMAT = "dd/MM/yyy";
 
     // Class variables for the List that holds task data and the Context
-    private List<DataRow> dataRows;
+//    private List<DataRow> dataRows;
+    private ArrayList<Raekke> dataRows;
     private Context context;
 
     // Date formatter
@@ -95,13 +98,14 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
         else
             holder.domk.setVisibility(View.GONE);
 
-        DataRow dataRow = dataRows.get(position);
+//        DataRow dataRow = dataRows.get(position);
+        Raekke dataRow = dataRows.get(position);
 
 //        int idNum = dataRow.getId();
-        int antalEnhederNum = dataRow.getAntalEnheder();
-        double voNum = dataRow.getVo();
-        double veNum = dataRow.getVe();
-        double domkNum = dataRow.getDomk();
+        double antalEnhederNum = dataRow.getX().getVaerdi();
+        double voNum = dataRow.getVO().getVaerdi();
+        double veNum = dataRow.getVE().getVaerdi();
+        double domkNum = dataRow.getDOMK().getVaerdi();
 
 //        if (holder.textWatcher != null)
 //            holder.antalEnheder.removeTextChangedListener(holder.textWatcher);
@@ -159,19 +163,28 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
         return dataRows.size();
     }
 
-    public List<DataRow> getTasks() {
+//    public List<DataRow> getTasks() {
+//        return dataRows;
+//    }
+
+    public ArrayList<Raekke> getTasks() {
         return dataRows;
     }
 
-    public void setTasks(List<DataRow> dataRows) {
-        this.dataRows = dataRows;
-        notifyDataSetChanged();
+//    public void setTasks(List<DataRow> dataRows) {
+//        this.dataRows = dataRows;
+//        notifyDataSetChanged();
+//
+//        // Use these
+////        adapter.notifyItemRangeInserted(rangeStart, rangeEnd);
+////        adapter.notifyItemRemoved(position);
+////        adapter.notifyItemChanged(position);
+////        adapter.notifyItemInserted(position);
+//    }
 
-        // Use these
-//        adapter.notifyItemRangeInserted(rangeStart, rangeEnd);
-//        adapter.notifyItemRemoved(position);
-//        adapter.notifyItemChanged(position);
-//        adapter.notifyItemInserted(position);
+    public void setTasks(ArrayList<Raekke> raekker) {
+        this.dataRows = raekker;
+        notifyDataSetChanged();
     }
 
     private boolean visible = true;
@@ -299,10 +312,10 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
 
                         System.out.println("Adapter not -1, is " + getAdapterPosition());
 
-                        final DataRow dataRow = dataRows.get(getAdapterPosition());
+                        final Raekke dataRow = dataRows.get(getAdapterPosition());
 
-                        int currentAntalEnheder = dataRow.getAntalEnheder();
-                        int newAntalEnheder = Integer.parseInt(antalEnheder.getText().toString());
+                        double currentAntalEnheder = dataRow.getX().getVaerdi();
+                        double newAntalEnheder = Double.parseDouble(antalEnheder.getText().toString());
 
 //                        String currentAntalEnhederString = String.valueOf(currentAntalEnheder);
 //                        String newAntalEnhederString = antalEnheder.getText().toString();
@@ -310,7 +323,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
 //                        DecimalFormat decimalFormat = new DecimalFormat();
 //                        DecimalFormatSymbols decimalFormatSymbols = decimalFormat.getDecimalFormatSymbols();
 //                        char decimalSeparator = decimalFormatSymbols.getDecimalSeparator();
-                        double currentVo = dataRow.getVo();
+                        double currentVo = dataRow.getVO().getVaerdi();
 //                        double newVo = Double.parseDouble(vo.getText().toString());
                         double newVo = Double.parseDouble(vo.getText().toString().replace(".", "").replace(",", "."));
 //                        double newVo;
@@ -322,13 +335,13 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
 //                        String currentVoString = String.format(Locale.GERMAN, "%,.2f", currentVo);
 //                        String newVoString = vo.getText().toString();
 
-                        double currentVe = dataRow.getVe();
+                        double currentVe = dataRow.getVE().getVaerdi();
                         double newVe = Double.parseDouble(ve.getText().toString());
 
 //                        String currentVeString = String.format(Locale.GERMAN, "%,.2f", currentVe);
 //                        String newVeString = ve.getText().toString();
 
-                        double currentDomk = dataRow.getDomk();
+                        double currentDomk = dataRow.getDOMK().getVaerdi();
                         double newDomk = Double.parseDouble(domk.getText().toString());
 
 //                        String currentDomkString = String.format(Locale.GERMAN, "%,.2f", currentDomk);
@@ -337,7 +350,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
                         if (currentAntalEnheder != newAntalEnheder || currentVo != newVo || currentVe != newVe || currentDomk != newDomk) {
                             System.out.println("Something gets changed");
 
-                            dataRow.setAntalEnheder(newAntalEnheder);
+                            dataRow.setX(newAntalEnheder);
                             dataRow.setVo(newVo);
                             dataRow.setVe(newVe);
                             dataRow.setDomk(newDomk);

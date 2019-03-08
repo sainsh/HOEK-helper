@@ -1,6 +1,6 @@
 package dk.kugelberg.hoek_helper.model;
 
-public interface STO {
+public interface STO extends Noegletal {
 
     void init(X x, VO vo, KO ko, SE se, GROMK gromk);
     void initOver(X xOver, VO voOver);

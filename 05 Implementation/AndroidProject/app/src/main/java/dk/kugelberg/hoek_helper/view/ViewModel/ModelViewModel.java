@@ -1,33 +1,40 @@
 package dk.kugelberg.hoek_helper.view.ViewModel;
 
+import java.util.ArrayList;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import dk.kugelberg.hoek_helper.model.Controller;
+import dk.kugelberg.hoek_helper.model.Raekke;
+import dk.kugelberg.hoek_helper.model.Tabel;
+import dk.kugelberg.hoek_helper.model.TabelImpl;
 
 public class ModelViewModel extends ViewModel {
 
     // TODO (4) ViewModel skal også bruge LiveData, som de forskellige activities kan observere
     // ViewModel er også løst koblet på modellen, dvs. modellen har ikke kendskab til ViewModel
-    private MutableLiveData<String> currentA = new MutableLiveData<>();
-    private Model model = new Model();
 
+    private Controller controller;
 
-
-    public ModelViewModel() {
-        // TODO (5) Det her illustrerer, at vi får data fra modellen
-        currentA.setValue(model.getA().getValue()); // Giver "Startdata fra Model"
-        // currentA.setValue("Startdata fra ViewModel");
-
+    public ModelViewModel(Controller controller) {
+        this.controller = controller;
     }
 
-    public MutableLiveData<String> getA() {
-        // TODO (6) Hent data fra modellen
-        currentA = model.getA();
-        return currentA;
+
+    public MutableLiveData<ArrayList<Raekke>> getTable() {
+
+        return controller.getTabel().getTabel();
     }
 
-    public void setA(String a) {
-        // TODO (7) Skriv data til modellen
-        model.setA(a);
-    }
+//    public MutableLiveData<String> getA() {
+//        // TODO (6) Hent data fra modellen
+//        currentA = model.getA();
+//        return currentA;
+//    }
+//
+//    public void setA(String a) {
+//        // TODO (7) Skriv data til modellen
+//        model.setA(a);
+//    }
 
 }

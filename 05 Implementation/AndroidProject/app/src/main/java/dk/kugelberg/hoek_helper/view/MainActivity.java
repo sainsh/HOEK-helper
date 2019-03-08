@@ -19,6 +19,7 @@ import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.Nullable;
@@ -31,6 +32,9 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import dk.kugelberg.hoek_helper.R;
+import dk.kugelberg.hoek_helper.model.Raekke;
+import dk.kugelberg.hoek_helper.model.TabelImpl;
+import dk.kugelberg.hoek_helper.view.ViewModel.ModelViewModel;
 import dk.kugelberg.hoek_helper.view.database.AppDatabase;
 import dk.kugelberg.hoek_helper.view.database.DataRow;
 
@@ -117,16 +121,20 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
             @Override
             public void onChanged(@Nullable List<DataRow> dataRows) {
-//                Log.d(TAG, "Updating list of tasks from LiveData in ViewModel");
-
-                System.out.println("Set tasks");
-
-//                for (DataRow e : taskEntries) {
-//                    System.out.println("ID1: " + e.getId());
-//                }
-
-//                adapter.setTasks(dataRows);
                 adapter.setTasks(doMath(dataRows));
+            }
+        });
+    }
+
+    private void setupViewModel2() {
+
+        ModelViewModel viewModel = ViewModelProviders.of(this).get(ModelViewModel.class);
+
+        viewModel.getTable().observe(this, new Observer<ArrayList<Raekke>>() {
+
+            @Override
+            public void onChanged(@Nullable ArrayList<Raekke> raekker) {
+                adapter.setTasks(raekker);
             }
         });
     }

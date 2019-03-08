@@ -1,7 +1,7 @@
 package dk.kugelberg.hoek_helper.model;
 
 
-public interface DOMK {
+public interface DOMK extends Noegletal {
 
     void setVaerdi(double x);
     double getVaerdi();

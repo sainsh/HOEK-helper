@@ -13,15 +13,26 @@ public class ControllerImpl implements Controller {
     X x1;
     X x2;
 
+    private Tabel tabel;
+
     public ControllerImpl() {
 
-        ko = new KOImpl();
-        x1 = new XImpl();
-        x2 = new XImpl();
-        vo1 = new VOImpl();
-        vo2 = new VOImpl();
-        domk = new DOMKImpl();
+        tabel = new TabelImpl();
     }
+
+    public Tabel getTabel() {
+        return tabel;
+    }
+
+//    public ControllerImpl() {
+//
+//        ko = new KOImpl();
+//        x1 = new XImpl();
+//        x2 = new XImpl();
+//        vo1 = new VOImpl();
+//        vo2 = new VOImpl();
+//        domk = new DOMKImpl();
+//    }
 
      public void angivKO(double vaerdi, int raekkenummer) {
 
