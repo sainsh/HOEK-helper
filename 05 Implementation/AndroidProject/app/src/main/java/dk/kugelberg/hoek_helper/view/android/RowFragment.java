@@ -19,6 +19,8 @@ import dk.kugelberg.hoek_helper.R;
  */
 public class RowFragment extends Fragment {
 
+    //Værdierne bruges til at sætte objekternes værdi i model.
+    //Objekterne oprettes først i model og derfor bruges primitive variable i view.
     double x = Double.NaN;
     double vo = Double.NaN;
     double ve = Double.NaN;
@@ -48,16 +50,7 @@ public class RowFragment extends Fragment {
     }
 
     public void beregn(){
-        String nothing = "";
-        if(nothing.equals(xEditText.getText().toString()) || nothing.equals(voEditText.getText().toString())){
-            veEditText.setText("");
-        }
-        else{
-            if(vo != Double.NaN && x != Double.NaN) {
-                ve = vo / x;
-                veEditText.setText(Double.toString(ve));
-            }
-        }
+
     }
 
 
@@ -69,11 +62,6 @@ public class RowFragment extends Fragment {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (s.length() > 0){
-                x = Integer.parseInt(s.toString());
-            } else{
-                x = Double.NaN;
-            }
             beregn();
         }
 
@@ -90,12 +78,6 @@ public class RowFragment extends Fragment {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if(s.length() > 0){
-                vo = Double.parseDouble(s.toString());
-                System.out.println(vo);
-            } else{
-                vo = Double.NaN;
-            }
             beregn();
 
         }
