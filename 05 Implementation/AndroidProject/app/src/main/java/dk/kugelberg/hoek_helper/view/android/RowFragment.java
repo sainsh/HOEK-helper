@@ -22,13 +22,14 @@ import dk.kugelberg.hoek_helper.view.viewmodel.MainActivityViewModel;
 public class RowFragment extends Fragment {
 
 
-    private MainActivity viewModel = new MainActivityViewModel();
+
 
     //Værdierne bruges til at sætte objekternes værdi i model.
     //Objekterne oprettes først i model og derfor bruges primitive variable i view.
     double x = Double.NaN;
     double vo = Double.NaN;
     double ve = Double.NaN;
+    double domk = Double.NaN;
 
     EditText xEditText;
     EditText voEditText;
@@ -40,7 +41,7 @@ public class RowFragment extends Fragment {
         // Required empty public constructor
 
         // Create new row in tabel
-        viewModel.addRow();
+
     }
 
 
@@ -55,6 +56,9 @@ public class RowFragment extends Fragment {
         voEditText = v.findViewById(R.id.vo_text_view);
         voEditText.addTextChangedListener(voTextWatcher);
         veEditText = v.findViewById(R.id.ve_text_view);
+
+
+
         return v;
     }
 

@@ -11,11 +11,13 @@ import java.util.ArrayList;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import dk.kugelberg.hoek_helper.R;
+import dk.kugelberg.hoek_helper.view.viewmodel.MainActivityViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<RowFragment> rows;
 
+    private dk.kugelberg.hoek_helper.view.viewmodel.MainActivity viewModel = new MainActivityViewModel();
 
 
     @Override
@@ -25,9 +27,6 @@ public class MainActivity extends AppCompatActivity {
         rows = new ArrayList<>();
 
 
-
-
-
     }
 
     public void addRowClicked(View view) {
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(R.id.main_activity, rf);
         rows.add(rf);
-
+        viewModel.addRow();
         ft.commit();
     }
 }
