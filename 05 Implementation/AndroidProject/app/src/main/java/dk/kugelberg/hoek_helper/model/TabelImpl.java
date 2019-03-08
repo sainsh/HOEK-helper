@@ -2,30 +2,34 @@ package dk.kugelberg.hoek_helper.model;
 
 import java.util.ArrayList;
 
+import androidx.lifecycle.MutableLiveData;
+
 public class TabelImpl implements Tabel {
 
-    private ArrayList<Raekke> tabel;
+    private MutableLiveData<ArrayList<Raekke>> tabel = new MutableLiveData<>();
 
     public TabelImpl() {
-        tabel = new ArrayList<>();
+
+        tabel.setValue(new ArrayList<Raekke>());
+
     }
 
 
     @Override
     public Raekke getRaekke(int raekkenummer) {
-        return tabel.get(raekkenummer);
+        return tabel.getValue().get(raekkenummer);
     }
 
     @Override
     public ArrayList<Raekke> getTabel() {
-        return tabel;
+        return tabel.getValue();
     }
 
     @Override
     public void addRaekke(int raekkenummer) {
 
         Raekke raekke = new RaekkeImpl();
-        tabel.add(raekkenummer, raekke);
+        tabel.getValue().add(raekkenummer, raekke);
 
         updateAdjacentRows(raekkenummer);
 
@@ -34,7 +38,7 @@ public class TabelImpl implements Tabel {
     @Override
     public void deleteRaekke(int raekkenummer) {
 
-        tabel.remove(raekkenummer);
+        tabel.getValue().remove(raekkenummer);
         updateAdjacentRows(raekkenummer);
 
     }
@@ -66,20 +70,20 @@ public class TabelImpl implements Tabel {
 
     @Override
     public void angivDOMK(double vaerdi, int raekkenummer) {
-        tabel.get(raekkenummer).getDOMK().setVaerdi(vaerdi);
+        tabel.getValue().get(raekkenummer).getDOMK().setVaerdi(vaerdi);
         updateAdjacentRows(raekkenummer);
     }
 
     @Override
     public double hentDOMK(int raekkenummer) {
-        return tabel.get(raekkenummer).getDOMK().getVaerdi();
+        return tabel.getValue().get(raekkenummer).getDOMK().getVaerdi();
 
     }
 
     @Override
     public void beregnDOMK(int raekkenummer) {
 
-        DOMK domk = tabel.get(raekkenummer).getDOMK();
+        DOMK domk = tabel.getValue().get(raekkenummer).getDOMK();
         double vaerdi = Double.NaN;
 
 
@@ -93,93 +97,93 @@ public class TabelImpl implements Tabel {
     @Override
     public void angivKO(double vaerdi, int raekkenummer) {
 
-        tabel.get(raekkenummer).getKO().setVaerdi(vaerdi);
+        tabel.getValue().get(raekkenummer).getKO().setVaerdi(vaerdi);
         updateAdjacentRows(raekkenummer);
     }
 
     @Override
     public double hentKO(int raekkenummer) {
-        return tabel.get(raekkenummer).getKO().getVaerdi();
+        return tabel.getValue().get(raekkenummer).getKO().getVaerdi();
     }
 
     @Override
     public void beregnKO(int raekkenummer) {
-        tabel.get(raekkenummer).getKO().beregn();
+        tabel.getValue().get(raekkenummer).getKO().beregn();
         updateAdjacentRows(raekkenummer);
 
     }
 
     @Override
     public void angivSTO(double vaerdi, int raekkenummer) {
-        tabel.get(raekkenummer).getSTO().setVaerdi(vaerdi);
+        tabel.getValue().get(raekkenummer).getSTO().setVaerdi(vaerdi);
         updateAdjacentRows(raekkenummer);
 
     }
 
     @Override
     public double hentSTO(int raekkenummer) {
-        return tabel.get(raekkenummer).getSTO().getVaerdi();
+        return tabel.getValue().get(raekkenummer).getSTO().getVaerdi();
     }
 
     @Override
     public void beregnSTO(int raekkenummer) {
-        tabel.get(raekkenummer).getSTO().beregn();
+        tabel.getValue().get(raekkenummer).getSTO().beregn();
         updateAdjacentRows(raekkenummer);
 
     }
 
     @Override
     public void angivVE(double vaerdi, int raekkenummer) {
-        tabel.get(raekkenummer).getVE().setVaerdi(vaerdi);
+        tabel.getValue().get(raekkenummer).getVE().setVaerdi(vaerdi);
         updateAdjacentRows(raekkenummer);
 
     }
 
     @Override
     public double hentVE(int raekkenummer) {
-        return tabel.get(raekkenummer).getVE().getVaerdi();
+        return tabel.getValue().get(raekkenummer).getVE().getVaerdi();
     }
 
     @Override
     public void beregnVE(int raekkenummer) {
-        tabel.get(raekkenummer).getVE().beregn();
+        tabel.getValue().get(raekkenummer).getVE().beregn();
         updateAdjacentRows(raekkenummer);
     }
 
     @Override
     public void angivVO(double vaerdi, int raekkenummer) {
-        tabel.get(raekkenummer).getVO().setVaerdi(vaerdi);
+        tabel.getValue().get(raekkenummer).getVO().setVaerdi(vaerdi);
         updateAdjacentRows(raekkenummer);
 
     }
 
     @Override
     public double hentVO(int raekkenummer) {
-        return tabel.get(raekkenummer).getVO().getVaerdi();
+        return tabel.getValue().get(raekkenummer).getVO().getVaerdi();
     }
 
     @Override
     public void beregnVO(int raekkenummer) {
-        tabel.get(raekkenummer).getVO().beregn();
+        tabel.getValue().get(raekkenummer).getVO().beregn();
         updateAdjacentRows(raekkenummer);
 
     }
 
     @Override
     public void angivX(int antal, int raekkenummer) {
-        tabel.get(raekkenummer).getX().setVaerdi(antal);
+        tabel.getValue().get(raekkenummer).getX().setVaerdi(antal);
         updateAdjacentRows(raekkenummer);
 
     }
 
     @Override
     public double hentX(int raekkenummer) {
-        return tabel.get(raekkenummer).getX().getVaerdi();
+        return tabel.getValue().get(raekkenummer).getX().getVaerdi();
     }
 
     @Override
     public void beregnX(int raekkenummer) {
-        tabel.get(raekkenummer).getX().beregn();
+        tabel.getValue().get(raekkenummer).getX().beregn();
         updateAdjacentRows(raekkenummer);
 
     }

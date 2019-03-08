@@ -1,6 +1,7 @@
 package dk.kugelberg.hoek_helper.model;
 
-interface Raekke {
+public interface Raekke {
+
 
     DOMK getDOMK();
 

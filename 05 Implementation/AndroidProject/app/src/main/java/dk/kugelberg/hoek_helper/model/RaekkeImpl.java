@@ -30,6 +30,7 @@ public class RaekkeImpl implements Raekke {
     }
 
 
+
     @Override
     public DOMK getDOMK() {
         return domk;

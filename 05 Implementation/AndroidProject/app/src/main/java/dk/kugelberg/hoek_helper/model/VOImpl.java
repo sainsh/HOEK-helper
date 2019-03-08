@@ -22,12 +22,11 @@ public class VOImpl implements VO {
     private OMS oms;
 
 
-    private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
-    private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
+    private double vaerdi = Double.NaN;
+    private boolean erBeregnet = false;
 
     public VOImpl(){
-        vaerdi.setValue(NaN);
-        erBeregnet.setValue(false);
+
     }
 
     @Override
@@ -43,8 +42,9 @@ public class VOImpl implements VO {
 
         @Override
         public void initOver(X xOver, VO voOver) {
-            vaerdi.setValue(NaN);
-            erBeregnet.setValue(false);
+            vaerdi = NaN;
+            erBeregnet = false;
+
             this.xOver = xOver;
             this.voOver = voOver;
         }
@@ -62,24 +62,25 @@ public class VOImpl implements VO {
         if (vaerdi < 0) {
             throw new VaerdiException();
         } else {
-            this.vaerdi.setValue(vaerdi);
+            this.vaerdi = vaerdi;
             setBeregnet(false);
         }
     }
 
     @Override
     public double getVaerdi() {
-        return vaerdi.getValue();
+        return vaerdi;
+
     }
 
     @Override
     public void setBeregnet(boolean val) {
-        this.erBeregnet.setValue(val);
+        this.erBeregnet = val;
     }
 
     @Override
     public boolean getBeregnet() {
-        return erBeregnet.getValue();
+        return erBeregnet;
     }
 
 
@@ -107,6 +108,6 @@ public class VOImpl implements VO {
 
             setVaerdi(NaN);
         }
-        if (this.vaerdi.getValue() == NaN) this.erBeregnet.setValue(false);
+        if (this.vaerdi == NaN) this.erBeregnet = false;
     }
 }
