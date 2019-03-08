@@ -3,6 +3,7 @@ package dk.kugelberg.hoek_helper.model;
 public interface Controller {
 
 
+    Tabel getTabel();
     void lavRaekke();
     Raekke hentRaekke(int raekkenummer);
     void sletRaekke(int raekkenummer);
