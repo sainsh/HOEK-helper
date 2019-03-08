@@ -86,8 +86,6 @@ public class VOImpl implements VO {
     @Override
     public void beregn() {
 
-        // TODO: konstruer beregner der kan regne VO ud via xOver, xUnder, voOver, voUnder, domk og domkUnder
-
         //VO = VE * X
         if (!Double.isNaN(ve.getVaerdi()) && !Double.isNaN(x.getVaerdi())) {
             setVaerdi(ve.getVaerdi() * x.getVaerdi());
@@ -103,7 +101,19 @@ public class VOImpl implements VO {
             setVaerdi(db.getVaerdi() - oms.getVaerdi());
             setBeregnet(true);
 
-        } else if (getBeregnet()) {
+            //VO = ((x-xOver) / domk) + voOver
+        } else if (!Double.isNaN(x.getVaerdi()) && !Double.isNaN(xOver.getVaerdi()) &&
+                !Double.isNaN(domk.getVaerdi()) && !Double.isNaN(voOver.getVaerdi())) {
+            setVaerdi(  ((x.getVaerdi() - xOver.getVaerdi()) / domk.getVaerdi()) + voOver.getVaerdi());
+            setBeregnet(true);
+
+        }
+
+
+
+
+
+        else if (getBeregnet()) {
 
             setVaerdi(NaN);
         }

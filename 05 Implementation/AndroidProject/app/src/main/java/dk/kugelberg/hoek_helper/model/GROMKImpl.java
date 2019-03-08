@@ -11,6 +11,7 @@ public class GROMKImpl implements GROMK {
     private X xOver;
     private X xUnder;
     private KO ko;
+    private VO vo;
     private VO voOver;
     private VO voUnder;
     private DOMK domk;
@@ -75,20 +76,18 @@ public class GROMKImpl implements GROMK {
         return erBeregnet.getValue();
     }
 
-    @Override
-    public void beregn() {
 
-        /*
-        GROMK findes ved at differentiere formlen for VO
+    /**
+        GROMK kan findes på 2 måder
+        enten ved at differentiere formlen for VO
 
         Formlen for VO er en normal andengrads ligning der ser således ud:
-
         VO = a*(x*x) + b*x + c
-
         VO vil altid være en parabel da x ikke må være negativ
         og det lader til at c altid 0 for HØK'erne
 
-        kender vi ikke formlen for VO men har 3 punkter af VO og x (Hvor x'erne er forskellige)
+        ELLER hvis vi ikke kender VO formlen
+        kan vi vinde GROMK ud fra 3 punkter af VO og x (Hvor x'erne er forskellige)
         kan vi finde a, b og c i ovenstående formel således:
 
         vo1 og x1
@@ -96,25 +95,51 @@ public class GROMKImpl implements GROMK {
         vo3 og x3
 
         a = vo1 / ((x1-x2)*(x1-x3)) + vo2 / ((x2-x1)*(x2-x3)) + vo3 / ((x3-x1)*(x3-x2))
-
         b = -vo1*(x2+x3)/((x1-x2)*(x1-x3)) - vo2 *(x1+x3)/((x2-x1)*(x2-x3)) - vo3 *(x1+x2)/((x3-x1)*(x3-x2))
-
         c = vo1*x2*x3/((x1-x2)*(x1-x3)) + vo2*x1*x3 / ((x2-x1)*(x2-x3)) + vo3*x1*x2 / ((x3-x1)*(x3-x2))
 
         Nu hvor vi har a b og c på plads kan vi differentiere formlen.
-
         Det gøres således:
 
-        VODifferentieret =  (2*a) * x + b + c
+        GROMK =  (2*a) * x + b + c   = voDifferentieret
 
         når dette er klaret har vi fundet GROMK
-
         VODifferentieret = GROMK
 
         */
 
+    @Override
+    public void beregn() {
 
-        //if (this.vaerdi.getValue() == NaN) this.erBeregnet.setValue(false);
+        double vo1 = voOver.getVaerdi();
+        double vo2 = vo.getVaerdi();
+        double vo3 = voOver.getVaerdi();
+
+        double x1 = xOver.getVaerdi();
+        double x2 = x.getVaerdi();
+        double x3 = xUnder.getVaerdi();
+
+
+        // Her beregnes GROMK ud fra 3 punkter på parablen
+        // Først tjekkes derfor om der er 3 VO-værdier og 3 X-værdier
+
+        if ((vo1 != vo2) && (vo1 != vo3) && (vo2 != vo3)) {
+            if ((x1 != x2) && (x1 != x3) && (x2 != x3)) {
+
+
+                if (!Double.isNaN(vo1) && !Double.isNaN(vo2) && !Double.isNaN(vo3) && !Double.isNaN(x1) && !Double.isNaN(x2) && !Double.isNaN(x3)) {
+
+                    double a = vo1 / ((x1 - x2) * (x1 - x3)) + vo2 / ((x2 - x1) * (x2 - x3)) + vo3 / ((x3 - x1) * (x3 - x2));
+                    double b = -vo1 * (x2 + x3) / ((x1 - x2) * (x1 - x3)) - vo2 * (x1 + x3) / ((x2 - x1) * (x2 - x3)) - vo3 * (x1 + x2) / ((x3 - x1) * (x3 - x2));
+                    double c = vo1 * x2 * x3 / ((x1 - x2) * (x1 - x3)) + vo2 * x1 * x3 / ((x2 - x1) * (x2 - x3)) + vo3 * x1 * x2 / ((x3 - x1) * (x3 - x2));
+
+                    setVaerdi(a * 2 * x.getVaerdi() + b + c);
+                    setBeregnet(true);
+                }
+            }
+        }
+
+        if (this.vaerdi.getValue() == NaN) this.erBeregnet.setValue(false);
 
     }
 }
