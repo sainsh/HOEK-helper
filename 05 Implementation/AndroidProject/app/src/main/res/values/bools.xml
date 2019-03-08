@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="vis_antal_enheder">true</bool>
+    <bool name="vis_vo">true</bool>
+    <bool name="vis_ve">true</bool>
+    <bool name="vis_domk">true</bool>
+
+</resources>

@@ -13,6 +13,11 @@ public class VEImpl implements VE {
     private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
     private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
 
+    public VEImpl(){
+        vaerdi.setValue(NaN);
+        erBeregnet.setValue(false);
+    }
+
     @Override
     public void init(VO vo, X x, SE se, KE ke){
         this.vo = vo;
@@ -51,26 +56,21 @@ public class VEImpl implements VE {
     public void beregn() {
 
         // VE = VO / X
-        if(x.getVaerdi() != NaN && vo.getVaerdi() != NaN){
+        if(!Double.isNaN(x.getVaerdi()) && !Double.isNaN(vo.getVaerdi())){
 
             vaerdi.setValue(vo.getVaerdi() / x.getVaerdi());
             setBeregnet(true);
         }
 
         // VE = SE - KE
-        else if(se.getVaerdi() != NaN && ke.getVaerdi() != NaN){
-
+        else if(!Double.isNaN(se.getVaerdi()) && !Double.isNaN(ke.getVaerdi())){
             vaerdi.setValue(se.getVaerdi() - ke.getVaerdi());
             setBeregnet(true);
 
         }
         else if(getBeregnet()){
-
             setVaerdi(NaN);
-
         }
-
-
+        if (this.vaerdi.getValue() == NaN) this.erBeregnet.setValue(false);
     }
-
 }

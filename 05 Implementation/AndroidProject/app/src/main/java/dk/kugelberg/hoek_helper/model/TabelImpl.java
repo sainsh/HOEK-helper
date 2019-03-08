@@ -1,10 +1,15 @@
 package dk.kugelberg.hoek_helper.model;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class TabelImpl implements Tabel {
 
     private ArrayList<Raekke> tabel;
+
+    final char CSV_DELIMITER = ';';
 
     public TabelImpl() {
         tabel = new ArrayList<>();
@@ -50,15 +55,15 @@ public class TabelImpl implements Tabel {
 /*
         if (raekkenummer != 0) {
             raekke0 = tabel.get(raekkenummer - 1);
-            raekke0.getDOMK().init2(raekke0.getX(), raekke0.getVO());//and all others needed
+            raekke0.getDOMK().initUnder(raekke0.getX(), raekke0.getVO());//and all others needed
         }
         raekke1 = tabel.get(raekkenummer);
-        raekke1.getDOMK().init1(raekke1.getX(), raekke1.getVO()); // and all others needed
-        raekke1.getDOMK().init2(raekke1.getX(), raekke1.getVO()); // and all others needed
+        raekke1.getDOMK().initOver(raekke1.getX(), raekke1.getVO()); // and all others needed
+        raekke1.getDOMK().initUnder(raekke1.getX(), raekke1.getVO()); // and all others needed
 
         if (raekkenummer != tabel.size()) {
             raekke2 = tabel.get(raekkenummer + 1);
-            raekke2.getDOMK().init1(raekke2.getX(), raekke2.getVO()); //and all others needed
+            raekke2.getDOMK().initOver(raekke2.getX(), raekke2.getVO()); //and all others needed
         }
 
 */
@@ -181,6 +186,43 @@ public class TabelImpl implements Tabel {
     public void beregnX(int raekkenummer) {
         tabel.get(raekkenummer).getX().beregn();
         updateAdjacentRows(raekkenummer);
+
+    }
+
+    @Override
+    public void createCSV() {
+
+        try{
+            File file = new File("test.csv");
+            PrintWriter writer = new PrintWriter(file);
+            StringBuilder sb = new StringBuilder();
+
+            sb.append("X"+CSV_DELIMITER+"VO"+CSV_DELIMITER+"VE"+CSV_DELIMITER+"KE"+CSV_DELIMITER+"STO"+CSV_DELIMITER+"SE"+CSV_DELIMITER+"KO"+CSV_DELIMITER+"GROMK"+CSV_DELIMITER+"DOMK\n");
+
+
+
+            for (Raekke raekke: tabel) {
+
+                sb.append(String.valueOf(raekke.getX().getVaerdi())+CSV_DELIMITER);
+                sb.append(String.valueOf(raekke.getVO().getVaerdi())+CSV_DELIMITER);
+                sb.append(String.valueOf(raekke.getVE().getVaerdi())+CSV_DELIMITER);
+                sb.append(String.valueOf(raekke.getKE().getVaerdi())+CSV_DELIMITER);
+                sb.append(String.valueOf(raekke.getSTO().getVaerdi())+CSV_DELIMITER);
+                sb.append(String.valueOf(raekke.getSE().getVaerdi())+CSV_DELIMITER);
+                sb.append(String.valueOf(raekke.getKO().getVaerdi())+CSV_DELIMITER);
+                sb.append(String.valueOf(raekke.getGROMK().getVaerdi())+CSV_DELIMITER);
+                sb.append(String.valueOf(raekke.getDOMK().getVaerdi()));
+                sb.append("\n");
+
+            }
+
+            writer.write(sb.toString());
+            writer.close();
+
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
 
     }
 

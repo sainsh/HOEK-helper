@@ -3,10 +3,13 @@ package dk.kugelberg.hoek_helper.model;
 
 public interface DOMK {
 
-    void setVaerdi(double vaerdi);
+    void setVaerdi(double x);
     double getVaerdi();
     void beregn();
-    void init(VO vo1, VO vo2, STO sto, KO ko, VE ve, X x1, X x2, DOMK domk1, DOMK domk2);
+    void setBeregnet(boolean val);
+    boolean getBeregnet();
+    void init(VO vo, STO sto, KO ko, VE ve, X x, DOMK domk);
+    void initOver(VO voOver, X xOver, DOMK domkOver);
     boolean erBeregnet();
 
 

@@ -54,7 +54,7 @@ public class XImplTest {
         XImpl x = new XImpl();
         x.initOver(new XMock(Double.NaN),new VOMock(Double.NaN));
         x.init(new VOMock(Double.NaN), new VEMock(Double.NaN), new DomkMock(Double.NaN), new STOMock(Double.NaN), new SEMock(Double.NaN), new GROMKMock(Double.NaN), new KOMock(Double.NaN),new KEMock(Double.NaN));
-        //x.init1();
+        //x.initOver();
         double resultat = Double.NaN;
         x.beregn();
         assertEquals(x.getVaerdi(), resultat, delta);
@@ -253,12 +253,12 @@ public class XImplTest {
         }
 
         @Override
-        public void init1(X x1, VO vo1) {
+        public void initOver(X x1, VO vo1) {
 
         }
 
         @Override
-        public void init2(X x2, VO vo2, DOMK domk2) {
+        public void initUnder(X x2, VO vo2, DOMK domk2) {
 
         }
 
@@ -349,8 +349,19 @@ public class XImplTest {
             return false;
         }
 
+
         @Override
-        public void init(X x, VO vo, KO ko, SE se, GROMK gromk, X xOver, VO voOver, X xUnder, VO voUnder) {
+        public void init(X x, VO vo, KO ko, SE se, GROMK gromk) {
+
+        }
+
+        @Override
+        public void initOver(X xOver, VO voOver) {
+
+        }
+
+        @Override
+        public void initUnder(X xUnder, VO voUnder) {
 
         }
 
@@ -371,8 +382,19 @@ public class XImplTest {
             this.vaerdi = vaerdi;
         }
 
+
         @Override
-        public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se, X xOver, VO voOver, X xUnder, VO voUnder, DOMK domkUnder) {
+        public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se) {
+
+        }
+
+        @Override
+        public void initOver(X xOver, VO voOver) {
+
+        }
+
+        @Override
+        public void initUnder(X xUnder, VO voUnder, DOMK domkUnder) {
 
         }
 
@@ -462,14 +484,32 @@ class DomkMock implements DOMK {
     }
 
     @Override
-    public void init(VO vo1, VO vo2, STO sto, KO ko, VE ve, X x1, X x2, DOMK domk1, DOMK domk2) {
+    public void setBeregnet(boolean val) {
 
     }
+
+    @Override
+    public boolean getBeregnet() {
+        return false;
+    }
+
+    @Override
+    public void init(VO vo, STO sto, KO ko, VE ve, X x, DOMK domk) {
+
+    }
+
+    @Override
+    public void initOver(VO voOver, X xOver, DOMK domkOver) {
+
+    }
+
 
     @Override
     public boolean erBeregnet() {
         return false;
     }
+
+
 }
 
 class XMock implements X {
@@ -528,8 +568,19 @@ class KOMock implements KO{
         this.vaerdi = vaerdi;
     }
 
+
     @Override
-    public void init(KE ke, X x, STO sto, VO vo, X xOver, VO voOver, X xUnder, VO voUnder) {
+    public void init(KE ke, X x, STO sto, VO vo) {
+
+    }
+
+    @Override
+    public void initOver(X xOver, VO voOver) {
+
+    }
+
+    @Override
+    public void initUnder(X xUnder, VO voUnder) {
 
     }
 

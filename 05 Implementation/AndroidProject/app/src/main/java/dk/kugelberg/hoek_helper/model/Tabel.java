@@ -51,4 +51,5 @@ public interface Tabel {
     void beregnX(int raekkenummer);
 
 
+    void createCSV();
 }

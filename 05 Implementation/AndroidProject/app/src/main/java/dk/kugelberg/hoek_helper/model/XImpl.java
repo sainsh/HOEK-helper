@@ -8,19 +8,19 @@ public class XImpl implements X {
     private VO vo;
     private VE ve;
     private X xOver;
-    private X xUnder;   //Jeg ved ikke om vi nogensinde får brug for denne?
+    private X xUnder;
     private KO ko;
     private KE ke;
     private VO voOver;
-    private VO voUnder;   //Jeg ved ikke om vi nogensinde får brug for denne?
+    private VO voUnder;
     private DOMK domk;
-    private DOMK domkUnder;    //Jeg ved ikke om vi nogensinde får brug for denne?
+    private DOMK domkUnder;
     private STO sto;
     private SE se;
     private GROMK gromk;
-
     private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
     private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
+
 
     public XImpl(){
         vaerdi.setValue(NaN);
@@ -82,7 +82,6 @@ public class XImpl implements X {
     @Override
     public void beregn() {
 
-
         // X = VO / VE
         if (!Double.isNaN(vo.getVaerdi()) && !Double.isNaN(ve.getVaerdi())){
             setVaerdi(vo.getVaerdi() / ve.getVaerdi());
@@ -110,7 +109,7 @@ public class XImpl implements X {
 
         } else if (getBeregnet()){
             setVaerdi(NaN);
-
     }
+    if (this.vaerdi.getValue() == NaN) this.erBeregnet.setValue(false);
 }
 }

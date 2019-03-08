@@ -19,16 +19,28 @@ public class STOImpl implements STO {
     private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
     private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
 
+    public STOImpl(){
+        vaerdi.setValue(NaN);
+        erBeregnet.setValue(false);
+    }
+
     @Override
-    public void init(X x, VO vo, KO ko, SE se, GROMK gromk, X xOver, VO voOver, X xUnder, VO voUnder) {
+    public void init(X x, VO vo, KO ko, SE se, GROMK gromk) {
         this.x = x;
         this.vo = vo;
         this.ko = ko;
         this.se = se;
-        vaerdi.setValue(NaN);
-        erBeregnet.setValue(false);
+        this.gromk = gromk;
+    }
+
+    @Override
+    public void initOver(X xOver, VO voOver){
         this.xOver = xOver;
         this.voOver = voOver;
+    }
+
+    @Override
+    public void initUnder(X xUnder, VO voUnder){
         this.xUnder = xUnder;
         this.voUnder = voUnder;
     }
@@ -62,23 +74,23 @@ public class STOImpl implements STO {
     public void beregn() {
 
         //STO = VO + KO
-        if (vo.getVaerdi() != NaN && ko.getVaerdi() != NaN) {
+        if (!Double.isNaN(vo.getVaerdi()) && !Double.isNaN(ko.getVaerdi())) {
             vaerdi.setValue(vo.getVaerdi() + ko.getVaerdi());
             setBeregnet(true);
 
             //STO = SE * X
-        } else if (se.getVaerdi() != NaN && x.getVaerdi() != NaN) {
+        } else if (!Double.isNaN(se.getVaerdi()) && !Double.isNaN(x.getVaerdi())) {
             vaerdi.setValue(se.getVaerdi() * x.getVaerdi());
             setBeregnet(true);
 
         } else if (getBeregnet()) {
-
             setVaerdi(NaN);
-
-            // TODO: undersøg hvordan STO=GROMK * X kan være rigtig???
-            //this.sto = gromk.getVaerdi() * x.getVaerdi();
-            //this.vaerdi = gromk.getVaerdi() * x.getVaerdi();
-
         }
+
+        // TODO: undersøg hvordan STO=GROMK * X kan være rigtig???
+        //this.sto = gromk.getVaerdi() * x.getVaerdi();
+        //this.vaerdi = gromk.getVaerdi() * x.getVaerdi();
+
+        if (this.vaerdi.getValue() == NaN) this.erBeregnet.setValue(false);
     }
 }

@@ -3,6 +3,8 @@ package dk.kugelberg.hoek_helper.model;
 public class RaekkeImpl implements Raekke {
 
     private DOMK domk = null;
+    private GROMK gromk = null;
+    private KE ke = null;
     private KO ko = null;
     private SE se = null;
     private STO sto = null;
@@ -10,8 +12,14 @@ public class RaekkeImpl implements Raekke {
     private VO vo = null;
     private X x = null;
 
+    private int raekkenummer;
+
+
     public RaekkeImpl(){
+        // Instantierer beregninger aka. kolonerne
         domk = new DOMKImpl();
+        gromk = new GROMKImpl();
+        ke = new KEimpl();
         ko = new KOImpl();
         se = new SEImpl();
         sto = new STOImpl();
@@ -25,6 +33,16 @@ public class RaekkeImpl implements Raekke {
     @Override
     public DOMK getDOMK() {
         return domk;
+    }
+
+    @Override
+    public GROMK getGROMK() {
+        return gromk;
+    }
+
+    @Override
+    public KE getKE() {
+        return ke;
     }
 
     @Override
@@ -55,6 +73,11 @@ public class RaekkeImpl implements Raekke {
     @Override
     public X getX() {
         return x;
+    }
+
+    @Override
+    public int getRaekkenummer() {
+        return raekkenummer;
     }
 
     @Override
@@ -96,4 +119,24 @@ public class RaekkeImpl implements Raekke {
         this.x = x;
 
     }
+
+    @Override
+    public void setKE(KE ke) {
+        this.ke = ke;
+    }
+
+    @Override
+    public void setGROMK(GROMK gromk) {
+        this.gromk = gromk;
+    }
+
+
+
+    @Override
+    public void setRaekkenummer(int raekkenummer) {
+        this.raekkenummer = raekkenummer;
+
+    }
+
+
 }

@@ -2,23 +2,31 @@ package dk.kugelberg.hoek_helper.model;
 
 import static java.lang.Double.NaN;
 
+import androidx.lifecycle.MutableLiveData;
+
 public class GROMKImpl implements GROMK {
 
     private VE ve;
     private X x;
-    private X x1;
-    private X x2;
+    private X xOver;
+    private X xUnder;
     private KO ko;
-    private VO vo1;
-    private VO vo2;
+    private VO vo;
+    private VO voOver;
+    private VO voUnder;
     private DOMK domk;
-    private DOMK domk2;
+    private DOMK domkUnder;
     private STO sto;
     private SE se;
 
 
-    private double vaerdi = NaN;
-    private boolean erBeregnet = false;
+    private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
+    private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
+
+    public GROMKImpl() {
+        vaerdi.setValue(NaN);
+        erBeregnet.setValue(false);
+    }
 
     @Override
     public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se) {
@@ -31,16 +39,16 @@ public class GROMKImpl implements GROMK {
     }
 
     @Override
-    public void init1(X x1, VO vo1) {
-        this.x1 = x1;
-        this.vo1 = vo1;
+    public void initOver(X xOver, VO voOver) {
+        this.xOver = xOver;
+        this.voOver = voOver;
     }
 
     @Override
-    public void init2(X x2, VO vo2, DOMK domk2) {
-        this.x2 = x2;
-        this.vo2 = vo2;
-        this.domk2 = domk2;
+    public void initUnder(X xUnder, VO voUnder, DOMK domkUnder) {
+        this.xUnder = xUnder;
+        this.voUnder = voUnder;
+        this.domkUnder = domkUnder;
     }
 
     @Override
@@ -48,31 +56,90 @@ public class GROMKImpl implements GROMK {
         if (vaerdi < 0) {
             throw new VaerdiException();
         } else {
-            this.vaerdi = vaerdi;
+            this.vaerdi.setValue(vaerdi);
             setBeregnet(false);
         }
     }
 
     @Override
     public double getVaerdi() {
-        return vaerdi;
+        return vaerdi.getValue();
     }
 
     @Override
-    public void setBeregnet(boolean val){
-        erBeregnet = val;
+    public void setBeregnet(boolean val) {
+        erBeregnet.setValue(val);
     }
 
     @Override
-    public boolean getBeregnet(){
-        return erBeregnet;
+    public boolean getBeregnet() {
+        return erBeregnet.getValue();
     }
+
+
+    /**
+        GROMK kan findes på 2 måder
+        enten ved at differentiere formlen for VO
+
+        Formlen for VO er en normal andengrads ligning der ser således ud:
+        VO = a*(x*x) + b*x + c
+        VO vil altid være en parabel da x ikke må være negativ
+        og det lader til at c altid 0 for HØK'erne
+
+        ELLER hvis vi ikke kender VO formlen
+        kan vi vinde GROMK ud fra 3 punkter af VO og x (Hvor x'erne er forskellige)
+        kan vi finde a, b og c i ovenstående formel således:
+
+        vo1 og x1
+        vo2 og x2
+        vo3 og x3
+
+        a = vo1 / ((x1-x2)*(x1-x3)) + vo2 / ((x2-x1)*(x2-x3)) + vo3 / ((x3-x1)*(x3-x2))
+        b = -vo1*(x2+x3)/((x1-x2)*(x1-x3)) - vo2 *(x1+x3)/((x2-x1)*(x2-x3)) - vo3 *(x1+x2)/((x3-x1)*(x3-x2))
+        c = vo1*x2*x3/((x1-x2)*(x1-x3)) + vo2*x1*x3 / ((x2-x1)*(x2-x3)) + vo3*x1*x2 / ((x3-x1)*(x3-x2))
+
+        Nu hvor vi har a b og c på plads kan vi differentiere formlen.
+        Det gøres således:
+
+        GROMK =  (2*a) * x + b + c   = voDifferentieret
+
+        når dette er klaret har vi fundet GROMK
+        VODifferentieret = GROMK
+
+        */
 
     @Override
     public void beregn() {
 
-        // TODO: lav alle beregningerne til GROMK
+        double vo1 = voOver.getVaerdi();
+        double vo2 = vo.getVaerdi();
+        double vo3 = voOver.getVaerdi();
 
+        double x1 = xOver.getVaerdi();
+        double x2 = x.getVaerdi();
+        double x3 = xUnder.getVaerdi();
+
+
+        // Her beregnes GROMK ud fra 3 punkter på parablen
+        // Først tjekkes derfor om der er 3 VO-værdier og 3 X-værdier
+
+        if ((vo1 != vo2) && (vo1 != vo3) && (vo2 != vo3)) {
+            if ((x1 != x2) && (x1 != x3) && (x2 != x3)) {
+
+
+                if (!Double.isNaN(vo1) && !Double.isNaN(vo2) && !Double.isNaN(vo3) && !Double.isNaN(x1) && !Double.isNaN(x2) && !Double.isNaN(x3)) {
+
+                    double a = vo1 / ((x1 - x2) * (x1 - x3)) + vo2 / ((x2 - x1) * (x2 - x3)) + vo3 / ((x3 - x1) * (x3 - x2));
+                    double b = -vo1 * (x2 + x3) / ((x1 - x2) * (x1 - x3)) - vo2 * (x1 + x3) / ((x2 - x1) * (x2 - x3)) - vo3 * (x1 + x2) / ((x3 - x1) * (x3 - x2));
+                    double c = vo1 * x2 * x3 / ((x1 - x2) * (x1 - x3)) + vo2 * x1 * x3 / ((x2 - x1) * (x2 - x3)) + vo3 * x1 * x2 / ((x3 - x1) * (x3 - x2));
+
+                    setVaerdi(a * 2 * x.getVaerdi() + b + c);
+                    setBeregnet(true);
+                }
+            }
+        }
+
+        if (this.vaerdi.getValue() == NaN) this.erBeregnet.setValue(false);
 
     }
 }
