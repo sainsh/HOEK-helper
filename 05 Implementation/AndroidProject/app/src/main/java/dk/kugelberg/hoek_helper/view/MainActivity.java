@@ -32,7 +32,10 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import dk.kugelberg.hoek_helper.R;
+import dk.kugelberg.hoek_helper.model.Controller;
+import dk.kugelberg.hoek_helper.model.ControllerImpl;
 import dk.kugelberg.hoek_helper.model.Raekke;
+import dk.kugelberg.hoek_helper.model.Tabel;
 import dk.kugelberg.hoek_helper.model.TabelImpl;
 import dk.kugelberg.hoek_helper.view.ViewModel.ModelViewModel;
 import dk.kugelberg.hoek_helper.view.database.AppDatabase;
@@ -59,11 +62,15 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     private AppDatabase appDatabase;
 
+    private Controller controller;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        controller = ControllerImpl.getInstance();
 
         tableLayoutHeader = findViewById(R.id.tableLayout_header);
 
@@ -105,7 +112,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
 //        recyclerView.smoothScrollToPosition(50);
 
-        setupViewModel();
+//        setupViewModel();
+        setupViewModel2();
 
         System.out.println("onCreate");
 
@@ -113,28 +121,31 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     }
 
 
-    private void setupViewModel() {
+//    private void setupViewModel() {
+//
+//        MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+//
+//        viewModel.getTasks().observe(this, new Observer<List<DataRow>>() {
+//
+//            @Override
+//            public void onChanged(@Nullable List<DataRow> dataRows) {
+//                adapter.setTasks(doMath(dataRows));
+//            }
+//        });
+//    }
 
-        MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-
-        viewModel.getTasks().observe(this, new Observer<List<DataRow>>() {
-
-            @Override
-            public void onChanged(@Nullable List<DataRow> dataRows) {
-                adapter.setTasks(doMath(dataRows));
-            }
-        });
-    }
+    private ModelViewModel viewModel;
 
     private void setupViewModel2() {
 
-        ModelViewModel viewModel = ViewModelProviders.of(this).get(ModelViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(ModelViewModel.class);
 
         viewModel.getTable().observe(this, new Observer<ArrayList<Raekke>>() {
 
             @Override
             public void onChanged(@Nullable ArrayList<Raekke> raekker) {
                 adapter.setTasks(raekker);
+                System.out.println("Shit changed");
             }
         });
     }
@@ -159,8 +170,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                     if (dataRowAbove.getVo() != 0 && dataRowAbove.getAntalEnheder() != 0)
                         dataRow.setDomk((dataRow.getVo() - dataRowAbove.getVo()) / (dataRow.getAntalEnheder() - dataRowAbove.getAntalEnheder()));
                 }
-            }
-            else {
+            } else {
                 dataRow.setVe(0);
                 dataRow.setDomk(0);
             }
@@ -281,33 +291,50 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
      * The following code adds rows to the table
      */
 
+    double testX = 0;
+    double testVO = 0;
+
     public void addRow(View view) {
 
-        for (int i = 0; i < 5; i++) {
-            final DataRow dataRow = new DataRow(0, 0, 0, 0);
+        Tabel tabel = controller.getTabel();
+        ArrayList<Raekke> arrayList = tabel.getTabelMld().getValue();
 
-            AppExecutors.getInstance().diskIO().execute(new Runnable() {
-                @Override
-                public void run() {
-                    appDatabase.taskDao().insertTask(dataRow);
-                }
-            });
+        int tabelSize = arrayList.size();
+
+        tabel.addRaekke(tabelSize);
+
+        Raekke raekke = tabel.getRaekke(tabelSize);
+        raekke.getX().setVaerdi(testX);
+        testX += 1000;
+        raekke.getVO().setVaerdi(testVO);
+        testVO += 1000 * (testX / 1000);
+        raekke.getVE().init(raekke.getVO(), raekke.getX(), raekke.getSE(), raekke.getKE());
+        raekke.getVE().beregn();
+
+        if (tabelSize != 0) {
+            raekke.getDOMK().init(raekke.getVO(), raekke.getSTO(), raekke.getKO(), raekke.getVE(), raekke.getX());
+
+            Raekke raekkeOver = tabel.getRaekke(tabelSize - 1);
+            raekke.getDOMK().initOver(raekkeOver.getVO(), raekkeOver.getX(), raekkeOver.getDOMK());
+
+            raekke.getDOMK().beregn();
         }
 
-//        recyclerView.scrollToPosition(50);
-//        recyclerView.smoothScrollToPosition(50);
+        tabel.getTabelMld().setValue(arrayList);
 
+//        adapter.setTasks(controller.getTabel().getTabel().getValue());
 
-//        AppExecutors.getInstance().diskIO().execute(new Runnable() {
-//            @Override
-//            public void run() {
-//                List<DataRow> tasks = appDatabase.taskDao().loadAll();
+//        for (int i = 0; i < 5; i++) {
+//            final DataRow dataRow = new DataRow(0, 0, 0, 0);
 //
-//                for (int i = 0; i < tasks.size(); i++) {
-//                    System.out.println(tasks.get(i).getId());
+//            AppExecutors.getInstance().diskIO().execute(new Runnable() {
+//                @Override
+//                public void run() {
+//                    appDatabase.taskDao().insertTask(dataRow);
 //                }
-//            }
-//        });
+//            });
+//        }
+
     }
 
     private PopupWindow popupWindow;
@@ -477,8 +504,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         super.onDestroy();
         PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
     }
-
-
 
 
 }

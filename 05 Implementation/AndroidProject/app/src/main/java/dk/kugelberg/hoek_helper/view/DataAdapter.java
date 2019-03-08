@@ -18,6 +18,8 @@ import java.util.Locale;
 
 import androidx.recyclerview.widget.RecyclerView;
 import dk.kugelberg.hoek_helper.R;
+import dk.kugelberg.hoek_helper.model.Controller;
+import dk.kugelberg.hoek_helper.model.ControllerImpl;
 import dk.kugelberg.hoek_helper.model.Raekke;
 import dk.kugelberg.hoek_helper.view.database.AppDatabase;
 import dk.kugelberg.hoek_helper.view.database.DataRow;
@@ -350,17 +352,26 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
                         if (currentAntalEnheder != newAntalEnheder || currentVo != newVo || currentVe != newVe || currentDomk != newDomk) {
                             System.out.println("Something gets changed");
 
-                            dataRow.setX(newAntalEnheder);
-                            dataRow.setVo(newVo);
-                            dataRow.setVe(newVe);
-                            dataRow.setDomk(newDomk);
+                            dataRow.getX().setVaerdi(newAntalEnheder);
+                            dataRow.getVO().setVaerdi(newVo);
+//                            dataRow.getVE().setVaerdi(newVe);
+//                            dataRow.getDOMK().setVaerdi(newDomk);
 
-                            AppExecutors.getInstance().diskIO().execute(new Runnable() {
-                                @Override
-                                public void run() {
-                                    appDatabase.taskDao().updateTask(dataRow);
-                                }
-                            });
+                            dataRow.getVE().init(dataRow.getVO(), dataRow.getX(), dataRow.getSE(), dataRow.getKE());
+                            dataRow.getVE().beregn();
+
+
+                            ControllerImpl.getInstance().getTabel().getTabelMld().setValue(ControllerImpl.getInstance().getTabel().getTabelMld().getValue());
+                            ControllerImpl.getInstance().getTabel().getTabelMld().setValue(dataRows);
+
+//                            AppExecutors.getInstance().diskIO().execute(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    appDatabase.taskDao().updateTask(dataRow);
+//                                }
+//                            });
+
+
                         }
 
 //                        if (!currentAntalEnhederString.equals(newAntalEnhederString)) {
@@ -396,74 +407,74 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
         }
 
         private void moveUp() {
-            if (getAdapterPosition() != 0) {
-                final DataRow dataRowCurrent = dataRows.get(getAdapterPosition());
-                final DataRow dataRowAbove = dataRows.get(getAdapterPosition() - 1);
-
-                int idCurrent = dataRowCurrent.getId();
-                int idAbove = dataRowAbove.getId();
-
-                dataRowCurrent.setId(idAbove);
-                dataRowAbove.setId(idCurrent);
-
-                AppExecutors.getInstance().diskIO().execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        appDatabase.taskDao().updateTask(dataRowCurrent);
-                        appDatabase.taskDao().updateTask(dataRowAbove);
-                    }
-                });
-            }
+//            if (getAdapterPosition() != 0) {
+//                final DataRow dataRowCurrent = dataRows.get(getAdapterPosition());
+//                final DataRow dataRowAbove = dataRows.get(getAdapterPosition() - 1);
+//
+//                int idCurrent = dataRowCurrent.getId();
+//                int idAbove = dataRowAbove.getId();
+//
+//                dataRowCurrent.setId(idAbove);
+//                dataRowAbove.setId(idCurrent);
+//
+//                AppExecutors.getInstance().diskIO().execute(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        appDatabase.taskDao().updateTask(dataRowCurrent);
+//                        appDatabase.taskDao().updateTask(dataRowAbove);
+//                    }
+//                });
+//            }
         }
 
         private void moveDown() {
-            if (getAdapterPosition() != dataRows.size()) {
-                final DataRow dataRowCurrent = dataRows.get(getAdapterPosition());
-                final DataRow dataRowBelow = dataRows.get(getAdapterPosition() + 1);
-
-                int idCurrent = dataRowCurrent.getId();
-                int idBelow = dataRowBelow.getId();
-
-                dataRowCurrent.setId(idBelow);
-                dataRowBelow.setId(idCurrent);
-
-                AppExecutors.getInstance().diskIO().execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        appDatabase.taskDao().updateTask(dataRowCurrent);
-                        appDatabase.taskDao().updateTask(dataRowBelow);
-                    }
-                });
-            }
+//            if (getAdapterPosition() != dataRows.size()) {
+//                final DataRow dataRowCurrent = dataRows.get(getAdapterPosition());
+//                final DataRow dataRowBelow = dataRows.get(getAdapterPosition() + 1);
+//
+//                int idCurrent = dataRowCurrent.getId();
+//                int idBelow = dataRowBelow.getId();
+//
+//                dataRowCurrent.setId(idBelow);
+//                dataRowBelow.setId(idCurrent);
+//
+//                AppExecutors.getInstance().diskIO().execute(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        appDatabase.taskDao().updateTask(dataRowCurrent);
+//                        appDatabase.taskDao().updateTask(dataRowBelow);
+//                    }
+//                });
+//            }
         }
 
         private void deleteRow() {
-            final DataRow dataRow = dataRows.get(getAdapterPosition());
-
-            AppExecutors.getInstance().diskIO().execute(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("pos" + getAdapterPosition());
-                    System.out.println("size" + dataRows.size());
-                    System.out.println("ae" + dataRow.getAntalEnheder());
-                    System.out.println("id" + dataRow.getId());
-
-                    appDatabase.taskDao().deleteTask(dataRow);
-                }
-            });
+//            final DataRow dataRow = dataRows.get(getAdapterPosition());
+//
+//            AppExecutors.getInstance().diskIO().execute(new Runnable() {
+//                @Override
+//                public void run() {
+//                    System.out.println("pos" + getAdapterPosition());
+//                    System.out.println("size" + dataRows.size());
+//                    System.out.println("ae" + dataRow.getAntalEnheder());
+//                    System.out.println("id" + dataRow.getId());
+//
+//                    appDatabase.taskDao().deleteTask(dataRow);
+//                }
+//            });
         }
 
         private void deleteAll() {
-            for (int i = 0; i < dataRows.size(); i++) {
-                final DataRow dataRow = dataRows.get(i);
-
-                AppExecutors.getInstance().diskIO().execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        appDatabase.taskDao().deleteTask(dataRow);
-                    }
-                });
-            }
+//            for (int i = 0; i < dataRows.size(); i++) {
+//                final DataRow dataRow = dataRows.get(i);
+//
+//                AppExecutors.getInstance().diskIO().execute(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        appDatabase.taskDao().deleteTask(dataRow);
+//                    }
+//                });
+//            }
         }
     }
 

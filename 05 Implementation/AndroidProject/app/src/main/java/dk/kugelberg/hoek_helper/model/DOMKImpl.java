@@ -26,13 +26,12 @@ public class DOMKImpl implements DOMK {
     }
 
     @Override
-    public void init(VO vo, STO sto, KO ko, VE ve, X x, DOMK domk) {
+    public void init(VO vo, STO sto, KO ko, VE ve, X x) {
         this.vo = vo;
         this.sto = sto;
         this.ko = ko;
         this.ve = ve;
         this.x = x;
-        this.domk = domk;
     }
 
     @Override

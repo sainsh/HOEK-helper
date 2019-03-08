@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 public interface Tabel {
 
     Raekke getRaekke(int raekkenummer);
-    MutableLiveData<ArrayList<Raekke>> getTabel();
+    MutableLiveData<ArrayList<Raekke>> getTabelMld();
     void addRaekke(int raekkenummer);
     void deleteRaekke(int raekkenummer);
 

@@ -8,7 +8,7 @@ public interface DOMK extends Noegletal {
     void beregn();
     void setBeregnet(boolean val);
     boolean getBeregnet();
-    void init(VO vo, STO sto, KO ko, VE ve, X x, DOMK domk);
+    void init(VO vo, STO sto, KO ko, VE ve, X x);
     void initOver(VO voOver, X xOver, DOMK domkOver);
     boolean erBeregnet();
 

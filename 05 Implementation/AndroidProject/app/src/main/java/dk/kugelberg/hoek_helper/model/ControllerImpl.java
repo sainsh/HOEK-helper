@@ -1,5 +1,7 @@
 package dk.kugelberg.hoek_helper.model;
 
+import android.content.Context;
+
 public class ControllerImpl implements Controller {
 
     DOMK domk;
@@ -13,15 +15,26 @@ public class ControllerImpl implements Controller {
     X x1;
     X x2;
 
-    private Tabel tabel;
+    private TabelImpl tabel;
 
     public ControllerImpl() {
-
         tabel = new TabelImpl();
     }
 
     public Tabel getTabel() {
         return tabel;
+    }
+
+    private static final Object LOCK = new Object();
+    private static ControllerImpl sInstance;
+
+    public static ControllerImpl getInstance() {
+        if (sInstance == null) {
+            synchronized (LOCK) {
+                sInstance = new ControllerImpl();
+            }
+        }
+        return sInstance;
     }
 
 //    public ControllerImpl() {
@@ -34,7 +47,7 @@ public class ControllerImpl implements Controller {
 //        domk = new DOMKImpl();
 //    }
 
-     public void angivKO(double vaerdi, int raekkenummer) {
+    public void angivKO(double vaerdi, int raekkenummer) {
 
 
         //ko = tabel.getRaekke(raekkenummer).getKO();
@@ -101,7 +114,7 @@ public class ControllerImpl implements Controller {
         //domk = tabel.getRaekke(raekkenummer).getDomk();
 
         // Init data field to object
-        domk.init(vo2,sto,ko,ve,x2,domk);
+        domk.init(vo2, sto, ko, ve, x2);
 
         // Beregning goes here
         domk.beregn();
@@ -110,7 +123,6 @@ public class ControllerImpl implements Controller {
     }
 
     public void angivDOMK(double vaerdi, int raekkenummer) {
-
 
 
     }
