@@ -13,11 +13,16 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import dk.kugelberg.hoek_helper.R;
+import dk.kugelberg.hoek_helper.view.viewmodel.MainActivity;
+import dk.kugelberg.hoek_helper.view.viewmodel.MainActivityViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class RowFragment extends Fragment {
+
+
+    private MainActivity viewModel = new MainActivityViewModel();
 
     //Værdierne bruges til at sætte objekternes værdi i model.
     //Objekterne oprettes først i model og derfor bruges primitive variable i view.
@@ -30,8 +35,12 @@ public class RowFragment extends Fragment {
     EditText veEditText;
 
 
+
     public RowFragment() {
         // Required empty public constructor
+
+        // Create new row in tabel
+        viewModel.addRow();
     }
 
 
@@ -46,7 +55,7 @@ public class RowFragment extends Fragment {
         voEditText = v.findViewById(R.id.vo_text_view);
         voEditText.addTextChangedListener(voTextWatcher);
         veEditText = v.findViewById(R.id.ve_text_view);
-                return v;
+        return v;
     }
 
     public void beregn(){
@@ -62,7 +71,8 @@ public class RowFragment extends Fragment {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            beregn();
+
+
         }
 
         @Override

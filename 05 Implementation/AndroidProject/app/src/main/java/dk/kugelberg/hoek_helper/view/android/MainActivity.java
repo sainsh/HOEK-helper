@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<RowFragment> rows;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(R.id.main_activity, rf);
         rows.add(rf);
+
         ft.commit();
     }
 }

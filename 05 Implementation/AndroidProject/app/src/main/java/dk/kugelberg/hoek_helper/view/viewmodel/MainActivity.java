@@ -8,15 +8,17 @@ import dk.kugelberg.hoek_helper.model.X;
 public interface MainActivity {
 
 
-    VO getVOVaerdi(int raekkenummer);
-    void setVOVaerdi(int raekkenummer, double value);
+    void addRow();
 
-    X getXVaerdi(int raekkenummer);
-    void setXVaerdi(int raekkenummer, double value);
+    VO getVO(int raekkenummer);
+    void setVO(int raekkenummer, double value);
 
-    VE getVEVaerdi(int raekkenummer);
-    void setVEVaerdi(int raekkenummer, double value);
+    X getX(int raekkenummer);
+    void setX(int raekkenummer, double value);
 
-    DOMK getDOMKVaerdi(int raekkenummer);
-    void setDOMKVaerdi(int raekkenummer, double value);
+    VE getVE(int raekkenummer);
+    void setVE(int raekkenummer, double value);
+
+    DOMK getDOMK(int raekkenummer);
+    void setDOMK(int raekkenummer, double value);
 }
