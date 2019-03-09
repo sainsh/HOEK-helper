@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         ft.add(R.id.main_activity, rf);
         rows.add(rf);
 
+        System.out.println("ROW SIZE!! : " + rows.size());
         rf.setRaekkenummer(rows.size());
         rf.setViewModel(viewModel);
         viewModel.addRow();

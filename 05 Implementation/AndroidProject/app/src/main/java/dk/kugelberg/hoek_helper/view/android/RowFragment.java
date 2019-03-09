@@ -36,6 +36,7 @@ public class RowFragment extends Fragment {
     private EditText xEditText;
     private EditText voEditText;
     private EditText veEditText;
+    private EditText domkEditText;
 
     private int raekkenummer;
 
@@ -59,6 +60,7 @@ public class RowFragment extends Fragment {
         xEditText = v.findViewById(R.id.x_text_view);
         voEditText = v.findViewById(R.id.vo_text_view);
         veEditText = v.findViewById(R.id.ve_text_view);
+        domkEditText = v.findViewById(R.id.domk_text_view);
 
         //xEditText.addTextChangedListener(xFieldWatcher);
         //voEditText.addTextChangedListener(voTextWatcher);
@@ -66,18 +68,58 @@ public class RowFragment extends Fragment {
 
 
         xEditText.addTextChangedListener(new TextWatcher() {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                setX(Double.parseDouble(xEditText.getText().toString()));
+                // Set X value
+                viewModel.getRow(getRaekkenummer()).getX().setVaerdi(getX());
+                System.out.println("\n[++] RÆKKENUMMER: " + getRaekkenummer());
+            }
             public void afterTextChanged(Editable s) {
 
-                // Set X value
-                setX(Double.parseDouble(xEditText.getText().toString()));
-                System.out.println("[--] X VÆRDI: " + getX());
-                viewModel.getRow(getRaekkenummer()).getX().setVaerdi(getX());
+            }
+        });
+
+        voEditText.addTextChangedListener(new TextWatcher() {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                setVo(Double.parseDouble(voEditText.getText().toString()));
+                // Set VO value
+                viewModel.getRow(getRaekkenummer()).getVO().setVaerdi(getVo());
+                System.out.println("\n[++] RÆKKENUMMER: " + getRaekkenummer());
+            }
+            public void afterTextChanged(Editable s) {
 
             }
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
         });
+
+        veEditText.addTextChangedListener(new TextWatcher() {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                setVe(Double.parseDouble(veEditText.getText().toString()));
+                // Set VE value
+                viewModel.getRow(getRaekkenummer()).getVE().setVaerdi(getVe());
+                System.out.println("\n[++] RÆKKENUMMER: " + getRaekkenummer());
+            }
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        domkEditText.addTextChangedListener(new TextWatcher() {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                setDomk(Double.parseDouble(domkEditText.getText().toString()));
+                // Set DOMK value
+                viewModel.getRow(getRaekkenummer()).getDOMK().setVaerdi(getDomk());
+                System.out.println("\n[++] RÆKKENUMMER: " + getRaekkenummer());
+            }
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
 
 
 
