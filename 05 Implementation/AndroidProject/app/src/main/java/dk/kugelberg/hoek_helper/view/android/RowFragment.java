@@ -24,18 +24,27 @@ public class RowFragment extends Fragment {
 
     //Værdierne bruges til at sætte objekternes værdi i model.
     //Objekterne oprettes først i model og derfor bruges primitive variable i view.
-    double x = Double.NaN;
-    double vo = Double.NaN;
-    double ve = Double.NaN;
-    double domk = Double.NaN;
+    private double x = Double.NaN;
+    private double vo = Double.NaN;
+    private double ve = Double.NaN;
+    private double domk = Double.NaN;
 
-    EditText xEditText;
-    EditText voEditText;
-    EditText veEditText;
+    private EditText xEditText;
+    private EditText voEditText;
+    private EditText veEditText;
 
+    private int raekkenummer;
 
+    public int getRaekkenummer() {
+        return raekkenummer;
+    }
+
+    public void setRaekkenummer(int raekkenummer) {
+        this.raekkenummer = raekkenummer;
+    }
 
     public RowFragment() {
+
         // Required empty public constructor
 
         // Create new row in tabel

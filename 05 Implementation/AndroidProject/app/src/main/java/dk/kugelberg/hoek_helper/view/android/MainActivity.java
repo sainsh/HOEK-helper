@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(R.id.main_activity, rf);
         rows.add(rf);
+        rf.setRaekkenummer(rows.size());
         viewModel.addRow();
         ft.commit();
     }
