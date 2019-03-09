@@ -1,23 +1,23 @@
 package dk.kugelberg.hoek_helper.view.android;
 
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
 import java.util.ArrayList;
 
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import dk.kugelberg.hoek_helper.R;
-import dk.kugelberg.hoek_helper.view.viewmodel.MainActivityViewModel;
+import dk.kugelberg.hoek_helper.view.viewmodel.Main;
+import dk.kugelberg.hoek_helper.view.viewmodel.MainViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<RowFragment> rows;
 
-    private dk.kugelberg.hoek_helper.view.viewmodel.MainActivity viewModel = new MainActivityViewModel();
+    Main viewModel = new MainViewModel();
 
 
     @Override

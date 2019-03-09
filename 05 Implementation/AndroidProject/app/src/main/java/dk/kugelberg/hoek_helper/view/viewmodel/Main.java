@@ -5,7 +5,7 @@ import dk.kugelberg.hoek_helper.model.VE;
 import dk.kugelberg.hoek_helper.model.VO;
 import dk.kugelberg.hoek_helper.model.X;
 
-public interface MainActivity {
+public interface Main {
 
 
     void addRow();

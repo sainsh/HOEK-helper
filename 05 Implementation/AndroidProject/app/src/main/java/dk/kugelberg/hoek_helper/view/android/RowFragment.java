@@ -13,8 +13,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import dk.kugelberg.hoek_helper.R;
-import dk.kugelberg.hoek_helper.view.viewmodel.MainActivity;
-import dk.kugelberg.hoek_helper.view.viewmodel.MainActivityViewModel;
 
 /**
  * A simple {@link Fragment} subclass.

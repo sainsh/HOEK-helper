@@ -10,7 +10,7 @@ import dk.kugelberg.hoek_helper.model.VO;
 import dk.kugelberg.hoek_helper.model.X;
 
 
-public class MainActivityViewModel extends ViewModel implements MainActivity{
+public class MainViewModel extends ViewModel implements Main {
 
 
     private Controller controller = new ControllerImpl();

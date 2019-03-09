@@ -32,6 +32,7 @@ public class TabelImpl implements Tabel {
         tabel.getValue().add(raekkenummer, raekke);
 
         updateAdjacentRows(raekkenummer);
+        System.out.println("\n[+] RÆKKE STØRRELSE:\t " + getTabel().size());
 
     }
 
