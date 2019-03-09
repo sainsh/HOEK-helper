@@ -17,7 +17,7 @@ public class TabelImpl implements Tabel {
 
     @Override
     public Raekke getRaekke(int raekkenummer) {
-        return tabel.getValue().get(raekkenummer);
+        return tabel.getValue().get(raekkenummer-1);
     }
 
     @Override

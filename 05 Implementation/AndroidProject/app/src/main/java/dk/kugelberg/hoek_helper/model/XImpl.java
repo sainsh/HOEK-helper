@@ -69,6 +69,7 @@ public class XImpl implements X {
             throw new NegativVaerdiException();
         } else {
             vaerdi.setValue(x);
+            System.out.println("\n[+] NY X VÆRDI SAT: " + this.getVaerdi());
             setBeregnet(false);
         }
     }

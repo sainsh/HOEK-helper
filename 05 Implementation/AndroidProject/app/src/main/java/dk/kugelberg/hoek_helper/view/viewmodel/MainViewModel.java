@@ -5,6 +5,7 @@ import dk.kugelberg.hoek_helper.model.Controller;
 
 import dk.kugelberg.hoek_helper.model.ControllerImpl;
 import dk.kugelberg.hoek_helper.model.DOMK;
+import dk.kugelberg.hoek_helper.model.Raekke;
 import dk.kugelberg.hoek_helper.model.VE;
 import dk.kugelberg.hoek_helper.model.VO;
 import dk.kugelberg.hoek_helper.model.X;
@@ -18,8 +19,13 @@ public class MainViewModel extends ViewModel implements Main {
 
     @Override
     public void addRow() {
-        System.out.println("NY RÆKKE TILFØJET!!!!\n");
+        System.out.println("\n[+] NY RÆKKE TILFØJET!!!!\n");
         controller.hentTabel().addRaekke(controller.hentTabelStr());
+    }
+
+    @Override
+    public Raekke getRow(int raekkenummer){
+        return controller.hentTabel().getTabel().get(raekkenummer-1);
     }
 
     @Override
