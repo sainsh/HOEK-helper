@@ -9,7 +9,7 @@
     <EditText
         android:layout_width="75dp"
         android:layout_height="match_parent"
-        android:hint="@string/x"
+        android:hint="@string/xRaw"
         android:id="@+id/x_text_view"
         android:textAlignment="center"
         android:inputType="number" />

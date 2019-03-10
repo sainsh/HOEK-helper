@@ -13,10 +13,13 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import dk.kugelberg.hoek_helper.R;
+import dk.kugelberg.hoek_helper.model.DOMK;
 import dk.kugelberg.hoek_helper.model.KE;
 import dk.kugelberg.hoek_helper.model.SE;
+import dk.kugelberg.hoek_helper.model.VE;
 import dk.kugelberg.hoek_helper.model.VO;
 import dk.kugelberg.hoek_helper.model.X;
+import dk.kugelberg.hoek_helper.model.XImpl;
 import dk.kugelberg.hoek_helper.view.viewmodel.Main;
 
 /**
@@ -29,13 +32,21 @@ public class RowFragment extends Fragment {
 
     //Værdierne bruges til at sætte objekternes værdi i model.
     //Objekterne oprettes først i model og derfor bruges primitive variable i view.
-    private double x = Double.NaN;
-    private double vo = Double.NaN;
-    private double ve = Double.NaN;
-    private double domk = Double.NaN;
-    private double sto = Double.NaN;
-    private double se = Double.NaN;
+//    private double xRaw = Double.NaN;
+//    private double vo = Double.NaN;
+//    private double ve = Double.NaN;
+//    private double domk = Double.NaN;
+//    private double sto = Double.NaN;
+//    private double se = Double.NaN;
 
+
+
+    private X x;
+    private VO vo;
+    private VE ve;
+    private SE se;
+    private KE ke;
+    private DOMK domk;
 
     private EditText xEditText;
     private EditText voEditText;
@@ -48,9 +59,14 @@ public class RowFragment extends Fragment {
 
     public RowFragment() {
 
-        // Required empty public constructor
+        // Instantiate keynumbers
+        x = viewModel.getRow(getRaekkenummer()).getX();
+        vo = viewModel.getRow(getRaekkenummer()).getVO();
+        ve = viewModel.getRow(getRaekkenummer()).getVE();
+        se = viewModel.getRow(getRaekkenummer()).getSE();
+        ke = viewModel.getRow(getRaekkenummer()).getKE();
+        domk = viewModel.getRow(getRaekkenummer()).getDOMK();
 
-        // Create new row in tabel
 
     }
 
@@ -74,20 +90,25 @@ public class RowFragment extends Fragment {
         xEditText.addTextChangedListener(new TextWatcher() {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // Set X value
+
+                // Hvis input felt ikke er tomt, sæt værdi til objekt
                 if (!xEditText.getText().toString().equals("")){
-                    setX(Double.parseDouble(xEditText.getText().toString()));
-                    viewModel.getRow(getRaekkenummer()).getX().setVaerdi(getX());
+                    // getX().setVaerdi(Double.parseDouble(xEditText.getText().toString()));
+                    // setxRaw(Double.parseDouble(xEditText.getText().toString()));
+                    // viewModel.getRow(getRaekkenummer()).getX().setVaerdi(getxRaw());
+
+                    double inputValue = Double.parseDouble(xEditText.getText().toString());
+                    getX().setVaerdi(inputValue);
                     System.out.println("\n[++] RÆKKENUMMER: " + getRaekkenummer());
                 }
 
             }
             public void afterTextChanged(Editable s) {
 
-                // Skal kalde alle beregn metoder
+                // Skal kalde alle beregn metoder undtagen dens egen
+                beregnVO();
                 beregnVE();
-
-
+                beregDOMK();
 
             }
         });
@@ -98,16 +119,21 @@ public class RowFragment extends Fragment {
 
                 if (!voEditText.getText().toString().equals("")){
                     // Set VO value
-                    setVo(Double.parseDouble(voEditText.getText().toString()));
-                    viewModel.getRow(getRaekkenummer()).getVO().setVaerdi(getVo());
+//                    setVo(Double.parseDouble(voEditText.getText().toString()));
+//                    viewModel.getRow(getRaekkenummer()).getVO().setVaerdi(getVo());
+
+                    double inputValue = Double.parseDouble(voEditText.getText().toString());
+                    getVo().setVaerdi(inputValue);
                     System.out.println("\n[++] RÆKKENUMMER: " + getRaekkenummer());
                 }
 
             }
             public void afterTextChanged(Editable s) {
 
-                // Skal kalde alle beregn metoder
+                // Skal kalde alle beregn metoder undtagen dens egen
                 beregnVE();
+                beregDOMK();
+                beregnX();
 
             }
         });
@@ -116,12 +142,16 @@ public class RowFragment extends Fragment {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // Set VE value
-                setVe(Double.parseDouble(veEditText.getText().toString()));
-                viewModel.getRow(getRaekkenummer()).getVE().setVaerdi(getVe());
+//                setVe(Double.parseDouble(veEditText.getText().toString()));
+//                viewModel.getRow(getRaekkenummer()).getVE().setVaerdi(getVe());
                 System.out.println("\n[++] RÆKKENUMMER: " + getRaekkenummer());
             }
             public void afterTextChanged(Editable s) {
 
+                // Skal kalde alle beregn metoder undtagen dens egen
+                beregnVO();
+                beregDOMK();
+                beregnX();
 
 
             }
@@ -131,28 +161,31 @@ public class RowFragment extends Fragment {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // Set DOMK value
-                setDomk(Double.parseDouble(domkEditText.getText().toString()));
-                viewModel.getRow(getRaekkenummer()).getDOMK().setVaerdi(getDomk());
+
+                //setDomk(Double.parseDouble(domkEditText.getText().toString()));
+                //viewModel.getRow(getRaekkenummer()).getDOMK().setVaerdi(getDomk());
                 System.out.println("\n[++] RÆKKENUMMER: " + getRaekkenummer());
             }
             public void afterTextChanged(Editable s) {
 
+                // Skal kalde alle beregn metoder undtagen dens egen
+                beregnVO();
+                beregnVE();
+                beregnX();
+
             }
         });
 
-
-
-
-
         return v;
     }
+
 
 
     public void beregnX(){
 
         // Hent objekterne her og smid i init()
 
-        //viewModel.getRow(this.raekkenummer).getX().init();
+        //viewModel.getRow(this.raekkenummer).getxRaw().init();
     }
 
     public void beregnVO(){
@@ -161,24 +194,18 @@ public class RowFragment extends Fragment {
 
     public void beregnVE(){
 
-        // Hent nødvendige objekter
-        X x = viewModel.getRow(getRaekkenummer()).getX();
-        VO vo = viewModel.getRow(getRaekkenummer()).getVO();
-        SE se = viewModel.getRow(getRaekkenummer()).getSE();
-        KE ke = viewModel.getRow(getRaekkenummer()).getKE();
-
 
         System.out.println("\n\n[+] BEREGN VE ER BLEVET KALDT!");
         // Kan VE beregnes?
-        if (viewModel.getRow(getRaekkenummer()).getVE().kanBeregnes(vo, x, se, ke)){
+        if (getVe().kanBeregnes(vo, x, se, ke)){
             System.out.println("\n\n\n[+] VE KAN BEREGNES!");
             // Init VE
-            viewModel.getRow(getRaekkenummer()).getVE().init(vo, x, se, ke);
+            getVe().init(vo, x, se, ke);
             // Beregn
-            viewModel.getRow(getRaekkenummer()).getVE().beregn();
+            getVe().beregn();
 
             // Set VE felt til den beregnede værdi
-            double calculatedValue = viewModel.getRow(getRaekkenummer()).getVE().getVaerdi();
+            double calculatedValue = getVe().getVaerdi();
             veEditText.setText(Double.toString(calculatedValue));
 
 
@@ -212,52 +239,51 @@ public class RowFragment extends Fragment {
     }
 
 
-
-    private double getX() {
+    private X getX() {
         return x;
     }
 
-    private void setX(double x) {
+    private void setX(X x) {
         this.x = x;
     }
 
-    private double getVo() {
+    private VO getVo() {
         return vo;
     }
 
-    private void setVo(double vo) {
+    private void setVo(VO vo) {
         this.vo = vo;
     }
 
-    private double getVe() {
+    private VE getVe() {
         return ve;
     }
 
-    private void setVe(double ve) {
+    private void setVe(VE ve) {
         this.ve = ve;
     }
 
-    private double getDomk() {
-        return domk;
-    }
-
-    private void setDomk(double domk) {
-        this.domk = domk;
-    }
-
-    private double getSto() {
-        return sto;
-    }
-
-    private void setSto(double sto) {
-        this.sto = sto;
-    }
-
-    private double getSe() {
+    private SE getSe() {
         return se;
     }
 
-    private void setSe(double se) {
+    private void setSe(SE se) {
         this.se = se;
+    }
+
+    private KE getKe() {
+        return ke;
+    }
+
+    private void setKe(KE ke) {
+        this.ke = ke;
+    }
+
+    private DOMK getDomk() {
+        return domk;
+    }
+
+    private void setDomk(DOMK domk) {
+        this.domk = domk;
     }
 }
