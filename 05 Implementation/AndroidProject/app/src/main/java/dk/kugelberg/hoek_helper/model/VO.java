@@ -11,6 +11,12 @@ public interface VO {
 
     double getVaerdi();
 
+    boolean kanBeregnes(VE ve, X x, KO ko, DOMK domk, STO sto, SE se);
+
+    boolean kanBeregnesOver(X xOver, VO voOver);
+
+    boolean kanBeregnesUnder(X xUnder, VO voUnder, DOMK domkUnder);
+
     void beregn();
 
     void setBeregnet(boolean val);

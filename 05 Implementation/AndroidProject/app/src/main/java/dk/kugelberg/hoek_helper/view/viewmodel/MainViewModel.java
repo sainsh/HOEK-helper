@@ -68,4 +68,13 @@ public class MainViewModel extends ViewModel implements Main {
         controller.hentTabel().getTabel().get(raekkenummer).getDOMK().setVaerdi(value);
     }
 
+    @Override
+    public Controller getController() {
+        return controller;
+    }
+
+    @Override
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
 }

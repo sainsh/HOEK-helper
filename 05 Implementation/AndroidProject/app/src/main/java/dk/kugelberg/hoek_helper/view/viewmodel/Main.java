@@ -1,5 +1,6 @@
 package dk.kugelberg.hoek_helper.view.viewmodel;
 
+import dk.kugelberg.hoek_helper.model.Controller;
 import dk.kugelberg.hoek_helper.model.DOMK;
 import dk.kugelberg.hoek_helper.model.Raekke;
 import dk.kugelberg.hoek_helper.model.VE;
@@ -24,4 +25,8 @@ public interface Main {
 
     DOMK getDOMK(int raekkenummer);
     void setDOMK(int raekkenummer, double value);
+
+    Controller getController();
+
+    void setController(Controller controller);
 }

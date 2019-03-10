@@ -15,7 +15,9 @@ import android.widget.EditText;
 import dk.kugelberg.hoek_helper.R;
 import dk.kugelberg.hoek_helper.model.DOMK;
 import dk.kugelberg.hoek_helper.model.KE;
+import dk.kugelberg.hoek_helper.model.KO;
 import dk.kugelberg.hoek_helper.model.SE;
+import dk.kugelberg.hoek_helper.model.STO;
 import dk.kugelberg.hoek_helper.model.VE;
 import dk.kugelberg.hoek_helper.model.VO;
 import dk.kugelberg.hoek_helper.model.X;
@@ -23,6 +25,7 @@ import dk.kugelberg.hoek_helper.model.XImpl;
 import dk.kugelberg.hoek_helper.view.viewmodel.Main;
 
 /**
+ * @author Simon Dalby og Lucas Kugelberg
  * A simple {@link Fragment} subclass.
  */
 public class RowFragment extends Fragment {
@@ -40,13 +43,22 @@ public class RowFragment extends Fragment {
 //    private double se = Double.NaN;
 
 
+    private Main viewModel;
 
     private X x;
+    private X xOver;
+    private X xUnder;
     private VO vo;
+    private VO voOver;
+    private VO voUnder;
     private VE ve;
     private SE se;
     private KE ke;
     private DOMK domk;
+    private DOMK domkUnder;
+    private KO ko;
+    private STO sto;
+
 
     private EditText xEditText;
     private EditText voEditText;
@@ -55,17 +67,11 @@ public class RowFragment extends Fragment {
 
     private int raekkenummer;
 
-    private Main viewModel;
 
     public RowFragment() {
 
-        // Instantiate keynumbers
-        x = viewModel.getRow(getRaekkenummer()).getX();
-        vo = viewModel.getRow(getRaekkenummer()).getVO();
-        ve = viewModel.getRow(getRaekkenummer()).getVE();
-        se = viewModel.getRow(getRaekkenummer()).getSE();
-        ke = viewModel.getRow(getRaekkenummer()).getKE();
-        domk = viewModel.getRow(getRaekkenummer()).getDOMK();
+        // Must be Empty
+
 
 
     }
@@ -74,6 +80,19 @@ public class RowFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        // Instantiate keynumbers
+        x = viewModel.getRow(getRaekkenummer()).getX();
+        vo = viewModel.getRow(getRaekkenummer()).getVO();
+        ve = viewModel.getRow(getRaekkenummer()).getVE();
+        se = viewModel.getRow(getRaekkenummer()).getSE();
+        ke = viewModel.getRow(getRaekkenummer()).getKE();
+        domk = viewModel.getRow(getRaekkenummer()).getDOMK();
+        ko = viewModel.getRow(getRaekkenummer()).getKO();
+        sto = viewModel.getRow(getRaekkenummer()).getSTO();
+
+
+
         // xEditText = getView().findViewById(R.id.x_text_view);
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_row, container, false);
@@ -81,6 +100,8 @@ public class RowFragment extends Fragment {
         voEditText = v.findViewById(R.id.vo_text_view);
         veEditText = v.findViewById(R.id.ve_text_view);
         domkEditText = v.findViewById(R.id.domk_text_view);
+
+
 
         //xEditText.addTextChangedListener(xFieldWatcher);
         //voEditText.addTextChangedListener(voTextWatcher);
@@ -108,7 +129,7 @@ public class RowFragment extends Fragment {
                 // Skal kalde alle beregn metoder undtagen dens egen
                 beregnVO();
                 beregnVE();
-                beregDOMK();
+                beregnDOMK();
 
             }
         });
@@ -132,7 +153,7 @@ public class RowFragment extends Fragment {
 
                 // Skal kalde alle beregn metoder undtagen dens egen
                 beregnVE();
-                beregDOMK();
+                beregnDOMK();
                 beregnX();
 
             }
@@ -144,13 +165,16 @@ public class RowFragment extends Fragment {
                 // Set VE value
 //                setVe(Double.parseDouble(veEditText.getText().toString()));
 //                viewModel.getRow(getRaekkenummer()).getVE().setVaerdi(getVe());
+
+                double inputValue = Double.parseDouble(veEditText.getText().toString());
+                getVe().setVaerdi(inputValue);
                 System.out.println("\n[++] RÆKKENUMMER: " + getRaekkenummer());
             }
             public void afterTextChanged(Editable s) {
 
                 // Skal kalde alle beregn metoder undtagen dens egen
                 beregnVO();
-                beregDOMK();
+                beregnDOMK();
                 beregnX();
 
 
@@ -164,6 +188,8 @@ public class RowFragment extends Fragment {
 
                 //setDomk(Double.parseDouble(domkEditText.getText().toString()));
                 //viewModel.getRow(getRaekkenummer()).getDOMK().setVaerdi(getDomk());
+                double inputValue = Double.parseDouble(domkEditText.getText().toString());
+                getDomk().setVaerdi(inputValue);
                 System.out.println("\n[++] RÆKKENUMMER: " + getRaekkenummer());
             }
             public void afterTextChanged(Editable s) {
@@ -190,10 +216,40 @@ public class RowFragment extends Fragment {
 
     public void beregnVO(){
 
+        System.out.println("[+] BEREGN VO ER BLEBET KALDT!!");
+
+        if (getVo().kanBeregnes(ve, x, ko, domk, sto, se)){
+            System.out.println("[+++] JEG KAN GODT BEREGNES FRA MIN RÆKKE AF!");
+            getVo().init(ve, x, ko, domk, sto, se);
+            getVo().beregn();
+            double calculatedValue = getVo().getVaerdi();
+            voEditText.setText(Double.toString(calculatedValue));
+        }
+
+        // Hvis tabel str er større end det nummer vi har nu, så skal vi også tilføje at x kan udregnes fra værdier nedenunder
+        else if (viewModel.getController().hentTabelStr()-1 > getRaekkenummer()){
+            System.out.println("Prøver er beregne nedefra...");
+            // Kan beregnes fra under?
+            xUnder = viewModel.getRow(getRaekkenummer()+1).getX();
+            voUnder = viewModel.getRow(getRaekkenummer()+1).getVO();
+            domkUnder = viewModel.getRow(getRaekkenummer()+1).getDOMK();
+
+
+            // Hvis kan beregnes nede fra, så gør det...
+            if (getVo().kanBeregnesUnder(xUnder, voUnder, domkUnder)){
+                getVo().initUnder(xUnder, voUnder, domkUnder);
+                getVo().beregn();
+                double calculatedValue = getVo().getVaerdi();
+                voEditText.setText(Double.toString(calculatedValue));
+            }
+        }
+
+
+
+
     }
 
     public void beregnVE(){
-
 
         System.out.println("\n\n[+] BEREGN VE ER BLEVET KALDT!");
         // Kan VE beregnes?
@@ -208,12 +264,11 @@ public class RowFragment extends Fragment {
             double calculatedValue = getVe().getVaerdi();
             veEditText.setText(Double.toString(calculatedValue));
 
-
         }
 
     }
 
-    public void beregDOMK(){
+    public void beregnDOMK(){
 
     }
 

@@ -40,21 +40,21 @@ public class VOImpl implements VO {
     }
 
 
-        @Override
-        public void initOver(X xOver, VO voOver) {
-            vaerdi = NaN;
-            erBeregnet = false;
+    @Override
+    public void initOver(X xOver, VO voOver) {
+        vaerdi = NaN;
+        erBeregnet = false;
 
-            this.xOver = xOver;
-            this.voOver = voOver;
-        }
+        this.xOver = xOver;
+        this.voOver = voOver;
+    }
 
-        @Override
-        public void initUnder(X xUnder, VO voUnder, DOMK domkUnder){
-            this.xUnder = xUnder;
-            this.voUnder = voUnder;
-            this.domkUnder = domkUnder;
-        }
+    @Override
+    public void initUnder(X xUnder, VO voUnder, DOMK domkUnder){
+        this.xUnder = xUnder;
+        this.voUnder = voUnder;
+        this.domkUnder = domkUnder;
+    }
 
 
     @Override
@@ -83,6 +83,36 @@ public class VOImpl implements VO {
         return erBeregnet;
     }
 
+    @Override
+    public boolean kanBeregnes(VE ve, X x, KO ko, DOMK domk, STO sto, SE se){
+        //VO = VE * X
+        if (!Double.isNaN(ve.getVaerdi()) && !Double.isNaN(x.getVaerdi())) {
+            return true;
+
+            //VO = STO - KO
+        } else if (!Double.isNaN(sto.getVaerdi()) && !Double.isNaN(ko.getVaerdi())) {
+            return true;
+
+
+        }
+        //VO = DB - Oms
+        //else if (!Double.isNaN(db.getVaerdi()) && !Double.isNaN(oms.getVaerdi())) {
+            //return true;
+
+        //}
+        return false;
+    }
+
+    @Override
+    public boolean kanBeregnesOver(X xOver, VO voOver){
+        return false;
+    }
+
+    @Override
+    public boolean kanBeregnesUnder(X xUnder, VO voUnder, DOMK domkUnder){
+        return false;
+    }
+
 
     @Override
     public void beregn() {
@@ -99,12 +129,17 @@ public class VOImpl implements VO {
             setVaerdi(sto.getVaerdi() - ko.getVaerdi());
             setBeregnet(true);
 
-            //VO = DB - Oms
-        } else if (!Double.isNaN(db.getVaerdi()) && !Double.isNaN(oms.getVaerdi())) {
-            setVaerdi(db.getVaerdi() - oms.getVaerdi());
-            setBeregnet(true);
 
-        } else if (getBeregnet()) {
+        }
+        //VO = DB - Oms
+//        else if (!Double.isNaN(db.getVaerdi()) && !Double.isNaN(oms.getVaerdi())) {
+//            setVaerdi(db.getVaerdi() - oms.getVaerdi());
+//            setBeregnet(true);
+//
+//        }
+//
+
+        else if (getBeregnet()) {
 
             setVaerdi(NaN);
         }
