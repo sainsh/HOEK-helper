@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="638bfaf5-ff48-4fac-85c6-c212847c9480" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/HOEK-helper.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HOEK-helper.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/05 Implementation/AndroidProject/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/05 Implementation/AndroidProject/.idea/misc.xml" afterDir="false" />
-    </list>
+    <list default="true" id="d01f00c6-72ff-41c0-b029-c3ddbb2821c8" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,7 +10,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FUSProjectUsageTrigger">
-    <session id="97844605">
+    <session id="-737372551">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="1" />
@@ -64,18 +60,18 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="638bfaf5-ff48-4fac-85c6-c212847c9480" name="Default Changelist" comment="" />
-      <created>1552044565298</created>
+      <changelist id="d01f00c6-72ff-41c0-b029-c3ddbb2821c8" name="Default Changelist" comment="" />
+      <created>1552212789174</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1552044565298</updated>
+      <updated>1552212789174</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="55" y="27" width="1865" height="1053" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" visible="true" weight="0.32953313" />
+      <window_info active="true" content_ui="combo" id="Project" visible="true" weight="0.32982087" />
       <window_info id="Structure" side_tool="true" />
       <window_info id="Image Layers" />
       <window_info id="Designer" />

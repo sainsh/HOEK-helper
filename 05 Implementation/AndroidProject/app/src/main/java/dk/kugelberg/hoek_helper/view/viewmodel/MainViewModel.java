@@ -25,7 +25,7 @@ public class MainViewModel extends ViewModel implements Main {
 
     @Override
     public Raekke getRow(int raekkenummer){
-        return controller.hentTabel().getTabel().get(raekkenummer-1);
+        return controller.hentTabel().getTabel().get(raekkenummer);
     }
 
     @Override

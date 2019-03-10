@@ -27,6 +27,17 @@ public class VEImpl implements VE {
     }
 
     @Override
+    public boolean kanBeregnes(VO vo, X x, SE se, KE ke){
+        // VE = VO / X
+        if(!Double.isNaN(x.getVaerdi()) && !Double.isNaN(vo.getVaerdi())){ return true; }
+
+        // VE = SE - KE
+        else if(!Double.isNaN(se.getVaerdi()) && !Double.isNaN(ke.getVaerdi())){ return true; }
+
+        return false;
+    }
+
+    @Override
     public void setVaerdi(double x) {
         if (x < 0) {
             throw new NegativVaerdiException();

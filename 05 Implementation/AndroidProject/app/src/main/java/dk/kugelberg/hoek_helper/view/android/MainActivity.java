@@ -33,12 +33,16 @@ public class MainActivity extends AppCompatActivity {
         RowFragment rf = new RowFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(R.id.main_activity, rf);
-        rows.add(rf);
 
-        System.out.println("ROW SIZE!! : " + rows.size());
-        rf.setRaekkenummer(rows.size());
+
+        rows.add(rf);
+        // Hent størelse på array og træk 1 fra. Så har de et rækkenummer, som mathcer index.
+        rf.setRaekkenummer(rows.size()-1);
         rf.setViewModel(viewModel);
         viewModel.addRow();
+
+
+
         ft.commit();
     }
 }
