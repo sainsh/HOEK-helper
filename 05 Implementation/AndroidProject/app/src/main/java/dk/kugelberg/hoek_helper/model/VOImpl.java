@@ -1,8 +1,5 @@
 package dk.kugelberg.hoek_helper.model;
 
-import androidx.lifecycle.MutableLiveData;
-
-
 import static java.lang.Double.NaN;
 
 public class VOImpl implements VO {
@@ -22,57 +19,65 @@ public class VOImpl implements VO {
     private OMS oms;
 
 
+    private double vaerdi = NaN;
+    private boolean erBeregnet = false;
 
-    private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
-    private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
+    public VOImpl() {
+    }
 
     @Override
-    public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se, X xOver, VO voOver, X xUnder, VO voUnder, DOMK domkUnder) {
+    public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se, DB db, OMS oms) {
         this.ve = ve;
         this.x = x;
         this.ko = ko;
         this.domk = domk;
         this.sto = sto;
         this.se = se;
-        vaerdi.setValue(NaN);
-        erBeregnet.setValue(false);
+        this.db = db;
+        this.oms = oms;
+    }
+
+    @Override
+    public void initOver(X xOver, VO voOver) {
         this.xOver = xOver;
         this.voOver = voOver;
+    }
+
+    @Override
+    public void initUnder(X xUnder, VO voUnder, DOMK domkUnder) {
         this.xUnder = xUnder;
         this.voUnder = voUnder;
         this.domkUnder = domkUnder;
     }
+
 
     @Override
     public void setVaerdi(double vaerdi) {
         if (vaerdi < 0) {
             throw new VaerdiException();
         } else {
-            this.vaerdi.setValue(vaerdi);
+            this.vaerdi = vaerdi;
             setBeregnet(false);
         }
     }
 
     @Override
     public double getVaerdi() {
-        return vaerdi.getValue();
+        return vaerdi;
     }
 
     @Override
     public void setBeregnet(boolean val) {
-        this.erBeregnet.setValue(val);
+        erBeregnet = val;
     }
 
     @Override
     public boolean getBeregnet() {
-        return erBeregnet.getValue();
+        return erBeregnet;
     }
-
 
     @Override
     public void beregn() {
-
-        // TODO: konstruer beregner der kan regne VO ud via xOver, xUnder, voOver, voUnder, domk og domkUnder
 
         //VO = VE * X
         if (!Double.isNaN(ve.getVaerdi()) && !Double.isNaN(x.getVaerdi())) {
@@ -89,9 +94,15 @@ public class VOImpl implements VO {
             setVaerdi(db.getVaerdi() - oms.getVaerdi());
             setBeregnet(true);
 
-        } else if (getBeregnet()) {
+            //VO = ((x-xOver) / domk) + voOver
+        } else if (!Double.isNaN(x.getVaerdi()) && !Double.isNaN(xOver.getVaerdi()) &&
+                !Double.isNaN(domk.getVaerdi()) && !Double.isNaN(voOver.getVaerdi())) {
+            setVaerdi(((x.getVaerdi() - xOver.getVaerdi()) / domk.getVaerdi()) + voOver.getVaerdi());
+            setBeregnet(true);
 
+        } else if (getBeregnet()) {
             setVaerdi(NaN);
         }
+        if (vaerdi == NaN) erBeregnet = false;
     }
 }

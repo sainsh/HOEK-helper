@@ -4,43 +4,29 @@ import static java.lang.Double.NaN;
 
 public class GROMKImpl implements GROMK {
 
-    private VE ve;
     private X x;
-    private X x1;
-    private X x2;
-    private KO ko;
-    private VO vo1;
-    private VO vo2;
-    private DOMK domk;
-    private DOMK domk2;
+    private X xOver;
     private STO sto;
-    private SE se;
-
+    private STO stoOver;
 
     private double vaerdi = NaN;
     private boolean erBeregnet = false;
 
+    public GROMKImpl() {
+        vaerdi = NaN;
+        erBeregnet = false;
+    }
+
     @Override
-    public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se) {
-        this.ve = ve;
+    public void init(X x, STO sto) {
         this.x = x;
-        this.ko = ko;
-        this.domk = domk;
         this.sto = sto;
-        this.se = se;
     }
 
     @Override
-    public void init1(X x1, VO vo1) {
-        this.x1 = x1;
-        this.vo1 = vo1;
-    }
-
-    @Override
-    public void init2(X x2, VO vo2, DOMK domk2) {
-        this.x2 = x2;
-        this.vo2 = vo2;
-        this.domk2 = domk2;
+    public void initOver(X xOver, STO stoOver) {
+        this.xOver = xOver;
+        this.stoOver = stoOver;
     }
 
     @Override
@@ -54,28 +40,28 @@ public class GROMKImpl implements GROMK {
     }
 
     @Override
-    public double getVaerdi()
-    {
+    public double getVaerdi() {
         return vaerdi;
     }
 
     @Override
-    public void setBeregnet(boolean val)
-    {
+    public void setBeregnet(boolean val) {
         erBeregnet = val;
     }
 
     @Override
-    public boolean getBeregnet()
-    {
+    public boolean getBeregnet() {
         return erBeregnet;
     }
 
     @Override
     public void beregn() {
-
-        // TODO: lav alle beregningerne til GROMK
-
-
+        if (!Double.isNaN(x.getVaerdi()) && !Double.isNaN(xOver.getVaerdi()) && !Double.isNaN(sto.getVaerdi()) && !Double.isNaN(stoOver.getVaerdi())) {
+            vaerdi = ((stoOver.getVaerdi() - sto.getVaerdi()) / (xOver.getVaerdi() - x.getVaerdi()));
+            erBeregnet = true;
+        } else {
+            vaerdi = Double.NaN;
+            erBeregnet = false;
+        }
     }
 }

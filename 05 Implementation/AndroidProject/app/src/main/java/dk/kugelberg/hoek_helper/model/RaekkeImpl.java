@@ -3,28 +3,48 @@ package dk.kugelberg.hoek_helper.model;
 public class RaekkeImpl implements Raekke {
 
     private DOMK domk = null;
+    private GROMK gromk = null;
+    private KE ke = null;
     private KO ko = null;
     private SE se = null;
     private STO sto = null;
     private VE ve = null;
     private VO vo = null;
     private X x = null;
+    private OMS oms = null;
+    private DB db = null;
 
-    public RaekkeImpl(){
+    private int raekkenummer;
+
+    public RaekkeImpl() {
+        // Instantierer beregninger aka. kolonerne
         domk = new DOMKImpl();
+        gromk = new GROMKImpl();
+        ke = new KEimpl();
         ko = new KOImpl();
         se = new SEImpl();
         sto = new STOImpl();
         ve = new VEImpl();
         vo = new VOImpl();
         x = new XImpl();
+        oms = new OMSImpl();
+        db = new DBImpl();
 
     }
-
 
     @Override
     public DOMK getDOMK() {
         return domk;
+    }
+
+    @Override
+    public GROMK getGROMK() {
+        return gromk;
+    }
+
+    @Override
+    public KE getKE() {
+        return ke;
     }
 
     @Override
@@ -58,6 +78,21 @@ public class RaekkeImpl implements Raekke {
     }
 
     @Override
+    public OMS getOMS() {
+        return oms;
+    }
+
+    @Override
+    public DB getDB() {
+        return db;
+    }
+
+    @Override
+    public int getRaekkenummer() {
+        return raekkenummer;
+    }
+
+    @Override
     public void setDOMK(DOMK domk) {
         this.domk = domk;
     }
@@ -70,7 +105,6 @@ public class RaekkeImpl implements Raekke {
     @Override
     public void setSE(SE se) {
         this.se = se;
-
     }
 
     @Override
@@ -95,5 +129,30 @@ public class RaekkeImpl implements Raekke {
     public void setX(X x) {
         this.x = x;
 
+    }
+
+    @Override
+    public void setKE(KE ke) {
+        this.ke = ke;
+    }
+
+    @Override
+    public void setGROMK(GROMK gromk) {
+        this.gromk = gromk;
+    }
+
+    @Override
+    public void setDB(DB db) {
+        this.db = db;
+    }
+
+    @Override
+    public void setOMS(OMS oms) {
+        this.oms = oms;
+    }
+
+    @Override
+    public void setRaekkenummer(int raekkenummer) {
+        this.raekkenummer = raekkenummer;
     }
 }

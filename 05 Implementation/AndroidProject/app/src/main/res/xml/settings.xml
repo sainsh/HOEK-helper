@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:layout="@layout/settings_layout"
+        android:title="Kolonner">
+
+        <SwitchPreferenceCompat
+            android:defaultValue="@bool/vis_antal_enheder"
+            android:key="@string/vis_antal_enheder_key"
+            android:summaryOff="@string/skjult"
+            android:summaryOn="@string/vist"
+            android:title="@string/vis_antal_enheder" />
+
+        <SwitchPreferenceCompat
+            android:defaultValue="@bool/vis_vo"
+            android:key="@string/vis_vo_key"
+            android:summaryOff="@string/skjult"
+            android:summaryOn="@string/vist"
+            android:title="@string/vis_vo" />
+
+        <SwitchPreferenceCompat
+            android:defaultValue="@bool/vis_ve"
+            android:key="@string/vis_ve_key"
+            android:summaryOff="@string/skjult"
+            android:summaryOn="@string/vist"
+            android:title="@string/vis_ve" />
+
+        <SwitchPreferenceCompat
+            android:defaultValue="@bool/vis_domk"
+            android:key="@string/vis_domk_key"
+            android:summaryOff="@string/skjult"
+            android:summaryOn="@string/vist"
+            android:title="@string/vis_domk" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/settings_layout"
+        android:title="Diverse">
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="test"
+            android:summaryOff="test"
+            android:summaryOn="test"
+            android:title="Test" />
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
