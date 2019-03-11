@@ -79,6 +79,10 @@ public class XImpl implements X {
         return vaerdi.getValue();
     }
 
+    public MutableLiveData<Double> getXmutable(){
+        return vaerdi;
+    }
+
     @Override
     public void beregn() {
 
