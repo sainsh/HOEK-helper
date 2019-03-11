@@ -5,14 +5,19 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import androidx.lifecycle.MutableLiveData;
+
 public class TabelImpl implements Tabel {
 
+    private MutableLiveData<ArrayList<Raekke>> tabelMld;
     private ArrayList<Raekke> tabel;
 
     final char CSV_DELIMITER = ';';
 
     public TabelImpl() {
+        tabelMld = new MutableLiveData<ArrayList<Raekke>>();
         tabel = new ArrayList<>();
+        tabelMld.setValue(tabel);
     }
 
 
@@ -22,8 +27,8 @@ public class TabelImpl implements Tabel {
     }
 
     @Override
-    public ArrayList<Raekke> getTabel() {
-        return tabel;
+    public MutableLiveData<ArrayList<Raekke>> getTabelMld() {
+        return tabelMld;
     }
 
     @Override

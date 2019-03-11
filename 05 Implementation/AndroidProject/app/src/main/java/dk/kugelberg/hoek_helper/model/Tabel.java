@@ -2,10 +2,12 @@ package dk.kugelberg.hoek_helper.model;
 
 import java.util.ArrayList;
 
+import androidx.lifecycle.MutableLiveData;
+
 public interface Tabel {
 
     Raekke getRaekke(int raekkenummer);
-    ArrayList<Raekke> getTabel();
+    MutableLiveData<ArrayList<Raekke>> getTabelMld();
     void addRaekke(int raekkenummer);
     void deleteRaekke(int raekkenummer);
 
