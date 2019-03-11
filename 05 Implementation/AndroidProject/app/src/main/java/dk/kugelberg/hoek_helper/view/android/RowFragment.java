@@ -24,10 +24,6 @@ import dk.kugelberg.hoek_helper.model.X;
 import dk.kugelberg.hoek_helper.model.XImpl;
 import dk.kugelberg.hoek_helper.view.viewmodel.Main;
 
-/**
- * @author Simon Dalby og Lucas Kugelberg
- * A simple {@link Fragment} subclass.
- */
 public class RowFragment extends Fragment {
 
 
