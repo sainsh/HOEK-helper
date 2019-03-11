@@ -45,7 +45,7 @@ public class TabelImplTest {
 
 
         for(int i = 0; i<10; i++) {
-            tabel.getTabel().add(new RaekkeMock(1,1,1,1,1,1,1,1,1));
+            //tabel.get().add(new RaekkeMock(1,1,1,1,1,1,1,1,1));
             testData.append("1.0;1.0;1.0;1.0;1.0;1.0;1.0;1.0;1.0\n");
         }
 
@@ -109,6 +109,11 @@ public class TabelImplTest {
         }
 
         @Override
+        public void init(VO vo, STO sto, KO ko, VE ve, X x) {
+
+        }
+
+        //@Override
         public void init(VO vo, STO sto, KO ko, VE ve, X x, DOMK domk) {
 
         }
@@ -388,8 +393,8 @@ public class TabelImplTest {
         public boolean getBeregnet() {
             return false;
         }
-    }
-
+    }}
+/*
     public class XMock implements X {
 
         double vaerdi;
@@ -614,5 +619,4 @@ public class TabelImplTest {
         public boolean getBeregnet() {
             return false;
         }
-    }
-}
+    }*/

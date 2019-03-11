@@ -494,7 +494,7 @@ class DomkMock implements DOMK {
     }
 
     @Override
-    public void init(VO vo, STO sto, KO ko, VE ve, X x, DOMK domk) {
+    public void init(VO vo, STO sto, KO ko, VE ve, X x) {
 
     }
 
