@@ -14,7 +14,6 @@ public interface X {
 
     void setVaerdi(double x);
     double getVaerdi();
-    MutableLiveData<Double> getXmutable();
     void beregn();
 
     void setBeregnet(boolean val);
