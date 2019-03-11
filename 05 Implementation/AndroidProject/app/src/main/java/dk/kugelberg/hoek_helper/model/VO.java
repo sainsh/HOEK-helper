@@ -3,7 +3,7 @@ package dk.kugelberg.hoek_helper.model;
 
 public interface VO extends Noegletal {
 
-    void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se);
+    void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se, DB db, OMS oms);
     void initOver(X xOver, VO voOver);
     void initUnder(X xUnder, VO voUnder, DOMK domkUnder);
 

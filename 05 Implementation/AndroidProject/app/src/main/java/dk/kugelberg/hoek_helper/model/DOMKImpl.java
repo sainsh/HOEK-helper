@@ -1,7 +1,5 @@
 package dk.kugelberg.hoek_helper.model;
 
-import androidx.lifecycle.MutableLiveData;
-
 import static java.lang.Double.NaN;
 
 public class DOMKImpl implements DOMK {
@@ -16,13 +14,10 @@ public class DOMKImpl implements DOMK {
     private DOMK domk;
     private DOMK domkOver;
 
-
-    private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
-    private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
+    private double vaerdi = NaN;
+    private boolean erBeregnet = false;
 
     public DOMKImpl() {
-        vaerdi.setValue(NaN);
-        erBeregnet.setValue(false);
     }
 
     @Override
@@ -46,33 +41,32 @@ public class DOMKImpl implements DOMK {
         if (x < 0) {
             throw new NegativVaerdiException();
         } else {
-            vaerdi.setValue(x);
+            vaerdi = x;
             setBeregnet(false);
         }
     }
 
     @Override
     public double getVaerdi() {
-        return vaerdi.getValue();
+        return vaerdi;
     }
 
 
     @Override
     public boolean erBeregnet() {
 
-        return erBeregnet.getValue();
+        return erBeregnet;
     }
 
     @Override
     public void setBeregnet(boolean val) {
-        this.erBeregnet.setValue(val);
+        this.erBeregnet = val;
     }
 
     @Override
     public boolean getBeregnet() {
-        return erBeregnet.getValue();
+        return erBeregnet;
     }
-
 
     @Override
     public void beregn() {
@@ -80,11 +74,11 @@ public class DOMKImpl implements DOMK {
         //DOMK = (X2-X1)/(VO2-VO1) X2 = x,  X1 = xOVer, VO2 = vo, VO1 = voOver
         if (!Double.isNaN(x.getVaerdi()) && !Double.isNaN(xOver.getVaerdi()) && !Double.isNaN(vo.getVaerdi()) && !Double.isNaN(voOver.getVaerdi())) {
 
-            vaerdi.setValue((voOver.getVaerdi() - vo.getVaerdi()) / (xOver.getVaerdi() - x.getVaerdi()));
-            erBeregnet.setValue(true);
+            vaerdi = ((voOver.getVaerdi() - vo.getVaerdi()) / (xOver.getVaerdi() - x.getVaerdi()));
+            erBeregnet = true;
         } else {
-            vaerdi.setValue(Double.NaN);
-            erBeregnet.setValue(false);
+            vaerdi = Double.NaN;
+            erBeregnet = false;
         }
     }
 }

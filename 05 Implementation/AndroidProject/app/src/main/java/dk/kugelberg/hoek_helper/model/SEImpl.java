@@ -1,6 +1,7 @@
 package dk.kugelberg.hoek_helper.model;
 
 import androidx.lifecycle.MutableLiveData;
+
 import static java.lang.Double.NaN;
 
 public class SEImpl implements SE {
@@ -10,12 +11,10 @@ public class SEImpl implements SE {
     private VE ve;
     private KE ke;
 
-    private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
-    private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
+    private double vaerdi = NaN;
+    private boolean erBeregnet = false;
 
-    public SEImpl(){
-        vaerdi.setValue(NaN);
-        erBeregnet.setValue(false);
+    public SEImpl() {
     }
 
     @Override
@@ -32,17 +31,17 @@ public class SEImpl implements SE {
 
     @Override
     public double getVaerdi() {
-        return vaerdi.getValue();
+        return vaerdi;
     }
 
     @Override
-    public void setBeregnet(boolean val){
-        erBeregnet.setValue(val);
+    public void setBeregnet(boolean val) {
+        erBeregnet = val;
     }
 
     @Override
-    public boolean getBeregnet(){
-        return erBeregnet.getValue();
+    public boolean getBeregnet() {
+        return erBeregnet;
     }
 
     @Override
@@ -63,8 +62,6 @@ public class SEImpl implements SE {
 
         }
 
-        if (this.vaerdi.getValue() == NaN) this.erBeregnet.setValue(false);
+        if (vaerdi == NaN) erBeregnet = false;
     }
 }
-
-
