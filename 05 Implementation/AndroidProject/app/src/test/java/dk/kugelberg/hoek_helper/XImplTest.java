@@ -24,11 +24,6 @@ import dk.kugelberg.hoek_helper.model.XImpl;
 import static org.junit.Assert.*;
 
 public class XImplTest {
-
-    @Rule
-    public TestRule rule = new InstantTaskExecutorRule();
-
-
     final double delta = 0.00000000000000000001;
 
     //Kontrollere om setVaerdi fungere og ændre tallet til 45.

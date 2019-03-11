@@ -57,7 +57,8 @@ public class GROMKImpl implements GROMK {
     @Override
     public void beregn() {
         if (!Double.isNaN(x.getVaerdi()) && !Double.isNaN(xOver.getVaerdi()) && !Double.isNaN(sto.getVaerdi()) && !Double.isNaN(stoOver.getVaerdi())) {
-            vaerdi = ((stoOver.getVaerdi() - sto.getVaerdi()) / (xOver.getVaerdi() - x.getVaerdi()));
+            double vaerdi = ((stoOver.getVaerdi() - sto.getVaerdi()) / (xOver.getVaerdi() - x.getVaerdi()));
+            setVaerdi(vaerdi);
             erBeregnet = true;
         } else {
             vaerdi = Double.NaN;

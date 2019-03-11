@@ -157,6 +157,11 @@ class MOCKS {
         }
 
         @Override
+        public boolean kanBeregnes(VO vo, X x, SE se, KE ke) {
+            return false;
+        }
+
+        @Override
         public void setVaerdi(double Vaerdi) {
         }
 
@@ -210,9 +215,10 @@ class MOCKS {
         }
 
         @Override
-        public void initOver(X xOver, VO voOver) {
+        public void initOver(X xOver, VO voOver, STO stoOver) {
 
         }
+
 
         @Override
         public void initUnder(X xUnder, VO voUnder) {
