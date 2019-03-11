@@ -1,6 +1,8 @@
 package dk.kugelberg.hoek_helper.model;
 
-public interface X extends Noegletal {
+import androidx.lifecycle.MutableLiveData;
+
+public interface X {
 
     //void init(VO vo, VE ve, DOMK domk, STO sto, SE se, GROMK gromk);
 
@@ -12,7 +14,6 @@ public interface X extends Noegletal {
 
     void setVaerdi(double x);
     double getVaerdi();
-
     void beregn();
 
     void setBeregnet(boolean val);

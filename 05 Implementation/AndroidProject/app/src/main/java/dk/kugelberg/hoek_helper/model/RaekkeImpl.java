@@ -11,11 +11,12 @@ public class RaekkeImpl implements Raekke {
     private VE ve = null;
     private VO vo = null;
     private X x = null;
+    private OMS oms = null;
+    private DB db = null;
 
     private int raekkenummer;
 
-
-    public RaekkeImpl(){
+    public RaekkeImpl() {
         // Instantierer beregninger aka. kolonerne
         domk = new DOMKImpl();
         gromk = new GROMKImpl();
@@ -26,9 +27,10 @@ public class RaekkeImpl implements Raekke {
         ve = new VEImpl();
         vo = new VOImpl();
         x = new XImpl();
+        oms = new OMSImpl();
+        db = new DBImpl();
 
     }
-
 
     @Override
     public DOMK getDOMK() {
@@ -76,6 +78,16 @@ public class RaekkeImpl implements Raekke {
     }
 
     @Override
+    public OMS getOMS() {
+        return oms;
+    }
+
+    @Override
+    public DB getDB() {
+        return db;
+    }
+
+    @Override
     public int getRaekkenummer() {
         return raekkenummer;
     }
@@ -93,7 +105,6 @@ public class RaekkeImpl implements Raekke {
     @Override
     public void setSE(SE se) {
         this.se = se;
-
     }
 
     @Override
@@ -130,13 +141,18 @@ public class RaekkeImpl implements Raekke {
         this.gromk = gromk;
     }
 
+    @Override
+    public void setDB(DB db) {
+        this.db = db;
+    }
 
+    @Override
+    public void setOMS(OMS oms) {
+        this.oms = oms;
+    }
 
     @Override
     public void setRaekkenummer(int raekkenummer) {
         this.raekkenummer = raekkenummer;
-
     }
-
-
 }
