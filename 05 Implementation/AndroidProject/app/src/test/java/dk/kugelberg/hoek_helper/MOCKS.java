@@ -104,7 +104,7 @@ class MOCKS {
         }
 
         @Override
-        public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se) {
+        public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se, DB db, OMS oms) {
 
         }
 
