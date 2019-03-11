@@ -5,7 +5,20 @@ import org.junit.Test;
 import org.junit.rules.TestRule;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
+import androidx.lifecycle.MutableLiveData;
+
+import dk.kugelberg.hoek_helper.model.DB;
+import dk.kugelberg.hoek_helper.model.DOMK;
+import dk.kugelberg.hoek_helper.model.GROMK;
+import dk.kugelberg.hoek_helper.model.KE;
+import dk.kugelberg.hoek_helper.model.KO;
 import dk.kugelberg.hoek_helper.model.NegativVaerdiException;
+import dk.kugelberg.hoek_helper.model.OMS;
+import dk.kugelberg.hoek_helper.model.SE;
+import dk.kugelberg.hoek_helper.model.STO;
+import dk.kugelberg.hoek_helper.model.VE;
+import dk.kugelberg.hoek_helper.model.VO;
+import dk.kugelberg.hoek_helper.model.X;
 import dk.kugelberg.hoek_helper.model.XImpl;
 
 import static org.junit.Assert.*;

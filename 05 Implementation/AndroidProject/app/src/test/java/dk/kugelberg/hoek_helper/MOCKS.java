@@ -104,7 +104,7 @@ class MOCKS {
         }
 
         @Override
-        public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se) {
+        public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se, DB db, OMS oms) {
 
         }
 
@@ -365,17 +365,12 @@ class MOCKS {
         }
 
         @Override
-        public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se) {
+        public void init(X x, STO sto) {
 
         }
 
         @Override
-        public void initOver(X x1, VO vo1) {
-
-        }
-
-        @Override
-        public void initUnder(X x2, VO vo2, DOMK domk2) {
+        public void initOver(X x1, STO vo1) {
 
         }
 
