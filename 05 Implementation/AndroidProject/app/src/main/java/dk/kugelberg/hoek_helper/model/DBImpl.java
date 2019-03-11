@@ -24,5 +24,4 @@ public class DBImpl implements DB {
     public boolean getBeregnet() {
         return false;
     }
-
 }

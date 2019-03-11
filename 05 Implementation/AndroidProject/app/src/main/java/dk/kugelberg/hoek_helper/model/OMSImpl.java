@@ -25,6 +25,4 @@ public class OMSImpl implements OMS {
     public boolean getBeregnet() {
         return false;
     }
-
-
 }
