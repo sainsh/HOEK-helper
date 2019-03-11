@@ -19,62 +19,19 @@ public class MainViewModel extends ViewModel implements Main {
 
     @Override
     public void addRow() {
-        System.out.println("\n[+] NY RÆKKE TILFØJET!!!!\n");
         controller.hentTabel().addRaekke(controller.hentTabelStr());
     }
 
     @Override
     public Raekke getRow(int raekkenummer){
-        return controller.hentTabel().getTabel().get(raekkenummer);
+        return controller.hentTabel().getRaekke(raekkenummer);
     }
 
-    @Override
-    public VO getVO(int raekkenummer){
-        return controller.hentTabel().getTabel().get(raekkenummer).getVO();
-    }
-
-    @Override
-    public void setVO(int raekkenummer, double value){
-        controller.hentTabel().getTabel().get(raekkenummer).getVO().setVaerdi(value);
-    }
-
-    @Override
-    public X getX(int raekkenummer) {
-        return controller.hentTabel().getTabel().get(raekkenummer).getX();
-    }
-
-    @Override
-    public void setX(int raekkenummer, double value) {
-        controller.hentTabel().getTabel().get(raekkenummer).getX().setVaerdi(value);
-    }
-
-    @Override
-    public VE getVE(int raekkenummer) {
-        return controller.hentTabel().getTabel().get(raekkenummer).getVE();
-    }
-
-    @Override
-    public void setVE(int raekkenummer, double value) {
-        controller.hentTabel().getTabel().get(raekkenummer).getVE().setVaerdi(value);
-    }
-
-    @Override
-    public DOMK getDOMK(int raekkenummer) {
-        return controller.hentTabel().getTabel().get(raekkenummer).getDOMK();
-    }
-
-    @Override
-    public void setDOMK(int raekkenummer, double value) {
-        controller.hentTabel().getTabel().get(raekkenummer).getDOMK().setVaerdi(value);
-    }
 
     @Override
     public Controller getController() {
         return controller;
     }
 
-    @Override
-    public void setController(Controller controller) {
-        this.controller = controller;
-    }
+
 }

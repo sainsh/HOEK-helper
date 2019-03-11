@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         rows = new ArrayList<>();
 
-
     }
 
     public void addRowClicked(View view) {

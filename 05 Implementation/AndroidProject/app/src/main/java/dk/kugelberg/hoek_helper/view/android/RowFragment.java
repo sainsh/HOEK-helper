@@ -72,8 +72,6 @@ public class RowFragment extends Fragment {
 
         // Must be Empty
 
-
-
     }
 
 
@@ -114,9 +112,6 @@ public class RowFragment extends Fragment {
 
                 // Hvis input felt ikke er tomt, sæt værdi til objekt
                 if (!xEditText.getText().toString().equals("")){
-                    // getX().setVaerdi(Double.parseDouble(xEditText.getText().toString()));
-                    // setxRaw(Double.parseDouble(xEditText.getText().toString()));
-                    // viewModel.getRow(getRaekkenummer()).getX().setVaerdi(getxRaw());
 
                     double inputValue = Double.parseDouble(xEditText.getText().toString());
                     getX().setVaerdi(inputValue);
@@ -139,9 +134,6 @@ public class RowFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 if (!voEditText.getText().toString().equals("")){
-                    // Set VO value
-//                    setVo(Double.parseDouble(voEditText.getText().toString()));
-//                    viewModel.getRow(getRaekkenummer()).getVO().setVaerdi(getVo());
 
                     double inputValue = Double.parseDouble(voEditText.getText().toString());
                     getVo().setVaerdi(inputValue);
@@ -162,9 +154,6 @@ public class RowFragment extends Fragment {
         veEditText.addTextChangedListener(new TextWatcher() {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // Set VE value
-//                setVe(Double.parseDouble(veEditText.getText().toString()));
-//                viewModel.getRow(getRaekkenummer()).getVE().setVaerdi(getVe());
 
                 double inputValue = Double.parseDouble(veEditText.getText().toString());
                 getVe().setVaerdi(inputValue);
@@ -184,10 +173,7 @@ public class RowFragment extends Fragment {
         domkEditText.addTextChangedListener(new TextWatcher() {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // Set DOMK value
 
-                //setDomk(Double.parseDouble(domkEditText.getText().toString()));
-                //viewModel.getRow(getRaekkenummer()).getDOMK().setVaerdi(getDomk());
                 double inputValue = Double.parseDouble(domkEditText.getText().toString());
                 getDomk().setVaerdi(inputValue);
                 System.out.println("\n[++] RÆKKENUMMER: " + getRaekkenummer());
@@ -251,10 +237,10 @@ public class RowFragment extends Fragment {
 
     public void beregnVE(){
 
-        System.out.println("\n\n[+] BEREGN VE ER BLEVET KALDT!");
+
         // Kan VE beregnes?
         if (getVe().kanBeregnes(vo, x, se, ke)){
-            System.out.println("\n\n\n[+] VE KAN BEREGNES!");
+
             // Init VE
             getVe().init(vo, x, se, ke);
             // Beregn

@@ -14,19 +14,6 @@ public interface Main {
 
     Raekke getRow(int raekkenummer);
 
-    VO getVO(int raekkenummer);
-    void setVO(int raekkenummer, double value);
-
-    X getX(int raekkenummer);
-    void setX(int raekkenummer, double value);
-
-    VE getVE(int raekkenummer);
-    void setVE(int raekkenummer, double value);
-
-    DOMK getDOMK(int raekkenummer);
-    void setDOMK(int raekkenummer, double value);
-
     Controller getController();
 
-    void setController(Controller controller);
 }
