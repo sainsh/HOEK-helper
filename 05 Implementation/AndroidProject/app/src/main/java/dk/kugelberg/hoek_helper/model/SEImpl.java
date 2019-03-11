@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import static java.lang.Double.NaN;
 
-public class SEImpl implements SE {
+public class   SEImpl implements SE {
 
     private X x;
     private STO sto;
