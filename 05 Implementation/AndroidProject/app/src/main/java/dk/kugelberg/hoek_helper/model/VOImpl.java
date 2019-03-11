@@ -26,13 +26,15 @@ public class VOImpl implements VO {
     }
 
     @Override
-    public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se) {
+    public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se, DB db, OMS oms) {
         this.ve = ve;
         this.x = x;
         this.ko = ko;
         this.domk = domk;
         this.sto = sto;
         this.se = se;
+        this.db = db;
+        this.oms = oms;
     }
 
     @Override
