@@ -14,6 +14,7 @@ public class STOImpl implements STO {
     private X xUnder;
     private VO voOver;
     private VO voUnder;
+    private STO stoOver;
     private GROMK gromk;
 
     private double vaerdi = NaN;
@@ -32,9 +33,10 @@ public class STOImpl implements STO {
     }
 
     @Override
-    public void initOver(X xOver, VO voOver) {
+    public void initOver(X xOver, VO voOver, STO stoOver) {
         this.xOver = xOver;
         this.voOver = voOver;
+        this.stoOver = stoOver;
     }
 
     @Override
@@ -73,21 +75,29 @@ public class STOImpl implements STO {
 
         //STO = VO + KO
         if (!Double.isNaN(vo.getVaerdi()) && !Double.isNaN(ko.getVaerdi())) {
-            vaerdi = vo.getVaerdi() + ko.getVaerdi();
+            double vaerdi = vo.getVaerdi() + ko.getVaerdi();
+            setVaerdi(vaerdi);
             setBeregnet(true);
 
             //STO = SE * X
         } else if (!Double.isNaN(se.getVaerdi()) && !Double.isNaN(x.getVaerdi())) {
-            vaerdi = se.getVaerdi() * x.getVaerdi();
+            double vaerdi = se.getVaerdi() * x.getVaerdi();
+            setVaerdi(vaerdi);
             setBeregnet(true);
 
-        } else if (getBeregnet()) {
+        } else if (!Double.isNaN(se.getVaerdi()) && !Double.isNaN(x.getVaerdi())) {
+            vaerdi = (gromk.getVaerdi()*-1)*xOver.getVaerdi()+gromk.getVaerdi()*x.getVaerdi()+stoOver.getVaerdi();
+            setVaerdi(vaerdi);
+            setBeregnet(true);
+
+    }
+
+        else if (getBeregnet()) {
             setVaerdi(NaN);
         }
 
-        // TODO: undersøg hvordan STO=GROMK * X kan være rigtig???
-        //this.sto = gromk.getVaerdi() * x.getVaerdi();
-        //this.vaerdi = gromk.getVaerdi() * x.getVaerdi();
+
+
 
         if (vaerdi == NaN) erBeregnet = false;
     }
