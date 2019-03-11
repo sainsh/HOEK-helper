@@ -10,12 +10,11 @@ public class VEImpl implements VE {
     private SE se;
     private KE ke;
 
-    private double vaerdi;
+    private double vaerdi = Double.NaN;
     private boolean erBeregnet = false;
 
     public VEImpl(){
-        vaerdi = Double.NaN;
-        erBeregnet = false;
+
     }
 
     @Override
@@ -69,13 +68,15 @@ public class VEImpl implements VE {
         // VE = VO / X
         if(!Double.isNaN(x.getVaerdi()) && !Double.isNaN(vo.getVaerdi())){
 
-            vaerdi = (vo.getVaerdi() / x.getVaerdi());
+            double vaerdi = (vo.getVaerdi() / x.getVaerdi());
+            setVaerdi(vaerdi);
             setBeregnet(true);
         }
 
         // VE = SE - KE
         else if(!Double.isNaN(se.getVaerdi()) && !Double.isNaN(ke.getVaerdi())){
-            vaerdi = (se.getVaerdi() - ke.getVaerdi());
+            double vaerdi = (se.getVaerdi() - ke.getVaerdi());
+            setVaerdi(vaerdi);
             setBeregnet(true);
 
         }
