@@ -1,10 +1,9 @@
 package dk.kugelberg.hoek_helper.model;
 
-public interface GROMK extends Noegletal {
-
-    void init(X x, STO sto);
-
-    void initOver(X x, STO sto);
+public interface Prisoptimering {
+    void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se);
+    void initOver(X x1, VO vo1);
+    void initUnder(X x2, VO vo2, DOMK domk2);
 
     void setVaerdi(double vaerdi);
 
@@ -15,4 +14,5 @@ public interface GROMK extends Noegletal {
     void setBeregnet(boolean val);
 
     boolean getBeregnet();
+
 }
