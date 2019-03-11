@@ -160,7 +160,7 @@ public class ModelViewModel extends ViewModel {
 
     public MutableLiveData<Double> getA() {
         // TODO (6) Hent data fra modellen
-        currentA = tabel.getRaekke(1).getX().getXmutable();
+        //currentA = tabel.getRaekke(1).getX().getXmutable();
         return currentA;
     }
 }

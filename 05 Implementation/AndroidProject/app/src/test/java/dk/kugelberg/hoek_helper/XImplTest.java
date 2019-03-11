@@ -33,8 +33,8 @@ public class XImplTest {
     @Test
     public void testSaetXTil45() {
         XImpl x = new XImpl();
-        x.setVaerdi(45.5);
-        assertEquals(x.getVaerdi(), 45.5, delta);
+        x.setVaerdi(45.9);
+        assertEquals(x.getVaerdi(), 45, delta);
         assertFalse(x.getBeregnet());
     }
 
