@@ -2,8 +2,6 @@ package dk.kugelberg.hoek_helper.model;
 
 import static java.lang.Double.NaN;
 
-import androidx.lifecycle.MutableLiveData;
-
 public class GROMKImpl implements GROMK {
 
     private VE ve;
@@ -19,13 +17,12 @@ public class GROMKImpl implements GROMK {
     private STO sto;
     private SE se;
 
-
-    private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
-    private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
+    private double vaerdi = NaN;
+    private boolean erBeregnet = false;
 
     public GROMKImpl() {
-        vaerdi.setValue(NaN);
-        erBeregnet.setValue(false);
+        vaerdi = NaN;
+        erBeregnet = false;
     }
 
     @Override
@@ -56,57 +53,56 @@ public class GROMKImpl implements GROMK {
         if (vaerdi < 0) {
             throw new VaerdiException();
         } else {
-            this.vaerdi.setValue(vaerdi);
+            this.vaerdi = vaerdi;
             setBeregnet(false);
         }
     }
 
     @Override
     public double getVaerdi() {
-        return vaerdi.getValue();
+        return vaerdi;
     }
 
     @Override
     public void setBeregnet(boolean val) {
-        erBeregnet.setValue(val);
+        erBeregnet = val;
     }
 
     @Override
     public boolean getBeregnet() {
-        return erBeregnet.getValue();
+        return erBeregnet;
     }
 
 
     /**
-        GROMK kan findes på 2 måder
-        enten ved at differentiere formlen for VO
-
-        Formlen for VO er en normal andengrads ligning der ser således ud:
-        VO = a*(x*x) + b*x + c
-        VO vil altid være en parabel da x ikke må være negativ
-        og det lader til at c altid 0 for HØK'erne
-
-        ELLER hvis vi ikke kender VO formlen
-        kan vi vinde GROMK ud fra 3 punkter af VO og x (Hvor x'erne er forskellige)
-        kan vi finde a, b og c i ovenstående formel således:
-
-        vo1 og x1
-        vo2 og x2
-        vo3 og x3
-
-        a = vo1 / ((x1-x2)*(x1-x3)) + vo2 / ((x2-x1)*(x2-x3)) + vo3 / ((x3-x1)*(x3-x2))
-        b = -vo1*(x2+x3)/((x1-x2)*(x1-x3)) - vo2 *(x1+x3)/((x2-x1)*(x2-x3)) - vo3 *(x1+x2)/((x3-x1)*(x3-x2))
-        c = vo1*x2*x3/((x1-x2)*(x1-x3)) + vo2*x1*x3 / ((x2-x1)*(x2-x3)) + vo3*x1*x2 / ((x3-x1)*(x3-x2))
-
-        Nu hvor vi har a b og c på plads kan vi differentiere formlen.
-        Det gøres således:
-
-        GROMK =  (2*a) * x + b + c   = voDifferentieret
-
-        når dette er klaret har vi fundet GROMK
-        VODifferentieret = GROMK
-
-        */
+     * GROMK kan findes på 2 måder
+     * enten ved at differentiere formlen for VO
+     * <p>
+     * Formlen for VO er en normal andengrads ligning der ser således ud:
+     * VO = a*(x*x) + b*x + c
+     * VO vil altid være en parabel da x ikke må være negativ
+     * og det lader til at c altid 0 for HØK'erne
+     * <p>
+     * ELLER hvis vi ikke kender VO formlen
+     * kan vi vinde GROMK ud fra 3 punkter af VO og x (Hvor x'erne er forskellige)
+     * kan vi finde a, b og c i ovenstående formel således:
+     * <p>
+     * vo1 og x1
+     * vo2 og x2
+     * vo3 og x3
+     * <p>
+     * a = vo1 / ((x1-x2)*(x1-x3)) + vo2 / ((x2-x1)*(x2-x3)) + vo3 / ((x3-x1)*(x3-x2))
+     * b = -vo1*(x2+x3)/((x1-x2)*(x1-x3)) - vo2 *(x1+x3)/((x2-x1)*(x2-x3)) - vo3 *(x1+x2)/((x3-x1)*(x3-x2))
+     * c = vo1*x2*x3/((x1-x2)*(x1-x3)) + vo2*x1*x3 / ((x2-x1)*(x2-x3)) + vo3*x1*x2 / ((x3-x1)*(x3-x2))
+     * <p>
+     * Nu hvor vi har a b og c på plads kan vi differentiere formlen.
+     * Det gøres således:
+     * <p>
+     * GROMK =  (2*a) * x + b + c   = voDifferentieret
+     * <p>
+     * når dette er klaret har vi fundet GROMK
+     * VODifferentieret = GROMK
+     */
 
     @Override
     public void beregn() {
@@ -139,7 +135,7 @@ public class GROMKImpl implements GROMK {
             }
         }
 
-        if (this.vaerdi.getValue() == NaN) this.erBeregnet.setValue(false);
+        if (vaerdi == NaN) erBeregnet = false;
 
     }
 }

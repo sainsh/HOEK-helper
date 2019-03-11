@@ -3,6 +3,7 @@ package dk.kugelberg.hoek_helper.view;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 import dk.kugelberg.hoek_helper.R;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -12,6 +13,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        // Deals with the menu back button. It's not needed, because I defined the parent activity in manifest
 //        ActionBar actionBar = this.getSupportActionBar();
 //        if (actionBar != null) {
 //            actionBar.setDisplayHomeAsUpEnabled(true);
@@ -27,9 +29,10 @@ public class SettingsActivity extends AppCompatActivity {
 //        return super.onOptionsItemSelected(item);
 //    }
 
+    // Deals with the hardware back button
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finish();
+        NavUtils.navigateUpFromSameTask(this);
     }
 }

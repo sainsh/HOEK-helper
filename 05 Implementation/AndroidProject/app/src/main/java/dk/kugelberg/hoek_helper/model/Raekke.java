@@ -20,6 +20,10 @@ public interface Raekke {
 
     X getX();
 
+    OMS getOMS();
+
+    DB getDB();
+
     int getRaekkenummer();
 
     void setDOMK(DOMK domk);
@@ -40,6 +44,9 @@ public interface Raekke {
 
     void setGROMK(GROMK gromk);
 
+    void setDB(DB db);
+
+    void setOMS(OMS oms);
 
     void setRaekkenummer(int raekkenummer);
 

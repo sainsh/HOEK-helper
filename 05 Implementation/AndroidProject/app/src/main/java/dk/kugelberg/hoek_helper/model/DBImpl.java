@@ -1,35 +1,27 @@
 package dk.kugelberg.hoek_helper.model;
 
-public class DBImpl implements DB
-{
-        public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se, X xOver, VO voOver, X xUnder, VO voUnder, DOMK domkUnder)
-        {
+public class DBImpl implements DB {
+    public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se, X xOver, VO voOver, X xUnder, VO voUnder, DOMK domkUnder) {
 
-        }
+    }
 
-        public void setVaerdi(double vaerdi)
-        {
+    public void setVaerdi(double vaerdi) {
 
-        }
+    }
 
-        public double getVaerdi()
-        {
-            return 0;
-        }
+    public double getVaerdi() {
+        return 0;
+    }
 
-        public void beregn()
-        {
+    public void beregn() {
 
-        }
+    }
 
-        public void setBeregnet(boolean val)
-        {
+    public void setBeregnet(boolean val) {
 
-        }
+    }
 
-        public boolean getBeregnet()
-        {
-            return false;
-        }
-
+    public boolean getBeregnet() {
+        return false;
+    }
 }
