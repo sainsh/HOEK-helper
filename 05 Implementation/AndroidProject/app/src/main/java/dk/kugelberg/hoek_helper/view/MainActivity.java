@@ -68,6 +68,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             actionBar.setTitle("Opgave X");
         }
 
+        setupViewModel();
+
         recyclerView = findViewById(R.id.recyclerView_tasks);
 //        recyclerView.setHasFixedSize(true);
 //        recyclerView.setNestedScrollingEnabled(false);
@@ -80,11 +82,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         recyclerView.setLayoutManager(linearLayoutManager);
 
-
-        adapter = new DataAdapter(this);
+        adapter = new DataAdapter(this, viewModel);
         recyclerView.setAdapter(adapter);
-
-        setupViewModel();
 
         System.out.println("onCreate");
 
@@ -122,34 +121,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     double testVO = 0;
 
     public void addRow(View view) {
-
-        for (int i = 0; i < 10; i++) {
-            Tabel tabel = controller.getTabel();
-            ArrayList<Raekke> arrayList = tabel.getTabelMld().getValue();
-
-            int tabelSize = arrayList.size();
-
-            tabel.addRaekke(tabelSize);
-
-            Raekke raekke = tabel.getRaekke(tabelSize);
-            raekke.getX().setVaerdi(testX);
-            testX += 1000;
-            raekke.getVO().setVaerdi(testVO);
-            testVO += 50000 * (testX / 1000);
-            raekke.getVE().init(raekke.getVO(), raekke.getX(), raekke.getSE(), raekke.getKE());
-            raekke.getVE().beregn();
-
-            if (tabelSize != 0) {
-                raekke.getDOMK().init(raekke.getVO(), raekke.getSTO(), raekke.getKO(), raekke.getVE(), raekke.getX());
-
-                Raekke raekkeOver = tabel.getRaekke(tabelSize - 1);
-                raekke.getDOMK().initOver(raekkeOver.getVO(), raekkeOver.getX(), raekkeOver.getDOMK());
-
-                raekke.getDOMK().beregn();
-            }
-
-            tabel.getTabelMld().setValue(arrayList);
-        }
+        viewModel.addRow();
     }
 
     private PopupWindow popupWindow;
@@ -171,30 +143,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     }
 
     public void popupInsert(View view) {
-        int rows = Integer.parseInt(etRows.getText().toString());
-        int antal = Integer.parseInt(etAntal.getText().toString());
-        int increment = Integer.parseInt(etIncrement.getText().toString());
-
-        for (int i = 0; i < rows; i++) {
-            Tabel tabel = controller.getTabel();
-            ArrayList<Raekke> arrayList = tabel.getTabelMld().getValue();
-
-            int tabelSize = arrayList.size();
-
-            tabel.addRaekke(tabelSize);
-
-            Raekke raekke = tabel.getRaekke(tabelSize);
-            raekke.getX().setVaerdi(antal);
-
-            tabel.getTabelMld().setValue(arrayList);
-
-            antal += increment;
-        }
-        popupWindow.dismiss();
+        viewModel.popupInsert(popupWindow, etRows, etAntal, etIncrement);
     }
 
     public void popupCancel(View view) {
-        popupWindow.dismiss();
+        viewModel.popupCancel(popupWindow);
     }
 
     /**

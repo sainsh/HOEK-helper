@@ -1,9 +1,7 @@
 package dk.kugelberg.hoek_helper.view;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,16 +13,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
 
+import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.RecyclerView;
 import dk.kugelberg.hoek_helper.R;
 import dk.kugelberg.hoek_helper.model.ControllerImpl;
 import dk.kugelberg.hoek_helper.model.NegativVaerdiException;
 import dk.kugelberg.hoek_helper.model.Raekke;
+import dk.kugelberg.hoek_helper.view.ViewModel.ModelViewModel;
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder> {
 
     private ArrayList<Raekke> raekkeArrayList;
     private Context context;
+    private ModelViewModel viewModel;
 
     private int widthInPixels;
     private int currentlyFocusedRow;
@@ -52,8 +53,9 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
         this.domkVisible = domkVisible;
     }
 
-    public DataAdapter(Context context) {
+    public DataAdapter(Context context, ModelViewModel viewModel) {
         this.context = context;
+        this.viewModel = viewModel;
 
         int widthInDp = 180;
         final float scale = context.getResources().getDisplayMetrics().density;
@@ -218,7 +220,10 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
             onFocusChangeListener = new View.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View view, boolean hasFocus) {
-                    EditText editText = (EditText) view;
+
+                    EditText editText = null;
+                    if (view instanceof EditText)
+                        editText = (EditText) view;
 
                     // Get the right position for the cursor.
                     if (getAdapterPosition() != -1 && hasFocus && (pos != getAdapterPosition() || id != editText.getId())) {
@@ -361,31 +366,21 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
         }
 
         private void moveUp() {
-            if (getAdapterPosition() != 0) {
-                Collections.swap(raekkeArrayList, getAdapterPosition(), getAdapterPosition() - 1);
-                ControllerImpl.getInstance().getTabel().getTabelMld().setValue(raekkeArrayList);
-            }
+            viewModel.moveUp(getAdapterPosition());
         }
 
         private void moveDown() {
-            if (getAdapterPosition() != raekkeArrayList.size() - 1) {
-                Collections.swap(raekkeArrayList, getAdapterPosition(), getAdapterPosition() + 1);
-                ControllerImpl.getInstance().getTabel().getTabelMld().setValue(raekkeArrayList);
-            }
+            viewModel.moveDown(getAdapterPosition());
         }
 
         private void deleteRow() {
-            raekkeArrayList.remove(getAdapterPosition());
-            ControllerImpl.getInstance().getTabel().getTabelMld().setValue(raekkeArrayList);
+            viewModel.deleteRow(getAdapterPosition());
         }
 
         private void deleteAll() {
-            raekkeArrayList.clear();
-            ControllerImpl.getInstance().getTabel().getTabelMld().setValue(raekkeArrayList);
+            viewModel.deleteAll();
         }
     }
 
     int counter = 0;
-
-
 }
