@@ -14,8 +14,7 @@ public class RaekkeImpl implements Raekke {
 
     private int raekkenummer;
 
-
-    public RaekkeImpl(){
+    public RaekkeImpl() {
         // Instantierer beregninger aka. kolonerne
         domk = new DOMKImpl();
         gromk = new GROMKImpl();
@@ -28,7 +27,6 @@ public class RaekkeImpl implements Raekke {
         x = new XImpl();
 
     }
-
 
     @Override
     public DOMK getDOMK() {
@@ -130,13 +128,8 @@ public class RaekkeImpl implements Raekke {
         this.gromk = gromk;
     }
 
-
-
     @Override
     public void setRaekkenummer(int raekkenummer) {
         this.raekkenummer = raekkenummer;
-
     }
-
-
 }

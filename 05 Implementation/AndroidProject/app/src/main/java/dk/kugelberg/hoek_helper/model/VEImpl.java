@@ -1,6 +1,5 @@
 package dk.kugelberg.hoek_helper.model;
 
-import androidx.lifecycle.MutableLiveData;
 import static java.lang.Double.NaN;
 
 public class VEImpl implements VE {
@@ -10,16 +9,14 @@ public class VEImpl implements VE {
     private SE se;
     private KE ke;
 
-    private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
-    private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
+    private double vaerdi = NaN;
+    private boolean erBeregnet = false;
 
-    public VEImpl(){
-        vaerdi.setValue(NaN);
-        erBeregnet.setValue(false);
+    public VEImpl() {
     }
 
     @Override
-    public void init(VO vo, X x, SE se, KE ke){
+    public void init(VO vo, X x, SE se, KE ke) {
         this.vo = vo;
         this.x = x;
         this.se = se;
@@ -31,7 +28,7 @@ public class VEImpl implements VE {
         if (x < 0) {
             throw new NegativVaerdiException();
         } else {
-            vaerdi.setValue(x);
+            vaerdi = x;
             setBeregnet(false);
         }
     }
@@ -39,38 +36,37 @@ public class VEImpl implements VE {
     @Override
     public double getVaerdi() {
 
-        return vaerdi.getValue();
+        return vaerdi;
     }
 
     @Override
-    public void setBeregnet(boolean val){
-        erBeregnet.setValue(val);
+    public void setBeregnet(boolean val) {
+        erBeregnet = val;
     }
 
     @Override
-    public boolean getBeregnet(){
-        return erBeregnet.getValue();
+    public boolean getBeregnet() {
+        return erBeregnet;
     }
 
     @Override
     public void beregn() {
 
         // VE = VO / X
-        if(!Double.isNaN(x.getVaerdi()) && !Double.isNaN(vo.getVaerdi())){
+        if (!Double.isNaN(x.getVaerdi()) && !Double.isNaN(vo.getVaerdi())) {
 
-            vaerdi.setValue(vo.getVaerdi() / x.getVaerdi());
+            vaerdi = vo.getVaerdi() / x.getVaerdi();
             setBeregnet(true);
         }
 
         // VE = SE - KE
-        else if(!Double.isNaN(se.getVaerdi()) && !Double.isNaN(ke.getVaerdi())){
-            vaerdi.setValue(se.getVaerdi() - ke.getVaerdi());
+        else if (!Double.isNaN(se.getVaerdi()) && !Double.isNaN(ke.getVaerdi())) {
+            vaerdi = se.getVaerdi() - ke.getVaerdi();
             setBeregnet(true);
 
-        }
-        else if(getBeregnet()){
+        } else if (getBeregnet()) {
             setVaerdi(NaN);
         }
-        if (this.vaerdi.getValue() == NaN) this.erBeregnet.setValue(false);
+        if (vaerdi == NaN) erBeregnet = false;
     }
 }
