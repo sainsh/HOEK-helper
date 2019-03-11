@@ -12,8 +12,8 @@ import dk.kugelberg.hoek_helper.model.VE;
 import dk.kugelberg.hoek_helper.model.VO;
 import dk.kugelberg.hoek_helper.model.X;
 
-public class MOCKS {
-    static class DBMock implements DB{
+class MOCKS {
+     static class DBMock implements DB{
         double vaerdi;
 
         public DBMock(double vaerdi){
@@ -97,7 +97,7 @@ public class MOCKS {
         }
     }
 
-    static class VOMock implements VO {
+     static class VOMock implements VO {
         double vaerdi;
         public VOMock(double vaerdi){
             this.vaerdi = vaerdi;
