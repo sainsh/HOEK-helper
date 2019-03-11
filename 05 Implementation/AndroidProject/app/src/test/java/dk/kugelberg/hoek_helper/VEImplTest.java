@@ -30,6 +30,8 @@ public class VEImplTest {
         assertFalse(ve.getBeregnet());
     }
 
+
+
     /**
     @Test
     public void testAfVEStandardVaerdi() {
