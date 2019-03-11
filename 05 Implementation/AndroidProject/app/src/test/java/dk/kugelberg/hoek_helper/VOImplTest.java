@@ -16,11 +16,10 @@ public class VOImplTest {
     public TestRule rule = new InstantTaskExecutorRule();
 
 
-    VO vo = new VOImpl();
-
     @Test
     public void setVaerdi() {
 
+        VO vo = new VOImpl();
         vo.setVaerdi(45);
         assertEquals(vo.getVaerdi(),45,0);
     }
@@ -28,6 +27,7 @@ public class VOImplTest {
     @Test
     public void getVaerdi() {
 
+        VO vo = new VOImpl();
         vo.setVaerdi(45);
         assertEquals(vo.getVaerdi(),45,0);
     }
