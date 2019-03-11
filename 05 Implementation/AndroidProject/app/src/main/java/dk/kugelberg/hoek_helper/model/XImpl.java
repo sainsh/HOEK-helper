@@ -69,6 +69,8 @@ public class XImpl implements X {
             x = Math.floor(x);
             vaerdi = x;
             setBeregnet(false);
+
+
         }
     }
 
