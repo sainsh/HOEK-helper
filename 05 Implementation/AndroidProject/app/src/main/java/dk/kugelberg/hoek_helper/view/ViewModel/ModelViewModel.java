@@ -1,166 +1,118 @@
 package dk.kugelberg.hoek_helper.view.ViewModel;
 
-import java.util.ArrayList;
+import android.app.Application;
+import android.widget.EditText;
+import android.widget.PopupWindow;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+import dk.kugelberg.hoek_helper.model.Controller;
+import dk.kugelberg.hoek_helper.model.ControllerImpl;
 import dk.kugelberg.hoek_helper.model.Raekke;
 import dk.kugelberg.hoek_helper.model.Tabel;
 
-public class ModelViewModel extends ViewModel {
+public class ModelViewModel extends AndroidViewModel {
 
-    // TODO (4) ViewModel skal også bruge LiveData, som de forskellige activities kan observere
-    // ViewModel er også løst koblet på modellen, dvs. modellen har ikke kendskab til ViewModel
-    private MutableLiveData<Double> currentA = new MutableLiveData<>();
-    private MutableLiveData<Double> currentX = new MutableLiveData<>();
+    private Controller controller;
 
+    private MutableLiveData<ArrayList<Raekke>> tasks;
 
-    private Tabel tabel = new Tabel() {
-        @Override
-        public Raekke getRaekke(int raekkenummer) {
-            return null;
-        }
+    public ModelViewModel(Application application) {
+        super(application);
 
-        @Override
-        public ArrayList<Raekke> getTabel() {
-            return null;
-        }
-
-        @Override
-        public void addRaekke(int raekkenummer) {
-
-        }
-
-        @Override
-        public void deleteRaekke(int raekkenummer) {
-
-        }
-
-        @Override
-        public void angivDOMK(double vaerdi, int raekkenummer) {
-
-        }
-
-        @Override
-        public double hentDOMK(int raekkenummer) {
-            return 0;
-        }
-
-        @Override
-        public void beregnDOMK(int raekkenummer) {
-
-        }
-
-        @Override
-        public void angivKO(double vaerdi, int raekkenummer) {
-
-        }
-
-        @Override
-        public double hentKO(int raekkenummer) {
-            return 0;
-        }
-
-        @Override
-        public void beregnKO(int raekkenummer) {
-
-        }
-
-        @Override
-        public void angivSTO(double vaerdi, int raekkenummer) {
-
-        }
-
-        @Override
-        public double hentSTO(int raekkenummer) {
-            return 0;
-        }
-
-        @Override
-        public void beregnSTO(int raekkenummer) {
-
-        }
-
-        @Override
-        public void angivVE(double vaerdi, int raekkenummer) {
-
-        }
-
-        @Override
-        public double hentVE(int raekkenummer) {
-            return 0;
-        }
-
-        @Override
-        public void beregnVE(int raekkenummer) {
-
-        }
-
-        @Override
-        public void angivVO(double vaerdi, int raekkenummer) {
-
-        }
-
-        @Override
-        public double hentVO(int raekkenummer) {
-            return 0;
-        }
-
-        @Override
-        public void beregnVO(int raekkenummer) {
-
-        }
-
-        @Override
-        public void angivX(int antal, int raekkenummer) {
-            this.getRaekke(raekkenummer).getX().setVaerdi(antal);
-        }
-
-        @Override
-        public double hentX(int raekkenummer) {
-            return tabel.getRaekke(raekkenummer).getX().getVaerdi();
-        }
-
-        @Override
-        public void beregnX(int raekkenummer) {
-
-        }
-
-        @Override
-        public void createCSV() {
-
-        }
-    };
-
-
-
-    public ModelViewModel() {
-        // TODO (5) Det her illustrerer, at vi får data fra modellen
-        currentA.setValue(tabel.getRaekke(0).getX().getVaerdi());
-        currentA.setValue(tabel.getRaekke(0).getVE().getVaerdi());
-        currentA.setValue(tabel.getRaekke(0).getVO().getVaerdi());
-        currentA.setValue(tabel.getRaekke(0).getSE().getVaerdi());
-        currentA.setValue(tabel.getRaekke(0).getSTO().getVaerdi());
-        currentA.setValue(tabel.getRaekke(0).getKE().getVaerdi());
-        currentA.setValue(tabel.getRaekke(0).getKO().getVaerdi());
-        currentA.setValue(tabel.getRaekke(0).getDOMK().getVaerdi());
-        currentA.setValue(tabel.getRaekke(0).getGROMK().getVaerdi());
-        // Giver "Startdata fra Model"
-        // currentA.setValue("Startdata fra ViewModel");
+        controller = ControllerImpl.getInstance();
+        tasks = controller.getTabel().getTabelMld();
     }
 
-    public double getXvaerdi(int raekke){
-        return tabel.getRaekke(raekke).getX().getVaerdi();
+    public MutableLiveData<ArrayList<Raekke>> getTable() {
+        return tasks;
     }
 
-    public void setXvaerdi(double vaerdi, int raekke) {
-        tabel.getRaekke(raekke).getX().setVaerdi(vaerdi);
+    double testX = 0;
+    double testVO = 0;
+
+    public void addRow() {
+        for (int i = 0; i < 10; i++) {
+            Tabel tabel = controller.getTabel();
+            ArrayList<Raekke> arrayList = tabel.getTabelMld().getValue();
+
+            int tabelSize = arrayList.size();
+
+            tabel.addRaekke(tabelSize);
+
+            Raekke raekke = tabel.getRaekke(tabelSize);
+            raekke.getX().setVaerdi(testX);
+            testX += 1000;
+            raekke.getVO().setVaerdi(testVO);
+            testVO += 50000 * (testX / 1000);
+            raekke.getVE().init(raekke.getVO(), raekke.getX(), raekke.getSE(), raekke.getKE());
+            raekke.getVE().beregn();
+
+            if (tabelSize != 0) {
+                raekke.getDOMK().init(raekke.getVO(), raekke.getSTO(), raekke.getKO(), raekke.getVE(), raekke.getX());
+
+                Raekke raekkeOver = tabel.getRaekke(tabelSize - 1);
+                raekke.getDOMK().initOver(raekkeOver.getVO(), raekkeOver.getX(), raekkeOver.getDOMK());
+
+                raekke.getDOMK().beregn();
+            }
+
+            tabel.getTabelMld().setValue(arrayList);
+        }
     }
 
+    public void popupInsert(PopupWindow popupWindow, EditText etRows, EditText etAntal, EditText etIncrement) {
+        int rows = Integer.parseInt(etRows.getText().toString());
+        int antal = Integer.parseInt(etAntal.getText().toString());
+        int increment = Integer.parseInt(etIncrement.getText().toString());
 
-    public MutableLiveData<Double> getA() {
-        // TODO (6) Hent data fra modellen
-        //currentA = tabel.getRaekke(1).getX().getXmutable();
-        return currentA;
+        for (int i = 0; i < rows; i++) {
+            Tabel tabel = controller.getTabel();
+            ArrayList<Raekke> arrayList = tabel.getTabelMld().getValue();
+
+            int tabelSize = arrayList.size();
+
+            tabel.addRaekke(tabelSize);
+
+            Raekke raekke = tabel.getRaekke(tabelSize);
+            raekke.getX().setVaerdi(antal);
+
+            tabel.getTabelMld().setValue(arrayList);
+
+            antal += increment;
+        }
+        popupWindow.dismiss();
     }
+
+    public void popupCancel(PopupWindow popupWindow) {
+        popupWindow.dismiss();
+    }
+
+    public void moveUp(int position) {
+        if (position != 0) {
+            Collections.swap(tasks.getValue(), position, position - 1);
+            ControllerImpl.getInstance().getTabel().getTabelMld().setValue(tasks.getValue());
+        }
+    }
+
+    public void moveDown(int position) {
+        if (position != tasks.getValue().size() - 1) {
+            Collections.swap(tasks.getValue(), position, position + 1);
+            ControllerImpl.getInstance().getTabel().getTabelMld().setValue(tasks.getValue());
+        }
+    }
+
+    public void deleteRow(int position) {
+        tasks.getValue().remove(position);
+        ControllerImpl.getInstance().getTabel().getTabelMld().setValue(tasks.getValue());
+    }
+
+    public void deleteAll() {
+        tasks.getValue().clear();
+        ControllerImpl.getInstance().getTabel().getTabelMld().setValue(tasks.getValue());
+    }
+
 }
