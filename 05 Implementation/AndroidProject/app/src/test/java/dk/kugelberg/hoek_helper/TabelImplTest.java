@@ -9,10 +9,13 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
+import dk.kugelberg.hoek_helper.model.DB;
 import dk.kugelberg.hoek_helper.model.DOMK;
+import dk.kugelberg.hoek_helper.model.DOMKImpl;
 import dk.kugelberg.hoek_helper.model.GROMK;
 import dk.kugelberg.hoek_helper.model.KE;
 import dk.kugelberg.hoek_helper.model.KO;
+import dk.kugelberg.hoek_helper.model.OMS;
 import dk.kugelberg.hoek_helper.model.Raekke;
 import dk.kugelberg.hoek_helper.model.RaekkeImpl;
 import dk.kugelberg.hoek_helper.model.SE;
@@ -45,7 +48,7 @@ public class TabelImplTest {
 
 
         for(int i = 0; i<10; i++) {
-            tabel.getTabel().add(new RaekkeMock(1,1,1,1,1,1,1,1,1));
+            //tabel.getTabelmld().add(new RaekkeMock(1,1,1,1,1,1,1,1,1));
             testData.append("1.0;1.0;1.0;1.0;1.0;1.0;1.0;1.0;1.0\n");
         }
 
@@ -108,10 +111,12 @@ public class TabelImplTest {
             return false;
         }
 
+
         @Override
-        public void init(VO vo, STO sto, KO ko, VE ve, X x, DOMK domk) {
+        public void init(VO vo, STO sto, KO ko, VE ve, X x) {
 
         }
+
 
         @Override
         public void initOver(VO voOver, X xOver, DOMK domkOver) {
@@ -350,7 +355,7 @@ public class TabelImplTest {
 
 
         @Override
-        public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se) {
+        public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se, DB db, OMS oms) {
 
         }
 

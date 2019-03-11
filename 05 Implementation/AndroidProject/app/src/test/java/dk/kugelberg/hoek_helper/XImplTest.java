@@ -7,11 +7,13 @@ import org.junit.rules.TestRule;
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.lifecycle.MutableLiveData;
 
+import dk.kugelberg.hoek_helper.model.DB;
 import dk.kugelberg.hoek_helper.model.DOMK;
 import dk.kugelberg.hoek_helper.model.GROMK;
 import dk.kugelberg.hoek_helper.model.KE;
 import dk.kugelberg.hoek_helper.model.KO;
 import dk.kugelberg.hoek_helper.model.NegativVaerdiException;
+import dk.kugelberg.hoek_helper.model.OMS;
 import dk.kugelberg.hoek_helper.model.SE;
 import dk.kugelberg.hoek_helper.model.STO;
 import dk.kugelberg.hoek_helper.model.VE;
@@ -384,7 +386,7 @@ public class XImplTest {
 
 
         @Override
-        public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se) {
+        public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se, DB db, OMS oms) {
 
         }
 
@@ -494,9 +496,10 @@ class DomkMock implements DOMK {
     }
 
     @Override
-    public void init(VO vo, STO sto, KO ko, VE ve, X x, DOMK domk) {
+    public void init(VO vo, STO sto, KO ko, VE ve, X x) {
 
     }
+
 
     @Override
     public void initOver(VO voOver, X xOver, DOMK domkOver) {
