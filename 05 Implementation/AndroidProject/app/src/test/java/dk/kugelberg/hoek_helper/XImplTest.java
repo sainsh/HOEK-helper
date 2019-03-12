@@ -4,29 +4,19 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestRule;
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
-import androidx.lifecycle.MutableLiveData;
 
-import dk.kugelberg.hoek_helper.model.DB;
-import dk.kugelberg.hoek_helper.model.DOMK;
-import dk.kugelberg.hoek_helper.model.GROMK;
-import dk.kugelberg.hoek_helper.model.KE;
-import dk.kugelberg.hoek_helper.model.KO;
 import dk.kugelberg.hoek_helper.model.NegativVaerdiException;
-import dk.kugelberg.hoek_helper.model.OMS;
-import dk.kugelberg.hoek_helper.model.SE;
-import dk.kugelberg.hoek_helper.model.STO;
-import dk.kugelberg.hoek_helper.model.VE;
-import dk.kugelberg.hoek_helper.model.VO;
-import dk.kugelberg.hoek_helper.model.X;
 import dk.kugelberg.hoek_helper.model.XImpl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class XImplTest {
 
     @Rule
-    public TestRule rule = new InstantTaskExecutorRule();
+    //public TestRule rule = new InstantTaskExecutorRule();
 
 
     final double delta = 0.00000000000000000001;
@@ -42,7 +32,8 @@ public class XImplTest {
 
     //Kontrollere at Init ikke ændre værdien.
     @Test
-    public void testAfXStandardVaerdi() {
+    public void testAfXStandardVaerdi()
+    {
         XImpl x = new XImpl();
         x.initOver(new MOCKS.XMock(Double.NaN),new MOCKS.VOMock(Double.NaN));
         x.init(new MOCKS.VOMock(Double.NaN), new MOCKS.VEMock(Double.NaN), new MOCKS.DomkMock(Double.NaN), new MOCKS.STOMock(Double.NaN), new MOCKS.SEMock(Double.NaN), new MOCKS.GromkMock(Double.NaN), new MOCKS.KOMock(Double.NaN),new MOCKS.KEMock(Double.NaN));

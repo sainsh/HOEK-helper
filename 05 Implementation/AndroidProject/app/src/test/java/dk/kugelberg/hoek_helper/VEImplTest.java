@@ -1,6 +1,6 @@
 package dk.kugelberg.hoek_helper;
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
+
 import dk.kugelberg.hoek_helper.model.VEImpl;
 
 import org.junit.Rule;
@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class VEImplTest {
 
     @Rule
-    public TestRule rule = new InstantTaskExecutorRule();
+    //public TestRule rule = new InstantTaskExecutorRule();
 
 
     @Test

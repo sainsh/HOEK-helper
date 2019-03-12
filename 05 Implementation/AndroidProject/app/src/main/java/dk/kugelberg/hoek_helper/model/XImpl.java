@@ -26,7 +26,8 @@ public class XImpl implements X {
     }
 
     @Override
-    public void init(VO vo, VE ve, DOMK domk, STO sto, SE se, GROMK gromk, KO ko, KE ke) {
+    public void init(VO vo, VE ve, DOMK domk, STO sto, SE se, GROMK gromk, KO ko, KE ke)
+    {
         this.vo = vo;
         this.ve = ve;
         this.domk = domk;
