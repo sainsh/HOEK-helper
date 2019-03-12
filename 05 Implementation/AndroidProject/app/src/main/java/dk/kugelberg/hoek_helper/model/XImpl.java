@@ -103,9 +103,9 @@ public class XImpl implements X {
             setVaerdi(sto.getVaerdi() * gromk.getVaerdi());
             setBeregnet(true);
 
-            // X = (domk * ( vo - voOver)) + xOver
+            // X2 = (VO2 - VO1) / DOMK + X1
         } else if (!Double.isNaN(domk.getVaerdi()) && !Double.isNaN(vo.getVaerdi()) && !Double.isNaN(voOver.getVaerdi()) && !Double.isNaN(xOver.getVaerdi())) {
-            setVaerdi((domk.getVaerdi() * (vo.getVaerdi() - voOver.getVaerdi())) + xOver.getVaerdi());
+            setVaerdi((vo.getVaerdi() - voOver.getVaerdi()) / domk.getVaerdi() + xOver.getVaerdi());
             setBeregnet(true);
 
         } else if (getBeregnet()) {

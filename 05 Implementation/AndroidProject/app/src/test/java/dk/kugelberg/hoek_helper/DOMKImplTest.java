@@ -47,7 +47,8 @@ public class DOMKImplTest {
     public void beregnDOMKMedTal() {
         DOMKImpl domk = new DOMKImpl();
         domk.initOver(new MOCKS.VOMock(280000), new MOCKS.XMock(40000), new MOCKS.DomkMock(Double.NaN));
-        domk.init(new MOCKS.VOMock(310000), new MOCKS.STOMock(Double.NaN), new MOCKS.KOMock(Double.NaN), new MOCKS.VEMock(Double.NaN), new MOCKS.XMock(45000));
+        domk.init(new MOCKS.VOMock(310000), new MOCKS.STOMock(Double.NaN), new MOCKS.KOMock(Double.NaN),
+                new MOCKS.VEMock(Double.NaN), new MOCKS.XMock(45000));
         domk.beregn();
         double forventetRestultat = 6;
         assertEquals(domk.getVaerdi(), forventetRestultat, delta);

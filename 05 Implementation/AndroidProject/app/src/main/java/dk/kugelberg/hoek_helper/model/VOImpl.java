@@ -94,10 +94,10 @@ public class VOImpl implements VO {
             setVaerdi(db.getVaerdi() - oms.getVaerdi());
             setBeregnet(true);
 
-            //VO = ((x-xOver) / domk) + voOver
+            //VO2 = DOMK * (X2 - X1) + VO1
         } else if (!Double.isNaN(x.getVaerdi()) && !Double.isNaN(xOver.getVaerdi()) &&
                 !Double.isNaN(domk.getVaerdi()) && !Double.isNaN(voOver.getVaerdi())) {
-            setVaerdi(((x.getVaerdi() - xOver.getVaerdi()) / domk.getVaerdi()) + voOver.getVaerdi());
+            setVaerdi(domk.getVaerdi() * (x.getVaerdi() - xOver.getVaerdi()) + voOver.getVaerdi());
             setBeregnet(true);
 
         } else if (getBeregnet()) {

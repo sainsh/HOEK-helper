@@ -71,7 +71,7 @@ public class DOMKImpl implements DOMK {
     @Override
     public void beregn() {
 
-        //DOMK = (X2-X1)/(VO2-VO1) X2 = x,  X1 = xOVer, VO2 = vo, VO1 = voOver
+        //DOMK = (VO2 - VO1)/(X2 - X1) X2 = x,  X1 = xOVer, VO2 = vo, VO1 = voOver
         if (!Double.isNaN(x.getVaerdi()) && !Double.isNaN(xOver.getVaerdi()) && !Double.isNaN(vo.getVaerdi()) && !Double.isNaN(voOver.getVaerdi())) {
 
             vaerdi = ((voOver.getVaerdi() - vo.getVaerdi()) / (xOver.getVaerdi() - x.getVaerdi()));
