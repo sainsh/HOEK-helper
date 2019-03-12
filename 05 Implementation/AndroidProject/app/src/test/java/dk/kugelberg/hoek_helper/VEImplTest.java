@@ -27,6 +27,7 @@ public class VEImplTest {
         VEImpl ve = new VEImpl();
         ve.setVaerdi(45);
         assertEquals(ve.getVaerdi(), 45, delta);
+
         assertFalse(ve.getBeregnet());
     }
 
