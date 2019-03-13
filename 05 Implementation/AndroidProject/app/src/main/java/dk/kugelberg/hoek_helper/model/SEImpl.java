@@ -27,7 +27,7 @@ public class   SEImpl implements SE {
 
     @Override
     public void setVaerdi(double x) {
-        this.vaerdi = x;
+        this.vaerdi=x;
     }
 
     @Override
