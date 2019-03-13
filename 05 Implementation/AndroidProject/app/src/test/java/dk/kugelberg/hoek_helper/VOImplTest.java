@@ -122,12 +122,12 @@ public class VOImplTest {
     public void testAfBeregnVOMedDOMKFormel() {
         VO vo = new VOImpl();
 
-        vo.init(new MOCKS.VEMock(Double.NaN), new MOCKS.XMock(100), new MOCKS.KOMock(Double.NaN),
-                new MOCKS.DomkMock(2), new MOCKS.STOMock(Double.NaN), new MOCKS.SEMock(Double.NaN),
+        vo.init(new MOCKS.VEMock(Double.NaN), new MOCKS.XMock(45000), new MOCKS.KOMock(Double.NaN),
+                new MOCKS.DomkMock(6), new MOCKS.STOMock(Double.NaN), new MOCKS.SEMock(Double.NaN),
                 new MOCKS.DBMock(Double.NaN), new MOCKS.OMSMock(Double.NaN));
-        vo.initOver(new MOCKS.XMock(50), new MOCKS.VOMock(25));
+        vo.initOver(new MOCKS.XMock(40000), new MOCKS.VOMock(280000));
 
-        double forventetResultat = 50;
+        double forventetResultat = 310000;
         vo.beregn();
         assertEquals(vo.getVaerdi(), forventetResultat, 0);
         assertTrue(vo.getBeregnet());

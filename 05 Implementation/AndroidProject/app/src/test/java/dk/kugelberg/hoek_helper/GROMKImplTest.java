@@ -18,6 +18,7 @@ public class GROMKImplTest {
 
     @Test
     public void testSetOgGetVaerdi() {
+        assertEquals(gromk.getVaerdi(),Double.NaN,0.0000000001);
         gromk.setVaerdi(10);
         assertEquals(gromk.getVaerdi(), 10, 0);
 
@@ -29,31 +30,27 @@ public class GROMKImplTest {
     public void testSetOgGetBeregnet() {
         gromk.setBeregnet(true);
         assertTrue(gromk.getBeregnet());
-
         gromk.setBeregnet(false);
         assertFalse(gromk.getBeregnet());
     }
 
     @Test
-    public void testBeregnGROMK() {
-        XImpl x1 = new XImpl();
-        x1.setVaerdi(20);
-
-        STOImpl sto1 = new STOImpl();
-        sto1.setVaerdi(2600);
-
-        gromk.init(x1, sto1);
-
-        XImpl x2 = new XImpl();
-        x2.setVaerdi(10);
-
-        STOImpl sto2 = new STOImpl();
-        sto2.setVaerdi(2350);
-
-        gromk.initOver(x2, sto2);
-
+    public void testBeregnGROMK2(){
+        GROMKImpl gromk = new GROMKImpl();
+        gromk.init(new MOCKS.XMock(10), new MOCKS.STOMock(10));
+        gromk.initOver(new MOCKS.XMock(5),new MOCKS.STOMock(5));
         gromk.beregn();
-        assertEquals(gromk.getVaerdi(), 25, 0);
-        assertNotEquals(gromk.getVaerdi(), 99, 0);
+        double resultat = 1;
+        assertEquals(gromk.getVaerdi(),resultat,0.00000000001);
+    }
+
+    @Test
+    public void testBeregnGROMKUdenTal(){
+        GROMKImpl gromk = new GROMKImpl();
+        gromk.init(new MOCKS.XMock(Double.NaN), new MOCKS.STOMock(Double.NaN));
+        gromk.initOver(new MOCKS.XMock(Double.NaN),new MOCKS.STOMock(Double.NaN));
+        gromk.beregn();
+        double resultat = Double.NaN;
+        assertEquals(gromk.getVaerdi(),resultat,0.00000000001);
     }
 }
