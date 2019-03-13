@@ -227,6 +227,49 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             domk.setVisibility(View.GONE);
             adapter.setDomkVisible(false);
         }
+        if (sharedPreferences.getBoolean(getString(R.string.vis_domk_key), getResources().getBoolean(R.bool.vis_domk))) {
+            domk.setVisibility(View.VISIBLE);
+            adapter.setDomkVisible(true);
+        } else {
+            domk.setVisibility(View.GONE);
+            adapter.setDomkVisible(false);
+        }/* //TODO ADD SAME FUNCTIONS FOR (DB, KE, KO og de restende objecter)
+        if (sharedPreferences.getBoolean(getString(R.string.vis_domk_key), getResources().getBoolean(R.bool.vis_domk))) {
+            domk.setVisibility(View.VISIBLE);
+            adapter.setDomkVisible(true);
+        } else {
+            domk.setVisibility(View.GONE);
+            adapter.setDomkVisible(false);
+        }
+        if (sharedPreferences.getBoolean(getString(R.string.vis_domk_key), getResources().getBoolean(R.bool.vis_domk))) {
+            domk.setVisibility(View.VISIBLE);
+            adapter.setDomkVisible(true);
+        } else {
+            domk.setVisibility(View.GONE);
+            adapter.setDomkVisible(false);
+        }
+        if (sharedPreferences.getBoolean(getString(R.string.vis_domk_key), getResources().getBoolean(R.bool.vis_domk))) {
+            domk.setVisibility(View.VISIBLE);
+            adapter.setDomkVisible(true);
+        } else {
+            domk.setVisibility(View.GONE);
+            adapter.setDomkVisible(false);
+        }
+        if (sharedPreferences.getBoolean(getString(R.string.vis_domk_key), getResources().getBoolean(R.bool.vis_domk))) {
+            domk.setVisibility(View.VISIBLE);
+            adapter.setDomkVisible(true);
+        } else {
+            domk.setVisibility(View.GONE);
+            adapter.setDomkVisible(false);
+        }if (sharedPreferences.getBoolean(getString(R.string.vis_domk_key), getResources().getBoolean(R.bool.vis_domk))) {
+            domk.setVisibility(View.VISIBLE);
+            adapter.setDomkVisible(true);
+        } else {
+            domk.setVisibility(View.GONE);
+            adapter.setDomkVisible(false);
+        }*/
+
+
     }
 
     private void setupSharedPreferences() {

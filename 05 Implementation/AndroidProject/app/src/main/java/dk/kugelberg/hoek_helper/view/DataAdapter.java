@@ -472,7 +472,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
                                 raekke.getSE().init(raekke.getX(),raekke.getSTO(),raekke.getVE(),raekke.getKE());
                                 raekke.getSE().beregn();
                                 if (getAdapterPosition() != 0){
-
                                 }
 
                                 new Handler().post(new Runnable() {
@@ -686,6 +685,15 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
             vo.setOnFocusChangeListener(onFocusChangeListener);
             ve.setOnFocusChangeListener(onFocusChangeListener);
             domk.setOnFocusChangeListener(onFocusChangeListener);
+            db.setOnFocusChangeListener(onFocusChangeListener);
+            gromk.setOnFocusChangeListener(onFocusChangeListener);
+            ke.setOnFocusChangeListener(onFocusChangeListener);
+            ko.setOnFocusChangeListener(onFocusChangeListener);
+            oms.setOnFocusChangeListener(onFocusChangeListener);
+            se.setOnFocusChangeListener(onFocusChangeListener);
+            sto.setOnFocusChangeListener(onFocusChangeListener);
+
+
         }
 
         private void moveUp() {
