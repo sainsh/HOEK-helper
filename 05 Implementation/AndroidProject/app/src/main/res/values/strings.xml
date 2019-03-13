@@ -1,3 +1,36 @@
 <resources>
-    <string name="app_name">HOEK-Helper</string>
+    <string name="app_name">HØK-Helper</string>
+
+    <string name="antal_enheder">Antal enheder</string>
+    <string name="vis_antal_enheder_key">vis_antal_enheder</string>
+    <string name="vis_antal_enheder">Vis antal enheder</string>
+
+    <string name="vo">VO</string>
+    <string name="vis_vo_key">vis_vo</string>
+    <string name="vis_vo">Vis VO</string>
+
+    <string name="ko">KO</string>
+    <string name="so">SO</string>
+
+    <string name="ve">VE</string>
+    <string name="vis_ve_key">vis_ve</string>
+    <string name="vis_ve">Vis VE</string>
+
+    <string name="ke">KE</string>
+    <string name="se">SE</string>
+
+    <string name="domk">DOMK</string>
+    <string name="vis_domk_key">vis_domk</string>
+    <string name="vis_domk">Vis DOMK</string>
+
+    <string name="doms">DOMS</string>
+    <string name="gromk">GROMK</string>
+    <string name="udvikling">Udvikling</string>
+
+    <string name="indstillinger">Indstillinger</string>
+
+    <string name="vist">Vist</string>
+    <string name="skjult">Skjult</string>
+
+
 </resources>

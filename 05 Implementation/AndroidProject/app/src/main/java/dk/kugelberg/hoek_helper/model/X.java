@@ -1,8 +1,11 @@
 package dk.kugelberg.hoek_helper.model;
 
+import androidx.lifecycle.MutableLiveData;
+
 public interface X {
 
     //void init(VO vo, VE ve, DOMK domk, STO sto, SE se, GROMK gromk);
+
 
     void init(VO vo, VE ve, DOMK domk, STO sto, SE se, GROMK gromk, KO ko, KE ke);
 
@@ -11,7 +14,6 @@ public interface X {
 
     void setVaerdi(double x);
     double getVaerdi();
-
     void beregn();
 
     void setBeregnet(boolean val);

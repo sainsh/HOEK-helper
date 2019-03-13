@@ -1,6 +1,5 @@
 package dk.kugelberg.hoek_helper.model;
 
-import androidx.lifecycle.MutableLiveData;
 import static java.lang.Double.NaN;
 
 public class XImpl implements X {
@@ -8,23 +7,22 @@ public class XImpl implements X {
     private VO vo;
     private VE ve;
     private X xOver;
-    private X xUnder;   //Jeg ved ikke om vi nogensinde får brug for denne?
+    private X xUnder;
     private KO ko;
     private KE ke;
     private VO voOver;
-    private VO voUnder;   //Jeg ved ikke om vi nogensinde får brug for denne?
+    private VO voUnder;
     private DOMK domk;
-    private DOMK domkUnder;    //Jeg ved ikke om vi nogensinde får brug for denne?
+    private DOMK domkUnder;
     private STO sto;
     private SE se;
     private GROMK gromk;
 
-    private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
-    private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
+    private double vaerdi = NaN;
+    private boolean erBeregnet = false;
 
-    public XImpl(){
-        vaerdi.setValue(NaN);
-        erBeregnet.setValue(false);
+
+    public XImpl() {
     }
 
     @Override
@@ -40,26 +38,26 @@ public class XImpl implements X {
     }
 
     @Override
-    public void initOver(X xOver, VO voOver){
+    public void initOver(X xOver, VO voOver) {
         this.xOver = xOver;
         this.voOver = voOver;
     }
 
     @Override
-    public void initUnder(X xUnder, VO voUnder, DOMK domkUnder){
+    public void initUnder(X xUnder, VO voUnder, DOMK domkUnder) {
         this.xUnder = xUnder;
         this.voUnder = voUnder;
         this.domkUnder = domkUnder;
     }
 
     @Override
-    public void setBeregnet(boolean val){
-        erBeregnet.setValue(val);
+    public void setBeregnet(boolean val) {
+        erBeregnet = val;
     }
 
     @Override
-    public boolean getBeregnet(){
-        return erBeregnet.getValue();
+    public boolean getBeregnet() {
+        return erBeregnet;
     }
 
     //start
@@ -68,33 +66,35 @@ public class XImpl implements X {
         if (x < 0) {
             throw new NegativVaerdiException();
         } else {
-            vaerdi.setValue(x);
+            x = Math.floor(x);
+            vaerdi = x;
             setBeregnet(false);
+
+
         }
     }
 
     @Override
     public double getVaerdi() {
 
-        return vaerdi.getValue();
+        return vaerdi;
     }
 
     @Override
     public void beregn() {
 
-
         // X = VO / VE
-        if (!Double.isNaN(vo.getVaerdi()) && !Double.isNaN(ve.getVaerdi())){
+        if (!Double.isNaN(vo.getVaerdi()) && !Double.isNaN(ve.getVaerdi())) {
             setVaerdi(vo.getVaerdi() / ve.getVaerdi());
             setBeregnet(true);
 
             // X = KO / KE
-        } else if (!Double.isNaN(ko.getVaerdi()) && !Double.isNaN(ke.getVaerdi())){
+        } else if (!Double.isNaN(ko.getVaerdi()) && !Double.isNaN(ke.getVaerdi())) {
             setVaerdi(ko.getVaerdi() / ke.getVaerdi());
             setBeregnet(true);
 
             // X = STO / SE
-        } else if (!Double.isNaN(sto.getVaerdi()) && !Double.isNaN(se.getVaerdi())){
+        } else if (!Double.isNaN(sto.getVaerdi()) && !Double.isNaN(se.getVaerdi())) {
             setVaerdi(sto.getVaerdi() / se.getVaerdi());
             setBeregnet(true);
 
@@ -103,14 +103,14 @@ public class XImpl implements X {
             setVaerdi(sto.getVaerdi() * gromk.getVaerdi());
             setBeregnet(true);
 
-            // X = (domk * ( vo - voOver)) + xOver
+            // X2 = (VO2 - VO1) / DOMK + X1
         } else if (!Double.isNaN(domk.getVaerdi()) && !Double.isNaN(vo.getVaerdi()) && !Double.isNaN(voOver.getVaerdi()) && !Double.isNaN(xOver.getVaerdi())) {
-            setVaerdi( (domk.getVaerdi() * ( vo.getVaerdi() - voOver.getVaerdi())) + xOver.getVaerdi() );
+            setVaerdi((vo.getVaerdi() - voOver.getVaerdi()) / domk.getVaerdi() + xOver.getVaerdi());
             setBeregnet(true);
 
-        } else if (getBeregnet()){
+        } else if (getBeregnet()) {
             setVaerdi(NaN);
-
+        }
+        if (vaerdi == NaN) erBeregnet = false;
     }
-}
 }

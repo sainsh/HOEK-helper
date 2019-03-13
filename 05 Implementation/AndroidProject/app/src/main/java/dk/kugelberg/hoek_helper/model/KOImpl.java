@@ -1,6 +1,5 @@
 package dk.kugelberg.hoek_helper.model;
 
-import androidx.lifecycle.MutableLiveData;
 import static java.lang.Double.NaN;
 
 public class KOImpl implements KO {
@@ -14,19 +13,28 @@ public class KOImpl implements KO {
     private X xUnder;
     private VO voUnder;
 
-    private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
-    private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
+    private double vaerdi = NaN;
+    private boolean erBeregnet = false;
+
+    public KOImpl() {
+    }
 
     @Override
-    public void init(KE ke, X x, STO sto, VO vo, X xOver, VO voOver, X xUnder, VO voUnder) {
+    public void init(KE ke, X x, STO sto, VO vo) {
         this.ke = ke;
         this.x = x;
         this.sto = sto;
         this.vo = vo;
-        vaerdi.setValue(NaN);
-        erBeregnet.setValue(false);
+    }
+
+    @Override
+    public void initOver(X xOver, VO voOver) {
         this.xOver = xOver;
         this.voOver = voOver;
+    }
+
+    @Override
+    public void initUnder(X xUnder, VO voUnder) {
         this.xUnder = xUnder;
         this.voUnder = voUnder;
     }
@@ -36,25 +44,25 @@ public class KOImpl implements KO {
         if (x < 0) {
             throw new NegativVaerdiException();
         } else {
-            vaerdi.setValue(x);
+            vaerdi = x;
             setBeregnet(false);
         }
     }
 
     @Override
     public double getVaerdi() {
-        return vaerdi.getValue();
+        return vaerdi;
     }
 
     @Override
     public void setBeregnet(boolean val) {
-        erBeregnet.setValue(val);
+        erBeregnet = val;
     }
 
     @Override
     public boolean getBeregnet() {
 
-        return erBeregnet.getValue();
+        return erBeregnet;
     }
 
     @Override
@@ -63,18 +71,20 @@ public class KOImpl implements KO {
         // TODO: lav beregner med xOver, xUnder, voOver og voUnder
 
         // KO = KE * X
-        if (ke.getVaerdi() != NaN && x.getVaerdi() != NaN) {
-            vaerdi.setValue(ke.getVaerdi() * x.getVaerdi());
+        if (!Double.isNaN(ke.getVaerdi()) && !Double.isNaN(x.getVaerdi())) {
+            vaerdi = ke.getVaerdi() * x.getVaerdi();
             setBeregnet(true);
 
-        // KO = STO - VO
-        } else if (sto.getVaerdi() != NaN && vo.getVaerdi() != NaN) {
-            vaerdi.setValue(sto.getVaerdi() - vo.getVaerdi());
+            // KO = STO - VO
+        } else if (!Double.isNaN(sto.getVaerdi()) && !Double.isNaN(vo.getVaerdi())) {
+            vaerdi = sto.getVaerdi() - vo.getVaerdi();
             setBeregnet(true);
 
         } else if (getBeregnet()) {
             setVaerdi(NaN);
 
         }
+
+        if (vaerdi == NaN) erBeregnet = false;
     }
 }

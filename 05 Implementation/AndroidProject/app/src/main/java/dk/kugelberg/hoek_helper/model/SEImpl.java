@@ -1,17 +1,21 @@
 package dk.kugelberg.hoek_helper.model;
 
 import androidx.lifecycle.MutableLiveData;
+
 import static java.lang.Double.NaN;
 
-public class SEImpl implements SE {
+public class   SEImpl implements SE {
 
     private X x;
     private STO sto;
     private VE ve;
     private KE ke;
 
-    private MutableLiveData<Double> vaerdi = new MutableLiveData<>();
-    private MutableLiveData<Boolean> erBeregnet = new MutableLiveData<>();
+    private double vaerdi = NaN;
+    private boolean erBeregnet = false;
+
+    public SEImpl() {
+    }
 
     @Override
     public void init(X x, STO sto, VE ve, KE ke) {
@@ -23,33 +27,34 @@ public class SEImpl implements SE {
 
     @Override
     public void setVaerdi(double x) {
+        this.vaerdi = x;
     }
 
     @Override
     public double getVaerdi() {
-        return vaerdi.getValue();
+        return vaerdi;
     }
 
     @Override
-    public void setBeregnet(boolean val){
-        erBeregnet.setValue(val);
+    public void setBeregnet(boolean val) {
+        erBeregnet = val;
     }
 
     @Override
-    public boolean getBeregnet(){
-        return erBeregnet.getValue();
+    public boolean getBeregnet() {
+        return erBeregnet;
     }
 
     @Override
     public void beregn() {
 
         //SE = STO / X
-        if (sto.getVaerdi() != NaN && x.getVaerdi() != NaN) {
+        if (!Double.isNaN(sto.getVaerdi()) && !Double.isNaN(x.getVaerdi())) {
             setVaerdi(sto.getVaerdi() / x.getVaerdi());
             setBeregnet(true);
 
             //SE = VE + KE
-        } else if (ve.getVaerdi() != NaN && ke.getVaerdi() != NaN) {
+        } else if (!Double.isNaN(ve.getVaerdi()) && !Double.isNaN(ke.getVaerdi())) {
             setVaerdi(ve.getVaerdi() + ke.getVaerdi());
             setBeregnet(true);
 
@@ -57,7 +62,7 @@ public class SEImpl implements SE {
             setVaerdi(NaN);
 
         }
+
+        if (vaerdi == NaN) erBeregnet = false;
     }
 }
-
-
