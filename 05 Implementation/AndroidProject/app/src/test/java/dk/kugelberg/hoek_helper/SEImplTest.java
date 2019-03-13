@@ -4,6 +4,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestRule;
 
+import dk.kugelberg.hoek_helper.model.NegativVaerdiException;
+import dk.kugelberg.hoek_helper.model.SE;
 import dk.kugelberg.hoek_helper.model.SEImpl;
 
 import static org.junit.Assert.*;
@@ -39,22 +41,17 @@ public class SEImplTest
 
     }
 
+
     @Test
-    public void getBeregnet()
+    public void testSEStandardVaerdi()
     {
-        seImplObject.getBeregnet();
-        assertEquals(seImplObject.getBeregnet(),true);
+        SEImpl se=new SEImpl();
+        se.init(new MOCKS.XMock(Double.NaN),new MOCKS.STOMock(Double.NaN),new MOCKS.VEMock(Double.NaN),new MOCKS.KEMock(Double.NaN));
+        assertEquals(se.getVaerdi(),Double.NaN,delta);
+        assertFalse(se.getBeregnet());
 
     }
 
-    @Test
-    public void beregn()
-    {
-        seImplObject.beregn();
-        //seImplObject.init(10,10,10,10);
-        assertEquals(seImplObject.getBeregnet(),true);
-
-    }
 
     @Test
     public void testBeregnMedStoOgX ()
@@ -76,6 +73,30 @@ public class SEImplTest
         se.init(new MOCKS.XMock(Double.NaN), new MOCKS.STOMock(Double.NaN), new MOCKS.VEMock(5), new MOCKS.KEMock(5));
 
         double resultat=10;
+        se.beregn();
+        assertEquals(se.getVaerdi(),resultat,delta);
+        assertTrue(se.getBeregnet());
+
+    }
+
+    @Test
+    public void testBerengSEmedManglendeX()
+    {
+        SEImpl se=new SEImpl();
+        se.init(new MOCKS.XMock(Double.NaN),new MOCKS.STOMock(5),new MOCKS.VEMock(Double.NaN),new MOCKS.KEMock(Double.NaN));
+        double resultat=Double.NaN;
+        se.beregn();
+        assertEquals(se.getVaerdi(),resultat,delta);
+        assertFalse(se.getBeregnet());
+
+    }
+
+    @Test
+    public void testBeregnSEmedNegativTal()
+    {
+        SEImpl se=new SEImpl();
+        se.init(new MOCKS.XMock(-5),new MOCKS.STOMock(5),new MOCKS.VEMock(Double.NaN),new MOCKS.KEMock(Double.NaN));
+        double resultat=-1;
         se.beregn();
         assertEquals(se.getVaerdi(),resultat,delta);
         assertTrue(se.getBeregnet());
