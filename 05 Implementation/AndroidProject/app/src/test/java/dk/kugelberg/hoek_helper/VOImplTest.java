@@ -4,7 +4,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestRule;
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import dk.kugelberg.hoek_helper.model.DB;
 import dk.kugelberg.hoek_helper.model.DOMK;
 import dk.kugelberg.hoek_helper.model.GROMK;
@@ -26,7 +25,7 @@ import static org.junit.Assert.assertTrue;
 public class VOImplTest {
 
     @Rule
-    public TestRule rule = new InstantTaskExecutorRule();
+    //public TestRule rule = new InstantTaskExecutorRule();
 
 
     @Test
