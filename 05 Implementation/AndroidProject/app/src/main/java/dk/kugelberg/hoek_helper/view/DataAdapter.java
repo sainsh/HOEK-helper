@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.RecyclerView;
 import dk.kugelberg.hoek_helper.R;
 import dk.kugelberg.hoek_helper.model.ControllerImpl;
+import dk.kugelberg.hoek_helper.model.KO;
 import dk.kugelberg.hoek_helper.model.NegativVaerdiException;
 import dk.kugelberg.hoek_helper.model.Raekke;
 import dk.kugelberg.hoek_helper.view.ViewModel.ModelViewModel;
@@ -98,13 +99,28 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
         double voNum = raekke.getVO().getVaerdi();
         double veNum = raekke.getVE().getVaerdi();
         double domkNum = raekke.getDOMK().getVaerdi();
+        double dbNum = raekke.getDB().getVaerdi();
+        double gromkNum = raekke.getGROMK().getVaerdi();
+        double keNum = raekke.getKE().getVaerdi();
+        double koNum = raekke.getKO().getVaerdi();
+        double omsNum = raekke.getOMS().getVaerdi();
+        double seNum = raekke.getSE().getVaerdi();
+        double stoNum = raekke.getSTO().getVaerdi();
+
 
         holder.antalEnheder.setText(String.valueOf(antalEnhederNum));
-//        holder.vo.setText(String.valueOf(voNum));
+//       holder.vo.setText(String.valueOf(voNum));
         holder.vo.setText(String.format(Locale.GERMAN, "%,.2f", voNum));
         holder.ve.setText(String.valueOf(veNum));
 //        holder.ve.setText(String.format("%.2f", veNum));
         holder.domk.setText(String.valueOf(domkNum));
+        holder.db.setText(String.valueOf(dbNum));
+        holder.gromk.setText(String.valueOf(gromkNum));
+        holder.ke.setText(String.valueOf(keNum));
+        holder.ko.setText(String.valueOf(koNum));
+        holder.oms.setText(String.valueOf(omsNum));
+        holder.se.setText(String.valueOf(seNum));
+        holder.sto.setText(String.valueOf(stoNum));
 
         // This places the cursor back where it belongs when the table is redrawn upon changes.
         if (position == currentlyFocusedRow) {
@@ -124,6 +140,27 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
                 holder.domk.requestFocus();
 //                holder.domk.setSelection(holder.domk.getText().length());
                 holder.domk.setSelection(selection);
+            } else if (holder.db.getId() == currentlyFocusedColumn) {
+                holder.db.requestFocus();
+                holder.db.setSelection(selection);
+            } else if (holder.gromk.getId() == currentlyFocusedColumn) {
+                holder.gromk.requestFocus();
+                holder.gromk.setSelection(selection);
+            } else if (holder.ke.getId() == currentlyFocusedColumn) {
+                holder.ke.requestFocus();
+                holder.ke.setSelection(selection);
+            } else if (holder.ko.getId() == currentlyFocusedColumn) {
+                holder.ko.requestFocus();
+                holder.ko.setSelection(selection);
+            } else if (holder.oms.getId() == currentlyFocusedColumn) {
+                holder.oms.requestFocus();
+                holder.oms.setSelection(selection);
+            } else if (holder.se.getId() == currentlyFocusedColumn) {
+                holder.se.requestFocus();
+                holder.se.setSelection(selection);
+            } else if (holder.sto.getId() == currentlyFocusedColumn) {
+                holder.sto.requestFocus();
+                holder.sto.setSelection(selection);
             }
         }
 
@@ -132,11 +169,25 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
             holder.vo.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_white_bg));
             holder.ve.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_white_bg));
             holder.domk.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_white_bg));
+            holder.gromk.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_white_bg));
+            holder.db.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_white_bg));
+            holder.ke.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_white_bg));
+            holder.ko.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_white_bg));
+            holder.oms.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_white_bg));
+            holder.se.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_white_bg));
+            holder.sto.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_white_bg));
         } else {
             holder.antalEnheder.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_light_gray_bg));
             holder.vo.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_light_gray_bg));
             holder.ve.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_light_gray_bg));
             holder.domk.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_light_gray_bg));
+            holder.gromk.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_light_gray_bg));
+            holder.db.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_light_gray_bg));
+            holder.ke.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_light_gray_bg));
+            holder.ko.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_light_gray_bg));
+            holder.oms.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_light_gray_bg));
+            holder.se.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_light_gray_bg));
+            holder.sto.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_light_gray_bg));
         }
     }
 
@@ -172,6 +223,13 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
         private EditText vo;
         private EditText ve;
         private EditText domk;
+        private EditText db;
+        private EditText gromk;
+        private EditText ke;
+        private EditText ko;
+        private EditText oms;
+        private EditText se;
+        private EditText sto;
         private ImageButton imageButtonDelete;
         private ImageButton imageButtonUp;
         private ImageButton imageButtonDown;
@@ -185,12 +243,27 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
             vo = itemView.findViewById(R.id.edit_text_vo);
             ve = itemView.findViewById(R.id.edit_text_ve);
             domk = itemView.findViewById(R.id.edit_text_domk);
+            db = itemView.findViewById(R.id.edit_text_db);
+            gromk = itemView.findViewById(R.id.edit_text_gromk);
+            ke = itemView.findViewById(R.id.edit_text_ke);
+            ko  = itemView.findViewById(R.id.edit_text_ko);
+            oms = itemView.findViewById(R.id.edit_text_oms);
+            se = itemView.findViewById(R.id.edit_text_se);
+            sto = itemView.findViewById(R.id.edit_text_sto);
 
             // Set the width of the EditTexts
             antalEnheder.setWidth(widthInPixels);
             vo.setWidth(widthInPixels);
             ve.setWidth(widthInPixels);
             domk.setWidth(widthInPixels);
+            db.setWidth(widthInPixels);
+            gromk.setWidth(widthInPixels);
+            ke.setWidth(widthInPixels);
+            ko.setWidth(widthInPixels);
+            oms.setWidth(widthInPixels);
+            se.setWidth(widthInPixels);
+            sto.setWidth(widthInPixels);
+
 
             // Initialize the ImageButtons and set their OnClickListeners
             imageButtonUp = itemView.findViewById(R.id.imageButtonUp);
@@ -278,6 +351,27 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
 //                        String currentDomkString = String.format(Locale.GERMAN, "%,.2f", currentDomk);
 //                        String newDomkString = domk.getText().toString();
 
+                            double currentDB = raekke.getDB().getVaerdi();
+                            double newDB = Double.parseDouble(db.getText().toString());
+
+                            double currentGromk = raekke.getGROMK().getVaerdi();
+                            double newGROMK = Double.parseDouble(gromk.getText().toString());
+
+                            double currentKE = raekke.getKE().getVaerdi();
+                            double newKE = Double.parseDouble(ke.getText().toString());
+
+                            double currentKO = raekke.getKO().getVaerdi();
+                            double newKO = Double.parseDouble(ko.getText().toString());
+
+                            double currentOMS = raekke.getOMS().getVaerdi();
+                            double newOMS = Double.parseDouble(oms.getText().toString());
+
+                            double currentSE = raekke.getSE().getVaerdi();
+                            double newSE = Double.parseDouble(se.getText().toString());
+
+                            double currentSTO = raekke.getSTO().getVaerdi();
+                            double newSTO = Double.parseDouble(sto.getText().toString());
+
                             if (currentAntalEnheder != newAntalEnheder && !Double.isNaN(newAntalEnheder)) {
                                 System.out.println("X gets changed");
 
@@ -285,10 +379,38 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
 
                                 raekke.getVE().init(raekke.getVO(), raekke.getX(), raekke.getSE(), raekke.getKE());
                                 raekke.getVE().beregn();
-
+                                raekke.getVO().init(raekke.getVE(),raekke.getX(),raekke.getKO(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getDB(),raekke.getOMS());
+                                raekke.getVO().beregn();
+                                raekke.getGROMK().init(raekke.getX(),raekke.getSTO());
+                                raekke.getKE().init(raekke.getKO(),raekke.getX(),raekke.getSE(),raekke.getVE());
+                                raekke.getKE().beregn();
+                                raekke.getSTO().init(raekke.getX(),raekke.getVO(),raekke.getKO(),raekke.getSE(),raekke.getGROMK());
+                                raekke.getSTO().beregn();
+                                raekke.getKO().init(raekke.getKE(),raekke.getX(),raekke.getSTO(),raekke.getVO());
+                                raekke.getKO().beregn();
+                                raekke.getSE().init(raekke.getX(),raekke.getSTO(),raekke.getVE(),raekke.getKE());
+                                raekke.getSE().beregn();
                                 if (getAdapterPosition() != 0) {
-                                    raekke.getDOMK().init(raekke.getVO(), raekke.getSTO(), raekke.getKO(), raekke.getVE(), raekke.getX());
                                     Raekke raekkeOver = raekkeArrayList.get(getAdapterPosition() - 1);
+                                    //TODO TJEK OM RaekkeUnder fungere, ellers fix med en ny if statement.
+                                    Raekke raekkeUnder = raekkeArrayList.get(getAdapterPosition() + 1);
+
+                                    raekke.getKO().initOver(raekkeOver.getX(),raekkeOver.getVO());
+                                    raekke.getKO().initUnder(raekkeUnder.getX(),raekkeUnder.getVO());
+                                    raekke.getKO().beregn();
+
+                                    raekke.getVO().initOver(raekkeOver.getX(),raekkeOver.getVO());
+                                    raekke.getVO().initUnder(raekkeUnder.getX(),raekkeUnder.getVO(),raekkeUnder.getDOMK());
+                                    raekke.getVO().beregn();
+
+                                    raekke.getSTO().initOver(raekkeOver.getX(),raekkeOver.getVO(),raekkeOver.getSTO());
+                                    raekke.getSTO().initUnder(raekkeUnder.getX(),raekkeUnder.getVO());
+                                    raekke.getSTO().beregn();
+
+                                    raekke.getGROMK().initOver(raekkeOver.getX(),raekkeOver.getSTO());
+                                    raekke.getGROMK().beregn();
+
+                                    raekke.getDOMK().init(raekke.getVO(), raekke.getSTO(), raekke.getKO(), raekke.getVE(), raekke.getX());
                                     raekke.getDOMK().initOver(raekkeOver.getVO(), raekkeOver.getX(), raekkeOver.getDOMK());
                                     raekke.getDOMK().beregn();
                                 }
@@ -308,12 +430,23 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
 
                                 raekke.getVE().init(raekke.getVO(), raekke.getX(), raekke.getSE(), raekke.getKE());
                                 raekke.getVE().beregn();
-
                                 if (getAdapterPosition() != 0) {
-                                    raekke.getDOMK().init(raekke.getVO(), raekke.getSTO(), raekke.getKO(), raekke.getVE(), raekke.getX());
+                                    Raekke raekkeUnder = raekkeArrayList.get(getAdapterPosition() + 1);
                                     Raekke raekkeOver = raekkeArrayList.get(getAdapterPosition() - 1);
+                                    raekke.getSTO().initUnder(raekkeUnder.getX(),raekkeUnder.getVO());
+                                    raekke.getSTO().init(raekke.getX(),raekke.getVO(),raekke.getKO(),raekke.getSE(),raekke.getGROMK());
+                                    raekke.getSTO().initOver(raekkeOver.getX(),raekkeOver.getVO(),raekkeOver.getSTO());
+                                    raekke.getSTO().beregn();
+                                    raekke.getKO().initUnder(raekkeUnder.getX(),raekkeUnder.getVO());
+                                    raekke.getKO().init(raekke.getKE(),raekke.getX(),raekke.getSTO(),raekke.getVO());
+                                    raekke.getKO().initOver(raekkeOver.getX(),raekkeOver.getVO());
+                                    raekke.getDOMK().init(raekke.getVO(), raekke.getSTO(), raekke.getKO(), raekke.getVE(), raekke.getX());
                                     raekke.getDOMK().initOver(raekkeOver.getVO(), raekkeOver.getX(), raekkeOver.getDOMK());
                                     raekke.getDOMK().beregn();
+                                    raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
+                                    raekke.getX().initOver(raekkeOver.getX(),raekkeOver.getVO());
+                                    raekke.getX().initUnder(raekkeUnder.getX(),raekkeUnder.getVO(),raekkeUnder.getDOMK());
+                                    raekke.getX().beregn();
                                 }
 
                                 new Handler().post(new Runnable() {
@@ -326,8 +459,21 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
 
                             if (currentVe != newVe && !Double.isNaN(newVe)) {
                                 System.out.println("VE gets changed");
-
                                 raekke.getVE().setVaerdi(newVe);
+
+                                raekke.getKE().init(raekke.getKO(),raekke.getX(),raekke.getSE(),raekke.getVE());
+                                raekke.getKE().beregn();
+                                raekke.getSE().init(raekke.getX(),raekke.getSTO(),raekke.getVE(),raekke.getKE());
+                                raekke.getSE().beregn();
+                                raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
+                                raekke.getX().beregn();
+                                raekke.getVO().init(raekke.getVE(),raekke.getX(),raekke.getKO(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getDB(),raekke.getOMS());
+                                raekke.getVO().beregn();
+                                raekke.getSE().init(raekke.getX(),raekke.getSTO(),raekke.getVE(),raekke.getKE());
+                                raekke.getSE().beregn();
+                                if (getAdapterPosition() != 0){
+
+                                }
 
                                 new Handler().post(new Runnable() {
                                     @Override
@@ -341,6 +487,20 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
                                 System.out.println("DOMK gets changed");
                                 raekke.getDOMK().setVaerdi(newDomk);
 
+                                if (getAdapterPosition() != 0){
+
+                                    Raekke raekkeUnder = raekkeArrayList.get(getAdapterPosition() + 1);
+                                    Raekke raekkeOver = raekkeArrayList.get(getAdapterPosition() - 1);
+                                    raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
+                                    raekke.getX().initUnder(raekkeUnder.getX(),raekkeUnder.getVO(),raekkeUnder.getDOMK());
+                                    raekke.getX().initOver(raekkeOver.getX(),raekkeOver.getVO());
+                                    raekke.getX().beregn();
+                                    raekke.getVO().init(raekke.getVE(),raekke.getX(),raekke.getKO(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getDB(),raekke.getOMS());
+                                    raekke.getVO().initUnder(raekkeUnder.getX(),raekkeUnder.getVO(),raekkeUnder.getDOMK());
+                                    raekke.getVO().initOver(raekkeOver.getX(),raekkeOver.getVO());
+                                    raekke.getVO().beregn();
+                                }
+
                                 new Handler().post(new Runnable() {
                                     @Override
                                     public void run() {
@@ -348,6 +508,169 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
                                     }
                                 });
                             }
+
+                            if (currentDB != newDB && !Double.isNaN(newDB)) {
+                                System.out.println("DB gets changed");
+                                raekke.getDB().setVaerdi(newDB);
+                                raekke.getVO().init(raekke.getVE(),raekke.getX(),raekke.getKO(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getDB(),raekke.getOMS());
+                                raekke.getVO().beregn();
+
+                                if (getAdapterPosition() != 0) {
+                                    Raekke raekkeUnder = raekkeArrayList.get(getAdapterPosition() + 1);
+                                    Raekke raekkeOver = raekkeArrayList.get(getAdapterPosition() - 1);
+
+                                }
+                                new Handler().post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ControllerImpl.getInstance().getTabel().getTabelMld().setValue(raekkeArrayList);
+                                    }
+                                });
+                            }
+                            if (currentGromk != newGROMK && !Double.isNaN(newGROMK)) {
+                                System.out.println("GROMK gets changed");
+                                raekke.getGROMK().setVaerdi(newGROMK);
+                                raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
+                                raekke.getSTO().init(raekke.getX(),raekke.getVO(),raekke.getKO(),raekke.getSE(),raekke.getGROMK());
+                                raekke.getSTO().beregn();
+
+                                if (getAdapterPosition() != 0) {
+
+                                    Raekke raekkeUnder = raekkeArrayList.get(getAdapterPosition() + 1);
+                                    Raekke raekkeOver = raekkeArrayList.get(getAdapterPosition() - 1);
+                                }
+
+                                new Handler().post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ControllerImpl.getInstance().getTabel().getTabelMld().setValue(raekkeArrayList);
+                                    }
+                                });
+                            }
+
+                            if (currentKE!= newKE && !Double.isNaN(newKE)) {
+                                System.out.println("KE gets changed");
+                                raekke.getKE().setVaerdi(newKE);
+
+                                raekke.getKO().init(raekke.getKE(),raekke.getX(),raekke.getSTO(),raekke.getVO());
+                                raekke.getKO().beregn();
+                                raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
+                                raekke.getX().beregn();
+                                raekke.getSE().init(raekke.getX(),raekke.getSTO(),raekke.getVE(),raekke.getKE());
+                                raekke.getSE().beregn();
+                                raekke.getVE().init(raekke.getVO(),raekke.getX(),raekke.getSE(),raekke.getKE());
+                                raekke.getVE().beregn();
+                                if (getAdapterPosition() != 0) {
+
+                                    Raekke raekkeUnder = raekkeArrayList.get(getAdapterPosition() + 1);
+                                    Raekke raekkeOver = raekkeArrayList.get(getAdapterPosition() - 1);
+                                }
+
+                                new Handler().post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ControllerImpl.getInstance().getTabel().getTabelMld().setValue(raekkeArrayList);
+                                    }
+                                });
+                            }
+
+                            if (currentKO != newKO && !Double.isNaN(newKO)) {
+                                System.out.println("KO gets changed");
+                                raekke.getKO().setVaerdi(newKO);
+
+                                raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
+                                raekke.getX().beregn();
+                                raekke.getKE().init(raekke.getKO(),raekke.getX(),raekke.getSE(),raekke.getVE());
+                                raekke.getKE().beregn();
+                                raekke.getSTO().init(raekke.getX(),raekke.getVO(),raekke.getKO(),raekke.getSE(),raekke.getGROMK());
+                                raekke.getSTO().beregn();
+                                raekke.getVO().init(raekke.getVE(),raekke.getX(),raekke.getKO(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getDB(),raekke.getOMS());
+                                raekke.getVO().beregn();
+                                if (getAdapterPosition() != 0) {
+
+                                    Raekke raekkeUnder = raekkeArrayList.get(getAdapterPosition() + 1);
+                                    Raekke raekkeOver = raekkeArrayList.get(getAdapterPosition() - 1);
+                                }
+                                new Handler().post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ControllerImpl.getInstance().getTabel().getTabelMld().setValue(raekkeArrayList);
+                                    }
+                                });
+                            }
+
+                            if (currentOMS != newOMS && !Double.isNaN(newOMS)) {
+                                System.out.println("OMS gets changed");
+                                raekke.getOMS().setVaerdi(newOMS);
+
+                                raekke.getVO().init(raekke.getVE(),raekke.getX(),raekke.getKO(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getDB(),raekke.getOMS());
+                                raekke.getVO().beregn();
+                                if (getAdapterPosition() != 0) {
+
+                                    Raekke raekkeUnder = raekkeArrayList.get(getAdapterPosition() + 1);
+                                    Raekke raekkeOver = raekkeArrayList.get(getAdapterPosition() - 1);
+                                }
+
+                                new Handler().post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ControllerImpl.getInstance().getTabel().getTabelMld().setValue(raekkeArrayList);
+                                    }
+                                });
+                            }
+
+                            if (currentSE != newSE && !Double.isNaN(newSE)) {
+                                System.out.println("SE gets changed");
+                                raekke.getSE().setVaerdi(newSE);
+
+                                raekke.getSTO().init(raekke.getX(),raekke.getVO(),raekke.getKO(),raekke.getSE(),raekke.getGROMK());
+                                raekke.getSTO().beregn();
+                                raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
+                                raekke.getX().beregn();
+                                raekke.getVE().init(raekke.getVO(),raekke.getX(),raekke.getSE(),raekke.getKE());
+                                raekke.getVE().beregn();
+                                raekke.getKE().init(raekke.getKO(),raekke.getX(),raekke.getSE(),raekke.getVE());
+                                raekke.getKE().beregn();
+                                if (getAdapterPosition() != 0) {
+
+                                    Raekke raekkeUnder = raekkeArrayList.get(getAdapterPosition() + 1);
+                                    Raekke raekkeOver = raekkeArrayList.get(getAdapterPosition() - 1);
+                                }
+                                new Handler().post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ControllerImpl.getInstance().getTabel().getTabelMld().setValue(raekkeArrayList);
+                                    }
+                                });
+                            }
+
+                            if (currentSTO != newSTO && !Double.isNaN(newSTO)) {
+                                System.out.println("STO gets changed");
+                                raekke.getSTO().setVaerdi(newSTO);
+
+                                raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
+                                raekke.getX().beregn();
+                                raekke.getKO().init(raekke.getKE(),raekke.getX(),raekke.getSTO(),raekke.getVO());
+                                raekke.getKO().beregn();
+                                raekke.getSE().init(raekke.getX(),raekke.getSTO(),raekke.getVE(),raekke.getKE());
+                                raekke.getSE().beregn();
+                                if (getAdapterPosition() != 0) {
+                                    Raekke raekkeUnder = raekkeArrayList.get(getAdapterPosition() + 1);
+                                    Raekke raekkeOver = raekkeArrayList.get(getAdapterPosition() - 1);
+                                    raekke.getGROMK().initOver(raekke.getX(),raekke.getSTO());
+                                    raekke.getGROMK().init(raekke.getX(),raekke.getSTO());
+                                    raekke.getGROMK().beregn();
+                                }
+
+                                new Handler().post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ControllerImpl.getInstance().getTabel().getTabelMld().setValue(raekkeArrayList);
+                                    }
+                                });
+                            }
+
+
                         }
                     } catch (NumberFormatException e) {
                         Toast toast = Toast.makeText(context, "Der skal stå et tal.", Toast.LENGTH_SHORT);

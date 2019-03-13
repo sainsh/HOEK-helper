@@ -1,16 +1,18 @@
 package dk.kugelberg.hoek_helper.model;
 
 public class DBImpl implements DB {
+    double vaerdi = Double.NaN;
+
     public void init(VE ve, X x, KO ko, DOMK domk, STO sto, SE se, X xOver, VO voOver, X xUnder, VO voUnder, DOMK domkUnder) {
 
     }
 
     public void setVaerdi(double vaerdi) {
-
+        this.vaerdi = vaerdi;
     }
 
     public double getVaerdi() {
-        return 0;
+        return vaerdi;
     }
 
     public void beregn() {

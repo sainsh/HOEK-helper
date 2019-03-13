@@ -61,6 +61,8 @@ public class XImpl implements X {
     }
 
     //start
+
+    //TODO X kan ikke være 0, problematisk i første række i tabel, da hele rækken er 0 i toppen.
     @Override
     public void setVaerdi(double x) {
         if (x < 0) {
