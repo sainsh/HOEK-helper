@@ -67,6 +67,76 @@
                         android:textColor="@color/black"
                         android:textSize="20sp" />
 
+                    <TextView
+                        android:id="@+id/tv_se"
+                        android:layout_width="180dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/border_gray_bg"
+                        android:gravity="center"
+                        android:text="@string/se"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/tv_ke"
+                        android:layout_width="180dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/border_gray_bg"
+                        android:gravity="center"
+                        android:text="@string/ke"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/tv_ko"
+                        android:layout_width="180dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/border_gray_bg"
+                        android:gravity="center"
+                        android:text="@string/ko"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/tv_sto"
+                        android:layout_width="180dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/border_gray_bg"
+                        android:gravity="center"
+                        android:text="@string/sto"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/tv_gromk"
+                        android:layout_width="180dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/border_gray_bg"
+                        android:gravity="center"
+                        android:text="@string/gromk"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/tv_oms"
+                        android:layout_width="180dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/border_gray_bg"
+                        android:gravity="center"
+                        android:text="@string/oms"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/tv_db"
+                        android:layout_width="180dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/border_gray_bg"
+                        android:gravity="center"
+                        android:text="@string/db"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
                 </TableRow>
             </TableLayout>
 

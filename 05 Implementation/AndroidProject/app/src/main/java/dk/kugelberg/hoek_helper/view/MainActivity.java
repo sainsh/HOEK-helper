@@ -47,6 +47,14 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private TextView vo;
     private TextView ve;
     private TextView domk;
+    private TextView se;
+    private TextView ke;
+    private TextView ko;
+    private TextView sto;
+    private TextView gromk;
+    private TextView oms;
+    private TextView db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +68,13 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         vo = findViewById(R.id.tv_vo);
         ve = findViewById(R.id.tv_ve);
         domk = findViewById(R.id.tv_domk);
+        se = findViewById(R.id.tv_se);
+        ke = findViewById(R.id.tv_ke);
+        ko = findViewById(R.id.tv_ko);
+        sto = findViewById(R.id.tv_sto);
+        gromk = findViewById(R.id.tv_gromk);
+        oms = findViewById(R.id.tv_oms);
+        db = findViewById(R.id.tv_db);
 
 
         ActionBar actionBar = this.getSupportActionBar();

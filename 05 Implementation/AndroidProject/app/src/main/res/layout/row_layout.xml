@@ -78,6 +78,90 @@
         android:textColor="@color/black"
         android:textSize="18sp" />
 
+    <EditText
+        android:id="@+id/edit_text_se"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_white_bg"
+        android:gravity="center"
+        android:inputType="number"
+        android:padding="0dp"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/edit_text_ke"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_white_bg"
+        android:gravity="center"
+        android:inputType="number"
+        android:padding="0dp"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/edit_text_ko"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_white_bg"
+        android:gravity="center"
+        android:inputType="number"
+        android:padding="0dp"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/edit_text_sto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_white_bg"
+        android:gravity="center"
+        android:inputType="number"
+        android:padding="0dp"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/edit_text_gromk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_white_bg"
+        android:gravity="center"
+        android:inputType="number"
+        android:padding="0dp"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/edit_text_oms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_white_bg"
+        android:gravity="center"
+        android:inputType="number"
+        android:padding="0dp"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/edit_text_db"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_white_bg"
+        android:gravity="center"
+        android:inputType="number"
+        android:padding="0dp"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
     <ImageButton
         android:id="@+id/imageButtonUp"
         android:layout_width="wrap_content"

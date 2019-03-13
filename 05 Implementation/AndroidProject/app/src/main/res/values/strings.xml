@@ -18,6 +18,11 @@
 
     <string name="ke">KE</string>
     <string name="se">SE</string>
+    <string name="db">DB</string>
+
+    <string name="sto">STO</string>
+
+    <string name="oms">OMS</string>
 
     <string name="domk">DOMK</string>
     <string name="vis_domk_key">vis_domk</string>
