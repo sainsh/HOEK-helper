@@ -65,26 +65,34 @@ public class ModelViewModel extends AndroidViewModel {
     }
 
     public void popupInsert(PopupWindow popupWindow, EditText etRows, EditText etAntal, EditText etIncrement) {
-        int rows = Integer.parseInt(etRows.getText().toString());
-        int antal = Integer.parseInt(etAntal.getText().toString());
-        int increment = Integer.parseInt(etIncrement.getText().toString());
+        // if (etRows.getText().toString() != "" && etAntal.getText().toString() != "" && etIncrement.getText().toString() != "") {
+            try {
 
-        for (int i = 0; i < rows; i++) {
-            Tabel tabel = controller.getTabel();
-            ArrayList<Raekke> arrayList = tabel.getTabelMld().getValue();
 
-            int tabelSize = arrayList.size();
+            int rows = Integer.parseInt(etRows.getText().toString());
+            int antal = Integer.parseInt(etAntal.getText().toString());
+            int increment = Integer.parseInt(etIncrement.getText().toString());
 
-            tabel.addRaekke(tabelSize);
+            for (int i = 0; i < rows; i++) {
+                Tabel tabel = controller.getTabel();
+                ArrayList<Raekke> arrayList = tabel.getTabelMld().getValue();
 
-            Raekke raekke = tabel.getRaekke(tabelSize);
-            raekke.getX().setVaerdi(antal);
+                int tabelSize = arrayList.size();
 
-            tabel.getTabelMld().setValue(arrayList);
+                tabel.addRaekke(tabelSize);
 
-            antal += increment;
-        }
-        popupWindow.dismiss();
+                Raekke raekke = tabel.getRaekke(tabelSize);
+                raekke.getX().setVaerdi(antal);
+
+                tabel.getTabelMld().setValue(arrayList);
+
+                antal += increment;
+            }} catch (NumberFormatException e) {
+
+            }
+            popupWindow.dismiss();
+
+      //  }
     }
 
     public void popupCancel(PopupWindow popupWindow) {

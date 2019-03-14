@@ -286,11 +286,6 @@ public class KEImplTest {
         }
 
         @Override
-        public boolean kanBeregnes(VO vo, X x, SE se, KE ke) {
-            return false;
-        }
-
-        @Override
         public void setVaerdi(double x) {
             this.vaerdi = x;
         }
