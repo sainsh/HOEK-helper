@@ -30,7 +30,19 @@ public class VEImplTest {
         assertFalse(ve.getBeregnet());
     }
 
+    @Test
+    public void setVaerdi() {
+        VEImpl d = new VEImpl();
+        d.setVaerdi(45);
+        assertEquals(d.getVaerdi(),45,delta);
+    }
 
+    @Test
+    public void getVaerdi() {
+        VEImpl d = new VEImpl();
+        d.setVaerdi(45);
+        assertEquals(d.getVaerdi(),45,delta);
+    }
 
     /**
     @Test
@@ -88,17 +100,5 @@ public class VEImplTest {
         fail();
     }
 
-    @Test
-    public void setVaerdi() {
-        VEImpl d = new VEImpl();
-        d.setVaerdi(45);
-        assertEquals(d.getVaerdi(),45,delta);
-    }
 
-    @Test
-    public void getVaerdi() {
-        VEImpl d = new VEImpl();
-        d.setVaerdi(45);
-        assertEquals(d.getVaerdi(),45,delta);
-    }
 }
