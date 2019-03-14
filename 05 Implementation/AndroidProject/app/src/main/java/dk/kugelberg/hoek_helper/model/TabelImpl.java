@@ -54,11 +54,12 @@ public class TabelImpl implements Tabel {
     private void updateAdjacentRows(int raekkenummer) {
 
         Raekke raekke0 = null;
-        Raekke raekke1 = null;
+        Raekke raekke1 = tabel.get(raekkenummer);
         Raekke raekke2 = null;
 
 
         if (raekkenummer != 0) {
+            raekke0= tabel.get(raekkenummer-1);
             raekke1.getX().initOver(raekke0.getX(),raekke0.getVO());
             raekke1.getKO().initOver(raekke0.getX(),raekke0.getVO());
             raekke1.getVO().initOver(raekke0.getX(),raekke0.getVO());
@@ -67,7 +68,8 @@ public class TabelImpl implements Tabel {
             raekke1.getDOMK().initOver(raekke0.getVO(),raekke0.getX(),raekke0.getDOMK());
         }
 
-        if (raekkenummer != tabel.size()) {
+        if (raekkenummer != tabel.size()-1) {
+            raekke2 = tabel.get(raekkenummer+1);
             raekke1.getSTO().initUnder(raekke2.getX(),raekke2.getVO());
             raekke1.getVO().initUnder(raekke2.getX(),raekke2.getVO(),raekke2.getDOMK());
             raekke1.getKO().initUnder(raekke2.getX(),raekke2.getVO());
