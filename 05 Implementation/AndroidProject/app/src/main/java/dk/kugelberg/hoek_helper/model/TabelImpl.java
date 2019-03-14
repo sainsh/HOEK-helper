@@ -53,25 +53,27 @@ public class TabelImpl implements Tabel {
 
     private void updateAdjacentRows(int raekkenummer) {
 
-        Raekke raekke = null;
+        Raekke raekke0 = null;
         Raekke raekke1 = null;
         Raekke raekke2 = null;
 
-/*
+
         if (raekkenummer != 0) {
-            raekke0 = tabel.get(raekkenummer - 1);
-            raekke0.getDOMK().initUnder(raekke0.getX(), raekke0.getVO());//and all others needed
+            raekke1.getX().initOver(raekke0.getX(),raekke0.getVO());
+            raekke1.getKO().initOver(raekke0.getX(),raekke0.getVO());
+            raekke1.getVO().initOver(raekke0.getX(),raekke0.getVO());
+            raekke1.getGROMK().initOver(raekke0.getX(),raekke0.getSTO());
+            raekke1.getSTO().initOver(raekke0.getX(),raekke0.getVO(),raekke0.getSTO());
+            raekke1.getDOMK().initOver(raekke0.getVO(),raekke0.getX(),raekke0.getDOMK());
         }
-        raekke1 = tabel.get(raekkenummer);
-        raekke1.getDOMK().initOver(raekke1.getX(), raekke1.getVO()); // and all others needed
-        raekke1.getDOMK().initUnder(raekke1.getX(), raekke1.getVO()); // and all others needed
 
         if (raekkenummer != tabel.size()) {
-            raekke2 = tabel.get(raekkenummer + 1);
-            raekke2.getDOMK().initOver(raekke2.getX(), raekke2.getVO()); //and all others needed
+            raekke1.getSTO().initUnder(raekke2.getX(),raekke2.getVO());
+            raekke1.getVO().initUnder(raekke2.getX(),raekke2.getVO(),raekke2.getDOMK());
+            raekke1.getKO().initUnder(raekke2.getX(),raekke2.getVO());
+            raekke1.getX().initUnder(raekke2.getX(),raekke2.getVO(),raekke2.getDOMK());
         }
 
-*/
     }
 
     @Override
