@@ -36,25 +36,26 @@ import dk.kugelberg.hoek_helper.model.Raekke;
 import dk.kugelberg.hoek_helper.model.Tabel;
 import dk.kugelberg.hoek_helper.view.ViewModel.ModelViewModel;
 
+/**
+* Hvad er meningen med klassen?
+*/
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+
+    private Controller controller;
+    private ModelViewModel viewModel;
 
     private RecyclerView recyclerView;
     private DataAdapter adapter;
-
-    private Controller controller;
-
-    private TextView antalEnheder;
-    private TextView vo;
-    private TextView ve;
-    private TextView domk;
-    private TextView se;
-    private TextView ke;
-    private TextView ko;
-    private TextView sto;
-    private TextView gromk;
-    private TextView oms;
-    private TextView db;
-
+        
+    private TextView antalEnheder, vo, ve, domk, se, ke, ko, sto, gromk, oms, db;
+    private EditText etRows, etAntal, etIncrement;
+    private PopupWindow popupWindow;
+    
+    private String editTextChanged;
+    double testX = 0;
+    double testVO = 0;
+    
+    // NO CONSTRUCTOR HERE
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         setContentView(R.layout.activity_main);
 
         controller = ControllerImpl.getInstance();
+        setupViewModel();
 
         antalEnheder = findViewById(R.id.tv_antal_enheder);
         vo = findViewById(R.id.tv_vo);
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         gromk = findViewById(R.id.tv_gromk);
         oms = findViewById(R.id.tv_oms);
         db = findViewById(R.id.tv_db);
-
+        recyclerView = findViewById(R.id.recyclerView_tasks);
 
         ActionBar actionBar = this.getSupportActionBar();
         if (actionBar != null) {
@@ -83,31 +85,17 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             actionBar.setTitle("Opgave X");
         }
 
-        setupViewModel();
-
-        recyclerView = findViewById(R.id.recyclerView_tasks);
-//        recyclerView.setHasFixedSize(true);
-//        recyclerView.setNestedScrollingEnabled(false);
-//        recyclerView.setItemViewCacheSize(20);
-//        recyclerView.setDrawingCacheEnabled(true);
-//        recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-//        linearLayoutManager.scrollToPositionWithOffset(2, 3);
-
         recyclerView.setLayoutManager(linearLayoutManager);
-
         adapter = new DataAdapter(this, viewModel);
         recyclerView.setAdapter(adapter);
-
-        System.out.println("onCreate");
 
         setupSharedPreferences();
     }
 
-
-    private ModelViewModel viewModel;
-
+    /**
+    *
+    */
     private void setupViewModel() {
 
         viewModel = ViewModelProviders.of(this).get(ModelViewModel.class);
@@ -117,33 +105,21 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             @Override
             public void onChanged(@Nullable ArrayList<Raekke> raekker) {
                 adapter.setTasks(raekker);
-                System.out.println("Shit changed");
             }
         });
-    }
-
-    private String editTextChanged;
-
-    public void setEditTextChanged(String editTextChanged) {
-        this.editTextChanged = editTextChanged;
     }
 
     /**
      * The following code adds rows to the table
      */
-
-    double testX = 0;
-    double testVO = 0;
-
     public void addRow(View view) {
         viewModel.addRow();
     }
 
-    private PopupWindow popupWindow;
-    private EditText etRows;
-    private EditText etAntal;
-    private EditText etIncrement;
 
+    /**
+    *
+    */
     public void addRows(View view) {
         int width = GridLayout.LayoutParams.WRAP_CONTENT;
         int height = GridLayout.LayoutParams.WRAP_CONTENT;
@@ -157,10 +133,18 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         popupWindow.showAtLocation(this.findViewById(R.id.main_layout), Gravity.CENTER, 0, 0);
     }
 
+    
+    /**
+    *
+    */
     public void popupInsert(View view) {
         viewModel.popupInsert(popupWindow, etRows, etAntal, etIncrement);
     }
 
+    
+    /**
+    *
+    */
     public void popupCancel(View view) {
         viewModel.popupCancel(popupWindow);
     }
@@ -168,13 +152,15 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     /**
      * The following code deals with the top right menu
      */
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 
+    /**
+    *
+    */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemThatWasClickedId = item.getItemId();
@@ -193,9 +179,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     /**
      * The following code deals with changing of settings
      */
-
     private void visibility(SharedPreferences sharedPreferences) {
-
+        
+        // TODO -- Træk ud i særskilt metode
         if (sharedPreferences.getBoolean(getString(R.string.vis_antal_enheder_key), getResources().getBoolean(R.bool.vis_antal_enheder))) {
             antalEnheder.setVisibility(View.VISIBLE);
             adapter.setAntalEnhederVisible(true);
@@ -233,45 +219,13 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         } else {
             domk.setVisibility(View.GONE);
             adapter.setDomkVisible(false);
-        }/* //TODO ADD SAME FUNCTIONS FOR (DB, KE, KO og de restende objecter)
-        if (sharedPreferences.getBoolean(getString(R.string.vis_domk_key), getResources().getBoolean(R.bool.vis_domk))) {
-            domk.setVisibility(View.VISIBLE);
-            adapter.setDomkVisible(true);
-        } else {
-            domk.setVisibility(View.GONE);
-            adapter.setDomkVisible(false);
-        }
-        if (sharedPreferences.getBoolean(getString(R.string.vis_domk_key), getResources().getBoolean(R.bool.vis_domk))) {
-            domk.setVisibility(View.VISIBLE);
-            adapter.setDomkVisible(true);
-        } else {
-            domk.setVisibility(View.GONE);
-            adapter.setDomkVisible(false);
-        }
-        if (sharedPreferences.getBoolean(getString(R.string.vis_domk_key), getResources().getBoolean(R.bool.vis_domk))) {
-            domk.setVisibility(View.VISIBLE);
-            adapter.setDomkVisible(true);
-        } else {
-            domk.setVisibility(View.GONE);
-            adapter.setDomkVisible(false);
-        }
-        if (sharedPreferences.getBoolean(getString(R.string.vis_domk_key), getResources().getBoolean(R.bool.vis_domk))) {
-            domk.setVisibility(View.VISIBLE);
-            adapter.setDomkVisible(true);
-        } else {
-            domk.setVisibility(View.GONE);
-            adapter.setDomkVisible(false);
-        }if (sharedPreferences.getBoolean(getString(R.string.vis_domk_key), getResources().getBoolean(R.bool.vis_domk))) {
-            domk.setVisibility(View.VISIBLE);
-            adapter.setDomkVisible(true);
-        } else {
-            domk.setVisibility(View.GONE);
-            adapter.setDomkVisible(false);
-        }*/
-
+        }/* //TODO ADD SAME FUNCTIONS FOR (DB, KE, KO og de restende objecter) */
 
     }
 
+    /**
+     * 
+     */
     private void setupSharedPreferences() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -280,15 +234,18 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
+    
+    /**
+     * The following code deals with changing of settings
+     */
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-
-//        if (key.equals(getString(R.string.vis_antal_enheder_key))) {
-//            System.out.println("Correct key");
         visibility(sharedPreferences);
-//        }
     }
 
+     /**
+     * 
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -298,11 +255,15 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     /**
      * The following code deals with the hardware back button
      */
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         NavUtils.navigateUpFromSameTask(this);
+    }
+    
+    
+    public void setEditTextChanged(String editTextChanged) {
+        this.editTextChanged = editTextChanged;
     }
 
 }
