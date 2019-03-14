@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="dk.kugelberg.hoek_helper">
 
+
     <!--Brug "android:theme="@style/AppTheme.Launcher" for at aktivere splash screen-->
 
     <application

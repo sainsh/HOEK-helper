@@ -1,9 +1,20 @@
 package dk.kugelberg.hoek_helper.model;
 
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
+
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Calendar;
+
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -195,16 +206,35 @@ public class TabelImpl implements Tabel {
     }
 
     @Override
-    public void createCSV() {
+    public File createCSV(Context ctx) {
 
-        try{
-            File file = new File("test.csv");
-            PrintWriter writer = new PrintWriter(file);
-            StringBuilder sb = new StringBuilder();
+        //These lines of code are written by Kugelberg and Cosby (Much Wow).
 
-            sb.append("X"+CSV_DELIMITER+"VO"+CSV_DELIMITER+"VE"+CSV_DELIMITER+"KE"+CSV_DELIMITER+"STO"+CSV_DELIMITER+"SE"+CSV_DELIMITER+"KO"+CSV_DELIMITER+"GROMK"+CSV_DELIMITER+"DOMK\n");
+        String dateString;
+        dateString = Calendar
+                .getInstance()
+                .getTime()
+                .toString()
+                .replace(" ", "_")
+                .replace(":", "_")
+                .replace("+", "_")
+                .concat(".csv");
 
 
+        File file = new File(ctx.getFilesDir() ,dateString);
+
+        System.out.println("File was created!");
+
+
+
+
+        StringBuilder sb = new StringBuilder();
+
+        System.out.println("Stringbuilder created");
+
+        sb.append("X"+CSV_DELIMITER+"VO"+CSV_DELIMITER+"VE"+CSV_DELIMITER+"KE"+CSV_DELIMITER+"STO"+CSV_DELIMITER+"SE"+CSV_DELIMITER+"KO"+CSV_DELIMITER+"GROMK"+CSV_DELIMITER+"DOMK\n");
+
+        System.out.println("append text");
 
             for (Raekke raekke: tabel) {
 
@@ -221,14 +251,25 @@ public class TabelImpl implements Tabel {
 
             }
 
-            writer.write(sb.toString());
-            writer.close();
+        System.out.println("for loop createCSV tabelImpl");
 
+        String outputString = sb.toString();
 
-        }catch (IOException e){
-            e.printStackTrace();
+        System.out.println("OUTPUTFILE!!! "+outputString);
+
+        Intent intent = new Intent();
+
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(ctx.openFileOutput(dateString, Context.MODE_PRIVATE));
+            outputStreamWriter.write(outputString);
+            outputStreamWriter.close();
+            intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        }
+        catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
         }
 
+        return file;
     }
 
 

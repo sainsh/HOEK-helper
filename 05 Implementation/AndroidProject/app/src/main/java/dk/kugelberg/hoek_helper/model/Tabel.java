@@ -1,5 +1,8 @@
 package dk.kugelberg.hoek_helper.model;
 
+import android.content.Context;
+
+import java.io.File;
 import java.util.ArrayList;
 
 import androidx.lifecycle.MutableLiveData;
@@ -53,5 +56,5 @@ public interface Tabel {
     void beregnX(int raekkenummer);
 
 
-    void createCSV();
+    File createCSV(Context ctx);
 }

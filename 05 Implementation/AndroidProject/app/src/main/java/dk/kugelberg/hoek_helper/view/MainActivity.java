@@ -3,6 +3,7 @@ package dk.kugelberg.hoek_helper.view;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.TypedValue;
@@ -19,12 +20,14 @@ import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
+import androidx.core.app.ShareCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,6 +37,7 @@ import dk.kugelberg.hoek_helper.model.Controller;
 import dk.kugelberg.hoek_helper.model.ControllerImpl;
 import dk.kugelberg.hoek_helper.model.Raekke;
 import dk.kugelberg.hoek_helper.model.Tabel;
+import dk.kugelberg.hoek_helper.model.TabelImpl;
 import dk.kugelberg.hoek_helper.view.ViewModel.ModelViewModel;
 
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -89,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         setupSharedPreferences();
     }
-
 
     private ModelViewModel viewModel;
 
@@ -247,4 +250,28 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         NavUtils.navigateUpFromSameTask(this);
     }
 
+    public void onShareClick(MenuItem item) {
+
+        File file = controller.getTabel().createCSV(getApplicationContext());
+
+        String text = file.getName();
+        Uri fileUri = Uri.parse(text);
+        Intent shareIntent = ShareCompat.IntentBuilder.from(MainActivity.this)
+                .setType("text/csv")
+                .setStream(fileUri)
+                .getIntent();
+
+        startActivity(Intent.createChooser(shareIntent, "Share file"));
+
+//        shareIntent.setAction(Intent.ACTION_SEND);
+//        shareIntent.putExtra(Intent.EXTRA_TEXT, "Sendt fra HOEK-Beregner");
+//        shareIntent.putExtra(Intent.EXTRA_SUBJECT, text);
+//        shareIntent.putExtra(Intent.EXTRA_STREAM, fileUri);
+//        shareIntent.setType("application/excel");
+//        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//        startActivity(Intent.createChooser(shareIntent, "Share CSV file"));
+
+
+
+    }
 }
