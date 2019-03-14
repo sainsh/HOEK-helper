@@ -91,7 +91,20 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         recyclerView.setAdapter(adapter);
 
         setupSharedPreferences();
-
+        Tabel tabel = ControllerImpl.getInstance().getTabel();
+        tabel.addRaekke(0);
+        Raekke raekke = tabel.getRaekke(0);
+        raekke.getX().setVaerdi(0);
+        raekke.getKO().setVaerdi(0);
+        raekke.getVO().setVaerdi(0);
+        raekke.getSTO().setVaerdi(0);
+        raekke.getDOMK().setVaerdi(0);
+        raekke.getSE().setVaerdi(0);
+        raekke.getGROMK().setVaerdi(0);
+        raekke.getKE().setVaerdi(0);
+        raekke.getVE().setVaerdi(0);
+        raekke.getOMS().setVaerdi(0);
+        raekke.getDB().setVaerdi(0);
 
     }
 
