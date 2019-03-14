@@ -285,7 +285,6 @@ public class KEImplTest {
             return false;
         }
 
-
         @Override
         public void setVaerdi(double x) {
             this.vaerdi = x;
