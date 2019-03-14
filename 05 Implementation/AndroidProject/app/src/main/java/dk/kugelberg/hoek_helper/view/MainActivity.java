@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -21,6 +22,8 @@ import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
+import java.net.URLConnection;
 import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
@@ -252,16 +255,53 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     public void onShareClick(MenuItem item) {
 
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+
         File file = controller.getTabel().createCSV(getApplicationContext());
 
-        String text = file.getName();
-        Uri fileUri = Uri.parse(text);
-        Intent shareIntent = ShareCompat.IntentBuilder.from(MainActivity.this)
-                .setType("text/csv")
-                .setStream(fileUri)
-                .getIntent();
+        String mimeType = "text/comma-separated-values";
+        String title = "Share CSV file";
 
-        startActivity(Intent.createChooser(shareIntent, "Share file"));
+
+    Intent shareIntent = ShareCompat.IntentBuilder.from(this)
+            .setChooserTitle(title)
+            .setType(mimeType)
+            .setText("walla")
+            .setStream(Uri.fromFile(file))
+            .getIntent()
+            .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        if (shareIntent.resolveActivity(getPackageManager()) != null) {
+        startActivity(shareIntent);
+    }
+
+
+
+//
+//        Intent intentShareFile = new Intent(Intent.ACTION_SEND);
+//
+//        intentShareFile.setType(URLConnection.guessContentTypeFromName(file.getName()));
+//
+//        intentShareFile.putExtra(Intent.EXTRA_STREAM, Uri.parse(getFilesDir() + file.getName()));
+//
+//        System.out.println(intentShareFile.getType());
+
+
+        //if you need
+        //intentShareFile.putExtra(Intent.EXTRA_SUBJECT,"Sharing File Subject);
+        //intentShareFile.putExtra(Intent.EXTRA_TEXT, "Sharing File Description");
+
+        //startActivity(Intent.createChooser(intentShareFile, "Share File"));
+
+//
+//        String text = file.getName();
+//        Uri fileUri = Uri.parse(text);
+//        Intent shareIntent = ShareCompat.IntentBuilder.from(MainActivity.this)
+//                .setType("text/csv")
+//                .setStream(fileUri)
+//                .getIntent();
+//
+//        startActivity(Intent.createChooser(shareIntent, "Share file"));
 
 //        shareIntent.setAction(Intent.ACTION_SEND);
 //        shareIntent.putExtra(Intent.EXTRA_TEXT, "Sendt fra HOEK-Beregner");

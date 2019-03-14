@@ -210,8 +210,8 @@ public class TabelImpl implements Tabel {
 
         //These lines of code are written by Kugelberg and Cosby (Much Wow).
 
-        String dateString;
-        dateString = Calendar
+        String fileName;
+        fileName = Calendar
                 .getInstance()
                 .getTime()
                 .toString()
@@ -221,7 +221,7 @@ public class TabelImpl implements Tabel {
                 .concat(".csv");
 
 
-        File file = new File(ctx.getFilesDir() ,dateString);
+        File file = new File(ctx.getFilesDir() ,fileName);
 
         System.out.println("File was created!");
 
@@ -257,13 +257,10 @@ public class TabelImpl implements Tabel {
 
         System.out.println("OUTPUTFILE!!! "+outputString);
 
-        Intent intent = new Intent();
-
         try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(ctx.openFileOutput(dateString, Context.MODE_PRIVATE));
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(ctx.openFileOutput(fileName, Context.MODE_PRIVATE));
             outputStreamWriter.write(outputString);
             outputStreamWriter.close();
-            intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
         }
         catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
