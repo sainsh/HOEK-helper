@@ -106,3 +106,15 @@ public class VOImpl implements VO {
         if (vaerdi == NaN) erBeregnet = false;
     }
 }
+/*
+                                raekke.getSTO().init(raekke.getX(),raekke.getVO(),raekke.getKO(),raekke.getSE(),raekke.getGROMK());
+                                raekke.getKO().init(raekke.getKE(),raekke.getX(),raekke.getSTO(),raekke.getVO());
+                                raekke.getDOMK().init(raekke.getVO(), raekke.getSTO(), raekke.getKO(), raekke.getVE(), raekke.getX());
+                                raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
+                                raekke.getVE().init(raekke.getVO(), raekke.getX(), raekke.getSE(), raekke.getKE());
+                                raekke.getVO().init(raekke.getVE(),raekke.getX(),raekke.getKO(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getDB(),raekke.getOMS());
+                                raekke.getSE().init(raekke.getX(),raekke.getSTO(),raekke.getVE(),raekke.getKE());
+                                raekke.getKE().init(raekke.getKO(),raekke.getX(),raekke.getSE(),raekke.getVE());
+                                raekke.getGROMK().init(raekke.getX(),raekke.getSTO());
+
+                                 */

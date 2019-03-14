@@ -9,22 +9,47 @@
     <string name="vis_vo_key">vis_vo</string>
     <string name="vis_vo">Vis VO</string>
 
+    <string name="gromk">gromk</string>
+    <string name="vis_gromk_key">vis_GROMK</string>
+    <string name="vis_gromk">Vis GROMK</string>
+
     <string name="ko">KO</string>
+    <string name="vis_ko_key">vis_KO</string>
+    <string name="vis_ko">vis KO</string>
+
     <string name="so">SO</string>
+    <string name="vis_so_key">vis_SO</string>
+    <string name="vis_so">vis SO</string>
 
     <string name="ve">VE</string>
     <string name="vis_ve_key">vis_ve</string>
     <string name="vis_ve">Vis VE</string>
 
     <string name="ke">KE</string>
+    <string name="vis_ke_key">vis_KE</string>
+    <string name="vis_ke">vis KE</string>
+
     <string name="se">SE</string>
+    <string name="vis_se_key">vis_SE</string>
+    <string name="vis_se">vis SE</string>
+
+    <string name="db">DB</string>
+    <string name="vis_db_key">vis_DB</string>
+    <string name="vis_db">vis DB</string>
+
+
+    <string name="sto">STO</string>
+    <string name="vis_sto_key">vis_STO</string>
+    <string name="vis_sto">vis STO</string>
+
+    <string name="oms">OMS</string>
+    <string name="vis_oms_key">vis_OMS</string>
+    <string name="vis_oms">vis OMS</string>
 
     <string name="domk">DOMK</string>
     <string name="vis_domk_key">vis_domk</string>
     <string name="vis_domk">Vis DOMK</string>
 
-    <string name="doms">DOMS</string>
-    <string name="gromk">GROMK</string>
     <string name="udvikling">Udvikling</string>
 
     <string name="indstillinger">Indstillinger</string>

@@ -18,7 +18,7 @@ import dk.kugelberg.hoek_helper.model.X;
 import static org.junit.Assert.*;
 
 public class KEImplTest {
-/*
+
 
     final double delta = 0.00000000000000000001;
 
@@ -265,7 +265,7 @@ public class KEImplTest {
         }
     }
 
-   class VEMock implements VE {
+    class VEMock implements VE {
 
         private double vaerdi = Double.NaN;
 
@@ -280,15 +280,11 @@ public class KEImplTest {
 
         }
 
-     /  @Override
-        public boolean kanBeregnes(VO vo, X x, SE se, KE ke) {
-            return false;
-        }
-
         @Override
         public boolean kanBeregnes(VO vo, X x, SE se, KE ke) {
             return false;
         }
+
 
         @Override
         public void setVaerdi(double x) {
@@ -316,6 +312,6 @@ public class KEImplTest {
         }
     }
 
-*/
+
 }
 
