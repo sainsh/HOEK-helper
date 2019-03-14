@@ -391,60 +391,25 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
                                 System.out.println("X gets changed");
                                 raekke.getX().setVaerdi(newAntalEnheder);
 
-                                //KALDER ALLE INITS
-                                raekke.getSTO().init(raekke.getX(),raekke.getVO(),raekke.getKO(),raekke.getSE(),raekke.getGROMK());
-                                raekke.getKO().init(raekke.getKE(),raekke.getX(),raekke.getSTO(),raekke.getVO());
-                                raekke.getDOMK().init(raekke.getVO(), raekke.getSTO(), raekke.getKO(), raekke.getVE(), raekke.getX());
-                                raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
-                                raekke.getVE().init(raekke.getVO(), raekke.getX(), raekke.getSE(), raekke.getKE());
-                                raekke.getVO().init(raekke.getVE(),raekke.getX(),raekke.getKO(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getDB(),raekke.getOMS());
-                                raekke.getSE().init(raekke.getX(),raekke.getSTO(),raekke.getVE(),raekke.getKE());
-                                raekke.getKE().init(raekke.getKO(),raekke.getX(),raekke.getSE(),raekke.getVE());
-                                raekke.getGROMK().init(raekke.getX(),raekke.getSTO());
-                                //SLUT
-                                raekke.getVE().init(raekke.getVO(), raekke.getX(), raekke.getSE(), raekke.getKE());
                                 raekke.getVE().beregn();
-                                raekke.getVO().init(raekke.getVE(),raekke.getX(),raekke.getKO(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getDB(),raekke.getOMS());
                                 raekke.getVO().beregn();
-                                raekke.getGROMK().init(raekke.getX(),raekke.getSTO());
-                                raekke.getKE().init(raekke.getKO(),raekke.getX(),raekke.getSE(),raekke.getVE());
                                 raekke.getKE().beregn();
-                                raekke.getSTO().init(raekke.getX(),raekke.getVO(),raekke.getKO(),raekke.getSE(),raekke.getGROMK());
                                 raekke.getSTO().beregn();
-                                raekke.getKO().init(raekke.getKE(),raekke.getX(),raekke.getSTO(),raekke.getVO());
                                 raekke.getKO().beregn();
-                                raekke.getSE().init(raekke.getX(),raekke.getSTO(),raekke.getVE(),raekke.getKE());
                                 raekke.getSE().beregn();
 
-                                if (getAdapterPosition() != raekkeArrayList.size()-1) {
-                                    Raekke raekkeUnder = raekkeArrayList.get(getAdapterPosition() + 1);
-                                    raekke.getKO().initUnder(raekkeUnder.getX(),raekkeUnder.getVO());
-                                    raekke.getVO().initUnder(raekkeUnder.getX(),raekkeUnder.getVO(),raekkeUnder.getDOMK());
-                                    raekke.getSTO().initUnder(raekkeUnder.getX(),raekkeUnder.getVO());
-                                }
 
                                 if (getAdapterPosition() != 0) {
-                                    Raekke raekkeOver = raekkeArrayList.get(getAdapterPosition() - 1);
                                     //TODO TJEK OM RaekkeUnder fungere, ellers fix med en ny if statement.
-
-
-                                    raekke.getKO().initOver(raekkeOver.getX(),raekkeOver.getVO());
 
                                     raekke.getKO().beregn();
 
-                                    raekke.getVO().initOver(raekkeOver.getX(),raekkeOver.getVO());
-
                                     raekke.getVO().beregn();
-
-                                    raekke.getSTO().initOver(raekkeOver.getX(),raekkeOver.getVO(),raekkeOver.getSTO());
 
                                     raekke.getSTO().beregn();
 
-                                    raekke.getGROMK().initOver(raekkeOver.getX(),raekkeOver.getSTO());
                                     raekke.getGROMK().beregn();
 
-                                    raekke.getDOMK().init(raekke.getVO(), raekke.getSTO(), raekke.getKO(), raekke.getVE(), raekke.getX());
-                                    raekke.getDOMK().initOver(raekkeOver.getVO(), raekkeOver.getX(), raekkeOver.getDOMK());
                                     raekke.getDOMK().beregn();
                                 }
 
@@ -460,45 +425,16 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
                                 System.out.println("VO gets changed");
                                 raekke.getVO().setVaerdi(newVo);
 
-                                //KALDER ALLE INITS
-                                raekke.getSTO().init(raekke.getX(),raekke.getVO(),raekke.getKO(),raekke.getSE(),raekke.getGROMK());
-                                raekke.getKO().init(raekke.getKE(),raekke.getX(),raekke.getSTO(),raekke.getVO());
-                                raekke.getDOMK().init(raekke.getVO(), raekke.getSTO(), raekke.getKO(), raekke.getVE(), raekke.getX());
-                                raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
-                                raekke.getVE().init(raekke.getVO(), raekke.getX(), raekke.getSE(), raekke.getKE());
-                                raekke.getVO().init(raekke.getVE(),raekke.getX(),raekke.getKO(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getDB(),raekke.getOMS());
-                                raekke.getSE().init(raekke.getX(),raekke.getSTO(),raekke.getVE(),raekke.getKE());
-                                raekke.getKE().init(raekke.getKO(),raekke.getX(),raekke.getSE(),raekke.getVE());
-                                raekke.getGROMK().init(raekke.getX(),raekke.getSTO());
-                                //SLUT
-                                raekke.getVE().init(raekke.getVO(), raekke.getX(), raekke.getSE(), raekke.getKE());
                                 raekke.getVE().beregn();
 
                                 if (getAdapterPosition() != raekkeArrayList.size()-1) {
-                                    Raekke raekkeUnder = raekkeArrayList.get(getAdapterPosition() + 1);
-                                    raekke.getSTO().initUnder(raekkeUnder.getX(), raekkeUnder.getVO());
-                                    raekke.getKO().initUnder(raekkeUnder.getX(), raekkeUnder.getVO());
-                                    raekke.getX().initUnder(raekkeUnder.getX(), raekkeUnder.getVO(), raekkeUnder.getDOMK());
                                     raekke.getX().beregn();
                                     raekke.getKO().beregn();
                                     raekke.getX().beregn();
                                 }
                                 if (getAdapterPosition() != 0) {
-
-                                    Raekke raekkeOver = raekkeArrayList.get(getAdapterPosition() - 1);
-
-                                    raekke.getSTO().init(raekke.getX(),raekke.getVO(),raekke.getKO(),raekke.getSE(),raekke.getGROMK());
-                                    raekke.getSTO().initOver(raekkeOver.getX(),raekkeOver.getVO(),raekkeOver.getSTO());
                                     raekke.getSTO().beregn();
-
-                                    raekke.getKO().init(raekke.getKE(),raekke.getX(),raekke.getSTO(),raekke.getVO());
-                                    raekke.getKO().initOver(raekkeOver.getX(),raekkeOver.getVO());
-                                    raekke.getDOMK().init(raekke.getVO(), raekke.getSTO(), raekke.getKO(), raekke.getVE(), raekke.getX());
-                                    raekke.getDOMK().initOver(raekkeOver.getVO(), raekkeOver.getX(), raekkeOver.getDOMK());
                                     raekke.getDOMK().beregn();
-                                    raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
-                                    raekke.getX().initOver(raekkeOver.getX(),raekkeOver.getVO());
-
                                     raekke.getX().beregn();
 
                                 }
@@ -516,26 +452,10 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
                                 System.out.println("VE gets changed");
                                 raekke.getVE().setVaerdi(newVe);
 
-                                //KALDER ALLE INITS
-                                raekke.getSTO().init(raekke.getX(),raekke.getVO(),raekke.getKO(),raekke.getSE(),raekke.getGROMK());
-                                raekke.getKO().init(raekke.getKE(),raekke.getX(),raekke.getSTO(),raekke.getVO());
-                                raekke.getDOMK().init(raekke.getVO(), raekke.getSTO(), raekke.getKO(), raekke.getVE(), raekke.getX());
-                                raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
-                                raekke.getVE().init(raekke.getVO(), raekke.getX(), raekke.getSE(), raekke.getKE());
-                                raekke.getVO().init(raekke.getVE(),raekke.getX(),raekke.getKO(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getDB(),raekke.getOMS());
-                                raekke.getSE().init(raekke.getX(),raekke.getSTO(),raekke.getVE(),raekke.getKE());
-                                raekke.getKE().init(raekke.getKO(),raekke.getX(),raekke.getSE(),raekke.getVE());
-                                raekke.getGROMK().init(raekke.getX(),raekke.getSTO());
-                                //SLUT
-                                raekke.getKE().init(raekke.getKO(),raekke.getX(),raekke.getSE(),raekke.getVE());
                                 raekke.getKE().beregn();
-                                raekke.getSE().init(raekke.getX(),raekke.getSTO(),raekke.getVE(),raekke.getKE());
                                 raekke.getSE().beregn();
-                                raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
                                 raekke.getX().beregn();
-                                raekke.getVO().init(raekke.getVE(),raekke.getX(),raekke.getKO(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getDB(),raekke.getOMS());
                                 raekke.getVO().beregn();
-                                raekke.getSE().init(raekke.getX(),raekke.getSTO(),raekke.getVE(),raekke.getKE());
                                 raekke.getSE().beregn();
                                 if (getAdapterPosition() != 0){
                                 }
@@ -552,35 +472,9 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
                                 System.out.println("DOMK gets changed");
                                 raekke.getDOMK().setVaerdi(newDomk);
 
-                                //KALDER ALLE INITS
-                                raekke.getSTO().init(raekke.getX(),raekke.getVO(),raekke.getKO(),raekke.getSE(),raekke.getGROMK());
-                                raekke.getKO().init(raekke.getKE(),raekke.getX(),raekke.getSTO(),raekke.getVO());
-                                raekke.getDOMK().init(raekke.getVO(), raekke.getSTO(), raekke.getKO(), raekke.getVE(), raekke.getX());
-                                raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
-                                raekke.getVE().init(raekke.getVO(), raekke.getX(), raekke.getSE(), raekke.getKE());
-                                raekke.getVO().init(raekke.getVE(),raekke.getX(),raekke.getKO(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getDB(),raekke.getOMS());
-                                raekke.getSE().init(raekke.getX(),raekke.getSTO(),raekke.getVE(),raekke.getKE());
-                                raekke.getKE().init(raekke.getKO(),raekke.getX(),raekke.getSE(),raekke.getVE());
-                                raekke.getGROMK().init(raekke.getX(),raekke.getSTO());
-                                //SLUT
-                                if (getAdapterPosition() != raekkeArrayList.size()-1) {
-                                    Raekke raekkeUnder = raekkeArrayList.get(getAdapterPosition() + 1);
-                                    raekke.getX().initUnder(raekkeUnder.getX(),raekkeUnder.getVO(),raekkeUnder.getDOMK());
-                                    raekke.getVO().initUnder(raekkeUnder.getX(),raekkeUnder.getVO(),raekkeUnder.getDOMK());
-                                }
                                 if (getAdapterPosition() != 0){
-
-                                    Raekke raekkeOver = raekkeArrayList.get(getAdapterPosition() - 1);
-                                    raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
-
-                                    raekke.getX().initOver(raekkeOver.getX(),raekkeOver.getVO());
                                     raekke.getX().beregn();
-                                    raekke.getVO().init(raekke.getVE(),raekke.getX(),raekke.getKO(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getDB(),raekke.getOMS());
-
-                                    raekke.getVO().initOver(raekkeOver.getX(),raekkeOver.getVO());
                                     raekke.getVO().beregn();
-
-
                                 }
 
                                 new Handler().post(new Runnable() {
@@ -595,29 +489,8 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
                                 System.out.println("DB gets changed");
                                 raekke.getDB().setVaerdi(newDB);
 
-                                //KALDER ALLE INITS
-                                raekke.getSTO().init(raekke.getX(),raekke.getVO(),raekke.getKO(),raekke.getSE(),raekke.getGROMK());
-                                raekke.getKO().init(raekke.getKE(),raekke.getX(),raekke.getSTO(),raekke.getVO());
-                                raekke.getDOMK().init(raekke.getVO(), raekke.getSTO(), raekke.getKO(), raekke.getVE(), raekke.getX());
-                                raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
-                                raekke.getVE().init(raekke.getVO(), raekke.getX(), raekke.getSE(), raekke.getKE());
-                                raekke.getVO().init(raekke.getVE(),raekke.getX(),raekke.getKO(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getDB(),raekke.getOMS());
-                                raekke.getSE().init(raekke.getX(),raekke.getSTO(),raekke.getVE(),raekke.getKE());
-                                raekke.getKE().init(raekke.getKO(),raekke.getX(),raekke.getSE(),raekke.getVE());
-                                raekke.getGROMK().init(raekke.getX(),raekke.getSTO());
-                                //SLUT
-                                if (getAdapterPosition() != raekkeArrayList.size()-1) {
-                                    Raekke raekkeUnder = raekkeArrayList.get(getAdapterPosition() + 1);
-                                    raekke.getVO().initUnder(raekkeUnder.getX(),raekkeUnder.getVO(),raekkeUnder.getDOMK());
-                                }
-
 
                                 if (getAdapterPosition() != 0) {
-
-                                    Raekke raekkeOver = raekkeArrayList.get(getAdapterPosition() - 1);
-                                    raekke.getVO().initOver(raekkeOver.getX(),raekkeOver.getVO());
-
-                                    raekke.getVO().init(raekke.getVE(),raekke.getX(),raekke.getKO(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getDB(),raekke.getOMS());
                                     raekke.getVO().beregn();
                                 }
 
@@ -633,26 +506,8 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
                                 System.out.println("GROMK gets changed");
                                 raekke.getGROMK().setVaerdi(newGROMK);
 
-                                //KALDER ALLE INITS
-                                raekke.getSTO().init(raekke.getX(),raekke.getVO(),raekke.getKO(),raekke.getSE(),raekke.getGROMK());
-                                raekke.getKO().init(raekke.getKE(),raekke.getX(),raekke.getSTO(),raekke.getVO());
-                                raekke.getDOMK().init(raekke.getVO(), raekke.getSTO(), raekke.getKO(), raekke.getVE(), raekke.getX());
-                                raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
-                                raekke.getVE().init(raekke.getVO(), raekke.getX(), raekke.getSE(), raekke.getKE());
-                                raekke.getVO().init(raekke.getVE(),raekke.getX(),raekke.getKO(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getDB(),raekke.getOMS());
-                                raekke.getSE().init(raekke.getX(),raekke.getSTO(),raekke.getVE(),raekke.getKE());
-                                raekke.getKE().init(raekke.getKO(),raekke.getX(),raekke.getSE(),raekke.getVE());
-                                raekke.getGROMK().init(raekke.getX(),raekke.getSTO());
-                                //SLUT
-                                raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
-                                raekke.getSTO().init(raekke.getX(),raekke.getVO(),raekke.getKO(),raekke.getSE(),raekke.getGROMK());
                                 raekke.getSTO().beregn();
 
-                                if (getAdapterPosition() != 0) {
-
-                                    Raekke raekkeUnder = raekkeArrayList.get(getAdapterPosition() + 1);
-                                    Raekke raekkeOver = raekkeArrayList.get(getAdapterPosition() - 1);
-                                }
 
                                 new Handler().post(new Runnable() {
                                     @Override
@@ -666,30 +521,10 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
                                 System.out.println("KE gets changed");
                                 raekke.getKE().setVaerdi(newKE);
 
-                                //KALDER ALLE INITS
-                                raekke.getSTO().init(raekke.getX(),raekke.getVO(),raekke.getKO(),raekke.getSE(),raekke.getGROMK());
-                                raekke.getKO().init(raekke.getKE(),raekke.getX(),raekke.getSTO(),raekke.getVO());
-                                raekke.getDOMK().init(raekke.getVO(), raekke.getSTO(), raekke.getKO(), raekke.getVE(), raekke.getX());
-                                raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
-                                raekke.getVE().init(raekke.getVO(), raekke.getX(), raekke.getSE(), raekke.getKE());
-                                raekke.getVO().init(raekke.getVE(),raekke.getX(),raekke.getKO(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getDB(),raekke.getOMS());
-                                raekke.getSE().init(raekke.getX(),raekke.getSTO(),raekke.getVE(),raekke.getKE());
-                                raekke.getKE().init(raekke.getKO(),raekke.getX(),raekke.getSE(),raekke.getVE());
-                                raekke.getGROMK().init(raekke.getX(),raekke.getSTO());
-                                //SLUT
-                                raekke.getKO().init(raekke.getKE(),raekke.getX(),raekke.getSTO(),raekke.getVO());
                                 raekke.getKO().beregn();
-                                raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
                                 raekke.getX().beregn();
-                                raekke.getSE().init(raekke.getX(),raekke.getSTO(),raekke.getVE(),raekke.getKE());
                                 raekke.getSE().beregn();
-                                raekke.getVE().init(raekke.getVO(),raekke.getX(),raekke.getSE(),raekke.getKE());
                                 raekke.getVE().beregn();
-                                if (getAdapterPosition() != 0) {
-
-                                    Raekke raekkeUnder = raekkeArrayList.get(getAdapterPosition() + 1);
-                                    Raekke raekkeOver = raekkeArrayList.get(getAdapterPosition() - 1);
-                                }
 
                                 new Handler().post(new Runnable() {
                                     @Override
@@ -703,30 +538,11 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
                                 System.out.println("KO gets changed");
                                 raekke.getKO().setVaerdi(newKO);
 
-                                //KALDER ALLE INITS
-                                raekke.getSTO().init(raekke.getX(),raekke.getVO(),raekke.getKO(),raekke.getSE(),raekke.getGROMK());
-                                raekke.getKO().init(raekke.getKE(),raekke.getX(),raekke.getSTO(),raekke.getVO());
-                                raekke.getDOMK().init(raekke.getVO(), raekke.getSTO(), raekke.getKO(), raekke.getVE(), raekke.getX());
-                                raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
-                                raekke.getVE().init(raekke.getVO(), raekke.getX(), raekke.getSE(), raekke.getKE());
-                                raekke.getVO().init(raekke.getVE(),raekke.getX(),raekke.getKO(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getDB(),raekke.getOMS());
-                                raekke.getSE().init(raekke.getX(),raekke.getSTO(),raekke.getVE(),raekke.getKE());
-                                raekke.getKE().init(raekke.getKO(),raekke.getX(),raekke.getSE(),raekke.getVE());
-                                raekke.getGROMK().init(raekke.getX(),raekke.getSTO());
-                                //SLUT
-                                raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
                                 raekke.getX().beregn();
-                                raekke.getKE().init(raekke.getKO(),raekke.getX(),raekke.getSE(),raekke.getVE());
                                 raekke.getKE().beregn();
-                                raekke.getSTO().init(raekke.getX(),raekke.getVO(),raekke.getKO(),raekke.getSE(),raekke.getGROMK());
                                 raekke.getSTO().beregn();
-                                raekke.getVO().init(raekke.getVE(),raekke.getX(),raekke.getKO(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getDB(),raekke.getOMS());
                                 raekke.getVO().beregn();
-                                if (getAdapterPosition() != 0) {
 
-                                    Raekke raekkeUnder = raekkeArrayList.get(getAdapterPosition() + 1);
-                                    Raekke raekkeOver = raekkeArrayList.get(getAdapterPosition() - 1);
-                                }
                                 new Handler().post(new Runnable() {
                                     @Override
                                     public void run() {
@@ -739,24 +555,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
                                 System.out.println("OMS gets changed");
                                 raekke.getOMS().setVaerdi(newOMS);
 
-                                //KALDER ALLE INITS
-                                raekke.getSTO().init(raekke.getX(),raekke.getVO(),raekke.getKO(),raekke.getSE(),raekke.getGROMK());
-                                raekke.getKO().init(raekke.getKE(),raekke.getX(),raekke.getSTO(),raekke.getVO());
-                                raekke.getDOMK().init(raekke.getVO(), raekke.getSTO(), raekke.getKO(), raekke.getVE(), raekke.getX());
-                                raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
-                                raekke.getVE().init(raekke.getVO(), raekke.getX(), raekke.getSE(), raekke.getKE());
-                                raekke.getVO().init(raekke.getVE(),raekke.getX(),raekke.getKO(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getDB(),raekke.getOMS());
-                                raekke.getSE().init(raekke.getX(),raekke.getSTO(),raekke.getVE(),raekke.getKE());
-                                raekke.getKE().init(raekke.getKO(),raekke.getX(),raekke.getSE(),raekke.getVE());
-                                raekke.getGROMK().init(raekke.getX(),raekke.getSTO());
-                                //SLUT
-                                raekke.getVO().init(raekke.getVE(),raekke.getX(),raekke.getKO(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getDB(),raekke.getOMS());
                                 raekke.getVO().beregn();
-                                if (getAdapterPosition() != 0) {
-
-                                    Raekke raekkeUnder = raekkeArrayList.get(getAdapterPosition() + 1);
-                                    Raekke raekkeOver = raekkeArrayList.get(getAdapterPosition() - 1);
-                                }
 
                                 new Handler().post(new Runnable() {
                                     @Override
@@ -770,30 +569,12 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
                                 System.out.println("SE gets changed");
                                 raekke.getSE().setVaerdi(newSE);
 
-                                //KALDER ALLE INITS
-                                raekke.getSTO().init(raekke.getX(),raekke.getVO(),raekke.getKO(),raekke.getSE(),raekke.getGROMK());
-                                raekke.getKO().init(raekke.getKE(),raekke.getX(),raekke.getSTO(),raekke.getVO());
-                                raekke.getDOMK().init(raekke.getVO(), raekke.getSTO(), raekke.getKO(), raekke.getVE(), raekke.getX());
-                                raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
-                                raekke.getVE().init(raekke.getVO(), raekke.getX(), raekke.getSE(), raekke.getKE());
-                                raekke.getVO().init(raekke.getVE(),raekke.getX(),raekke.getKO(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getDB(),raekke.getOMS());
-                                raekke.getSE().init(raekke.getX(),raekke.getSTO(),raekke.getVE(),raekke.getKE());
-                                raekke.getKE().init(raekke.getKO(),raekke.getX(),raekke.getSE(),raekke.getVE());
-                                raekke.getGROMK().init(raekke.getX(),raekke.getSTO());
-                                //SLUT
-                                raekke.getSTO().init(raekke.getX(),raekke.getVO(),raekke.getKO(),raekke.getSE(),raekke.getGROMK());
                                 raekke.getSTO().beregn();
-                                raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
                                 raekke.getX().beregn();
-                                raekke.getVE().init(raekke.getVO(),raekke.getX(),raekke.getSE(),raekke.getKE());
                                 raekke.getVE().beregn();
-                                raekke.getKE().init(raekke.getKO(),raekke.getX(),raekke.getSE(),raekke.getVE());
                                 raekke.getKE().beregn();
-                                if (getAdapterPosition() != 0) {
 
-                                    Raekke raekkeUnder = raekkeArrayList.get(getAdapterPosition() + 1);
-                                    Raekke raekkeOver = raekkeArrayList.get(getAdapterPosition() - 1);
-                                }
+
                                 new Handler().post(new Runnable() {
                                     @Override
                                     public void run() {
@@ -806,28 +587,10 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
                                 System.out.println("STO gets changed");
                                 raekke.getSTO().setVaerdi(newSTO);
 
-                                //KALDER ALLE INITS
-                                raekke.getSTO().init(raekke.getX(),raekke.getVO(),raekke.getKO(),raekke.getSE(),raekke.getGROMK());
-                                raekke.getKO().init(raekke.getKE(),raekke.getX(),raekke.getSTO(),raekke.getVO());
-                                raekke.getDOMK().init(raekke.getVO(), raekke.getSTO(), raekke.getKO(), raekke.getVE(), raekke.getX());
-                                raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
-                                raekke.getVE().init(raekke.getVO(), raekke.getX(), raekke.getSE(), raekke.getKE());
-                                raekke.getVO().init(raekke.getVE(),raekke.getX(),raekke.getKO(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getDB(),raekke.getOMS());
-                                raekke.getSE().init(raekke.getX(),raekke.getSTO(),raekke.getVE(),raekke.getKE());
-                                raekke.getKE().init(raekke.getKO(),raekke.getX(),raekke.getSE(),raekke.getVE());
-                                raekke.getGROMK().init(raekke.getX(),raekke.getSTO());
-                                //SLUT
-                                raekke.getX().init(raekke.getVO(),raekke.getVE(),raekke.getDOMK(),raekke.getSTO(),raekke.getSE(),raekke.getGROMK(),raekke.getKO(),raekke.getKE());
                                 raekke.getX().beregn();
-                                raekke.getKO().init(raekke.getKE(),raekke.getX(),raekke.getSTO(),raekke.getVO());
                                 raekke.getKO().beregn();
-                                raekke.getSE().init(raekke.getX(),raekke.getSTO(),raekke.getVE(),raekke.getKE());
                                 raekke.getSE().beregn();
                                 if (getAdapterPosition() != 0) {
-                                    Raekke raekkeUnder = raekkeArrayList.get(getAdapterPosition() + 1);
-                                    Raekke raekkeOver = raekkeArrayList.get(getAdapterPosition() - 1);
-                                    raekke.getGROMK().initOver(raekke.getX(),raekke.getSTO());
-                                    raekke.getGROMK().init(raekke.getX(),raekke.getSTO());
                                     raekke.getGROMK().beregn();
                                 }
 

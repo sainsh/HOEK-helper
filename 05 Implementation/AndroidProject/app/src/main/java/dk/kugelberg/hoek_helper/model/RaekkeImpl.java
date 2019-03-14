@@ -30,6 +30,15 @@ public class RaekkeImpl implements Raekke {
         oms = new OMSImpl();
         db = new DBImpl();
 
+        sto.init(x,vo,ko,se,gromk);
+        domk.init(vo,sto,ko,ve,x);
+        gromk.init(x, sto);
+        ke.init(ko,x,se,ve);
+        ko.init(ke,x,sto,vo);
+        se.init(x,sto,ve,ke);
+        ve.init(vo,x,se,ke);
+        vo.init(ve,x,ko,domk,sto,se,db,oms);
+        x.init(vo,ve,domk,sto,se,gromk,ko,ke);
     }
 
     @Override
