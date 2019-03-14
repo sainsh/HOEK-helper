@@ -91,6 +91,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         recyclerView.setAdapter(adapter);
 
         setupSharedPreferences();
+
+
     }
 
     /**
