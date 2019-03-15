@@ -32,7 +32,7 @@ public class GROMKImpl implements GROMK {
     @Override
     public void setVaerdi(double vaerdi) {
         if (vaerdi < 0) {
-            throw new VaerdiException();
+            throw new NegativVaerdiException();
         } else {
             this.vaerdi = vaerdi;
             setBeregnet(false);
