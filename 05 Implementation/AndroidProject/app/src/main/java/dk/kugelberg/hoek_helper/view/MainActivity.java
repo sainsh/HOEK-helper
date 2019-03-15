@@ -330,4 +330,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         this.editTextChanged = editTextChanged;
     }
 
+    public void reset(View view) {
+        viewModel.deleteAll();
+    }
 }

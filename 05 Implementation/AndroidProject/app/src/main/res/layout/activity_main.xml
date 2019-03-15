@@ -170,4 +170,14 @@
         android:src="@mipmap/ic_add"
         app:backgroundTint="@color/colorPrimary" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="reset"
+        android:src="@mipmap/reset"
+        app:backgroundTint="@color/colorPrimary" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
