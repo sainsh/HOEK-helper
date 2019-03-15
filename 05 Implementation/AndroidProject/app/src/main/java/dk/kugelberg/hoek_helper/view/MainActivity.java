@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private String editTextChanged;
     double testX = 0;
     double testVO = 0;
-    
     // NO CONSTRUCTOR HERE
 
     @Override
@@ -90,8 +89,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         adapter = new DataAdapter(this, viewModel);
         recyclerView.setAdapter(adapter);
 
+
         setupSharedPreferences();
         Tabel tabel = ControllerImpl.getInstance().getTabel();
+        if(tabel.getTabelMld().getValue().size() == 0)
+        {
         tabel.addRaekke(0);
         Raekke raekke = tabel.getRaekke(0);
         raekke.getX().setVaerdi(0);
@@ -105,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         raekke.getVE().setVaerdi(0);
         raekke.getOMS().setVaerdi(0);
         raekke.getDB().setVaerdi(0);
-
+        }
     }
 
     /**
@@ -195,8 +197,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
      * The following code deals with changing of settings
      */
     private void visibility(SharedPreferences sharedPreferences) {
-        
-        // TODO -- Træk ud i særskilt metode
         if (sharedPreferences.getBoolean(getString(R.string.vis_antal_enheder_key), getResources().getBoolean(R.bool.vis_antal_enheder))) {
             antalEnheder.setVisibility(View.VISIBLE);
             adapter.setAntalEnhederVisible(true);
@@ -234,7 +234,56 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         } else {
             domk.setVisibility(View.GONE);
             adapter.setDomkVisible(false);
-        }/* //TODO ADD SAME FUNCTIONS FOR (DB, KE, KO og de restende objecter) */
+        }
+        if (sharedPreferences.getBoolean(getString(R.string.vis_se_key), getResources().getBoolean(R.bool.vis_se))) {
+            se.setVisibility(View.VISIBLE);
+            adapter.setSeVisible(true);
+        } else {
+            se.setVisibility(View.GONE);
+            adapter.setSeVisible(false);
+        }
+        if (sharedPreferences.getBoolean(getString(R.string.vis_ke_key), getResources().getBoolean(R.bool.vis_ke))) {
+            ke.setVisibility(View.VISIBLE);
+            adapter.setKeVisible(true);
+        } else {
+            ke.setVisibility(View.GONE);
+            adapter.setKeVisible(false);
+        }
+        if (sharedPreferences.getBoolean(getString(R.string.vis_ko_key), getResources().getBoolean(R.bool.vis_ko))) {
+            ko.setVisibility(View.VISIBLE);
+            adapter.setKoVisible(true);
+        } else {
+            ko.setVisibility(View.GONE);
+            adapter.setKoVisible(false);
+        }
+        if (sharedPreferences.getBoolean(getString(R.string.vis_sto_key), getResources().getBoolean(R.bool.vis_sto))) {
+            sto.setVisibility(View.VISIBLE);
+            adapter.setStoVisible(true);
+        } else {
+            sto.setVisibility(View.GONE);
+            adapter.setStoVisible(false);
+        }
+        if (sharedPreferences.getBoolean(getString(R.string.vis_gromk_key), getResources().getBoolean(R.bool.vis_gromk))) {
+            gromk.setVisibility(View.VISIBLE);
+            adapter.setGromkVisible(true);
+        } else {
+            gromk.setVisibility(View.GONE);
+            adapter.setGromkVisible(false);
+        }
+        if (sharedPreferences.getBoolean(getString(R.string.vis_oms_key), getResources().getBoolean(R.bool.vis_oms))) {
+            oms.setVisibility(View.VISIBLE);
+            adapter.setOmsVisible(true);
+        } else {
+            oms.setVisibility(View.GONE);
+            adapter.setOmsVisible(false);
+        }
+        if (sharedPreferences.getBoolean(getString(R.string.vis_db_key), getResources().getBoolean(R.bool.vis_db))) {
+            db.setVisibility(View.VISIBLE);
+            adapter.setDbVisible(true);
+        } else {
+            db.setVisibility(View.GONE);
+            adapter.setDbVisible(false);
+        }
 
     }
 

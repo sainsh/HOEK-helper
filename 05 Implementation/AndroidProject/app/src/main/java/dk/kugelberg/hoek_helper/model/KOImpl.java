@@ -67,9 +67,6 @@ public class KOImpl implements KO {
 
     @Override
     public void beregn() {
-
-        // TODO: lav beregner med xOver, xUnder, voOver og voUnder
-
         // KO = KE * X
         if (!Double.isNaN(ke.getVaerdi()) && !Double.isNaN(x.getVaerdi())) {
             vaerdi = ke.getVaerdi() * x.getVaerdi();
