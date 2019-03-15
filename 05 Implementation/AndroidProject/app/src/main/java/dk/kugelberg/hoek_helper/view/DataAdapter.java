@@ -37,6 +37,13 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
     private boolean voVisible = true;
     private boolean veVisible = true;
     private boolean domkVisible = true;
+    private boolean seVisible = true;
+    private boolean keVisible = true;
+    private boolean koVisible = true;
+    private boolean stoVisible = true;
+    private boolean gromkVisible = true;
+    private boolean omsVisible = true;
+    private boolean dbVisible = true;
 
     public void setAntalEnhederVisible(boolean antalEnhederVisible) {
         this.antalEnhederVisible = antalEnhederVisible;
@@ -52,6 +59,34 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
 
     public void setDomkVisible(boolean domkVisible) {
         this.domkVisible = domkVisible;
+    }
+
+    public void setSeVisible(boolean seVisible) {
+        this.seVisible = seVisible;
+    }
+
+    public void setKeVisible(boolean keVisible) {
+        this.keVisible = keVisible;
+    }
+
+    public void setKoVisible(boolean koVisible) {
+        this.koVisible = koVisible;
+    }
+
+    public void setStoVisible(boolean stoVisible) {
+        this.stoVisible = stoVisible;
+    }
+
+    public void setGromkVisible(boolean gromkVisible) {
+        this.gromkVisible = gromkVisible;
+    }
+
+    public void setOmsVisible(boolean omsVisible) {
+        this.omsVisible = omsVisible;
+    }
+
+    public void setDbVisible(boolean dbVisible) {
+        this.dbVisible = dbVisible;
     }
 
     public DataAdapter(Context context, ModelViewModel viewModel) {
@@ -93,8 +128,42 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
         else
             holder.domk.setVisibility(View.GONE);
 
-        Raekke raekke = raekkeArrayList.get(position);
+        if (seVisible)
+            holder.se.setVisibility(View.VISIBLE);
+        else
+            holder.se.setVisibility(View.GONE);
 
+        if (keVisible)
+            holder.ke.setVisibility(View.VISIBLE);
+        else
+            holder.ke.setVisibility(View.GONE);
+
+        if (koVisible)
+            holder.ko.setVisibility(View.VISIBLE);
+        else
+            holder.ko.setVisibility(View.GONE);
+
+        if (stoVisible)
+            holder.sto.setVisibility(View.VISIBLE);
+        else
+            holder.sto.setVisibility(View.GONE);
+
+        if (gromkVisible)
+            holder.gromk.setVisibility(View.VISIBLE);
+        else
+            holder.gromk.setVisibility(View.GONE);
+
+        if (omsVisible)
+            holder.oms.setVisibility(View.VISIBLE);
+        else
+            holder.oms.setVisibility(View.GONE);
+
+        if (dbVisible)
+            holder.db.setVisibility(View.VISIBLE);
+        else
+            holder.db.setVisibility(View.GONE);
+
+        Raekke raekke = raekkeArrayList.get(position);
 
 
         double antalEnhederNum = raekke.getX().getVaerdi();
@@ -109,29 +178,29 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
         double seNum = raekke.getSE().getVaerdi();
         double stoNum = raekke.getSTO().getVaerdi();
 
-       // if (!Double.isNaN(antalEnhederNum))
+        // if (!Double.isNaN(antalEnhederNum))
         holder.antalEnheder.setText(String.valueOf(antalEnhederNum));
 //       holder.vo.setText(String.valueOf(voNum));
-       // if (!Double.isNaN(voNum))
+        // if (!Double.isNaN(voNum))
         holder.vo.setText(String.format(Locale.GERMAN, "%,.2f", voNum));
-       // if (!Double.isNaN(veNum))
+        // if (!Double.isNaN(veNum))
         holder.ve.setText(String.valueOf(veNum));
 //        holder.ve.setText(String.format("%.2f", veNum));
-       // if (!Double.isNaN(domkNum))
+        // if (!Double.isNaN(domkNum))
         holder.domk.setText(String.valueOf(domkNum));
-       // if (!Double.isNaN(dbNum))
+        // if (!Double.isNaN(dbNum))
         holder.db.setText(String.valueOf(dbNum));
-       // if (!Double.isNaN(gromkNum))
+        // if (!Double.isNaN(gromkNum))
         holder.gromk.setText(String.valueOf(gromkNum));
-      //  if (!Double.isNaN(keNum))
+        //  if (!Double.isNaN(keNum))
         holder.ke.setText(String.valueOf(keNum));
-      //  if (!Double.isNaN(koNum))
+        //  if (!Double.isNaN(koNum))
         holder.ko.setText(String.valueOf(koNum));
-      //  if (!Double.isNaN(omsNum))
+        //  if (!Double.isNaN(omsNum))
         holder.oms.setText(String.valueOf(omsNum));
-       // if (!Double.isNaN(seNum))
+        // if (!Double.isNaN(seNum))
         holder.se.setText(String.valueOf(seNum));
-       // if (!Double.isNaN(stoNum))
+        // if (!Double.isNaN(stoNum))
         holder.sto.setText(String.valueOf(stoNum));
 
         // This places the cursor back where it belongs when the table is redrawn upon changes.
@@ -258,7 +327,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
             db = itemView.findViewById(R.id.edit_text_db);
             gromk = itemView.findViewById(R.id.edit_text_gromk);
             ke = itemView.findViewById(R.id.edit_text_ke);
-            ko  = itemView.findViewById(R.id.edit_text_ko);
+            ko = itemView.findViewById(R.id.edit_text_ko);
             oms = itemView.findViewById(R.id.edit_text_oms);
             se = itemView.findViewById(R.id.edit_text_se);
             sto = itemView.findViewById(R.id.edit_text_sto);
@@ -386,7 +455,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
                             double newSTO = Double.parseDouble(sto.getText().toString());
 
 
-
                             if (currentAntalEnheder != newAntalEnheder && !Double.isNaN(newAntalEnheder)) {
                                 System.out.println("X gets changed");
                                 raekke.getX().setVaerdi(newAntalEnheder);
@@ -427,7 +495,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
 
                                 raekke.getVE().beregn();
 
-                                if (getAdapterPosition() != raekkeArrayList.size()-1) {
+                                if (getAdapterPosition() != raekkeArrayList.size() - 1) {
                                     raekke.getX().beregn();
                                     raekke.getKO().beregn();
                                     raekke.getX().beregn();
@@ -457,7 +525,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
                                 raekke.getX().beregn();
                                 raekke.getVO().beregn();
                                 raekke.getSE().beregn();
-                                if (getAdapterPosition() != 0){
+                                if (getAdapterPosition() != 0) {
                                 }
 
                                 new Handler().post(new Runnable() {
@@ -472,7 +540,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
                                 System.out.println("DOMK gets changed");
                                 raekke.getDOMK().setVaerdi(newDomk);
 
-                                if (getAdapterPosition() != 0){
+                                if (getAdapterPosition() != 0) {
                                     raekke.getX().beregn();
                                     raekke.getVO().beregn();
                                 }
@@ -517,7 +585,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
                                 });
                             }
 
-                            if (currentKE!= newKE && !Double.isNaN(newKE)) {
+                            if (currentKE != newKE && !Double.isNaN(newKE)) {
                                 System.out.println("KE gets changed");
                                 raekke.getKE().setVaerdi(newKE);
 
@@ -639,7 +707,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
 
         private void deleteRow() {
             if (getAdapterPosition() != -1)
-            viewModel.deleteRow(getAdapterPosition());
+                viewModel.deleteRow(getAdapterPosition());
         }
 
         private void deleteAll() {
