@@ -197,8 +197,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
      * The following code deals with changing of settings
      */
     private void visibility(SharedPreferences sharedPreferences) {
-        
-        // TODO -- Træk ud i særskilt metode
         if (sharedPreferences.getBoolean(getString(R.string.vis_antal_enheder_key), getResources().getBoolean(R.bool.vis_antal_enheder))) {
             antalEnheder.setVisibility(View.VISIBLE);
             adapter.setAntalEnhederVisible(true);

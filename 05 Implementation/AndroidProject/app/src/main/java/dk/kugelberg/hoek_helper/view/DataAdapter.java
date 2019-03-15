@@ -468,8 +468,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RowViewHolder>
 
 
                                 if (getAdapterPosition() != 0) {
-                                    //TODO TJEK OM RaekkeUnder fungere, ellers fix med en ny if statement.
-
                                     raekke.getKO().beregn();
 
                                     raekke.getVO().beregn();
