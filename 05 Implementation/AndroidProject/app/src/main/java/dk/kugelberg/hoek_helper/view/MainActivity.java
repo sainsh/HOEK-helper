@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private String editTextChanged;
     double testX = 0;
     double testVO = 0;
-    
+    static int start = 0;
     // NO CONSTRUCTOR HERE
 
     @Override
@@ -90,7 +90,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         adapter = new DataAdapter(this, viewModel);
         recyclerView.setAdapter(adapter);
 
+
         setupSharedPreferences();
+
+        if(start == 0)
+        {
         Tabel tabel = ControllerImpl.getInstance().getTabel();
         tabel.addRaekke(0);
         Raekke raekke = tabel.getRaekke(0);
@@ -105,7 +109,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         raekke.getVE().setVaerdi(0);
         raekke.getOMS().setVaerdi(0);
         raekke.getDB().setVaerdi(0);
-
+        start++;
+        }
     }
 
     /**
