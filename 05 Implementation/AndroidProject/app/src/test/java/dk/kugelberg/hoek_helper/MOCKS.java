@@ -12,8 +12,8 @@ import dk.kugelberg.hoek_helper.model.VE;
 import dk.kugelberg.hoek_helper.model.VO;
 import dk.kugelberg.hoek_helper.model.X;
 
-class MOCKS {
-     static class DBMock implements DB{
+public class MOCKS {
+     public static class DBMock implements DB{
         double vaerdi;
 
         public DBMock(double vaerdi){
@@ -31,7 +31,7 @@ class MOCKS {
         }
     }
 
-    static class OMSMock implements OMS{
+    public static class OMSMock implements OMS{
         double vaerdi;
 
         public OMSMock(double vaerdi) {
@@ -49,7 +49,7 @@ class MOCKS {
         }
     }
 
-    static class XMock implements X {
+    public static class XMock implements X {
         double vaerdi;
 
         public XMock(double vaerdi) {
@@ -97,7 +97,7 @@ class MOCKS {
         }
     }
 
-     static class VOMock implements VO {
+     public static class VOMock implements VO {
         double vaerdi;
         public VOMock(double vaerdi){
             this.vaerdi = vaerdi;
@@ -144,7 +144,7 @@ class MOCKS {
         }
     }
 
-    static class VEMock implements VE {
+    public static class VEMock implements VE {
         double vaerdi;
 
         public VEMock(double vaerdi) {
@@ -186,7 +186,7 @@ class MOCKS {
         }
     }
 
-    static class STOMock implements STO {
+    public static class STOMock implements STO {
         double vaerdi;
 
         public STOMock(double vaerdi) {
@@ -235,7 +235,7 @@ class MOCKS {
         }
     }
 
-    static class SEMock implements SE {
+    public static class SEMock implements SE {
 
 
         double vaerdi;
@@ -274,7 +274,7 @@ class MOCKS {
         }
     }
 
-    static class KOMock implements KO {
+    public static class KOMock implements KO {
 
         double vaerdi;
 
@@ -324,7 +324,7 @@ class MOCKS {
         }
     }
 
-    static class KEMock implements KE {
+    public static class KEMock implements KE {
 
         double vaerdi;
 
@@ -363,7 +363,7 @@ class MOCKS {
         }
     }
 
-    static class GromkMock implements GROMK {
+    public static class GromkMock implements GROMK {
         double vaerdi = Double.NaN;
 
         public GromkMock(double vaerdi){
@@ -406,7 +406,7 @@ class MOCKS {
         }
     }
 
-    static class DomkMock implements DOMK {
+    public static class DomkMock implements DOMK {
         double vaerdi;
 
         public DomkMock(double vaerdi) {

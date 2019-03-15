@@ -1,6 +1,7 @@
-package dk.kugelberg.hoek_helper;
+package dk.kugelberg.hoek_helper.untitests;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
+import dk.kugelberg.hoek_helper.MOCKS;
 import dk.kugelberg.hoek_helper.model.KE;
 import dk.kugelberg.hoek_helper.model.NegativVaerdiException;
 import dk.kugelberg.hoek_helper.model.SE;

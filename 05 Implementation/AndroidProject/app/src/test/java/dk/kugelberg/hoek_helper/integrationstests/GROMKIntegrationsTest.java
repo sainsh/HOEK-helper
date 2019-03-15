@@ -1,7 +1,8 @@
-package dk.kugelberg.hoek_helper;
+package dk.kugelberg.hoek_helper.integrationstests;
 
 import org.junit.Test;
 
+import dk.kugelberg.hoek_helper.MOCKS;
 import dk.kugelberg.hoek_helper.model.GROMKImpl;
 import dk.kugelberg.hoek_helper.model.STOImpl;
 import dk.kugelberg.hoek_helper.model.XImpl;

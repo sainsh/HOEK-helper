@@ -1,4 +1,4 @@
-package dk.kugelberg.hoek_helper;
+package dk.kugelberg.hoek_helper.untitests;
 
 import org.junit.Test;
 

@@ -1,10 +1,11 @@
-package dk.kugelberg.hoek_helper;
+package dk.kugelberg.hoek_helper.integrationstests;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestRule;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
+import dk.kugelberg.hoek_helper.MOCKS;
 import dk.kugelberg.hoek_helper.model.VE;
 import dk.kugelberg.hoek_helper.model.VEImpl;
 import dk.kugelberg.hoek_helper.model.VO;

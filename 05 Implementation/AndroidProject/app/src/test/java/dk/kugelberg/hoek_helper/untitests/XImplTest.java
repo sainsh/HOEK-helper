@@ -1,4 +1,4 @@
-package dk.kugelberg.hoek_helper;
+package dk.kugelberg.hoek_helper.untitests;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -7,6 +7,7 @@ import org.junit.rules.TestRule;
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.lifecycle.MutableLiveData;
 
+import dk.kugelberg.hoek_helper.MOCKS;
 import dk.kugelberg.hoek_helper.model.DB;
 import dk.kugelberg.hoek_helper.model.DOMK;
 import dk.kugelberg.hoek_helper.model.GROMK;
@@ -145,9 +146,11 @@ public class XImplTest {
     @Test
     public void testBeregnXmedDOMKogVO() {
         XImpl x = new XImpl();
-        x.initOver(new MOCKS.XMock(0),new MOCKS.VOMock(0));
-        x.init(new MOCKS.VOMock(5), new MOCKS.VEMock(Double.NaN), new MOCKS.DomkMock(10), new MOCKS.STOMock(Double.NaN), new MOCKS.SEMock(Double.NaN), new MOCKS.GromkMock(Double.NaN), new MOCKS.KOMock(Double.NaN),new MOCKS.KEMock(Double.NaN));
-        double resultat = 50;
+        x.initOver(new MOCKS.XMock(40000),new MOCKS.VOMock(280000));
+        x.init(new MOCKS.VOMock(310000), new MOCKS.VEMock(Double.NaN), new MOCKS.DomkMock(6),
+                new MOCKS.STOMock(Double.NaN), new MOCKS.SEMock(Double.NaN), new MOCKS.GromkMock(Double.NaN),
+                new MOCKS.KOMock(Double.NaN),new MOCKS.KEMock(Double.NaN));
+        double resultat = 45000;
         x.beregn();
         assertEquals(x.getVaerdi(), resultat, delta);
         assertTrue(x.getBeregnet());

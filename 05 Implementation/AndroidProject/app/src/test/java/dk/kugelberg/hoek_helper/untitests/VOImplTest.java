@@ -1,9 +1,10 @@
-package dk.kugelberg.hoek_helper;
+package dk.kugelberg.hoek_helper.untitests;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestRule;
 
+import dk.kugelberg.hoek_helper.MOCKS;
 import dk.kugelberg.hoek_helper.model.DB;
 import dk.kugelberg.hoek_helper.model.DOMK;
 import dk.kugelberg.hoek_helper.model.GROMK;
@@ -24,10 +25,6 @@ import static org.junit.Assert.assertTrue;
 
 public class VOImplTest {
 
-    @Rule
-    //public TestRule rule = new InstantTaskExecutorRule();
-
-
     @Test
     public void testSetVaerdiTil45() {
 
@@ -40,8 +37,7 @@ public class VOImplTest {
     public void testGetVaerdi45() {
 
         VO vo = new VOImpl();
-        vo.setVaerdi(45);
-        assertEquals(vo.getVaerdi(),45,0);
+        assertEquals(vo.getVaerdi(),Double.NaN,0);
     }
 
     @Test
