@@ -33,6 +33,55 @@
             android:summaryOn="@string/vist"
             android:title="@string/vis_domk" />
 
+        <SwitchPreferenceCompat
+            android:defaultValue="@bool/vis_se"
+            android:key="@string/vis_se_key"
+            android:summaryOff="@string/skjult"
+            android:summaryOn = "@string/vist"
+            android:title="@string/vis_se"/>
+
+        <SwitchPreferenceCompat
+            android:defaultValue="@bool/vis_ke"
+            android:key="@string/vis_ke_key"
+            android:summaryOff="@string/skjult"
+            android:summaryOn = "@string/vist"
+            android:title="@string/vis_ke"/>
+
+        <SwitchPreferenceCompat
+            android:defaultValue="@bool/vis_ko"
+            android:key="@string/vis_ko_key"
+            android:summaryOff="@string/skjult"
+            android:summaryOn = "@string/vist"
+            android:title="@string/vis_ko"/>
+
+        <SwitchPreferenceCompat
+            android:defaultValue="@bool/vis_sto"
+            android:key="@string/vis_sto_key"
+            android:summaryOff="@string/skjult"
+            android:summaryOn = "@string/vist"
+            android:title="@string/vis_sto"/>
+
+        <SwitchPreferenceCompat
+            android:defaultValue="@bool/vis_gromk"
+            android:key="@string/vis_gromk_key"
+            android:summaryOff="@string/skjult"
+            android:summaryOn = "@string/vist"
+            android:title="@string/vis_gromk"/>
+
+        <SwitchPreferenceCompat
+            android:defaultValue="@bool/vis_oms"
+            android:key="@string/vis_oms_key"
+            android:summaryOff="@string/skjult"
+            android:summaryOn = "@string/vist"
+            android:title="@string/vis_oms"/>
+
+        <SwitchPreferenceCompat
+            android:defaultValue="@bool/vis_db"
+            android:key="@string/vis_db_key"
+            android:summaryOff="@string/skjult"
+            android:summaryOn = "@string/vist"
+            android:title="@string/vis_db"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory

@@ -35,7 +35,7 @@ public class ModelViewModel extends AndroidViewModel {
     double testVO = 0;
 
     public void addRow() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 1; i++) {
             Tabel tabel = controller.getTabel();
             ArrayList<Raekke> arrayList = tabel.getTabelMld().getValue();
 
@@ -45,11 +45,8 @@ public class ModelViewModel extends AndroidViewModel {
 
             Raekke raekke = tabel.getRaekke(tabelSize);
             raekke.getX().setVaerdi(testX);
-            testX += 1000;
+            testX += 0;
             raekke.getVO().setVaerdi(testVO);
-            testVO += 50000 * (testX / 1000);
-            raekke.getVE().init(raekke.getVO(), raekke.getX(), raekke.getSE(), raekke.getKE());
-            raekke.getVE().beregn();
 
             if (tabelSize != 0) {
                 raekke.getDOMK().init(raekke.getVO(), raekke.getSTO(), raekke.getKO(), raekke.getVE(), raekke.getX());

@@ -4,5 +4,13 @@
     <bool name="vis_vo">true</bool>
     <bool name="vis_ve">true</bool>
     <bool name="vis_domk">true</bool>
+    <bool name="vis_se">true</bool>
+    <bool name="vis_ke">true</bool>
+    <bool name="vis_ko">true</bool>
+    <bool name="vis_sto">true</bool>
+    <bool name="vis_gromk">true</bool>
+    <bool name="vis_oms">true</bool>
+    <bool name="vis_db">true</bool>
+
 
 </resources>
